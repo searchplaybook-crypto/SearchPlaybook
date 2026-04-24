@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Playbook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50vh;
+            background: url('hero-image.jpg') no-repeat center center;
+            background-size: cover;
+            text-align: center;
+            color: white;
+        }
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: transform 0.2s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        @media (max-width: 768px) {
+            .card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 480px) {
+            .card-container {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                height: 30vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>Welcome to the Search Playbook</h1>
+    </div>
+    <div class="card-container">
+        <div class="card">
+            <h2>Card Title 1</h2>
+            <p>Description for card 1.</p>
+        </div>
+        <div class="card">
+            <h2>Card Title 2</h2>
+            <p>Description for card 2.</p>
+        </div>
+        <div class="card">
+            <h2>Card Title 3</h2>
+            <p>Description for card 3.</p>
+        </div>
+        <div class="card">
+            <h2>Card Title 4</h2>
+            <p>Description for card 4.</p>
+        </div>
+        <div class="card">
+            <h2>Card Title 5</h2>
+            <p>Description for card 5.</p>
+        </div>
+        <div class="card">
+            <h2>Card Title 6</h2>
+            <p>Description for card 6.</p>
+        </div>
+    </div>
+</body>
+</html>
