@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Intel Hub | Search Playbook</title>
+    
+    <meta name="google-site-verification" content="google0358e8a493fefd4f.html" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9664615320771471" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZKPVQY1GB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FZKPVQY1GB');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-container": "#e9c349",
+                        "on-primary-container": "#201c00",
+                        "surface-dim": "#131315",
+                        "outline-variant": "#4d4635",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #09090B; color: #eae1d4; }
+        .bg-grid-pattern { background-image: radial-gradient(circle, #e9c349 1px, transparent 1px); background-size: 30px 30px; }
+        .intel-card { background: #131315; border: 1px solid #4d4635; }
+    </style>
+</head>
+
+<body class="font-work-sans antialiased overflow-x-hidden">
+    <header class="fixed top-0 left-0 w-full z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800 h-20 flex items-center px-8 justify-between">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary-container">hub</span>
+            <span class="text-lg font-black text-white font-space-grotesk uppercase tracking-tighter">Intel_Hub</span>
+        </div>
+        <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Status: Transmission_Active</div>
+    </header>
+
+    <main class="pt-32 pb-20 px-8 max-w-[1280px] mx-auto">
+        <div class="mb-20">
+            <h1 class="text-5xl md:text-7xl font-black text-white font-space-grotesk uppercase tracking-tighter mb-4 leading-none">
+                Tactical <span class="text-primary-container">Briefings</span>
+            </h1>
+            <p class="text-zinc-500 uppercase text-[10px] tracking-[0.4em] font-space-grotesk">
+                Industry Insights // Framework Proofs // Collective Updates
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            
+            <div class="intel-card p-10 flex flex-col justify-between group hover:border-primary-container transition-all">
+                <div>
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-bold text-primary-container tracking-[0.3em] uppercase">Insight_01</span>
+                        <span class="material-symbols-outlined text-zinc-700 group-hover:text-primary-container">monitoring</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white uppercase mb-4">1,172% ROI Framework</h2>
+                    <p class="text-zinc-500 text-sm mb-8">Analysis of the Organic SERP Framework used for the Family Kitchen project, maximizing local visibility.</p>
+                    <ul class="space-y-4 mb-10 text-xs text-zinc-400 font-mono">
+                        <li class="flex items-center gap-3"> [STATUS: VERIFIED]</li>
+                        <li class="flex items-center gap-3"> [LOCATION: JO'BURG]</li>
+                        <li class="flex items-center gap-3"> [DOMAIN: LOCAL_SEO]</li>
+                    </ul>
+                </div>
+                <div>
+                    <button class="w-full py-3 bg-zinc-800 text-white text-[10px] font-black uppercase tracking-widest hover:bg-primary-container hover:text-black transition-colors">Access Briefing</button>
+                </div>
+            </div>
+
+            <div class="intel-card p-10 flex flex-col justify-between border-primary-container relative">
+                <div class="absolute top-0 right-0 bg-primary-container text-on-primary-container text-[8px] font-black px-3 py-1 uppercase">Top Secret</div>
+                <div>
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-bold text-primary-container tracking-[0.3em] uppercase">Insight_02</span>
+                        <span class="material-symbols-outlined text-primary-container">fingerprint</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white uppercase mb-4">Data Hygiene Audit</h2>
+                    <p class="text-zinc-500 text-sm mb-8">Mandatory checklists for removing high-risk personal data and securing reputation-critical accounts.</p>
+                    <ul class="space-y-4 mb-10 text-xs text-zinc-200 font-mono">
+                        <li class="flex items-center gap-3"> [REPUTATION_REPAIR]</li>
+                        <li class="flex items-center gap-3"> [FOOTPRINT_WIPE]</li>
+                        <li class="flex items-center gap-3"> [IDENTITY_SHIELD]</li>
+                    </ul>
+                </div>
+                <div>
+                    <button class="w-full py-3 bg-primary-container text-on-primary-container text-[10px] font-black uppercase tracking-widest">Access Briefing</button>
+                </div>
+            </div>
+
+            <div class="intel-card p-10 flex flex-col justify-between group hover:border-primary-container transition-all">
+                <div>
+                    <div class="flex justify-between items-start mb-8">
+                        <span class="text-[10px] font-bold text-primary-container tracking-[0.3em] uppercase">Insight_03</span>
+                        <span class="material-symbols-outlined text-zinc-700 group-hover:text-primary-container">encrypted</span>
+                    </div>
+                    <h2 class="text-2xl font-bold text-white uppercase mb-4">Cybersecurity Lab</h2>
+                    <p class="text-zinc-500 text-sm mb-8">An overview of common local threats and the zero-trust architecture used by the Collective.</p>
+                    <ul class="space-y-4 mb-10 text-xs text-zinc-400 font-mono">
+                        <li class="flex items-center gap-3"> [THREAT_ASSESSMENT]</li>
+                        <li class="flex items-center gap-3"> [SAFE_HANDOVER]</li>
+                        <li class="flex items-center gap-3"> [ZERO_TRUST_LAB]</li>
+                    </ul>
+                </div>
+                <div>
+                    <button class="w-full py-3 bg-zinc-800 text-white text-[10px] font-black uppercase tracking-widest hover:bg-primary-container hover:text-black transition-colors">Access Briefing</button>
+                </div>
+            </div>
+        </div>
+
+        <section class="mt-32 pt-20 border-t border-zinc-800 grid md:grid-cols-2 gap-16">
+            <div class="h-[300px] border border-outline-variant relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+                <div class="text-[10px] font-mono text-primary-container/40 uppercase tracking-[0.5em] text-center">
+                    VERIFYING_COLLECTIVE_NODE<br/>[STATUS: AUTHORIZED]
+                </div>
+            </div>
+            <div>
+                <h2 class="text-4xl font-black text-white uppercase tracking-tighter mb-6">The Collective Mandate</h2>
+                <p class="text-zinc-400 leading-relaxed mb-6 text-sm">
+                    Search Playbook is a decentralized network of experts. We provide low-maintenance, high-impact visibility and privacy solutions for families and service providers.
+                </p>
+                <div class="flex gap-4">
+                    <span class="px-4 py-2 border border-zinc-800 text-zinc-600 text-[9px] font-bold uppercase tracking-widest">Visibility</span>
+                    <span class="px-4 py-2 border border-zinc-800 text-zinc-600 text-[9px] font-bold uppercase tracking-widest">Privacy</span>
+                    <span class="px-4 py-2 border border-zinc-800 text-zinc-600 text-[9px] font-bold uppercase tracking-widest">Safety</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-zinc-950 border-t border-zinc-800 py-12 px-8 flex justify-between items-center text-[9px] text-zinc-700 uppercase tracking-[0.3em]">
+        <span>Search Playbook Collective // 2026</span>
+        <span>Johannesburg // ZA</span>
+    </footer>
+</body>
+</html>
