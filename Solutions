@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>SEARCH PLAYBOOK - SOLUTIONS</title>
+    
+    <meta name="google-site-verification" content="google0358e8a493fefd4f.html" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9664615320771471" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZKPVQY1GB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FZKPVQY1GB');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    
+    <style>
+        body { background-color: #09090b; color: #eae1d4; }
+        .bg-grid-pattern { background-image: radial-gradient(circle, #D4AF37 1px, transparent 1px); background-size: 30px 30px; }
+    </style>
+</head>
+
+<body class="font-work-sans antialiased">
+    <header class="fixed top-0 left-0 w-full z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800">
+        <nav class="max-w-[1280px] mx-auto px-8 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-[#D4AF37]" style="font-variation-settings: 'FILL' 1;">terminal</span>
+                <span class="text-lg font-black text-white font-space-grotesk uppercase tracking-tighter">Solutions_Intel</span>
+            </div>
+            <div class="hidden md:flex items-center gap-8 font-space-grotesk text-xs tracking-widest uppercase">
+                <a class="text-[#D4AF37]" href="#">Visibility</a>
+                <a class="text-zinc-500 hover:text-white" href="#">Privacy</a>
+                <a class="text-zinc-500 hover:text-white" href="#">Safety</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="pt-32 pb-20 px-8 max-w-[1280px] mx-auto">
+        <section class="mb-24">
+            <div class="flex flex-col md:flex-row gap-12 items-end">
+                <div class="md:w-2/3">
+                    <span class="text-[#D4AF37] font-space-grotesk text-xs font-bold tracking-[0.3em] uppercase">Service Index v2.0</span>
+                    <h1 class="text-6xl md:text-8xl font-black text-white font-space-grotesk uppercase tracking-tighter mt-4 leading-none">
+                        Tactical <span class="text-[#D4AF37]">Execution</span>
+                    </h1>
+                </div>
+                <div class="md:w-1/3 border-l border-zinc-800 pl-8 pb-2">
+                    <p class="text-zinc-500 text-sm uppercase tracking-widest font-space-grotesk leading-relaxed">
+                        One-time set and forget. <br/>Decentralized delivery. <br/>Zero subscription fatigue.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-zinc-800 border border-zinc-800">
+            
+            <div class="bg-zinc-950 p-12 hover:bg-zinc-900 transition-all duration-500">
+                <span class="text-[#D4AF37] font-space-grotesk text-[10px] font-bold tracking-[0.3em] uppercase">Pillar_01</span>
+                <h3 class="text-3xl font-black text-white font-space-grotesk uppercase mt-4 mb-4">Visibility Focus</h3>
+                <p class="text-zinc-500 text-sm mb-8 font-space-grotesk">R 2,500 / Project</p>
+                <ul class="space-y-4 mb-12 text-sm text-zinc-400">
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">check_circle</span> Business Profile Optimization</li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">check_circle</span> Local Citation Building</li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">check_circle</span> Search Result Auditing</li>
+                </ul>
+                <button class="w-full py-4 border border-[#D4AF37] text-[#D4AF37] text-[10px] font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-black">Deploy Visibility</button>
+            </div>
+
+            <div class="bg-zinc-900 p-12 relative border-x border-zinc-800">
+                <span class="text-[#D4AF37] font-space-grotesk text-[10px] font-bold tracking-[0.3em] uppercase">Pillar_02</span>
+                <h3 class="text-3xl font-black text-white font-space-grotesk uppercase mt-4 mb-4">Privacy Shield</h3>
+                <p class="text-zinc-500 text-sm mb-8 font-space-grotesk">R 4,500 / Project</p>
+                <ul class="space-y-4 mb-12 text-sm text-zinc-200">
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">verified_user</span> Reputation Repair Strategy</li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">verified_user</span> Data Hygiene Campaign</li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">verified_user</span> 1-on-1 Privacy Onboarding</li>
+                </ul>
+                <button class="w-full py-4 bg-[#D4AF37] text-black text-[10px] font-bold uppercase tracking-widest hover:brightness-110">Deploy Shield</button>
+            </div>
+
+            <div class="bg-zinc-950 p-12 hover:bg-zinc-900 transition-all duration-500">
+                <span class="text-[#D4AF37] font-space-grotesk text-[10px] font-bold tracking-[0.3em] uppercase">Pillar_03</span>
+                <h3 class="text-3xl font-black text-white font-space-grotesk uppercase mt-4 mb-4">Safety Health</h3>
+                <p class="text-zinc-500 text-sm mb-8 font-space-grotesk">R 6,500 / Project</p>
+                <ul class="space-y-4 mb-12 text-sm text-zinc-400">
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">security</span> Cybersecurity Health Check</li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">security</span> Family Group Booking</li>
+                    <li class="flex items-start gap-3"><span class="material-symbols-outlined text-[#D4AF37] text-lg">security</span> Post-Execution Briefing</li>
+                </ul>
+                <button class="w-full py-4 border border-zinc-700 text-zinc-600 text-[10px] font-bold uppercase tracking-widest">Deploy Safety</button>
+            </div>
+        </div>
+
+        <section class="mt-32 grid md:grid-cols-2 gap-16 border-t border-zinc-800 pt-20">
+            <div>
+                <h2 class="text-4xl font-black text-white font-space-grotesk uppercase tracking-tighter mb-8">The Mandate</h2>
+                <p class="text-zinc-400 text-lg leading-relaxed">
+                    Search Playbook is a decentralized network of experts. We provide low-maintenance, high-impact visibility and privacy solutions for families and service providers.
+                </p>
+            </div>
+            <div class="bg-zinc-950 p-12 border border-zinc-800 relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
+                <div class="font-space-grotesk text-[#D4AF37] opacity-20 text-center tracking-[0.5em] font-bold uppercase text-xs">
+                    HANDOVER_SECURE<br/>ACCESS_GRANTED
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-zinc-950 border-t border-zinc-800 py-12 px-8">
+        <div class="max-w-[1280px] mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] text-zinc-700 uppercase tracking-[0.3em]">
+            <span>Search Playbook // 2026</span>
+            <span>Johannesburg // ZA</span>
+        </div>
+    </footer>
+</body>
+</html>
