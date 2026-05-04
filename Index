@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search Playbook | Visibility & Privacy Strategy</title>
+    
+    <meta name="description" content="Search Playbook by WeMustCreate helps you master digital Visibility, Privacy, and Safety. Explore services, tactical tools, and free learning resources." />
+    <meta name="google-site-verification" content="google0358e8a493fefd4f.html" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9664615320771471" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZKPVQY1GB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FZKPVQY1GB');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2ca50",
+                        "surface": "#131315",
+                        "background": "#09090B",
+                        "outline-variant": "#4d4635",
+                        "surface-container": "#201f22",
+                    },
+                    fontFamily: {
+                        "headline-xl": ["Space Grotesk"],
+                        "headline-md": ["Space Grotesk"],
+                        "body-lg": ["Work Sans"],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #09090B; color: #E5E1E4; margin: 0; overflow-x: hidden; }
+        .shroud { background: linear-gradient(to top, #09090B 0%, transparent 100%); }
+        .gold-glow { box-shadow: 0 0 40px -10px rgba(242, 202, 80, 0.2); }
+        #sp-grid { display: grid; grid-template-rows: 66vh auto; grid-template-columns: 1fr 1fr; width: 100vw; }
+        @media (max-width: 768px) { #sp-grid { grid-template-columns: 1fr; grid-template-rows: auto; } }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Search Playbook",
+      "url": "https://searchplaybook.blogspot.com/",
+      "logo": "https://ik.imagekit.io/wemustcreate/Shield.png",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Johannesburg",
+        "addressCountry": "ZA"
+      }
+    }
+    </script>
+</head>
+
+<body class="font-body-md">
+    <header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 h-16 bg-[#18181B] border-b border-zinc-800">
+        <div class="flex items-center gap-8">
+            <span class="text-xl font-bold text-primary tracking-tighter uppercase font-headline-md">Search Playbook</span>
+            <nav class="hidden md:flex gap-6 uppercase tracking-widest text-xs font-bold">
+                <a class="text-primary border-b border-primary pb-1" href="#">Visibility</a>
+                <a class="text-zinc-500 hover:text-white transition-colors" href="#">Privacy</a>
+                <a class="text-zinc-500 hover:text-white transition-colors" href="#">Safety</a>
+            </nav>
+        </div>
+        <button class="bg-primary text-black px-6 py-2 text-xs font-bold uppercase tracking-widest hover:brightness-110">Connect</button>
+    </header>
+
+    <main id="sp-grid">
+        <section class="md:col-span-2 relative h-[66vh] overflow-hidden group border-b border-outline-variant">
+            <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110" 
+                 style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAvJsNffQ3kDhKoiNG0XqKD-Je10u8kjbXW6bBgcrxZ6_roN5o9AAxnRG74s_YcxWyoDTORWmPlZMafJsZLpOUmumOBCYsfvjrIRxfgOvfqes8zo7yypVc_hZjGZMLMUCwKWH_sGc41xi5TGG_VyPX6_4fRAcZNIvONGBmQYOmhoUrVEk0Y2EGLTaQvGMWdGl6UEVe0GFZn5EJ9XP5LtJTX6NXogfUU7PwY_tVfPZsgNqnRMyeRyqZmcXjmW_ghc2GiZyDy56AdDKU');"></div>
+            <div class="absolute inset-0 shroud"></div>
+            <div class="absolute inset-0 bg-black/50"></div>
+            <div class="relative h-full flex flex-col justify-center items-center text-center px-8">
+                <span class="text-primary tracking-[0.4em] uppercase text-xs font-bold mb-4">Strategic Framework</span>
+                <h1 class="font-headline-xl text-5xl md:text-7xl text-white tracking-tighter uppercase max-w-4xl">
+                    Digital <span class="text-primary">Optimization</span>
+                </h1>
+                <p class="font-body-lg text-zinc-400 max-w-2xl mt-6">
+                    Delivering low-maintenance, high-impact visibility and privacy solutions for families and service providers.
+                </p>
+            </div>
+        </section>
+
+        <section class="bg-surface-container border-r border-outline-variant p-12 group relative">
+            <div class="h-full flex flex-col justify-end">
+                <div class="gold-glow w-12 h-1 bg-primary mb-6"></div>
+                <h2 class="font-headline-md text-3xl text-white uppercase mb-4">Visibility_SEO SERP</h2>
+                <p class="font-body-lg text-zinc-400 leading-relaxed">
+                    Local visibility support and business profile optimization. We ensure your digital presence is found by those who need your services, specifically tailored for the South African market.
+                </p>
+            </div>
+        </section>
+
+        <section class="bg-[#0E0E10] p-12 group relative">
+            <div class="h-full flex flex-col justify-end">
+                <div class="w-12 h-1 bg-zinc-600 mb-6"></div>
+                <h2 class="font-headline-md text-3xl text-white uppercase mb-4">Privacy_Reputation</h2>
+                <p class="font-body-lg text-zinc-500 leading-relaxed">
+                    Reputation repair and digital hygiene campaigns. We remove the technical noise and protect your identity through set-and-forget security frameworks.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <section class="py-24 px-8 bg-background border-t border-outline-variant">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row gap-16">
+                <div class="md:w-1/3">
+                    <div class="gold-glow w-24 h-1 bg-primary mb-8"></div>
+                    <h2 class="font-headline-xl text-4xl text-white uppercase tracking-tighter">The Collective Mandate</h2>
+                    <p class="text-primary uppercase tracking-[0.2em] text-xs font-bold mt-4">Who We Are & Why We Do It</p>
+                </div>
+                <div class="md:w-2/3 grid gap-12">
+                    <div class="bg-surface-container p-8 border border-outline-variant">
+                        <h3 class="text-white font-headline-md uppercase mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">hub</span>
+                            The Collective
+                        </h3>
+                        <p class="font-body-lg text-zinc-400">
+                            Search Playbook is a decentralized network of experts. We aren't a traditional agency; we are a collective working directly with playbook executors to deliver results without the overhead.
+                        </p>
+                    </div>
+                    <div class="bg-surface-container p-8 border border-outline-variant">
+                        <h3 class="text-white font-headline-md uppercase mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">security</span>
+                            Digital Peace of Mind
+                        </h3>
+                        <p class="font-body-lg text-zinc-400">
+                            We solve for complexity so you don't have to. Our mission is to provide families and elders with safety, security, and visibility through technical excellence.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-zinc-800 py-12 px-8">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-lg font-black text-white font-headline-md uppercase tracking-tighter">
+                Search Playbook
+            </div>
+            <div class="flex gap-8 text-xs font-bold uppercase tracking-widest text-zinc-600">
+                <a href="#" class="hover:text-primary transition-colors">Visibility</a>
+                <a href="#" class="hover:text-primary transition-colors">Privacy</a>
+                <a href="#" class="hover:text-primary transition-colors">Safety</a>
+            </div>
+            <div class="text-xs text-zinc-700 uppercase tracking-widest">
+                © 2026 Search Playbook Collective
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
