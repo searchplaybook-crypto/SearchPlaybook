@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Connect | Search Playbook</title>
+    
+    <meta name="google-site-verification" content="google0358e8a493fefd4f.html" />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9664615320771471" crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZKPVQY1GB"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-FZKPVQY1GB');
+    </script>
+
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#f2ca50",
+                        "on-primary": "#3e2e00",
+                        "surface-container": "#1e1b16",
+                        "outline": "#99907c",
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #09090B; color: #e5e1e4; }
+        .input-underlined { background: transparent; border: none; border-bottom: 1px solid #4d4635; outline: none; transition: border-color 0.3s; }
+        .input-underlined:focus { border-color: #f2ca50; }
+    </style>
+</head>
+
+<body class="font-work-sans antialiased overflow-x-hidden">
+    <header class="fixed top-0 left-0 w-full z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800 h-20 flex items-center px-8 justify-between">
+        <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary">contact_mail</span>
+            <span class="text-lg font-black text-white font-space-grotesk uppercase tracking-tighter">Connect_Terminal</span>
+        </div>
+        <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Secure_Handshake: Enabled</div>
+    </header>
+
+    <main class="pt-32 pb-20 px-8 max-w-[1280px] mx-auto">
+        <section class="mb-20">
+            <h1 class="text-5xl md:text-7xl font-black text-white font-space-grotesk uppercase tracking-tighter mb-4 leading-none">
+                Establish <span class="text-primary">Contact</span>
+            </h1>
+            <p class="text-zinc-500 uppercase text-[10px] tracking-[0.4em] font-space-grotesk">
+                Direct Channel // Inquiry Protocol // Intelligence Request
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            
+            <div class="bg-surface-container p-10 border border-outline/20">
+                <h2 class="text-2xl font-bold text-white uppercase mb-8 font-space-grotesk">Intelligence Request</h2>
+                <form action="#" class="space-y-8" method="POST">
+                    <div class="flex flex-col">
+                        <label class="text-[9px] font-bold text-primary uppercase tracking-widest mb-2">Subject Name</label>
+                        <input class="input-underlined py-2 text-white font-mono text-sm" placeholder="OPERATIVE_ID" type="text"/>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-[9px] font-bold text-primary uppercase tracking-widest mb-2">Return Address</label>
+                        <input class="input-underlined py-2 text-white font-mono text-sm" placeholder="EMAIL@DOMAIN.COM" type="email"/>
+                    </div>
+                    <div class="flex flex-col">
+                        <label class="text-[9px] font-bold text-primary uppercase tracking-widest mb-2">Briefing Details</label>
+                        <textarea class="input-underlined py-2 text-white font-mono text-sm h-32 resize-none" placeholder="DESCRIBE_REQUIREMENTS..."></textarea>
+                    </div>
+                    <button class="w-full py-4 bg-primary text-on-primary text-[10px] font-black uppercase tracking-widest hover:brightness-110 transition-all">Submit Protocol</button>
+                </form>
+            </div>
+
+            <div class="flex flex-col justify-between">
+                <div>
+                    <h2 class="text-2xl font-bold text-white uppercase mb-8 font-space-grotesk">Direct Links</h2>
+                    <div class="space-y-6">
+                        <a href="https://searchplaybook.blogspot.com/" class="group flex items-center justify-between p-6 border border-zinc-800 hover:border-primary transition-all">
+                            <span class="text-sm font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white">Web HQ</span>
+                            <span class="material-symbols-outlined text-zinc-700 group-hover:text-primary">language</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/llewellynoshea/" class="group flex items-center justify-between p-6 border border-zinc-800 hover:border-primary transition-all">
+                            <span class="text-sm font-bold uppercase tracking-widest text-zinc-400 group-hover:text-white">LinkedIn Intel</span>
+                            <span class="material-symbols-outlined text-zinc-700 group-hover:text-primary">person_search</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-12 p-8 bg-zinc-950 border border-zinc-800">
+                    <h3 class="text-primary text-[10px] font-black uppercase tracking-[0.3em] mb-4">Tactical Briefings</h3>
+                    <p class="text-zinc-500 text-xs leading-relaxed mb-6">Receive the monthly Playbook Briefing—a curated distillation of market shifts and strategic openings directly to your node.</p>
+                    <div class="flex gap-2">
+                        <input class="bg-zinc-900 border border-zinc-800 px-4 py-2 text-[10px] text-white flex-1 font-mono focus:border-primary outline-none" placeholder="SUBSCRIBER@EMAIL.COM"/>
+                        <button class="bg-white text-black px-6 py-2 text-[9px] font-black uppercase tracking-widest hover:bg-primary transition-colors">Join</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-zinc-950 border-t border-zinc-800 py-12 px-8 flex justify-between items-center text-[9px] text-zinc-700 uppercase tracking-[0.3em]">
+        <span>Search Playbook // Johannesburg // ZA</span>
+        <span>Secure Transmission // 2026</span>
+    </footer>
+</body>
+</html>
