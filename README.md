@@ -1,40 +1,16 @@
-# SearchPlaybook
+# SEARCH PLAYBOOK | Master Strategy 2026
+**Motto:** "Focus on your hustle; we'll handle the algorithm."
 
-Eight-page digital optimization site. Visibility, Privacy, Safety.
+## 1. THE SOVEREIGNTY ARCHITECTURE
+As search moves to GSE (Generative Search Experience), we provide the "Digital Birth Certificate"—a permanent, non-subscription based identity graph.
 
-## About
+## 2. THE 4Ds OF AI FLUENCY
+* **Delegation:** Automating the technical noise.
+* **Description:** Dictating brand DNA to AI models.
+* **Discernment:** Verifying signals match real-world truth.
+* **Diligence:** Maintaining sovereignty through secure handovers.
 
-SearchPlaybook is a low-maintenance, set-and-forget digital optimization framework for families, elders, and service providers with limited time or technical skills.
-
-### Pillars
-
-- **Visibility** – SEO, SERP optimization, local visibility
-- **Privacy** – Reputation management, data hygiene
-- **Safety** – Cybersecurity health checks, digital safety
-
-### Design System
-
-**Fonts:** Unica One, Raleway, Crimson Text  
-**Palette:** Gold, Cyan, Red (dark cards)  
-**UX:** Desktop-friendly, mobile-responsive
-
-### Pages
-
-1. Home
-2. Visibility
-3. Privacy
-4. Safety
-5. Services
-6. Pricing
-7. FAQ
-8. Contact
-
-## Resources
-
-- **Blog:** https://searchplaybook.blogspot.com/
-- **Strategy:** Search Mafia / WeMustCreate 2026
-- **Operator:** Max (Johannesburg-based digital strategist)
-
-## Status
-
-Development in progress.
+## 3. REVENUE LADDER
+* **Tactical Audit:** Free (Signal vs. Noise analysis).
+* **Detailed Audit:** R2,500 (3-hour AI-distillation).
+* **Sovereignty Build:** R7,000 (GitHub/JSON-LD Handover).
