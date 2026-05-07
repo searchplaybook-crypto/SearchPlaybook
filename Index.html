@@ -1,40 +1,320 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Search Playbook | Visibility & Privacy Strategy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Playbook — WeMustCreate | Strategic Intelligence</title>
+    <meta name="description" content="Search Playbook: Strategic intelligence for set-and-forget digital dominance. Decentralized expert network scaling your market authority without technical debt.">
     
-    <meta name="description" content="Search Playbook by WeMustCreate helps you master digital Visibility, Privacy, and Safety. Explore services, tactical tools, and free learning resources." />
-    <meta name="google-site-verification" content="google0358e8a493fefd4f.html" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9664615320771471" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZKPVQY1GB"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FZKPVQY1GB');
-    </script>
-
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-
-    <script id="tailwind-config">
         tailwind.config = {
-            darkMode: "class",
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#f2ca50",
-                        "surface": "#131315",
-                        "background": "#09090B",
-                        "outline-variant": "#4d4635",
-                        "surface-container": "#201f22",
+                        'gold-100': '#FCEEB5',
+                        'gold-300': '#F0D676',
+                        'mafia-gold': '#D4AF37',
+                        'gold-700': '#A08326',
+                        'near-white': '#F9F9F9',
+                        'platinum': '#E4E4E7',
+                        'zinc-500': '#71717A',
+                        'onyx': '#18181B',
+                        'void-black': '#09090B',
+                        'icy-azure': '#43CFFD',
+                        'forged-copper': '#B66E41',
+                        'warm-yellow': '#FDBF2D'
                     },
                     fontFamily: {
-                        "headline-xl": ["Space Grotesk"],
-                        "headline-md": ["Space Grotesk"],
+                        'display': ['Montserrat', 'sans-serif'], // Bold Headers
+                        'body': ['Inter', 'sans-serif'], // Legible Body
+                        'accent': ['Raleway', 'sans-serif'], // Navigation/Accents
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'reveal': 'reveal 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        reveal: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        :root { --glass-border: rgba(249, 249, 249, 0.08); }
+        body { background: radial-gradient(ellipse at top, #1a1a1f 0%, #09090B 50%, #050507 100%); overflow-x: hidden; }
+        
+        /* Parallax Hero */
+        .hero-bg-parallax {
+            background-image: url('https://ik.imagekit.io/wemustcreate/hero%20BG%201.jpg?updatedAt=1777670789139');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2;
+            opacity: 0.55;
+        }
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(9,9,11,0.15) 0%, rgba(9,9,11,0.9) 100%);
+            position: absolute; inset: 0; z-index: -1;
+        }
+        
+        /* Glassmorphism Utilities */
+        .glass { background: rgba(24, 24, 27, 0.45); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); }
+        .glass-gold { background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.03) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.15); }
+        .glass-azure { background: linear-gradient(135deg, rgba(67, 207, 253, 0.1) 0%, rgba(6, 74, 115, 0.15) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(67, 207, 253, 0.2); }
+        .glass-copper { background: linear-gradient(135deg, rgba(182, 110, 65, 0.15) 0%, rgba(124, 74, 46, 0.1) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(182, 110, 65, 0.25); }
+        .glass-yellow { background: linear-gradient(135deg, rgba(253, 191, 45, 0.1) 0%, rgba(253, 191, 45, 0.03) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(253, 191, 45, 0.2); }
+        
+        .text-glow { text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2); }
+        .text-glow-azure { text-shadow: 0 0 30px rgba(67, 207, 253, 0.5), 0 0 60px rgba(67, 207, 253, 0.2); }
+        .text-glow-copper { text-shadow: 0 0 30px rgba(182, 110, 65, 0.5), 0 0 60px rgba(182, 110, 65, 0.2); }
+        .text-glow-yellow { text-shadow: 0 0 30px rgba(253, 191, 45, 0.5), 0 0 60px rgba(253, 191, 45, 0.2); }
+        
+        .bg-gradient-mesh {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(67, 207, 253, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(182, 110, 65, 0.1) 0%, transparent 50%);
+            position: fixed; inset: 0; pointer-events: none; z-index: 0;
+        }
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; opacity: 0.03;
+            background-image: url("image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        /* 3D Interactive Hover Effects */
+        .glass-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .glass-hover:hover { 
+            background: rgba(24, 24, 27, 0.65); 
+            border-color: rgba(249, 249, 249, 0.15); 
+            transform: translateY(-8px) scale(1.01); 
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1); 
+        }
+        
+        .btn-glass { background: rgba(212, 175, 55, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.3); transition: all 0.3s ease; }
+        .btn-glass:hover { background: rgba(212, 175, 55, 0.25); border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        
+        .gradient-text-gold { background: linear-gradient(135deg, #FCEEB5 0%, #D4AF37 50%, #A08326 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text-azure { background: linear-gradient(135deg, #FFFFFF 0%, #43CFFD 50%, #064A73 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text-copper { background: linear-gradient(135deg, #FFFFFF 0%, #B66E41 50%, #7C4A2E 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text-yellow { background: linear-gradient(135deg, #FFFFFF 0%, #FDBF2D 50%, #EA9B00 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .floating-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: 0.4; }
+        .nav-blur { background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-bottom: 1px solid rgba(249, 249, 249, 0.08); }
+        .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+        
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #09090B; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #D4AF37, #A08326); border-radius: 5px; }
+        
+        @media (max-width: 768px) { .hero-bg-parallax { background-attachment: scroll; } }
+
+        /* Collapsible Content Animation */
+        .collapsible-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
+        }
+        .collapsible-content.open {
+            max-height: 1000px; /* Arbitrary large number */
+            opacity: 1;
+        }
+        .rotate-icon {
+            transition: transform 0.3s ease;
+        }
+        .rotate-icon.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+    
+    <!-- GSE / Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Search Playbook Collective",
+      "alternateName": "Search Mafia",
+      "description": "Johannesburg-based digital strategist delivering set-and-forget online optimization, visibility, and privacy services.",
+      "url": "https://searchplaybook.blogspot.com/",
+      "logo": "https://wemustcreateza.my.canva.site/logo.png",
+      "slogan": "WE MUST CREATE",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Johannesburg",
+        "addressRegion": "GP",
+        "addressCountry": "ZA"
+      },
+      "priceRange": "ZAR 2500 - ZAR 15000",
+      "knowsAbout": ["SEO", "Digital Privacy", "NCII Protection", "Cybercrimes Act Section 17"],
+      "sameAs": [
+        "https://www.linkedin.com/in/llewellynoshea/",
+        "https://www.facebook.com/searchplaybook/",
+        "https://maps.app.goo.gl/WezVn4JTE8Q69oV3A"
+      ]
+    }
+    </script>
+</head>
+<body class="font-body text-platinum">
+    <div class="noise-overlay"></div>
+    <div class="bg-gradient-mesh"></div>
+    <div class="floating-orb w-[600px] h-[600px] bg-mafia-gold/20 top-[-200px] left-[-100px] animate-float"></div>
+    <div class="floating-orb w-[500px] h-[500px] bg-icy-azure/15 bottom-[-150px] right-[-100px] animate-float-slow"></div>
+
+    <!-- Navigation -->
+    <nav class="nav-blur fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+        <div class="max-w-[1400px] mx-auto px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <a href="#" class="flex items-center gap-3 cursor-pointer magnetic-btn">
+                    <div class="w-10 h-10 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" loading="eager">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-xl tracking-wide text-near-white">Search Playbook</span>
+                        <span class="text-[10px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
+                    </div>
+                </a>
+                
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="intelhub.html" class="font-body font-normal text-sm text-platinum/80 hover:text-icy-azure transition-colors">Intel</a>
+                    <a href="solutions.html" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
+                    <a href="collective.html" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">Collective</a>
+                    <a href="connect.html" class="font-body font-normal text-sm text-platinum/80 hover:text-mafia-gold transition-colors">Connect</a>
+                    <button class="btn-glass px-6 py-2.5 rounded-full font-body font-semibold text-sm text-gold-300">GET STARTED</button>
+                </div>
+                
+                <button class="md:hidden flex flex-col gap-1.5 cursor-pointer" onclick="toggleMobileMenu()">
+                    <span class="w-6 h-0.5 bg-platinum transition-all" id="menu-line1"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all" id="menu-line2"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all" id="menu-line3"></span>
+                </button>
+            </div>
+        </div>
+        
+        <div class="md:hidden hidden glass border-t border-white/5" id="mobileMenu">
+            <div class="px-6 py-4 space-y-3">
+                <a href="intelhub.html" class="block text-platinum/80 hover:text-icy-azure py-2">Intel</a>
+                <a href="solutions.html" class="block text-platinum/80 hover:text-forged-copper py-2">Solutions</a>
+                <a href="collective.html" class="block text-platinum/80 hover:text-warm-yellow py-2">Collective</a>
+                <a href="connect.html" class="block text-platinum/80 hover:text-mafia-gold py-2">Connect</a>
+                <button class="btn-glass w-full px-6 py-3 rounded-full font-body font-semibold text-sm text-gold-300 mt-4">GET STARTED</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-20 overflow-hidden">
+        <div class="hero-bg-parallax"></div>
+        <div class="hero-overlay"></div>
+        
+        <div class="max-w-[1400px] mx-auto w-full relative z-10 px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="space-y-8 animate-slide-up">
+                    <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full">
+                        <div class="w-2 h-2 rounded-full bg-gold-300 animate-pulse"></div>
+                        <span class="font-body text-xs text-gold-300 tracking-wider uppercase">Strategic Intelligence</span>
+                    </div>
+                    
+                    <h1 class="font-display font-bold text-5xl md:text-7xl leading-tight text-near-white">
+                        SET. FORGET. <br/>
+                        <span class="gradient-text-gold text-glow">DOMINATE.</span>
+                    </h1>
+                    
+                    <p class="font-body font-light text-lg md:text-xl text-platinum/70 max-w-lg leading-relaxed">
+                        We remove the technical noise from your business operations. Experience total digital peace of mind while our decentralized network of experts scales your market authority in the background.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button class="btn-glass px-8 py-4 rounded-full font-body font-semibold text-mafia-gold flex items-center gap-2 group" onclick="scrollToSection('features')">
+                            <span>Claim Your Growth</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </button>
+                        <button class="glass px-8 py-4 rounded-full font-body font-normal text-platinum hover:bg-white/5 transition-all" onclick="scrollToSection('collective')">
+                            The Methodology
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="relative animate-float hidden lg:block">
+                    <div class="glass-gold rounded-3xl p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-gold-300/20 to-transparent rounded-full blur-3xl"></div>
+                        
+                        <div class="space-y-6 relative z-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-3 h-3 rounded-full bg-gold-300"></div>
+                                    <span class="font-display text-lg text-gold-300">Dashboard</span>
+                                </div>
+                                <div class="text-xs text-zinc-500 font-body">Live Status</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="glass rounded-xl p-4 card-shine">
+                                    <div class="text-2xl font-display font-bold text-near-white counter" data-target="1200">0</div>
+                                    <div class="text-xs text-zinc-500 mt-1">SERP Optimizations</div>
+                                </div>
+                                <div class="glass rounded-xl p-4 card-shine">
+                                    <div class="text-2xl font-display font-bold text-icy-azure counter" data-target="850">0</div>
+                                    <div class="text-xs text-zinc-500 mt-1">Takedowns Executed</div>
+                                </div>
+                                <div class="glass rounded-xl p-4 card-shine">
+                                    <div class="text-2xl font-display font-bold text-forged-copper counter" data-target="98">0</div>
+                                    <div class="text-xs text-zinc-500 mt-1">% Reputation Restored</div>
+                                </div>
+                                <div class="glass rounded-xl p-4 card-shine">
+                                    <div class="text-2xl font-display font-bold text-warm-yellow">Active</div>
+                                    <div class="text-xs text-zinc-500 mt-1">Monitoring</div>
+                                </div>
+                            </div>
+                            
+                            <div class="glass rounded-xl p-4 border-l-2 border-mafia-gold">
+                                <div class="text-xs text-zinc-500 font-body uppercase tracking-wider">Latest Activity</div>
+                                <div class="font-body text-platinum mt-2">Organic visibility optimized for protected profiles in Gauteng region</div>
+                                <div class="text-xs text-zinc-500 mt-2">Just now</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-6 -left-6 glass-gold rounded-2xl p-4 animate-float-slow">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-mafia-gold/20 flex items-center justify-center">
+                                <svg class="w-5 h-5 text-gold-300" fill="currentColor"                         "headline-md": ["Space Grotesk"],
                         "body-lg": ["Work Sans"],
                     }
                 }
