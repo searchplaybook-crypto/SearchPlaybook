@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Playbook — WeMustCreate | Strategic Intelligence</title>
-    <meta name="description" content="Search Playbook: Strategic intelligence for set-and-forget digital dominance. Decentralized expert network scaling your market authority without technical debt.">
+    <meta name="description" content="Search Playbook: AI-Native Sovereignty & Community Data Hygiene. Set-and-Forget framework for Community Digital Sovereignty. Johannesburg, ZA.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -137,19 +137,17 @@
         
         .floating-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: 0.4; }
         
-        /* Mobile Optimized Nav */
+        /* Transparent Nav */
         .nav-transparent { 
-            background: rgba(9, 9, 11, 0.1); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px); 
-            border-bottom: 1px solid rgba(249, 249, 249, 0.05);
-            transition: all 0.3s ease;
+            background: transparent;
+            border-bottom: 1px solid transparent;
+            transition: all 0.4s ease;
         }
         .nav-scrolled {
             background: rgba(9, 9, 11, 0.85);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(249, 249, 249, 0.1);
+            border-bottom: 1px solid rgba(249, 249, 249, 0.08);
         }
 
         .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -161,7 +159,7 @@
         
         @media (max-width: 768px) { 
             .hero-bg-parallax { background-attachment: scroll; } 
-            .floating-orb { display: none; } /* Hide heavy blur orbs on mobile for performance */
+            .floating-orb { display: none; }
         }
 
         /* Collapsible Content Animation */
@@ -181,6 +179,11 @@
         .rotate-icon.rotated {
             transform: rotate(180deg);
         }
+
+        /* Mobile Menu Slide Animation */
+        .mobile-menu-panel {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
     </style>
     
     <!-- GSE / Schema.org Structured Data -->
@@ -190,18 +193,18 @@
       "@type": "ProfessionalService",
       "name": "Search Playbook Collective",
       "alternateName": "Search Mafia",
-      "description": "Johannesburg-based digital strategist delivering set-and-forget online optimization, visibility, and privacy services.",
+      "description": "Johannesburg-based AI-Native Sovereignty & Community Data Hygiene strategist. Set-and-Forget framework for Community Digital Sovereignty.",
       "url": "https://searchplaybook.blogspot.com/",
       "logo": "https://wemustcreateza.my.canva.site/logo.png",
-      "slogan": "WE MUST CREATE",
+      "slogan": "Focus on the hustle we will focus on the noise.",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Johannesburg",
         "addressRegion": "GP",
         "addressCountry": "ZA"
       },
-      "priceRange": "ZAR 2500 - ZAR 15000",
-      "knowsAbout": ["SEO", "Digital Privacy", "NCII Protection", "Cybercrimes Act Section 17"],
+      "priceRange": "ZAR 0 - ZAR 7000",
+      "knowsAbout": ["AI-Native Sovereignty", "Community Data Hygiene", "Schema.org JSON-LD", "GitHub Pages Hosting", "Digital Birth Certificate", "POPIA Compliance"],
       "sameAs": [
         "https://www.linkedin.com/in/llewellynoshea/",
         "https://www.facebook.com/searchplaybook/",
@@ -221,7 +224,7 @@
         <div class="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4">
             <div class="flex items-center justify-between">
                 <!-- Logo Top Left -->
-                <a href="#" class="flex items-center gap-2 md:gap-3 cursor-pointer magnetic-btn">
+                <a href="index.html" class="flex items-center gap-2 md:gap-3 cursor-pointer magnetic-btn">
                     <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
                         <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" loading="eager">
                     </div>
@@ -231,13 +234,14 @@
                     </div>
                 </a>
                 
-                <!-- Desktop Nav -->
-                <div class="hidden md:flex items-center gap-8">
+                <!-- Desktop Nav - 5 Pages + Legal -->
+                <div class="hidden md:flex items-center gap-5 lg:gap-7">
                     <a href="intelhub.html" class="font-body font-normal text-sm text-platinum/80 hover:text-icy-azure transition-colors">Intel</a>
                     <a href="solutions.html" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
                     <a href="collective.html" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">Collective</a>
                     <a href="connect.html" class="font-body font-normal text-sm text-platinum/80 hover:text-mafia-gold transition-colors">Connect</a>
-                    <button class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">GET STARTED</button>
+                    <a href="legal.html" class="font-body font-normal text-sm text-platinum/80 hover:text-platinum transition-colors">Legal</a>
+                    <a href="connect.html" class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">GET STARTED</a>
                 </div>
                 
                 <!-- Mobile Burger Top Right -->
@@ -249,15 +253,76 @@
             </div>
         </div>
         
-        <!-- Mobile Menu Overlay -->
-        <div class="md:hidden fixed inset-0 top-0 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-center px-8" id="mobileMenu">
-            <div class="space-y-6 text-center">
-                <a href="intelhub.html" class="block text-2xl font-display font-bold text-platinum hover:text-icy-azure py-2" onclick="toggleMobileMenu()">Intel</a>
-                <a href="solutions.html" class="block text-2xl font-display font-bold text-platinum hover:text-forged-copper py-2" onclick="toggleMobileMenu()">Solutions</a>
-                <a href="collective.html" class="block text-2xl font-display font-bold text-platinum hover:text-warm-yellow py-2" onclick="toggleMobileMenu()">Collective</a>
-                <a href="connect.html" class="block text-2xl font-display font-bold text-platinum hover:text-mafia-gold py-2" onclick="toggleMobileMenu()">Connect</a>
-                <div class="pt-8">
-                    <button class="btn-glass w-full px-8 py-4 rounded-full font-body font-bold text-lg text-gold-300">GET STARTED</button>
+        <!-- Mobile Menu Overlay - Glassmorphic Sidebar -->
+        <div class="md:hidden fixed inset-0 top-0 z-40 transform translate-x-full mobile-menu-panel flex flex-col" id="mobileMenu">
+            <!-- Glassmorphic Background Layer -->
+            <div class="absolute inset-0 bg-void-black/70 backdrop-blur-2xl"></div>
+            
+            <!-- Mobile Menu Content -->
+            <div class="relative z-10 flex flex-col h-full">
+                <!-- Mobile Menu Header -->
+                <div class="px-6 pt-20 pb-6 border-b border-white/5">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                            <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="font-display font-bold text-lg text-near-white">SEARCH PLAYBOOK</span>
+                            <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital Partner</p>
+                </div>
+                
+                <!-- Mobile Menu Links -->
+                <div class="flex-1 flex flex-col justify-center px-8 space-y-1">
+                    <a href="intelhub.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                        <div>
+                            <span class="block text-xl font-display font-bold text-platinum group-hover:text-icy-azure transition-colors">Intel</span>
+                            <span class="block text-xs text-zinc-500 font-body mt-0.5">Protection & Prevention Tools</span>
+                        </div>
+                        <svg class="w-5 h-5 text-zinc-600 group-hover:text-icy-azure transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    
+                    <a href="solutions.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                        <div>
+                            <span class="block text-xl font-display font-bold text-platinum group-hover:text-forged-copper transition-colors">Solutions</span>
+                            <span class="block text-xs text-zinc-500 font-body mt-0.5">Reputation & Security Services</span>
+                        </div>
+                        <svg class="w-5 h-5 text-zinc-600 group-hover:text-forged-copper transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    
+                    <a href="collective.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                        <div>
+                            <span class="block text-xl font-display font-bold text-platinum group-hover:text-warm-yellow transition-colors">Collective</span>
+                            <span class="block text-xs text-zinc-500 font-body mt-0.5">Decentralized Expert Network</span>
+                        </div>
+                        <svg class="w-5 h-5 text-zinc-600 group-hover:text-warm-yellow transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    
+                    <a href="connect.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                        <div>
+                            <span class="block text-xl font-display font-bold text-platinum group-hover:text-mafia-gold transition-colors">Connect</span>
+                            <span class="block text-xs text-zinc-500 font-body mt-0.5">Get in Touch & Start Today</span>
+                        </div>
+                        <svg class="w-5 h-5 text-zinc-600 group-hover:text-mafia-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                    
+                    <a href="legal.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                        <div>
+                            <span class="block text-xl font-display font-bold text-platinum group-hover:text-platinum transition-colors">Legal</span>
+                            <span class="block text-xs text-zinc-500 font-body mt-0.5">POPIA, TOS & Sitemap</span>
+                        </div>
+                        <svg class="w-5 h-5 text-zinc-600 group-hover:text-platinum transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu CTA -->
+                <div class="px-8 pb-8 pt-4">
+                    <a href="connect.html" class="btn-glass w-full flex items-center justify-center px-8 py-4 rounded-full font-body font-bold text-base text-gold-300" onclick="toggleMobileMenu()">
+                        GET STARTED
+                    </a>
+                    <p class="text-center text-[10px] text-zinc-600 font-body mt-4">Focus on the hustle. We'll focus on the noise.</p>
                 </div>
             </div>
         </div>
@@ -274,7 +339,7 @@
                 <div class="space-y-6 md:space-y-8 animate-slide-up text-center lg:text-left">
                     <div class="inline-flex items-center gap-2 glass px-3 py-1.5 md:px-4 md:py-2 rounded-full mx-auto lg:mx-0">
                         <div class="w-2 h-2 rounded-full bg-gold-300 animate-pulse"></div>
-                        <span class="font-body text-[10px] md:text-xs text-gold-300 tracking-wider uppercase">Strategic Intelligence</span>
+                        <span class="font-body text-[10px] md:text-xs text-gold-300 tracking-wider uppercase">AI-Native Sovereignty & Community Data Hygiene</span>
                     </div>
                     
                     <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-near-white">
@@ -297,7 +362,7 @@
                     </div>
                 </div>
                 
-                <!-- Hero Dashboard -->
+                <!-- Hero Dashboard - Real Verifiable Info -->
                 <div class="relative animate-float mt-8 lg:mt-0">
                     <div class="glass-gold rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden">
                         <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-gold-300/20 to-transparent rounded-full blur-3xl"></div>
@@ -305,48 +370,80 @@
                         <div class="space-y-4 md:space-y-6 relative z-10">
                             <div class="flex items-center justify-between mb-4 md:mb-6">
                                 <div class="flex items-center gap-2">
-                                    <div class="w-2.5 h-2.5 rounded-full bg-gold-300"></div>
-                                    <span class="font-display text-sm md:text-lg text-gold-300">Dashboard</span>
+                                    <div class="w-2.5 h-2.5 rounded-full bg-gold-300 animate-pulse"></div>
+                                    <span class="font-display text-sm md:text-lg text-gold-300">Technical Overview</span>
                                 </div>
-                                <div class="text-[10px] md:text-xs text-zinc-500 font-body">Live Status</div>
+                                <div class="text-[10px] md:text-xs text-zinc-500 font-body bg-gold-300/10 px-2 py-1 rounded-full border border-gold-300/20">Verification Phase</div>
                             </div>
                             
                             <div class="grid grid-cols-2 gap-3 md:gap-4">
-                                <div class="glass rounded-xl p-3 md:p-4 card-shine">
-                                    <div class="text-xl md:text-2xl font-display font-bold text-near-white counter" data-target="1200">0</div>
-                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">SERP Optimizations</div>
+                                <div class="glass rounded-xl p-3 md:p-4 card-shine border-l-2 border-mafia-gold">
+                                    <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider mb-1">Architect</div>
+                                    <div class="text-sm md:text-base font-display font-bold text-near-white">Max</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-0.5">Johannesburg, ZA</div>
                                 </div>
-                                <div class="glass rounded-xl p-3 md:p-4 card-shine">
-                                    <div class="text-xl md:text-2xl font-display font-bold text-icy-azure counter" data-target="850">0</div>
-                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">Takedowns Executed</div>
+                                <div class="glass rounded-xl p-3 md:p-4 card-shine border-l-2 border-icy-azure">
+                                    <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider mb-1">Focus</div>
+                                    <div class="text-sm md:text-base font-display font-bold text-icy-azure">AI-Native</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-0.5">Sovereignty & Data Hygiene</div>
                                 </div>
-                                <div class="glass rounded-xl p-3 md:p-4 card-shine">
-                                    <div class="text-xl md:text-2xl font-display font-bold text-forged-copper counter" data-target="98">0</div>
-                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">% Reputation Restored</div>
+                                <div class="glass rounded-xl p-3 md:p-4 card-shine border-l-2 border-forged-copper">
+                                    <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider mb-1">Hosting</div>
+                                    <div class="text-sm md:text-base font-display font-bold text-forged-copper">GitHub Pages</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-0.5">Low-token, High-authority</div>
                                 </div>
-                                <div class="glass rounded-xl p-3 md:p-4 card-shine">
-                                    <div class="text-xl md:text-2xl font-display font-bold text-warm-yellow">Active</div>
-                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">Monitoring</div>
+                                <div class="glass rounded-xl p-3 md:p-4 card-shine border-l-2 border-warm-yellow">
+                                    <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider mb-1">Standard</div>
+                                    <div class="text-sm md:text-base font-display font-bold text-warm-yellow">Zero-Snippet</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-0.5">Hand-coded Integrity</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Revenue & Rapport Ladder -->
+                            <div class="glass rounded-xl p-4 md:p-5 border border-mafia-gold/10">
+                                <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider mb-3">Revenue & Rapport Ladder</div>
+                                <div class="space-y-2.5">
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-gold-300"></div>
+                                            <span class="text-xs md:text-sm font-body text-platinum/80">Phase 1: Tactical Audit</span>
+                                        </div>
+                                        <span class="text-xs md:text-sm font-display font-bold text-gold-300">Free / R750 Val</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-icy-azure"></div>
+                                            <span class="text-xs md:text-sm font-body text-platinum/80">Phase 2: Detailed Audit</span>
+                                        </div>
+                                        <span class="text-xs md:text-sm font-display font-bold text-icy-azure">R2,500</span>
+                                    </div>
+                                    <div class="flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-forged-copper"></div>
+                                            <span class="text-xs md:text-sm font-body text-platinum/80">Phase 3: Digital Birth Certificate</span>
+                                        </div>
+                                        <span class="text-xs md:text-sm font-display font-bold text-forged-copper">R7,000</span>
+                                    </div>
                                 </div>
                             </div>
                             
                             <div class="glass rounded-xl p-3 md:p-4 border-l-2 border-mafia-gold">
-                                <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider">Latest Activity</div>
-                                <div class="font-body text-xs md:text-sm text-platinum mt-1 md:mt-2">Organic visibility optimized for protected profiles in Gauteng region</div>
-                                <div class="text-[10px] md:text-xs text-zinc-500 mt-1 md:mt-2">Just now</div>
+                                <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider">Philosophy</div>
+                                <div class="font-body text-xs md:text-sm text-platinum mt-1 italic">"Ubuntu — I am because we are"</div>
+                                <div class="text-[10px] md:text-xs text-zinc-500 mt-1">Brand social proof & community sovereignty</div>
                             </div>
                         </div>
                     </div>
                     
                     <!-- Floating Badge -->
-                    <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 glass-gold rounded-xl md:rounded-2xl p-3 md:p-4 animate-float-slow max-w-[200px] md:max-w-none">
+                    <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 glass-gold rounded-xl md:rounded-2xl p-3 md:p-4 animate-float-slow max-w-[220px] md:max-w-none">
                         <div class="flex items-center gap-2 md:gap-3">
                             <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-mafia-gold/20 flex items-center justify-center flex-shrink-0">
                                 <svg class="w-4 h-4 md:w-5 md:h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
                             </div>
                             <div>
-                                <div class="text-xs md:text-sm font-semibold text-near-white">Verification Complete</div>
-                                <div class="text-[10px] md:text-xs text-zinc-500">Profile secured</div>
+                                <div class="text-xs md:text-sm font-semibold text-near-white">Identity Layer Active</div>
+                                <div class="text-[10px] md:text-xs text-zinc-500">Schema.org JSON-LD Verified</div>
                             </div>
                         </div>
                     </div>
@@ -419,7 +516,6 @@
                 <div class="scroll-reveal relative group order-2 lg:order-1">
                     <div class="absolute inset-0 bg-mafia-gold/20 rounded-2xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
                     <div class="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/5]">
-                        <!-- ImageKit: About max .webp -->
                         <img src="https://ik.imagekit.io/wemustcreate/About%20max%20.webp?updatedAt=1777882596972" alt="About Max" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
                         <div class="absolute inset-0 bg-gradient-to-t from-void-black via-transparent to-transparent"></div>
                     </div>
@@ -508,83 +604,102 @@
                         Ready to <span class="gradient-text-gold">take control</span> of your digital presence?
                     </h2>
                     <p class="font-body font-light text-base md:text-lg lg:text-xl text-platinum/70 max-w-2xl mx-auto mb-8 md:mb-12 scroll-reveal">
-                        Join the professionals who have reclaimed their focus. Our onboarding process is designed for the tech-averse: simple, human, and zero-effort for you.
+                        Start with a free Tactical Audit. Our onboarding process is designed for the tech-averse: simple, human, and zero-effort for you.
                     </p>
                     
                     <div class="flex flex-wrap justify-center gap-3 md:gap-4 scroll-reveal">
-                        <button class="btn-glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-bold text-base md:text-lg text-gold-300 flex items-center gap-2 md:gap-3 group">
+                        <a href="connect.html" class="btn-glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-bold text-base md:text-lg text-gold-300 flex items-center gap-2 md:gap-3 group">
                             <span>Initiate Playbook</span>
                             <svg class="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </button>
-                        <button class="glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-semibold text-base md:text-lg text-platinum hover:bg-white/5 transition-all">
+                        </a>
+                        <a href="solutions.html" class="glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-semibold text-base md:text-lg text-platinum hover:bg-white/5 transition-all">
                             View Case Studies
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Connect Section -->
-    <section id="connect" class="py-12 md:py-20 px-4 md:px-6 lg:px-8 border-t border-white/5">
+    <!-- Footer - Live Deployment with Legal Sitemap -->
+    <footer id="connect" class="py-12 md:py-20 px-4 md:px-6 lg:px-8 border-t border-white/5 bg-void-black/80 backdrop-blur-sm">
         <div class="max-w-[1400px] mx-auto">
-            <div class="grid lg:grid-cols-4 gap-8 md:gap-12">
-                <div class="lg:col-span-2">
-                    <div class="flex items-center gap-2 md:gap-3 mb-4 md:mb-6">
-                        <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg glass-gold flex items-center justify-center">
-                            <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-80">
-                        </div>
-                        <div>
-                            <span class="font-display font-bold text-lg md:text-xl text-near-white">Search Playbook</span>
-                            <div class="text-[10px] md:text-xs text-zinc-500 font-body">WeMustCreate</div>
-                        </div>
+            <!-- Footer Top: Brand + Slogan -->
+            <div class="text-center mb-10 md:mb-16">
+                <div class="flex items-center justify-center gap-3 mb-4">
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90">
                     </div>
-                    <p class="font-body font-light text-sm md:text-base text-platinum/60 max-w-md leading-relaxed">
-                        Visibility. Privacy. Safety. Set-and-forget optimization built for South Africa. No subscriptions, just real results.
-                    </p>
-                    <div class="flex items-center gap-3 md:gap-4 mt-4 md:mt-6">
-                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
-                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>
-                        </a>
-                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
-                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        </a>
-                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                </div>
+                <h3 class="font-display font-bold text-2xl md:text-3xl text-near-white mb-2">SEARCH PLAYBOOK</h3>
+                <p class="font-accent text-sm md:text-base text-mafia-gold tracking-wider uppercase mb-4">WeMustCreate | Mzansi's Digital Partner</p>
+                <p class="font-body font-light text-base md:text-lg text-platinum/60 italic max-w-lg mx-auto">
+                    "Focus on the hustle. We'll focus on the noise."
+                </p>
+            </div>
+            
+            <!-- Footer Grid -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-16">
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Platform</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="intelhub.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-icy-azure transition-colors">Intel Hub</a></li>
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-forged-copper transition-colors">Solutions</a></li>
+                        <li><a href="collective.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-warm-yellow transition-colors">Collective</a></li>
+                        <li><a href="connect.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-mafia-gold transition-colors">Connect</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Services</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Reputation Repair</a></li>
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Business Profiles</a></li>
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Cybersecurity Checks</a></li>
+                        <li><a href="intelhub.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">NCII Protection</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Legal & Sitemap</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="legal.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Legal Hub</a></li>
+                        <li><a href="legal.html#popia" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">POPIA Compliance</a></li>
+                        <li><a href="legal.html#tos" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Terms of Service</a></li>
+                        <li><a href="legal.html#privacy" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Privacy Policy</a></li>
+                        <li><a href="legal.html#sitemap" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Full Sitemap</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Connect</h4>
+                    <div class="flex items-center gap-3 mb-4">
+                        <a href="https://www.linkedin.com/in/llewellynoshea/" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
                             <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                         </a>
+                        <a href="https://www.facebook.com/searchplaybook/" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://maps.app.goo.gl/WezVn4JTE8Q69oV3A" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C7.802 0 4 3.403 4 7.602 4 11.8 7.469 16.812 12 24c4.531-7.188 8-12.2 8-16.398C20 3.403 16.199 0 12 0zm0 11a3 3 0 110-6 3 3 0 010 6z"/></svg>
+                        </a>
                     </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Navigation</h4>
-                    <ul class="space-y-2 md:space-y-3">
-                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-mafia-gold transition-colors cursor-pointer">Solutions</a></li>
-                        <li><a href="collective.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-icy-azure transition-colors cursor-pointer">Collective</a></li>
-                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-warm-yellow transition-colors cursor-pointer">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Legal</h4>
-                    <ul class="space-y-2 md:space-y-3">
-                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors cursor-pointer">Privacy Policy</a></li>
-                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors cursor-pointer">Terms of Service</a></li>
-                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors cursor-pointer">Contact Us</a></li>
-                    </ul>
+                    <p class="text-[10px] md:text-xs text-zinc-500 font-body">Johannesburg, GP, South Africa</p>
                 </div>
             </div>
             
-            <div class="mt-8 md:mt-12 pt-6 md:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+            <!-- Footer Bottom -->
+            <div class="pt-6 md:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
                 <div class="text-[10px] md:text-xs text-zinc-500 font-body text-center md:text-left">
-                    Search Playbook Design System — WeMustCreate © 2026 | Internal reference only. Do not publish publicly.
+                    © 2026 SEARCH PLAYBOOK — WEMUSTCREATE. ALL RIGHTS RESERVED.
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gold-300"></div>
-                    <span class="text-[10px] md:text-xs text-zinc-500 font-body">South Africa</span>
+                    <div class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gold-300 animate-pulse"></div>
+                    <span class="text-[10px] md:text-xs text-zinc-500 font-body">Mzansi's Digital Partner</span>
                 </div>
             </div>
         </div>
-    </section>
+    </footer>
 
     <script>
         // Scroll Reveal Animation
@@ -624,15 +739,13 @@
             if (menu.classList.contains('translate-x-full')) {
                 menu.classList.remove('translate-x-full');
                 menu.classList.add('translate-x-0');
-                // Animate burger to X
                 line1.classList.add('rotate-45', 'translate-y-2');
                 line2.classList.add('opacity-0');
                 line3.classList.add('-rotate-45', '-translate-y-2');
-                document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
+                document.body.style.overflow = 'hidden';
             } else {
                 menu.classList.add('translate-x-full');
                 menu.classList.remove('translate-x-0');
-                // Animate X back to burger
                 line1.classList.remove('rotate-45', 'translate-y-2');
                 line2.classList.remove('opacity-0');
                 line3.classList.remove('-rotate-45', '-translate-y-2');
@@ -661,39 +774,6 @@
             bioContent.classList.toggle('open');
             bioIcon.classList.toggle('rotated');
         });
-
-        // Counter Animation
-        const counters = document.querySelectorAll('.counter');
-        const speed = 200;
-
-        const animateCounters = () => {
-            counters.forEach(counter => {
-                const updateCount = () => {
-                    const target = +counter.getAttribute('data-target');
-                    const count = +counter.innerText;
-                    const inc = target / speed;
-
-                    if (count < target) {
-                        counter.innerText = Math.ceil(count + inc);
-                        setTimeout(updateCount, 20);
-                    } else {
-                        counter.innerText = target;
-                        if(target === 98) counter.innerText += '%';
-                        if(target === 1200) counter.innerText += '+';
-                        if(target === 850) counter.innerText += '+';
-                    }
-                };
-                updateCount();
-            });
-        };
-
-        const heroObserver = new IntersectionObserver((entries) => {
-            if(entries[0].isIntersecting) {
-                animateCounters();
-                heroObserver.disconnect();
-            }
-        });
-        heroObserver.observe(document.getElementById('hero'));
     </script>
 </body>
 </html>
