@@ -67,139 +67,89 @@
   .video-bg {
     position: fixed;
     top: 0; left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 0;
-    overflow: hidden;
+    width: 100vw; height: 100vh;
+    z-index: 0; overflow: hidden;
   }
 
-  .video-bg video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+  .video-bg video { width: 100%; height: 100%; object-fit: cover; }
 
   .video-overlay {
-    position: absolute;
-    top: 0; left: 0;
+    position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
-    background: linear-gradient(
-      180deg,
-      rgba(10, 10, 15, 0.75) 0%,
-      rgba(10, 10, 15, 0.60) 30%,
-      rgba(10, 10, 15, 0.70) 60%,
-      rgba(10, 10, 15, 0.92) 100%
-    );
+    background: linear-gradient(180deg,
+      rgba(10,10,15,0.75) 0%,
+      rgba(10,10,15,0.60) 30%,
+      rgba(10,10,15,0.70) 60%,
+      rgba(10,10,15,0.92) 100%);
     z-index: 1;
   }
 
   .video-overlay::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
+    content: ''; position: absolute; top: 0; left: 0;
     width: 100%; height: 100%;
     background: radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(10,10,15,0.4) 100%);
   }
 
   .grid-bg {
-    position: fixed;
-    top: 0; left: 0;
+    position: fixed; top: 0; left: 0;
     width: 100%; height: 100%;
     background-image:
       linear-gradient(var(--border) 1px, transparent 1px),
       linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 60px 60px;
-    opacity: 0.08;
-    pointer-events: none;
-    z-index: 1;
+    background-size: 60px 60px; opacity: 0.08;
+    pointer-events: none; z-index: 1;
   }
 
   .noise {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    opacity: 0.025;
-    pointer-events: none;
-    z-index: 1;
+    position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; opacity: 0.025;
+    pointer-events: none; z-index: 1;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
-  .content-wrapper {
-    position: relative;
-    z-index: 2;
-  }
+  .content-wrapper { position: relative; z-index: 2; }
 
   /* ===== NAVIGATION ===== */
   nav {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%;
-    z-index: 100;
+    position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
     padding: 0.8rem 2rem;
-    background: rgba(10, 10, 15, 0.6);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border-bottom: 1px solid rgba(42, 42, 58, 0.5);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    background: rgba(10,10,15,0.6);
+    backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(42,42,58,0.5);
+    display: flex; justify-content: space-between; align-items: center;
     transition: all 0.3s ease;
   }
 
-  nav.scrolled {
-    padding: 0.5rem 2rem;
-    background: rgba(10, 10, 15, 0.85);
-  }
+  nav.scrolled { padding: 0.5rem 2rem; background: rgba(10,10,15,0.85); }
 
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    text-decoration: none;
-  }
+  .nav-brand { display: flex; align-items: center; gap: 0.8rem; text-decoration: none; }
 
   .nav-shield {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
+    width: 36px; height: 36px; object-fit: contain;
     filter: drop-shadow(0 0 8px var(--cyan-dim));
     transition: filter 0.3s;
   }
 
-  .nav-brand:hover .nav-shield {
-    filter: drop-shadow(0 0 16px var(--cyan-dim));
-  }
+  .nav-brand:hover .nav-shield { filter: drop-shadow(0 0 16px var(--cyan-dim)); }
 
   .nav-logo-text {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    color: var(--cyan);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-size: 0.85rem; color: var(--cyan);
+    letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
   }
-
-  .nav-logo-text span { color: var(--text-secondary); }
 
   .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
 
   .nav-links a {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: color 0.3s;
-    position: relative;
+    font-size: 0.65rem; color: var(--text-secondary);
+    text-decoration: none; letter-spacing: 1px; text-transform: uppercase;
+    transition: color 0.3s; position: relative;
   }
 
   .nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px; left: 0;
-    width: 0; height: 1px;
-    background: var(--cyan);
-    transition: width 0.3s;
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--cyan); transition: width 0.3s;
   }
 
   .nav-links a:hover { color: var(--cyan); }
@@ -207,161 +157,87 @@
 
   .nav-cta {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.5rem 1.2rem;
-    background: transparent;
-    border: 1px solid var(--cyan);
-    color: var(--cyan);
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    text-decoration: none;
+    font-size: 0.65rem; padding: 0.5rem 1.2rem;
+    background: transparent; border: 1px solid var(--cyan);
+    color: var(--cyan); cursor: pointer; letter-spacing: 1px;
+    text-transform: uppercase; transition: all 0.3s; text-decoration: none;
   }
 
-  .nav-cta:hover {
-    background: var(--cyan);
-    color: var(--bg-primary);
-  }
+  .nav-cta:hover { background: var(--cyan); color: var(--bg-primary); }
 
-  /* Hamburger */
   .hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    background: none;
-    border: none;
-    padding: 4px;
-    z-index: 200;
+    display: none; flex-direction: column; gap: 5px;
+    cursor: pointer; background: none; border: none; padding: 4px; z-index: 200;
   }
 
   .hamburger span {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: var(--text-secondary);
-    transition: all 0.3s;
+    display: block; width: 22px; height: 1.5px;
+    background: var(--text-secondary); transition: all 0.3s;
   }
 
-  .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(4px, 4px);
-    background: var(--cyan);
-  }
-
+  .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); background: var(--cyan); }
   .hamburger.active span:nth-child(2) { opacity: 0; }
+  .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); background: var(--cyan); }
 
-  .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-    background: var(--cyan);
-  }
-
-  /* Mobile Menu Overlay */
   .mobile-menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(10, 10, 15, 0.97);
-    backdrop-filter: blur(30px);
-    z-index: 150;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10,10,15,0.97); backdrop-filter: blur(30px);
+    z-index: 150; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; gap: 2rem;
+    opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
   }
 
-  .mobile-menu.open {
-    opacity: 1;
-    pointer-events: all;
-  }
+  .mobile-menu.open { opacity: 1; pointer-events: all; }
 
   .mobile-menu a {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.2rem;
-    color: var(--text-secondary);
-    text-decoration: none;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    transform: translateY(20px);
-    opacity: 0;
+    font-family: 'JetBrains Mono', monospace; font-size: 1.2rem;
+    color: var(--text-secondary); text-decoration: none;
+    letter-spacing: 3px; text-transform: uppercase;
+    transition: all 0.3s; transform: translateY(20px); opacity: 0;
   }
 
-  .mobile-menu.open a {
-    transform: translateY(0);
-    opacity: 1;
-  }
-
+  .mobile-menu.open a { transform: translateY(0); opacity: 1; }
   .mobile-menu a:nth-child(1) { transition-delay: 0.1s; }
   .mobile-menu a:nth-child(2) { transition-delay: 0.15s; }
   .mobile-menu a:nth-child(3) { transition-delay: 0.2s; }
   .mobile-menu a:nth-child(4) { transition-delay: 0.25s; }
   .mobile-menu a:nth-child(5) { transition-delay: 0.3s; }
   .mobile-menu a:nth-child(6) { transition-delay: 0.35s; }
-
   .mobile-menu a:hover { color: var(--cyan); }
 
   .mobile-menu-shield {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin-bottom: 1rem;
+    width: 60px; height: 60px; object-fit: contain; margin-bottom: 1rem;
     filter: drop-shadow(0 0 20px var(--cyan-dim));
-    transform: translateY(20px);
-    opacity: 0;
-    transition: all 0.4s ease 0.05s;
+    transform: translateY(20px); opacity: 0; transition: all 0.4s ease 0.05s;
   }
 
-  .mobile-menu.open .mobile-menu-shield {
-    transform: translateY(0);
-    opacity: 1;
-  }
+  .mobile-menu.open .mobile-menu-shield { transform: translateY(0); opacity: 1; }
 
   /* Hero */
   .hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 8rem 2rem 4rem;
-    position: relative;
+    min-height: 100vh; display: flex; flex-direction: column;
+    justify-content: center; align-items: center; text-align: center;
+    padding: 8rem 2rem 4rem; position: relative;
   }
 
   .hero-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    padding: 0.4rem 1rem;
-    border: 1px solid var(--border-accent);
-    color: var(--text-secondary);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 2rem;
-    animation: fadeInDown 0.8s ease;
-    background: rgba(26, 26, 38, 0.5);
-    backdrop-filter: blur(8px);
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    padding: 0.4rem 1rem; border: 1px solid var(--border-accent);
+    color: var(--text-secondary); letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 2rem; animation: fadeInDown 0.8s ease;
+    background: rgba(26,26,38,0.5); backdrop-filter: blur(8px);
   }
 
   .hero-badge .dot {
-    display: inline-block;
-    width: 6px; height: 6px;
-    background: var(--green);
-    border-radius: 50%;
-    margin-right: 0.5rem;
-    animation: pulse 2s infinite;
+    display: inline-block; width: 6px; height: 6px;
+    background: var(--green); border-radius: 50%;
+    margin-right: 0.5rem; animation: pulse 2s infinite;
   }
 
   .hero h1 {
     font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(1.8rem, 5vw, 4rem);
-    font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 1.5rem;
+    font-size: clamp(1.8rem, 5vw, 4rem); font-weight: 700;
+    line-height: 1.15; margin-bottom: 1.5rem;
     animation: fadeInUp 0.8s ease 0.2s both;
     text-shadow: 0 2px 40px rgba(0,0,0,0.6);
   }
@@ -369,76 +245,40 @@
   .hero h1 .line1 { color: var(--text-primary); }
   .hero h1 .line2 {
     background: linear-gradient(90deg, var(--cyan), var(--purple));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   }
 
   .hero-sub {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    max-width: 620px;
-    margin-bottom: 3rem;
-    animation: fadeInUp 0.8s ease 0.4s both;
+    font-size: 1rem; color: var(--text-secondary); max-width: 620px;
+    margin-bottom: 3rem; animation: fadeInUp 0.8s ease 0.4s both;
     text-shadow: 0 1px 20px rgba(0,0,0,0.5);
   }
 
   .hero-sub strong { color: var(--red); font-weight: 600; }
 
-  .hero-stats {
-    display: flex;
-    gap: 3rem;
-    margin-bottom: 3rem;
-    animation: fadeInUp 0.8s ease 0.6s both;
-  }
-
+  .hero-stats { display: flex; gap: 3rem; margin-bottom: 3rem; animation: fadeInUp 0.8s ease 0.6s both; }
   .hero-stat { text-align: center; }
-
   .hero-stat .number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--cyan);
-    text-shadow: 0 0 30px var(--cyan-dim);
+    font-family: 'JetBrains Mono', monospace; font-size: 2.5rem;
+    font-weight: 700; color: var(--cyan); text-shadow: 0 0 30px var(--cyan-dim);
   }
-
   .hero-stat .label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-secondary);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-top: 0.3rem;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    color: var(--text-secondary); letter-spacing: 2px; text-transform: uppercase; margin-top: 0.3rem;
   }
 
-  .hero-actions {
-    display: flex;
-    gap: 1rem;
-    animation: fadeInUp 0.8s ease 0.8s both;
-  }
+  .hero-actions { display: flex; gap: 1rem; animation: fadeInUp 0.8s ease 0.8s both; }
 
   .btn-primary {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    padding: 0.85rem 2rem;
-    background: var(--cyan);
-    color: var(--bg-primary);
-    border: none;
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: 600;
-    transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: inline-block;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    padding: 0.85rem 2rem; background: var(--cyan); color: var(--bg-primary);
+    border: none; cursor: pointer; letter-spacing: 1px; text-transform: uppercase;
+    font-weight: 600; transition: all 0.3s; position: relative; overflow: hidden;
+    text-decoration: none; display: inline-block;
   }
 
   .btn-primary::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
+    content: ''; position: absolute; top: 0; left: -100%;
     width: 100%; height: 100%;
     background: linear-gradient(90deg, transparent, #ffffff33, transparent);
     transition: left 0.5s;
@@ -448,889 +288,248 @@
   .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px var(--cyan-dim); }
 
   .btn-secondary {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    padding: 0.85rem 2rem;
-    background: rgba(26, 26, 38, 0.5);
-    backdrop-filter: blur(8px);
-    color: var(--text-secondary);
-    border: 1px solid var(--border-accent);
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    text-decoration: none;
-    display: inline-block;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    padding: 0.85rem 2rem; background: rgba(26,26,38,0.5);
+    backdrop-filter: blur(8px); color: var(--text-secondary);
+    border: 1px solid var(--border-accent); cursor: pointer;
+    letter-spacing: 1px; text-transform: uppercase; transition: all 0.3s;
+    text-decoration: none; display: inline-block;
   }
 
-  .btn-secondary:hover {
-    border-color: var(--text-secondary);
-    color: var(--text-primary);
-  }
+  .btn-secondary:hover { border-color: var(--text-secondary); color: var(--text-primary); }
 
   .scroll-indicator {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
     animation: fadeInUp 0.8s ease 1s both;
   }
 
   .scroll-indicator span {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.55rem;
+    color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase;
   }
 
   .scroll-line {
-    width: 1px;
-    height: 40px;
+    width: 1px; height: 40px;
     background: linear-gradient(to bottom, var(--cyan), transparent);
     animation: scrollPulse 2s infinite;
   }
 
   /* Sections */
-  section {
-    padding: 6rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .section-header {
-    text-align: center;
-    margin-bottom: 4rem;
-  }
-
+  section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 4rem; }
   .section-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--cyan);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: block;
+    font-family: 'JetBrains Mono', monospace; font-size: 0.6rem;
+    color: var(--cyan); letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 1rem; display: block;
   }
-
   .section-title {
     font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 700;
+    margin-bottom: 1rem; text-shadow: 0 2px 20px rgba(0,0,0,0.4);
   }
-
   .section-desc {
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-    font-size: 0.9rem;
-    text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+    color: var(--text-secondary); max-width: 600px; margin: 0 auto;
+    font-size: 0.9rem; text-shadow: 0 1px 10px rgba(0,0,0,0.3);
   }
-
   .divider {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 1px;
+    width: 100%; max-width: 1200px; margin: 0 auto; height: 1px;
     background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
   }
 
   /* Architecture */
-  .arch-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
-  }
-
+  .arch-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 3rem; }
   .arch-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
-    padding: 2rem;
-    position: relative;
-    transition: all 0.5s;
-    overflow: hidden;
+    background: var(--bg-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border); padding: 2rem; position: relative;
+    transition: all 0.5s; overflow: hidden;
   }
-
-  .arch-card:hover {
-    border-color: var(--border-accent);
-    transform: translateY(-3px);
-  }
-
-  .arch-card::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-  }
-
+  .arch-card:hover { border-color: var(--border-accent); transform: translateY(-3px); }
+  .arch-card::after { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; }
   .arch-card:nth-child(1)::after { background: var(--cyan); }
   .arch-card:nth-child(2)::after { background: var(--purple); }
   .arch-card:nth-child(3)::after { background: var(--green); }
-
   .arch-card:nth-child(1):hover { box-shadow: 0 0 40px var(--cyan-dim); }
   .arch-card:nth-child(2):hover { box-shadow: 0 0 40px var(--purple-dim); }
   .arch-card:nth-child(3):hover { box-shadow: 0 0 40px var(--green-dim); }
-
-  .arch-pillar-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-
+  .arch-pillar-label { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.8rem; }
   .arch-card:nth-child(1) .arch-pillar-label { color: var(--cyan); }
   .arch-card:nth-child(2) .arch-pillar-label { color: var(--purple); }
   .arch-card:nth-child(3) .arch-pillar-label { color: var(--green); }
-
-  .arch-card h3 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .arch-target {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
-  }
-
+  .arch-card h3 { font-family: 'JetBrains Mono', monospace; font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; }
+  .arch-target { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); }
   .arch-target strong { color: var(--text-primary); }
-
-  .arch-execution {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-  }
-
+  .arch-execution { font-size: 0.8rem; color: var(--text-secondary); }
   .arch-execution strong { color: var(--text-primary); }
 
   /* Pillars Accordion */
-  .pillars-grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-
+  .pillars-grid { display: grid; gap: 1.5rem; }
   .pillar-card {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: all 0.5s;
+    background: var(--bg-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border); overflow: hidden; transition: all 0.5s;
   }
-
   .pillar-card:hover { border-color: var(--border-accent); }
-
   .pillar-header {
-    padding: 1.8rem 2.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    transition: background 0.3s;
-    user-select: none;
+    padding: 1.8rem 2.5rem; display: flex; justify-content: space-between;
+    align-items: center; cursor: pointer; transition: background 0.3s; user-select: none;
   }
-
   .pillar-header:hover { background: var(--bg-card-hover); }
-
-  .pillar-left {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .pillar-number {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    min-width: 55px;
-  }
-
-  .pillar-icon {
-    width: 44px;
-    height: 44px;
-    border: 1px solid var(--border-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-  }
-
+  .pillar-left { display: flex; align-items: center; gap: 1.5rem; }
+  .pillar-number { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--text-muted); letter-spacing: 2px; min-width: 55px; }
+  .pillar-icon { width: 44px; height: 44px; border: 1px solid var(--border-accent); display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
   .pillar-card:nth-child(1) .pillar-icon { color: var(--cyan); border-color: var(--cyan-dim); }
   .pillar-card:nth-child(2) .pillar-icon { color: var(--purple); border-color: var(--purple-dim); }
   .pillar-card:nth-child(3) .pillar-icon { color: var(--green); border-color: var(--green-dim); }
-
-  .pillar-info h3 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.25rem;
-  }
-
-  .pillar-info .logic {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-  }
-
-  .pillar-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-  }
-
-  .pillar-price {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-    text-align: right;
-  }
-
+  .pillar-info h3 { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; }
+  .pillar-info .logic { font-size: 0.75rem; color: var(--text-secondary); }
+  .pillar-right { display: flex; align-items: center; gap: 1.5rem; }
+  .pillar-price { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-secondary); text-align: right; }
   .pillar-price .amount { color: var(--text-primary); font-weight: 600; font-size: 1.05rem; }
-
-  .pillar-toggle {
-    width: 30px;
-    height: 30px;
-    border: 1px solid var(--border-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-  }
-
-  .pillar-card.active .pillar-toggle {
-    transform: rotate(45deg);
-    background: var(--cyan);
-    color: var(--bg-primary);
-    border-color: var(--cyan);
-  }
-
-  .pillar-body {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .pillar-card.active .pillar-body { max-height: 900px; }
-
-  .pillar-body-inner {
-    padding: 0 2.5rem 2rem;
-    border-top: 1px solid var(--border);
-  }
-
-  .service-list {
-    list-style: none;
-    padding-top: 1.5rem;
-  }
-
-  .service-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 0.75rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-
+  .pillar-toggle { width: 30px; height: 30px; border: 1px solid var(--border-accent); display: flex; align-items: center; justify-content: center; transition: all 0.3s; font-size: 0.8rem; color: var(--text-secondary); }
+  .pillar-card.active .pillar-toggle { transform: rotate(45deg); background: var(--cyan); color: var(--bg-primary); border-color: var(--cyan); }
+  .pillar-body { max-height: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+  .pillar-card.active .pillar-body { max-height: 1200px; }
+  .pillar-body-inner { padding: 0 2.5rem 2rem; border-top: 1px solid var(--border); }
+  .service-list { list-style: none; padding-top: 1.5rem; }
+  .service-item { display: flex; align-items: flex-start; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid var(--border); transition: all 0.3s; }
   .service-item:last-child { border-bottom: none; }
   .service-item:hover { padding-left: 0.5rem; }
+  .service-id { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--text-muted); min-width: 28px; padding-top: 0.15rem; }
+  .service-name { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; font-weight: 500; min-width: 200px; }
+  .service-desc { font-size: 0.75rem; color: var(--text-secondary); }
+  .service-check { margin-left: auto; color: var(--green); font-size: 0.75rem; }
 
-  .service-id {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    min-width: 28px;
-    padding-top: 0.15rem;
+  /* ===== PRICING (HANDOVER ALIGNED) ===== */
+  .pricing-section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .pricing-philosophy {
+    text-align: center; margin-bottom: 3rem; padding: 1.5rem;
+    background: var(--bg-card); backdrop-filter: blur(16px);
+    border: 1px solid var(--border); font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 1px;
   }
-
-  .service-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    font-weight: 500;
-    min-width: 200px;
+  .pricing-philosophy strong { color: var(--cyan); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+  .pricing-card {
+    background: var(--bg-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border); padding: 2rem; position: relative;
+    transition: all 0.5s; display: flex; flex-direction: column;
   }
-
-  .service-desc {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
+  .pricing-card:hover { transform: translateY(-4px); border-color: var(--border-accent); }
+  .pricing-card.complete { border-color: var(--gold); background: linear-gradient(135deg, rgba(26,26,38,0.9), rgba(26,26,10,0.9)); }
+  .pricing-card.complete::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--gold), #ffaa00); }
+  .pricing-tier-label { font-family: 'JetBrains Mono', monospace; font-size: 0.55rem; color: var(--text-muted); letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .pricing-name { font-family: 'JetBrains Mono', monospace; font-size: 1rem; font-weight: 600; margin-bottom: 0.8rem; }
+  .pricing-amount { font-family: 'JetBrains Mono', monospace; font-size: 1.8rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .pricing-card:nth-child(1) .pricing-amount { color: var(--cyan); }
+  .pricing-card:nth-child(2) .pricing-amount { color: var(--purple); }
+  .pricing-card:nth-child(3) .pricing-amount { color: var(--green); }
+  .pricing-card:nth-child(4) .pricing-amount { color: var(--gold); }
+  .pricing-note { font-size: 0.7rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .pricing-features { list-style: none; margin-bottom: 2rem; flex-grow: 1; }
+  .pricing-features li { font-size: 0.78rem; color: var(--text-secondary); padding: 0.35rem 0; display: flex; align-items: center; gap: 0.5rem; }
+  .pricing-features li::before { content: '→'; font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; }
+  .pricing-card:nth-child(1) .pricing-features li::before { color: var(--cyan); }
+  .pricing-card:nth-child(2) .pricing-features li::before { color: var(--purple); }
+  .pricing-card:nth-child(3) .pricing-features li::before { color: var(--green); }
+  .pricing-card:nth-child(4) .pricing-features li::before { color: var(--gold); }
+  .pricing-btn {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.65rem;
+    padding: 0.8rem; width: 100%; cursor: pointer; letter-spacing: 1px;
+    text-transform: uppercase; transition: all 0.3s; text-align: center; border: none;
   }
+  .pricing-card:nth-child(1) .pricing-btn { background: var(--cyan); color: var(--bg-primary); font-weight: 600; }
+  .pricing-card:nth-child(2) .pricing-btn { background: var(--purple); color: var(--bg-primary); font-weight: 600; }
+  .pricing-card:nth-child(3) .pricing-btn { background: var(--green); color: var(--bg-primary); font-weight: 600; }
+  .pricing-card:nth-child(4) .pricing-btn { background: linear-gradient(90deg, var(--gold), #ffaa00); color: var(--bg-primary); font-weight: 700; }
+  .pricing-btn:hover { transform: translateY(-2px); }
 
-  .service-check {
-    margin-left: auto;
-    color: var(--green);
-    font-size: 0.75rem;
-  }
-
-  /* ===== PRICING LADDER ===== */
-  .pricing-section {
-    padding: 6rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .pricing-ladder {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    position: relative;
-    max-width: 900px;
-    margin: 3rem auto 0;
-  }
-
-  /* Vertical connector line */
-  .pricing-ladder::before {
-    content: '';
-    position: absolute;
-    left: 28px;
-    top: 0;
-    bottom: 0;
-    width: 1px;
-    background: linear-gradient(to bottom, var(--text-muted), var(--cyan), var(--purple), var(--gold));
-    z-index: 0;
-  }
-
-  .pricing-tier-row {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-    padding: 1.5rem 0;
-    position: relative;
-    z-index: 1;
-  }
-
-  .tier-node {
-    width: 56px;
-    height: 56px;
-    min-width: 56px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    font-weight: 700;
-    border: 2px solid var(--border-accent);
-    background: var(--bg-primary);
-    color: var(--text-secondary);
-    position: relative;
-    z-index: 2;
-  }
-
-  .pricing-tier-row:nth-child(1) .tier-node { border-color: var(--text-muted); color: var(--text-muted); }
-  .pricing-tier-row:nth-child(2) .tier-node { border-color: var(--cyan); color: var(--cyan); box-shadow: 0 0 20px var(--cyan-dim); }
-  .pricing-tier-row:nth-child(3) .tier-node { border-color: var(--purple); color: var(--purple); box-shadow: 0 0 20px var(--purple-dim); }
-  .pricing-tier-row:nth-child(4) .tier-node { border-color: var(--gold); color: var(--gold); box-shadow: 0 0 20px var(--gold-dim); background: rgba(255,215,0,0.08); }
-
-  .tier-content {
-    flex: 1;
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
-    padding: 1.8rem 2rem;
-    transition: all 0.4s;
-    position: relative;
-  }
-
-  .tier-content:hover {
-    border-color: var(--border-accent);
-    transform: translateX(4px);
-  }
-
-  .pricing-tier-row:nth-child(4) .tier-content {
-    border-color: var(--gold);
-    background: linear-gradient(135deg, rgba(26,26,38,0.9), rgba(26,26,10,0.9));
-  }
-
-  .pricing-tier-row:nth-child(4) .tier-content:hover {
-    box-shadow: 0 0 50px var(--gold-dim);
-  }
-
-  .tier-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 0.8rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
-
-  .tier-name {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    color: var(--text-muted);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-  }
-
-  .tier-title {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 600;
-  }
-
-  .tier-amount {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-align: right;
-  }
-
-  .pricing-tier-row:nth-child(1) .tier-amount { color: var(--text-muted); }
-  .pricing-tier-row:nth-child(2) .tier-amount { color: var(--cyan); }
-  .pricing-tier-row:nth-child(3) .tier-amount { color: var(--purple); }
-  .pricing-tier-row:nth-child(4) .tier-amount { color: var(--gold); }
-
-  .tier-note {
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    text-align: right;
-  }
-
-  .tier-features {
-    list-style: none;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.3rem 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .tier-features li {
-    font-size: 0.75rem;
-    color: var(--text-secondary);
-    padding: 0.2rem 0;
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .tier-features li::before {
-    content: '→';
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-  }
-
-  .pricing-tier-row:nth-child(1) .tier-features li::before { color: var(--text-muted); }
-  .pricing-tier-row:nth-child(2) .tier-features li::before { color: var(--cyan); }
-  .pricing-tier-row:nth-child(3) .tier-features li::before { color: var(--purple); }
-  .pricing-tier-row:nth-child(4) .tier-features li::before { color: var(--gold); }
-
-  .tier-includes {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    padding: 0.5rem 0;
-    border-top: 1px solid var(--border);
-    margin-top: 0.5rem;
-  }
-
-  .tier-includes span { color: var(--green); }
-
-  .tier-btn {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    padding: 0.7rem 1.5rem;
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-    border: none;
-    display: inline-block;
-  }
-
-  .pricing-tier-row:nth-child(1) .tier-btn {
-    background: transparent;
-    border: 1px solid var(--border-accent);
-    color: var(--text-secondary);
-  }
-
-  .pricing-tier-row:nth-child(2) .tier-btn {
-    background: var(--cyan);
-    color: var(--bg-primary);
-    font-weight: 600;
-  }
-
-  .pricing-tier-row:nth-child(3) .tier-btn {
-    background: var(--purple);
-    color: var(--bg-primary);
-    font-weight: 600;
-  }
-
-  .pricing-tier-row:nth-child(4) .tier-btn {
-    background: linear-gradient(90deg, var(--gold), #ffaa00);
-    color: var(--bg-primary);
-    font-weight: 700;
-  }
-
-  .tier-btn:hover { transform: translateY(-2px); }
-
-  .all-services-badge {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.55rem;
-    padding: 0.3rem 0.8rem;
-    background: var(--gold);
-    color: var(--bg-primary);
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  /* Meta Stack */
-  .meta-stack {
-    padding: 6rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .code-block {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    margin-top: 2rem;
-  }
-
-  .code-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 1.5rem;
-    border-bottom: 1px solid var(--border);
-    background: rgba(18, 18, 26, 0.6);
-  }
-
-  .code-filename {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.65rem;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-  }
-
-  .code-copy-btn {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    padding: 0.3rem 0.8rem;
-    background: transparent;
-    border: 1px solid var(--border-accent);
-    color: var(--text-secondary);
-    cursor: pointer;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: all 0.3s;
-  }
-
-  .code-copy-btn:hover {
-    border-color: var(--cyan);
-    color: var(--cyan);
-  }
-
-  .code-copy-btn.copied {
-    border-color: var(--green);
-    color: var(--green);
-  }
-
-  .code-body {
-    padding: 1.5rem;
-    overflow-x: auto;
-  }
-
-  .code-body pre {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.75rem;
-    line-height: 1.8;
-    color: var(--text-secondary);
-    white-space: pre;
-  }
-
-  .code-body .tag { color: var(--red); }
-  .code-body .attr { color: var(--cyan); }
-  .code-body .val { color: var(--green); }
-  .code-body .comment { color: var(--text-muted); font-style: italic; }
-  .code-body .kw { color: var(--purple); }
-  .code-body .str { color: var(--gold); }
-  .code-body .fn { color: var(--cyan); }
+  .individual-rates { margin-top: 2rem; }
+  .rate-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+  .rate-card { background: var(--bg-card); backdrop-filter: blur(12px); border: 1px solid var(--border); padding: 1.5rem; }
+  .rate-card h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; margin-bottom: 0.8rem; color: var(--text-primary); }
+  .rate-item { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid var(--border); font-size: 0.75rem; }
+  .rate-item:last-child { border-bottom: none; }
+  .rate-name { color: var(--text-secondary); }
+  .rate-price { font-family: 'JetBrains Mono', monospace; color: var(--cyan); }
 
   /* FAQ */
-  .faq-section {
-    padding: 6rem 2rem;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
+  .faq-section { padding: 6rem 2rem; max-width: 900px; margin: 0 auto; }
   .faq-list { margin-top: 3rem; }
-
-  .faq-item {
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  .faq-question {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 0;
-    cursor: pointer;
-    transition: all 0.3s;
-    user-select: none;
-  }
-
+  .faq-item { border-bottom: 1px solid var(--border); overflow: hidden; }
+  .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 0; cursor: pointer; transition: all 0.3s; user-select: none; }
   .faq-question:hover { padding-left: 0.5rem; }
-
-  .faq-question h4 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    flex: 1;
-    padding-right: 1rem;
-  }
-
-  .faq-toggle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    transition: all 0.3s;
-    min-width: 20px;
-    text-align: center;
-  }
-
-  .faq-item.active .faq-toggle {
-    transform: rotate(45deg);
-    color: var(--cyan);
-  }
-
-  .faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
+  .faq-question h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 500; color: var(--text-primary); flex: 1; padding-right: 1rem; }
+  .faq-toggle { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text-muted); transition: all 0.3s; min-width: 20px; text-align: center; }
+  .faq-item.active .faq-toggle { transform: rotate(45deg); color: var(--cyan); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
   .faq-item.active .faq-answer { max-height: 400px; }
-
-  .faq-answer-inner {
-    padding: 0 0 1.5rem 0;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.7;
-  }
+  .faq-answer-inner { padding: 0 0 1.5rem 0; font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7; }
 
   /* Manifesto */
-  .manifesto {
-    padding: 6rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
+  .manifesto { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
   .manifesto-box {
-    background: var(--bg-card);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
-    padding: 3rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
+    background: var(--bg-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border); padding: 3rem; text-align: center;
+    position: relative; overflow: hidden;
   }
-
   .manifesto-box::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: radial-gradient(ellipse at center, var(--cyan-dim), transparent 70%);
-    opacity: 0.3;
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(ellipse at center, var(--cyan-dim), transparent 70%); opacity: 0.3;
   }
-
   .manifesto-text { position: relative; z-index: 1; }
-
   .manifesto-text h2 {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+    font-family: 'JetBrains Mono', monospace; font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 700; margin-bottom: 1.5rem; line-height: 1.5;
   }
-
-  .manifesto-text h2 em {
-    font-style: normal;
-    color: var(--cyan);
-  }
-
-  .manifesto-lines {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 2rem;
-  }
-
-  .manifesto-line {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    letter-spacing: 1px;
-  }
-
+  .manifesto-text h2 em { font-style: normal; color: var(--cyan); }
+  .manifesto-lines { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; }
+  .manifesto-line { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: var(--text-secondary); letter-spacing: 1px; }
   .manifesto-line span { color: var(--red); font-weight: 600; }
 
   /* Footer / Connect */
-  footer {
-    padding: 4rem 2rem;
-    text-align: center;
-    border-top: 1px solid rgba(42,42,58,0.5);
-    background: rgba(10,10,15,0.6);
-    backdrop-filter: blur(16px);
+  footer { padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(42,42,58,0.5); background: rgba(10,10,15,0.6); backdrop-filter: blur(16px); }
+  .footer-shield { width: 50px; height: 50px; object-fit: contain; margin-bottom: 1.5rem; filter: drop-shadow(0 0 12px var(--cyan-dim)); }
+  .footer-contact { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 1.5rem; }
+  .footer-contact a {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
+    color: var(--text-secondary); text-decoration: none; letter-spacing: 1px;
+    transition: color 0.3s; display: flex; align-items: center; gap: 0.4rem;
   }
-
-  .footer-shield {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    margin-bottom: 1.5rem;
-    filter: drop-shadow(0 0 12px var(--cyan-dim));
-  }
-
-  footer p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
-  }
-
-  footer .footer-link {
-    color: var(--cyan);
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-
+  .footer-contact a:hover { color: var(--cyan); }
+  footer p { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; color: var(--text-muted); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+  footer .footer-link { color: var(--cyan); text-decoration: none; transition: color 0.3s; }
   footer .footer-link:hover { color: var(--text-primary); }
 
   /* Animations */
-  @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes fadeInDown {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  @keyframes scrollPulse {
-    0% { opacity: 1; transform: scaleY(1); }
-    50% { opacity: 0.3; transform: scaleY(0.6); }
-    100% { opacity: 1; transform: scaleY(1); }
-  }
-
-  .reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+  @keyframes scrollPulse { 0% { opacity: 1; transform: scaleY(1); } 50% { opacity: 0.3; transform: scaleY(0.6); } 100% { opacity: 1; transform: scaleY(1); } }
+  .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* Responsive */
   @media (max-width: 900px) {
-    .nav-links { display: none; }
-    .nav-cta { display: none; }
-    .hamburger { display: flex; }
-
-    .hero-stats { gap: 1.5rem; }
-    .hero-stat .number { font-size: 1.8rem; }
+    .nav-links { display: none; } .nav-cta { display: none; } .hamburger { display: flex; }
+    .hero-stats { gap: 1.5rem; } .hero-stat .number { font-size: 1.8rem; }
     .hero-actions { flex-direction: column; width: 100%; max-width: 300px; }
-
     .arch-grid { grid-template-columns: 1fr; }
-
-    .pillar-header { padding: 1.5rem; }
-    .pillar-body-inner { padding: 0 1.5rem 1.5rem; }
-    .pillar-left { gap: 1rem; }
-    .pillar-number { display: none; }
-    .pillar-right { gap: 0.8rem; }
-    .pillar-price { display: none; }
-
-    .service-item { flex-wrap: wrap; }
-    .service-name { min-width: auto; }
-
-    /* Pricing ladder mobile */
-    .pricing-ladder::before { left: 18px; }
-    .tier-node { width: 36px; height: 36px; min-width: 36px; font-size: 0.6rem; }
-    .pricing-tier-row { gap: 1rem; }
-    .tier-content { padding: 1.2rem; }
-    .tier-features { grid-template-columns: 1fr; }
-    .tier-header { flex-direction: column; }
-    .tier-amount { text-align: left; font-size: 1.4rem; }
-    .tier-note { text-align: left; }
-
-    .manifesto-box { padding: 2rem; }
-    .manifesto-lines { gap: 1rem; }
+    .pillar-header { padding: 1.5rem; } .pillar-body-inner { padding: 0 1.5rem 1.5rem; }
+    .pillar-left { gap: 1rem; } .pillar-number { display: none; } .pillar-right { gap: 0.8rem; } .pillar-price { display: none; }
+    .service-item { flex-wrap: wrap; } .service-name { min-width: auto; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .manifesto-box { padding: 2rem; } .manifesto-lines { gap: 1rem; }
+    .footer-contact { flex-direction: column; gap: 0.8rem; }
   }
 
   @media (max-width: 600px) {
-    section { padding: 4rem 1.2rem; }
-    .hero { padding: 6rem 1.2rem 3rem; }
-    .hero h1 { font-size: 1.6rem; }
-    .hero-stats { flex-direction: column; gap: 1rem; }
-    .meta-stack { padding: 4rem 1.2rem; }
-    .faq-section { padding: 4rem 1.2rem; }
-    .manifesto { padding: 4rem 1.2rem; }
+    section { padding: 4rem 1.2rem; } .hero { padding: 6rem 1.2rem 3rem; }
+    .hero h1 { font-size: 1.6rem; } .hero-stats { flex-direction: column; gap: 1rem; }
     .pricing-section { padding: 4rem 1.2rem; }
   }
 
-  .particle {
-    position: fixed;
-    width: 2px;
-    height: 2px;
-    background: var(--cyan);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 1;
-    opacity: 0;
-  }
+  .particle { position: fixed; width: 2px; height: 2px; background: var(--cyan); border-radius: 50%; pointer-events: none; z-index: 1; opacity: 0; }
 </style>
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-TRACKING_ID"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-TRACKING_ID', {
-    'anonymize_ip': true,
-    'cookie_flags': 'SameSite=None;Secure'
-  });
-</script>
 
 </head>
 <body>
@@ -1351,8 +550,8 @@
   <!-- ===== NAVIGATION ===== -->
   <nav id="mainNav">
     <a href="#hero" class="nav-brand">
-      <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="Search PlayBook Collective Shield" class="nav-shield">
-      <div class="nav-logo-text">SPC<span>//</span>PLAYBOOK</div>
+      <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="Search PlayBook Shield" class="nav-shield">
+      <div class="nav-logo-text">SOLUTIONS</div>
     </a>
     <ul class="nav-links">
       <li><a href="#hero">Home</a></li>
@@ -1367,7 +566,7 @@
     </button>
   </nav>
 
-  <!-- Mobile Menu Overlay -->
+  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="SPC Shield" class="mobile-menu-shield">
     <a href="#hero" onclick="closeMobileMenu()">Home</a>
@@ -1392,8 +591,8 @@
     </p>
     <div class="hero-stats">
       <div class="hero-stat">
-        <div class="number" data-target="21">0</div>
-        <div class="label">Services</div>
+        <div class="number" data-target="12">0</div>
+        <div class="label">Core Services</div>
       </div>
       <div class="hero-stat">
         <div class="number" data-target="3">0</div>
@@ -1405,7 +604,7 @@
       </div>
     </div>
     <div class="hero-actions">
-      <a href="#pricing" class="btn-primary">View Investment Tiers</a>
+      <a href="#pricing" class="btn-primary">View Pricing</a>
       <a href="#architecture" class="btn-secondary">Explore Framework</a>
     </div>
     <div class="scroll-indicator">
@@ -1428,34 +627,20 @@
       <div class="arch-card reveal">
         <div class="arch-pillar-label">Pillar 01</div>
         <h3>Visibility — Semantic Footprint</h3>
-        <div class="arch-target">
-          <strong>Target:</strong> Maximizing inclusion in AI search summaries and citation nodes.
-        </div>
-        <div class="arch-execution">
-          <strong>Execution:</strong> High-density entity naming, clear plain-language facts, and open-source hosting layout.
-        </div>
+        <div class="arch-target"><strong>Target:</strong> Maximizing inclusion in AI search summaries and citation nodes.</div>
+        <div class="arch-execution"><strong>Execution:</strong> High-density entity naming, clear plain-language facts, and open-source hosting layout.</div>
       </div>
-
       <div class="arch-card reveal">
         <div class="arch-pillar-label">Pillar 02</div>
         <h3>Privacy — Entity Control</h3>
-        <div class="arch-target">
-          <strong>Target:</strong> Restricting training data usage while keeping clean public business footprints.
-        </div>
-        <div class="arch-execution">
-          <strong>Execution:</strong> Clear segregation of personal data narratives from public professional entities.
-        </div>
+        <div class="arch-target"><strong>Target:</strong> Restricting training data usage while keeping clean public business footprints.</div>
+        <div class="arch-execution"><strong>Execution:</strong> Clear segregation of personal data narratives from public professional entities.</div>
       </div>
-
       <div class="arch-card reveal">
         <div class="arch-pillar-label">Pillar 03</div>
         <h3>Safety — Asset Hygiene</h3>
-        <div class="arch-target">
-          <strong>Target:</strong> Protecting data integrity and access authorization profiles.
-        </div>
-        <div class="arch-execution">
-          <strong>Execution:</strong> Regular security check audits, lean configuration structures, and strict link monitoring.
-        </div>
+        <div class="arch-target"><strong>Target:</strong> Protecting data integrity and access authorization profiles.</div>
+        <div class="arch-execution"><strong>Execution:</strong> Regular security check audits, lean configuration structures, and strict link monitoring.</div>
       </div>
     </div>
   </section>
@@ -1465,44 +650,29 @@
   <!-- ===== PILLARS ===== -->
   <section id="pillars">
     <div class="section-header reveal">
-      <span class="section-tag">// 21 Services Across 3 Pillars</span>
+      <span class="section-tag">// 12 Services Across 3 Pillars</span>
       <h2 class="section-title">The Pillar Protocols</h2>
-      <p class="section-desc">Each pillar contains 7 hard-coded services. Deploy individually or activate the full playbook.</p>
+      <p class="section-desc">Every service maps to one pillar. Every pillar serves a real outcome. Deploy individually or bundle for complete protection.</p>
     </div>
 
     <div class="pillars-grid">
-
       <!-- Pillar 1 -->
       <div class="pillar-card reveal" id="pillar1">
         <div class="pillar-header" onclick="togglePillar('pillar1')">
           <div class="pillar-left">
             <div class="pillar-number">PILLAR 01</div>
-            <div class="pillar-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            </div>
-            <div class="pillar-info">
-              <h3>Visibility — Semantic Footprint</h3>
-              <span class="logic">Maximizing inclusion in AI search summaries &amp; citation nodes</span>
-            </div>
+            <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+            <div class="pillar-info"><h3>Visibility</h3><span class="logic">Get found where it matters.</span></div>
           </div>
-          <div class="pillar-right">
-            <div class="pillar-price">
-              <div class="amount">R12,500</div>
-              <div style="font-size:0.55rem;color:var(--text-muted)">PILLAR BUNDLE</div>
-            </div>
-            <div class="pillar-toggle">+</div>
-          </div>
+          <div class="pillar-right"><div class="pillar-price"><div class="amount">From R4,000</div><div style="font-size:0.55rem;color:var(--text-muted)">PER SERVICE</div></div><div class="pillar-toggle">+</div></div>
         </div>
         <div class="pillar-body">
           <div class="pillar-body-inner">
             <ul class="service-list">
-              <li class="service-item"><span class="service-id">[01]</span><span class="service-name">GEO-SERP Audit</span><span class="service-desc">AI-Citation probability assessment.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[02]</span><span class="service-name">Semantic Entity Mapping</span><span class="service-desc">Johannesburg regional market relationship.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[03]</span><span class="service-name">GMB/Maps Hardening</span><span class="service-desc">Manual verification and confidence boosting.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[04]</span><span class="service-name">JSON-LD Schema Injection</span><span class="service-desc">Direct structured data feed to LLMs.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[05]</span><span class="service-name">Sovereign Web Build</span><span class="service-desc">High-performance, hard-coded GitHub Pages.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[06]</span><span class="service-name">Content Strategy</span><span class="service-desc">Set-and-Forget automated visibility workflows.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[07]</span><span class="service-name">Local Authority Syncing</span><span class="service-desc">Strategic cross-linking of local citations.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[01]</span><span class="service-name">Business Profile Optimization</span><span class="service-desc">GMB audit, schema markup, verification badge process.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[02]</span><span class="service-name">Local Visibility Support</span><span class="service-desc">Citation building, NAP consistency, review acquisition.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[03]</span><span class="service-name">Content Strategy</span><span class="service-desc">Answer-first planning, 12-month editorial calendar.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[04]</span><span class="service-name">Website Creation</span><span class="service-desc">End-to-end SEO-optimized build + 12-month hosting.</span><span class="service-check">✓</span></li>
             </ul>
           </div>
         </div>
@@ -1513,32 +683,17 @@
         <div class="pillar-header" onclick="togglePillar('pillar2')">
           <div class="pillar-left">
             <div class="pillar-number">PILLAR 02</div>
-            <div class="pillar-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div class="pillar-info">
-              <h3>Privacy — The Ghost Protocol</h3>
-              <span class="logic">Reputation management through automated suppression &amp; hygiene</span>
-            </div>
+            <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+            <div class="pillar-info"><h3>Privacy</h3><span class="logic">Own your narrative online.</span></div>
           </div>
-          <div class="pillar-right">
-            <div class="pillar-price">
-              <div class="amount">R12,500</div>
-              <div style="font-size:0.55rem;color:var(--text-muted)">PILLAR BUNDLE</div>
-            </div>
-            <div class="pillar-toggle">+</div>
-          </div>
+          <div class="pillar-right"><div class="pillar-price"><div class="amount">From R1,000</div><div style="font-size:0.55rem;color:var(--text-muted)">PER SERVICE</div></div><div class="pillar-toggle">+</div></div>
         </div>
         <div class="pillar-body">
           <div class="pillar-body-inner">
             <ul class="service-list">
-              <li class="service-item"><span class="service-id">[08]</span><span class="service-name">Digital Footprint Audit</span><span class="service-desc">Exposure and data-leakage mapping.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[09]</span><span class="service-name">NCII Mitigation</span><span class="service-desc">Deployment of the ncii-support.html toolkit.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[10]</span><span class="service-name">Data Broker Removal</span><span class="service-desc">Automated takedown of public profile scrapers.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[11]</span><span class="service-name">Reputation Repair</span><span class="service-desc">High-authority asset injection to suppress negatives.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[12]</span><span class="service-name">Privacy &amp; Reputation Mgmt</span><span class="service-desc">Strategic elite-level coaching.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[13]</span><span class="service-name">Zero-Tracking Implementation</span><span class="service-desc">Hardening tools for user anonymity.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[14]</span><span class="service-name">Sextortion Defense Toolkit</span><span class="service-desc">Emergency tactical pivot resources.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[05]</span><span class="service-name">Reputation Audit</span><span class="service-desc">Full footprint scan, threat assessment, strategy call.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[06]</span><span class="service-name">Reputation Repair</span><span class="service-desc">Content removal, fake review dispute, narrative rebuild.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[07]</span><span class="service-name">Data Broker Removal</span><span class="service-desc">Public database takedowns + 90-day monitoring.</span><span class="service-check">✓</span></li>
             </ul>
           </div>
         </div>
@@ -1549,222 +704,130 @@
         <div class="pillar-header" onclick="togglePillar('pillar3')">
           <div class="pillar-left">
             <div class="pillar-number">PILLAR 03</div>
-            <div class="pillar-icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
-            <div class="pillar-info">
-              <h3>Safety — Data Hygiene</h3>
-              <span class="logic">Elimination of subscription fatigue and platform dependence</span>
-            </div>
+            <div class="pillar-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+            <div class="pillar-info"><h3>Safety</h3><span class="logic">Lock down your digital footprint.</span></div>
           </div>
-          <div class="pillar-right">
-            <div class="pillar-price">
-              <div class="amount">R12,500</div>
-              <div style="font-size:0.55rem;color:var(--text-muted)">PILLAR BUNDLE</div>
-            </div>
-            <div class="pillar-toggle">+</div>
-          </div>
+          <div class="pillar-right"><div class="pillar-price"><div class="amount">From R1,000</div><div style="font-size:0.55rem;color:var(--text-muted)">PER SERVICE</div></div><div class="pillar-toggle">+</div></div>
         </div>
         <div class="pillar-body">
           <div class="pillar-body-inner">
             <ul class="service-list">
-              <li class="service-item"><span class="service-id">[15]</span><span class="service-name">Identity Asset Guard</span><span class="service-desc">Hardening the Digital Birth Certificate.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[16]</span><span class="service-name">Subscription Fatigue Audit</span><span class="service-desc">Identifying and purging recurring costs.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[17]</span><span class="service-name">Data Hygiene Campaign</span><span class="service-desc">Cleaning legacy/accidental digital debris.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[18]</span><span class="service-name">Iron Gate Audit</span><span class="service-desc">Security health checks on core accounts.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[19]</span><span class="service-name">Decentralized Migration</span><span class="service-desc">Moving data to owned/local environments.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[20]</span><span class="service-name">Auth Architecture</span><span class="service-desc">High-security password/access protocols.</span><span class="service-check">✓</span></li>
-              <li class="service-item"><span class="service-id">[21]</span><span class="service-name">Collective Defense</span><span class="service-desc">Small business/Family group protection (up to 5).</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[08]</span><span class="service-name">Cyber Hygiene Audit</span><span class="service-desc">SSL, password, 2FA & breach history check.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[09]</span><span class="service-name">Full Security Health Check</span><span class="service-desc">Advanced account hardening + 30-day monitoring.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[10]</span><span class="service-name">NCII Protection</span><span class="service-desc">POPIA-compliant takedown + legal referral.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[11]</span><span class="service-name">Sextortion Defense</span><span class="service-desc">Threat response, evidence preservation, SAPS guidance.</span><span class="service-check">✓</span></li>
+              <li class="service-item"><span class="service-id">[12]</span><span class="service-name">Impersonation Recovery</span><span class="service-desc">Fake account takedown + 2FA hardening.</span><span class="service-check">✓</span></li>
             </ul>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
   <div class="divider"></div>
 
-  <!-- ===== PRICING LADDER ===== -->
+  <!-- ===== PRICING ===== -->
   <div class="pricing-section" id="pricing">
     <div class="section-header reveal">
       <span class="section-tag">// Investment Tiers</span>
       <h2 class="section-title">Choose Your Protocol</h2>
-      <p class="section-desc">From diagnostic to full sovereignty. Every tier builds on the last. Step in anywhere — own everything at the top.</p>
+      <p class="section-desc">One-time pricing. Set-and-forget deployment. You retain full admin access. No monthly fees. Ever.</p>
     </div>
 
-    <div class="pricing-ladder">
+    <div class="pricing-philosophy reveal">
+      <strong>✅ FROM PRICING</strong> — All rates are starting points. Scope determines final quote. &nbsp;|&nbsp;
+      <strong>✅ ONE-TIME</strong> — No subscriptions. No recurring fees. &nbsp;|&nbsp;
+      <strong>✅ GROUP BOOKINGS</strong> — One person pays, whole family joins.
+    </div>
 
-      <!-- Tier I -->
-      <div class="pricing-tier-row reveal">
-        <div class="tier-node">I</div>
-        <div class="tier-content">
-          <div class="tier-header">
-            <div>
-              <div class="tier-name">Tier I — Diagnostic</div>
-              <div class="tier-title">The Scare Phase</div>
-            </div>
-            <div>
-              <div class="tier-amount">R2,500</div>
-              <div class="tier-note">Audit Only</div>
-            </div>
-          </div>
-          <ul class="tier-features">
-            <li>Full digital existence audit</li>
-            <li>Confidence score assessment</li>
-            <li>Exposure &amp; vulnerability report</li>
-            <li>Strategic roadmap delivery</li>
-          </ul>
-          <button class="tier-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Start Diagnostic</button>
+    <div class="pricing-grid">
+      <!-- Visibility Bundle -->
+      <div class="pricing-card reveal">
+        <div class="pricing-tier-label">Bundle 01</div>
+        <div class="pricing-name">Visibility Bundle</div>
+        <div class="pricing-amount">From R20,000</div>
+        <div class="pricing-note">Complete Local Optimization</div>
+        <ul class="pricing-features">
+          <li>Business Profile Optimization</li>
+          <li>Local Visibility Support (10+ citations)</li>
+          <li>Content Strategy (12-month plan)</li>
+          <li>6-month visibility tracking</li>
+        </ul>
+        <button class="pricing-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Get Visible</button>
+      </div>
+
+      <!-- Privacy Bundle -->
+      <div class="pricing-card reveal">
+        <div class="pricing-tier-label">Bundle 02</div>
+        <div class="pricing-name">Privacy Bundle</div>
+        <div class="pricing-amount">From R8,000</div>
+        <div class="pricing-note">Reputation Defense Package</div>
+        <ul class="pricing-features">
+          <li>Reputation Audit</li>
+          <li>Reputation Repair (up to 3 removals)</li>
+          <li>Review dispute support</li>
+          <li>90-day monitoring</li>
+        </ul>
+        <button class="pricing-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Secure Narrative</button>
+      </div>
+
+      <!-- Safety Bundle -->
+      <div class="pricing-card reveal">
+        <div class="pricing-tier-label">Bundle 03</div>
+        <div class="pricing-name">Safety Bundle</div>
+        <div class="pricing-amount">From R8,000</div>
+        <div class="pricing-note">Digital Security Hardening</div>
+        <ul class="pricing-features">
+          <li>Cyber Hygiene Audit</li>
+          <li>Full Account Security Setup</li>
+          <li>NCII Defense (if applicable)</li>
+          <li>90-day monitoring</li>
+        </ul>
+        <button class="pricing-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Lock Down</button>
+      </div>
+
+      <!-- Complete Bundle -->
+      <div class="pricing-card complete reveal">
+        <div class="pricing-tier-label">★ Full Protection</div>
+        <div class="pricing-name">Complete Protection Bundle</div>
+        <div class="pricing-amount">From R32,000</div>
+        <div class="pricing-note">All Three Pillars + Priority Support</div>
+        <ul class="pricing-features">
+          <li>Visibility Bundle</li>
+          <li>Privacy Bundle</li>
+          <li>Safety Bundle</li>
+          <li>12-month priority support</li>
+          <li>Admin access handover</li>
+        </ul>
+        <button class="pricing-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Go Sovereign</button>
+      </div>
+    </div>
+
+    <!-- Individual Rates -->
+    <div class="individual-rates reveal">
+      <h3 style="font-family:'JetBrains Mono',monospace;font-size:1rem;text-align:center;margin-bottom:1rem;color:var(--text-secondary);">Individual Service Rates</h3>
+      <div class="rate-grid">
+        <div class="rate-card">
+          <h4 style="color:var(--cyan)">Visibility</h4>
+          <div class="rate-item"><span class="rate-name">Business Profile Optimization</span><span class="rate-price">From R4,000</span></div>
+          <div class="rate-item"><span class="rate-name">Local Visibility Support</span><span class="rate-price">From R8,000</span></div>
+          <div class="rate-item"><span class="rate-name">Content Strategy</span><span class="rate-price">From R6,000</span></div>
+          <div class="rate-item"><span class="rate-name">Website Creation</span><span class="rate-price">From R12,000</span></div>
         </div>
-      </div>
-
-      <!-- Tier II -->
-      <div class="pricing-tier-row reveal">
-        <div class="tier-node">II</div>
-        <div class="tier-content">
-          <div class="tier-header">
-            <div>
-              <div class="tier-name">Tier II — Foundation</div>
-              <div class="tier-title">The Digital Birth Certificate</div>
-            </div>
-            <div>
-              <div class="tier-amount">R7,000</div>
-              <div class="tier-note">Once-off Build</div>
-            </div>
-          </div>
-          <ul class="tier-features">
-            <li>Digital Birth Certificate build</li>
-            <li>Hard-coded GitHub ecosystem</li>
-            <li>AI-readable metadata foundation</li>
-            <li>Permanent sovereign identity</li>
-            <li>Zero monthly fees</li>
-          </ul>
-          <div class="tier-includes"><span>✓</span> Includes everything in Tier I</div>
-          <button class="tier-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Get Foundation</button>
+        <div class="rate-card">
+          <h4 style="color:var(--purple)">Privacy</h4>
+          <div class="rate-item"><span class="rate-name">Reputation Audit</span><span class="rate-price">From R1,000</span></div>
+          <div class="rate-item"><span class="rate-name">Reputation Repair</span><span class="rate-price">From R4,000</span></div>
+          <div class="rate-item"><span class="rate-name">Data Broker Removal</span><span class="rate-price">From R2,500</span></div>
         </div>
-      </div>
-
-      <!-- Tier III -->
-      <div class="pricing-tier-row reveal">
-        <div class="tier-node">III</div>
-        <div class="tier-content">
-          <div class="tier-header">
-            <div>
-              <div class="tier-name">Tier III — Pillar Protocol</div>
-              <div class="tier-title">Single Pillar Deployment</div>
-            </div>
-            <div>
-              <div class="tier-amount">R12,500</div>
-              <div class="tier-note">7-Service Pillar</div>
-            </div>
-          </div>
-          <ul class="tier-features">
-            <li>Choose: Visibility, Privacy, or Safety</li>
-            <li>7 hard-coded services included</li>
-            <li>Full pillar deployment</li>
-            <li>Set-and-forget workflows</li>
-          </ul>
-          <div class="tier-includes"><span>✓</span> Includes everything in Tier II + Foundation</div>
-          <button class="tier-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Select Pillar</button>
+        <div class="rate-card">
+          <h4 style="color:var(--green)">Safety</h4>
+          <div class="rate-item"><span class="rate-name">Cyber Hygiene Audit</span><span class="rate-price">From R1,000</span></div>
+          <div class="rate-item"><span class="rate-name">Full Security Health Check</span><span class="rate-price">From R4,000</span></div>
+          <div class="rate-item"><span class="rate-name">NCII Protection</span><span class="rate-price">From R3,000</span></div>
+          <div class="rate-item"><span class="rate-name">Sextortion Defense</span><span class="rate-price">From R2,000</span></div>
+          <div class="rate-item"><span class="rate-name">Impersonation Recovery</span><span class="rate-price">From R2,500</span></div>
         </div>
-      </div>
-
-      <!-- Tier IV -->
-      <div class="pricing-tier-row reveal">
-        <div class="tier-node">IV</div>
-        <div class="tier-content">
-          <div class="all-services-badge">★ All 21 Services</div>
-          <div class="tier-header">
-            <div>
-              <div class="tier-name">Tier IV — Full Playbook</div>
-              <div class="tier-title">The Search Mafia Collective</div>
-            </div>
-            <div>
-              <div class="tier-amount">R25,000</div>
-              <div class="tier-note">Complete Sovereignty</div>
-            </div>
-          </div>
-          <ul class="tier-features">
-            <li>All 3 Pillars activated (21 services)</li>
-            <li>7,000+ Confidence Score target</li>
-            <li>Full sovereign digital identity</li>
-            <li>Zero platform dependence</li>
-            <li>You own everything</li>
-          </ul>
-          <div class="tier-includes"><span>✓</span> Includes everything in Tiers I, II &amp; III</div>
-          <button class="tier-btn" onclick="document.getElementById('connect').scrollIntoView({behavior:'smooth'})">Go Sovereign</button>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <!-- ===== META STACK ===== -->
-  <div class="meta-stack" id="meta-stack">
-    <div class="section-header reveal">
-      <span class="section-tag">// Technical Handover Asset</span>
-      <h2 class="section-title">Meta Tag Deployment Stack</h2>
-      <p class="section-desc">Desktop-friendly, mobile-responsive meta properties defining entity boundaries and controlling machine crawl extraction patterns.</p>
-    </div>
-
-    <div class="code-block reveal">
-      <div class="code-header">
-        <span class="code-filename">core-identity-meta.html</span>
-        <button class="code-copy-btn" onclick="copyCode(this, 'codeBlock1')">Copy</button>
-      </div>
-      <div class="code-body">
-        <pre id="codeBlock1"><span class="comment">&lt;!-- Core Identity &amp; Graph Grounding --&gt;</span>
-<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"description"</span> <span class="attr">content</span>=<span class="val">"Search PlayBook: Free, low-budget, no-monthly-subscription online optimization frameworks delivering Visibility, Privacy, and Safety. Built by digital strategist Max."</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"author"</span> <span class="attr">content</span>=<span class="val">"Max (WeMustCreate)"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"canonical"</span> <span class="attr">href</span>=<span class="val">"https://searchplaybook-crypto.github.io/SearchPlaybook/"</span><span class="tag">&gt;</span></pre>
-      </div>
-    </div>
-
-    <div class="code-block reveal" style="margin-top:1.5rem">
-      <div class="code-header">
-        <span class="code-filename">open-graph-meta.html</span>
-        <button class="code-copy-btn" onclick="copyCode(this, 'codeBlock2')">Copy</button>
-      </div>
-      <div class="code-body">
-        <pre id="codeBlock2"><span class="comment">&lt;!-- Open Graph / LLM Contextual Scrapers --&gt;</span>
-<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="val">"og:title"</span> <span class="attr">content</span>=<span class="val">"Search PlayBook Collective | Generative Optimization"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="val">"og:description"</span> <span class="attr">content</span>=<span class="val">"Set-and-forget online optimization strategy frameworks for local business owners. Built for systemic digital visibility without ongoing subscription fatigue."</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="val">"og:url"</span> <span class="attr">content</span>=<span class="val">"https://searchplaybook-crypto.github.io/SearchPlaybook/"</span><span class="tag">&gt;</span>
-<span class="tag">&lt;meta</span> <span class="attr">property</span>=<span class="val">"og:type"</span> <span class="attr">content</span>=<span class="val">"website"</span><span class="tag">&gt;</span></pre>
-      </div>
-    </div>
-
-    <div class="code-block reveal" style="margin-top:1.5rem">
-      <div class="code-header">
-        <span class="code-filename">ai-crawler-directives.html</span>
-        <button class="code-copy-btn" onclick="copyCode(this, 'codeBlock3')">Copy</button>
-      </div>
-      <div class="code-body">
-        <pre id="codeBlock3"><span class="comment">&lt;!-- Machine Learning Control / AI Crawler Directives --&gt;</span>
-<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"robots"</span> <span class="attr">content</span>=<span class="val">"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"</span><span class="tag">&gt;</span></pre>
-      </div>
-    </div>
-
-    <div class="code-block reveal" style="margin-top:1.5rem">
-      <div class="code-header">
-        <span class="code-filename">analytics-config.js</span>
-        <button class="code-copy-btn" onclick="copyCode(this, 'codeBlock4')">Copy</button>
-      </div>
-      <div class="code-body">
-        <pre id="codeBlock4"><span class="comment">&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;</span>
-<span class="tag">&lt;script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="val">"https://www.googletagmanager.com/gtag/js?id=G-TRACKING_ID"</span><span class="tag">&gt;&lt;/script&gt;</span>
-<span class="tag">&lt;script&gt;</span>
-  <span class="kw">window</span>.dataLayer = <span class="kw">window</span>.dataLayer || [];
-  <span class="kw">function</span> <span class="fn">gtag</span>(){dataLayer.<span class="fn">push</span>(arguments);}
-  <span class="fn">gtag</span>(<span class="str">'js'</span>, <span class="kw">new</span> <span class="fn">Date</span>());
-  <span class="fn">gtag</span>(<span class="str">'config'</span>, <span class="str">'G-TRACKING_ID'</span>, {
-    <span class="str">'anonymize_ip'</span>: <span class="kw">true</span>,
-    <span class="str">'cookie_flags'</span>: <span class="str">'SameSite=None;Secure'</span>
-  });
-<span class="tag">&lt;/script&gt;</span></pre>
       </div>
     </div>
   </div>
@@ -1775,48 +838,45 @@
   <div class="faq-section" id="faq">
     <div class="section-header reveal">
       <span class="section-tag">// Framework FAQ</span>
-      <h2 class="section-title">Max Optimization Framework</h2>
-      <p class="section-desc">Common questions about the GSE optimization approach and operational structure.</p>
+      <h2 class="section-title">Common Questions</h2>
+      <p class="section-desc">Transparent answers. No hidden fees. No platform lock-in.</p>
     </div>
 
     <div class="faq-list">
       <div class="faq-item reveal">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <h4>What is subscription fatigue, and how does this framework address it?</h4>
+          <h4>What does "set-and-forget" actually mean?</h4>
           <span class="faq-toggle">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Subscription fatigue is the financial and logistical drag of recurring monthly fees for basic online tools. This framework resolves it by utilizing zero-maintenance, set-and-forget, open-source layouts that require zero active monthly platform subscriptions.</div>
+          <div class="faq-answer-inner">It means we build, optimize, and hand over complete admin access to you. No monthly retainers. No recurring platform fees. You own the assets, the code, and the identity. We only return if you request an update or expansion.</div>
         </div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <h4>How does the Visibility pillar optimize for Generative Search (GSE)?</h4>
+          <h4>Why are prices listed as "From R[X]"?</h4>
           <span class="faq-toggle">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Generative engines look for high-confidence entity matching and plain-language definitions rather than legacy keyword densities. The Visibility pillar grounds the business entity clearly so AI models can cite the information accurately in real-time overviews.</div>
+          <div class="faq-answer-inner">Every business has a different footprint, threat level, and visibility gap. "From" pricing is our baseline. Final quotes are determined after a quick scope assessment. We keep it affordable for families, elders, and local service providers.</div>
         </div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <h4>What is the separation between the Max and Llewellyn operational structures?</h4>
+          <h4>How does payment and handover work?</h4>
           <span class="faq-toggle">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">The Max persona acts exclusively as the digital strategist for professional, low-maintenance optimization services (Visibility, Privacy, Safety). The Llewellyn narrative framework handles personal storytelling, case study insights, and historical contextual models.</div>
+          <div class="faq-answer-inner">50% upfront, 50% on completion. Payment via bank transfer, PayPal, or Luno (crypto). Completion takes 9–21 days depending on scope. All contracts include an admin access handover clause. You get full control before final sign-off.</div>
         </div>
       </div>
-
       <div class="faq-item reveal">
         <div class="faq-question" onclick="toggleFaq(this)">
-          <h4>Why is the structure hosted as a plain Markdown file or static layout on GitHub Pages?</h4>
+          <h4>What is the Search Mafia community tier?</h4>
           <span class="faq-toggle">+</span>
         </div>
         <div class="faq-answer">
-          <div class="faq-answer-inner">Large language models ingest structured, raw plaintext far more efficiently than complex JavaScript components. Deploying via GitHub Pages provides a fast-loading, desktop-friendly, mobile-responsive format that reduces indexing friction, eliminates platform upkeep overhead, and establishes a secure, zero-cost production anchor.</div>
+          <div class="faq-answer-inner">A free community access tier that includes tactical playbooks, monthly intel updates, and free tool access (Stop NCII, Job Market Toolkit). Premium members get advanced case studies, affiliate commissions (15–20%), and group booking discounts.</div>
         </div>
       </div>
     </div>
@@ -1848,94 +908,61 @@
   <!-- ===== FOOTER / CONNECT ===== -->
   <footer id="connect">
     <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="SPC Shield" class="footer-shield">
-    <p>Search PlayBook Collective — Built by <a href="https://searchplaybook-crypto.github.io/SearchPlaybook/" class="footer-link" target="_blank" rel="noopener">Max (WeMustCreate)</a></p>
-    <p>Johannesburg, South Africa — 2025</p>
+    <div class="footer-contact">
+      <a href="mailto:hello@searchplaybook.co.za">✉ hello@searchplaybook.co.za</a>
+      <a href="https://wa.me/27722350002" target="_blank" rel="noopener">📱 WhatsApp: +27 72 235 0002</a>
+      <a href="https://maps.app.goo.gl/WezVn4JTE8Q69oV3A" target="_blank" rel="noopener">📍 Johannesburg, SA</a>
+      <a href="https://www.linkedin.com/company/106900751" target="_blank" rel="noopener">🔗 LinkedIn</a>
+      <a href="https://www.facebook.com/searchplaybook/" target="_blank" rel="noopener">📘 Facebook</a>
+    </div>
+    <p>© 2025–2026 WeMustCreate / Search PlayBook. All rights reserved.</p>
+    <p>Built by <a href="https://www.linkedin.com/in/llewellynoshea/" class="footer-link" target="_blank" rel="noopener">Max (Llewellyn O'Shea)</a></p>
   </footer>
 
 </div>
 
 <script>
-  // Pillar toggle
-  function togglePillar(pillarId) {
-    var card = document.getElementById(pillarId);
+  function togglePillar(id) {
+    var card = document.getElementById(id);
     var isActive = card.classList.contains('active');
-    document.querySelectorAll('.pillar-card').forEach(function(c) {
-      c.classList.remove('active');
-    });
-    if (!isActive) { card.classList.add('active'); }
+    document.querySelectorAll('.pillar-card').forEach(function(c) { c.classList.remove('active'); });
+    if (!isActive) card.classList.add('active');
   }
 
-  // FAQ toggle
-  function toggleFaq(questionEl) {
-    var item = questionEl.parentElement;
+  function toggleFaq(el) {
+    var item = el.parentElement;
     var isActive = item.classList.contains('active');
-    document.querySelectorAll('.faq-item').forEach(function(f) {
-      f.classList.remove('active');
-    });
-    if (!isActive) { item.classList.add('active'); }
+    document.querySelectorAll('.faq-item').forEach(function(f) { f.classList.remove('active'); });
+    if (!isActive) item.classList.add('active');
   }
 
-  // Copy code
-  function copyCode(btn, blockId) {
-    var block = document.getElementById(blockId);
-    var text = block.innerText || block.textContent;
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(function() {
-        btn.textContent = 'Copied!';
-        btn.classList.add('copied');
-        setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-      });
-    } else {
-      var textarea = document.createElement('textarea');
-      textarea.value = text;
-      textarea.style.position = 'fixed';
-      textarea.style.opacity = '0';
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-      btn.textContent = 'Copied!';
-      btn.classList.add('copied');
-      setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
-    }
-  }
-
-  // Scroll reveal
   function handleReveal() {
     document.querySelectorAll('.reveal').forEach(function(el) {
-      if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-        el.classList.add('visible');
-      }
+      if (el.getBoundingClientRect().top < window.innerHeight - 80) el.classList.add('visible');
     });
   }
 
-  // Nav scroll
   function handleNavScroll() {
-    var nav = document.getElementById('mainNav');
-    nav.classList.toggle('scrolled', window.scrollY > 50);
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
   }
 
-  // Counter animation
   function animateCounters() {
     document.querySelectorAll('.hero-stat .number').forEach(function(counter) {
       var target = parseInt(counter.getAttribute('data-target'));
-      var duration = 2000;
-      var startTime = performance.now();
-      function update(currentTime) {
-        var progress = Math.min((currentTime - startTime) / duration, 1);
-        var eased = 1 - Math.pow(1 - progress, 3);
-        var current = Math.floor(eased * target);
-        counter.textContent = target === 7000 ? current.toLocaleString() + '+' : current;
-        if (progress < 1) requestAnimationFrame(update);
+      var start = performance.now();
+      function update(now) {
+        var p = Math.min((now - start) / 2000, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        var val = Math.floor(eased * target);
+        counter.textContent = target === 7000 ? val.toLocaleString() + '+' : val;
+        if (p < 1) requestAnimationFrame(update);
       }
       requestAnimationFrame(update);
     });
   }
 
-  // Hamburger menu
   var hamburgerBtn = document.getElementById('hamburgerBtn');
   var mobileMenu = document.getElementById('mobileMenu');
-
   hamburgerBtn.addEventListener('click', function() {
     hamburgerBtn.classList.toggle('active');
     mobileMenu.classList.toggle('open');
@@ -1948,32 +975,29 @@
     document.body.style.overflow = '';
   }
 
-  // Floating particles
   function createParticles() {
     for (var i = 0; i < 15; i++) {
-      var particle = document.createElement('div');
-      particle.classList.add('particle');
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
+      var p = document.createElement('div');
+      p.classList.add('particle');
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = Math.random() * 100 + '%';
       var dur = 8 + Math.random() * 12;
       var delay = Math.random() * 5;
-      var xShift = (Math.random() - 0.5) * 60;
-      var yShift = -(30 + Math.random() * 60);
-      particle.style.animation = 'floatP' + i + ' ' + dur + 's ' + delay + 's infinite ease-in-out';
-      var styleEl = document.createElement('style');
-      styleEl.textContent = '@keyframes floatP' + i + '{0%,100%{opacity:0;transform:translate(0,0)}10%{opacity:0.4}50%{opacity:0.15;transform:translate(' + xShift + 'px,' + yShift + 'px)}90%{opacity:0}}';
-      document.head.appendChild(styleEl);
-      document.body.appendChild(particle);
+      var x = (Math.random() - 0.5) * 60;
+      var y = -(30 + Math.random() * 60);
+      p.style.animation = 'fp' + i + ' ' + dur + 's ' + delay + 's infinite ease-in-out';
+      var s = document.createElement('style');
+      s.textContent = '@keyframes fp' + i + '{0%,100%{opacity:0;transform:translate(0,0)}10%{opacity:0.4}50%{opacity:0.15;transform:translate(' + x + 'px,' + y + 'px)}90%{opacity:0}}';
+      document.head.appendChild(s);
+      document.body.appendChild(p);
     }
   }
 
-  // Video fallback
   function ensureVideoPlays() {
-    var vid = document.querySelector('.video-bg video');
-    if (vid) { vid.muted = true; vid.play().catch(function(){}); }
+    var v = document.querySelector('.video-bg video');
+    if (v) { v.muted = true; v.play().catch(function(){}); }
   }
 
-  // Init
   window.addEventListener('scroll', function() { handleReveal(); handleNavScroll(); });
   window.addEventListener('load', function() { handleReveal(); animateCounters(); createParticles(); ensureVideoPlays(); });
   document.addEventListener('click', ensureVideoPlays, { once: true });
