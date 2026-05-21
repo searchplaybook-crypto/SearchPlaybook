@@ -1,151 +1,400 @@
 <!DOCTYPE html>
-<html class="dark" lang="en">
+<html lang="en">
 <head>
-    <meta charset="utf-8"/>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <title>Intel Hub | Search Playbook</title>
-    
-    <meta name="google-site-verification" content="google0358e8a493fefd4f.html" />
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9664615320771471" crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZKPVQY1GB"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-FZKPVQY1GB');
-    </script>
-
-    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
-
-    <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary-container": "#e9c349",
-                        "on-primary-container": "#201c00",
-                        "surface-dim": "#131315",
-                        "outline-variant": "#4d4635",
-                    }
-                }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Toolkits | Search Playbook Intel Hub</title>
+  <meta name="description" content="Free, private online toolkits for South African families and business owners. Protect your reputation, find work faster, and keep your data safe. No sign-ups. No tracking.">
+  <meta name="keywords" content="free online tools, reputation management South Africa, job search toolkit, data privacy, no tracking tools, NCII support">
+  
+  <!-- Zero-Tracker Architecture & Security -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; font-src 'self' https://cdn.jsdelivr.net data:; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com; img-src 'self' https://ik.imagekit.io data:; media-src 'self' https://ik.imagekit.io; connect-src 'self';">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#2D3A1F">
+  <link rel="canonical" href="https://searchplaybook-crypto.github.io/SearchPlaybook/intelhub.html">
+  
+  <!-- Fonts: Fraunces + Sora -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/fraunces@9.0.0/100-900-italic.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/sora@4.5.0/100-800.css">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['Fraunces', 'serif'],
+            body: ['Sora', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              deep: '#2D3A1F',
+              deeper: '#1A2211',
+              gold: '#B8A678',
+              pale: '#F4F1E8',
+              pale2: '#E8E2D0',
+            },
+            glass: {
+              base: 'rgba(45, 58, 31, 0.6)',
+              border: 'rgba(244, 241, 232, 0.12)',
+              hover: 'rgba(45, 58, 31, 0.8)',
             }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.8s ease-out forwards',
+            'pulse-glow': 'pulseGlow 3s infinite',
+          },
+          keyframes: {
+            fadeIn: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+            pulseGlow: { '0%, 100%': { textShadow: '0 0 4px rgba(184, 166, 120, 0.4)' }, '50%': { textShadow: '0 0 12px rgba(184, 166, 120, 0.8)' } }
+          }
         }
-    </script>
+      }
+    }
+  </script>
 
-    <style>
-        body { background-color: #09090B; color: #eae1d4; }
-        .bg-grid-pattern { background-image: radial-gradient(circle, #e9c349 1px, transparent 1px); background-size: 30px 30px; }
-        .intel-card { background: #131315; border: 1px solid #4d4635; }
-    </style>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Sora', sans-serif; background-color: #1A2211; color: #F4F1E8; overflow-x: hidden; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Fraunces', serif; }
+    
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #1A2211; }
+    ::-webkit-scrollbar-thumb { background: #2D3A1F; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #B8A678; }
+
+    .glass-panel {
+      background: rgba(45, 58, 31, 0.45);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(244, 241, 232, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+    .glass-card { transition: all 0.3s ease; }
+    .glass-card:hover {
+      background: rgba(45, 58, 31, 0.65);
+      border-color: rgba(184, 166, 120, 0.5);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(184, 166, 120, 0.15);
+    }
+
+    /* Parallax Background Video Container */
+    #parallax-video-container {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100dvh; /* Dynamic viewport height for mobile */
+      z-index: -2;
+      overflow: hidden;
+      pointer-events: none;
+      will-change: transform;
+    }
+    #parallax-video-container video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Darken greens, boost golds */
+      filter: brightness(0.6) contrast(1.1) saturate(0.8) sepia(0.2);
+    }
+
+    /* Opaque Green Tint Overlay */
+    .hero-tint {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background: radial-gradient(circle at 30% 20%, rgba(45, 58, 31, 0.5) 0%, rgba(26, 34, 17, 0.85) 100%);
+      mix-blend-mode: multiply;
+      pointer-events: none;
+    }
+
+    .skip-link { position: absolute; left: -9999px; top: auto; overflow: hidden; }
+    .skip-link:focus { left: 1rem; top: 1rem; padding: 0.75rem 1.5rem; background: #B8A678; color: #1A2211; z-index: 60; border-radius: 0.5rem; font-weight: 700; }
+    *:focus-visible { outline: 2px solid #B8A678; outline-offset: 3px; border-radius: 0.25rem; }
+
+    .delay-100 { animation-delay: 100ms; }
+    .delay-200 { animation-delay: 200ms; }
+    .delay-300 { animation-delay: 300ms; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, ::before, ::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+    }
+  </style>
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/intelhub.html",
+        "name": "Free Online Toolkits | Search Playbook Intel Hub",
+        "description": "Free, private online toolkits for South African families and business owners. Protect your reputation, find work faster, and keep your data safe.",
+        "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/intelhub.html"
+      },
+      {
+        "@type": "Organization",
+        "name": "Search Playbook Collective",
+        "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
+        "contactPoint": { "@type": "ContactPoint", "areaServed": "ZA", "contactType": "Public Resources" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is this hub?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A free resource library built by a Johannesburg team to help families and business owners protect their online presence and grow without expensive agencies or complicated tech." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data safe here?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. These tools run completely on your device. We don't track you, store your information, or use cookies. Your privacy stays yours." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 
-<body class="font-work-sans antialiased overflow-x-hidden">
-    <header class="fixed top-0 left-0 w-full z-50 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800 h-20 flex items-center px-8 justify-between">
-        <div class="flex items-center gap-2">
-            <span class="material-symbols-outlined text-primary-container">hub</span>
-            <span class="text-lg font-black text-white font-space-grotesk uppercase tracking-tighter">Intel_Hub</span>
-        </div>
-        <div class="text-[10px] font-mono text-zinc-500 uppercase tracking-widest">Status: Transmission_Active</div>
-    </header>
+<body class="antialiased selection:bg-brand-gold/40 selection:text-brand-deeper">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  
+  <!-- Parallax Background Elements -->
+  <div id="parallax-video-container">
+    <video autoplay muted loop playsinline preload="auto">
+      <source src="https://ik.imagekit.io/wemustcreate/BG-solutions.webm" type="video/webm">
+    </video>
+  </div>
+  <div class="hero-tint"></div>
 
-    <main class="pt-32 pb-20 px-8 max-w-[1280px] mx-auto">
-        <div class="mb-20">
-            <h1 class="text-5xl md:text-7xl font-black text-white font-space-grotesk uppercase tracking-tighter mb-4 leading-none">
-                Tactical <span class="text-primary-container">Briefings</span>
-            </h1>
-            <p class="text-zinc-500 uppercase text-[10px] tracking-[0.4em] font-space-grotesk">
-                Industry Insights // Framework Proofs // Collective Updates
-            </p>
-        </div>
+  <!-- Fixed Navigation -->
+  <header class="fixed top-0 left-0 right-0 z-50 bg-brand-deeper/90 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="Search Playbook Shield" class="h-8 w-auto drop-shadow-lg">
+        <span class="text-sm font-heading font-bold text-brand-pale/90 tracking-wide hidden sm:block">Free Toolkits Hub</span>
+      </div>
+      <nav aria-label="Primary navigation">
+        <ul class="flex items-center gap-4 text-sm">
+          <li>
+            <a href="./index.html" class="flex items-center gap-1 text-brand-pale/70 hover:text-brand-gold transition-colors font-medium group">
+              <svg class="w-3 h-3 transform group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M15 19l-7-7 7-7"/></svg>
+              Main Site
+            </a>
+          </li>
+          <li>
+            <span class="flex items-center gap-2 px-3 py-1 rounded-full bg-brand-gold/10 border border-brand-gold/30 text-brand-gold text-xs font-mono tracking-wide">
+              <span class="w-1.5 h-1.5 bg-brand-gold rounded-full animate-pulse-glow"></span>
+              All Tools Free
+            </span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            
-            <div class="intel-card p-10 flex flex-col justify-between group hover:border-primary-container transition-all">
-                <div>
-                    <div class="flex justify-between items-start mb-8">
-                        <span class="text-[10px] font-bold text-primary-container tracking-[0.3em] uppercase">Insight_01</span>
-                        <span class="material-symbols-outlined text-zinc-700 group-hover:text-primary-container">monitoring</span>
-                    </div>
-                    <h2 class="text-2xl font-bold text-white uppercase mb-4">1,172% ROI Framework</h2>
-                    <p class="text-zinc-500 text-sm mb-8">Analysis of the Organic SERP Framework used for the Family Kitchen project, maximizing local visibility.</p>
-                    <ul class="space-y-4 mb-10 text-xs text-zinc-400 font-mono">
-                        <li class="flex items-center gap-3"> [STATUS: VERIFIED]</li>
-                        <li class="flex items-center gap-3"> [LOCATION: JO'BURG]</li>
-                        <li class="flex items-center gap-3"> [DOMAIN: LOCAL_SEO]</li>
-                    </ul>
-                </div>
-                <div>
-                    <button class="w-full py-3 bg-zinc-800 text-white text-[10px] font-black uppercase tracking-widest hover:bg-primary-container hover:text-black transition-colors">Access Briefing</button>
-                </div>
-            </div>
-
-            <div class="intel-card p-10 flex flex-col justify-between border-primary-container relative">
-                <div class="absolute top-0 right-0 bg-primary-container text-on-primary-container text-[8px] font-black px-3 py-1 uppercase">Top Secret</div>
-                <div>
-                    <div class="flex justify-between items-start mb-8">
-                        <span class="text-[10px] font-bold text-primary-container tracking-[0.3em] uppercase">Insight_02</span>
-                        <span class="material-symbols-outlined text-primary-container">fingerprint</span>
-                    </div>
-                    <h2 class="text-2xl font-bold text-white uppercase mb-4">Data Hygiene Audit</h2>
-                    <p class="text-zinc-500 text-sm mb-8">Mandatory checklists for removing high-risk personal data and securing reputation-critical accounts.</p>
-                    <ul class="space-y-4 mb-10 text-xs text-zinc-200 font-mono">
-                        <li class="flex items-center gap-3"> [REPUTATION_REPAIR]</li>
-                        <li class="flex items-center gap-3"> [FOOTPRINT_WIPE]</li>
-                        <li class="flex items-center gap-3"> [IDENTITY_SHIELD]</li>
-                    </ul>
-                </div>
-                <div>
-                    <button class="w-full py-3 bg-primary-container text-on-primary-container text-[10px] font-black uppercase tracking-widest">Access Briefing</button>
-                </div>
-            </div>
-
-            <div class="intel-card p-10 flex flex-col justify-between group hover:border-primary-container transition-all">
-                <div>
-                    <div class="flex justify-between items-start mb-8">
-                        <span class="text-[10px] font-bold text-primary-container tracking-[0.3em] uppercase">Insight_03</span>
-                        <span class="material-symbols-outlined text-zinc-700 group-hover:text-primary-container">encrypted</span>
-                    </div>
-                    <h2 class="text-2xl font-bold text-white uppercase mb-4">Cybersecurity Lab</h2>
-                    <p class="text-zinc-500 text-sm mb-8">An overview of common local threats and the zero-trust architecture used by the Collective.</p>
-                    <ul class="space-y-4 mb-10 text-xs text-zinc-400 font-mono">
-                        <li class="flex items-center gap-3"> [THREAT_ASSESSMENT]</li>
-                        <li class="flex items-center gap-3"> [SAFE_HANDOVER]</li>
-                        <li class="flex items-center gap-3"> [ZERO_TRUST_LAB]</li>
-                    </ul>
-                </div>
-                <div>
-                    <button class="w-full py-3 bg-zinc-800 text-white text-[10px] font-black uppercase tracking-widest hover:bg-primary-container hover:text-black transition-colors">Access Briefing</button>
-                </div>
-            </div>
+  <main id="main-content">
+    
+    <!-- Hero Section -->
+    <section class="relative min-h-[100dvh] flex items-center justify-center pt-16 pb-20 px-4 sm:px-6" aria-label="Hero Section">
+      <div class="relative z-10 max-w-4xl mx-auto text-center space-y-8 opacity-0 animate-fade-in">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-deeper/60 border border-brand-gold/30 text-brand-gold text-xs font-mono uppercase tracking-widest backdrop-blur-sm">
+          <span class="w-1.5 h-1.5 bg-brand-gold rounded-full animate-pulse"></span>
+          No Sign-Ups • No Tracking • 100% Free
         </div>
 
-        <section class="mt-32 pt-20 border-t border-zinc-800 grid md:grid-cols-2 gap-16">
-            <div class="h-[300px] border border-outline-variant relative overflow-hidden flex items-center justify-center">
-                <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-                <div class="text-[10px] font-mono text-primary-container/40 uppercase tracking-[0.5em] text-center">
-                    VERIFYING_COLLECTIVE_NODE<br/>[STATUS: AUTHORIZED]
-                </div>
-            </div>
-            <div>
-                <h2 class="text-4xl font-black text-white uppercase tracking-tighter mb-6">The Collective Mandate</h2>
-                <p class="text-zinc-400 leading-relaxed mb-6 text-sm">
-                    Search Playbook is a decentralized network of experts. We provide low-maintenance, high-impact visibility and privacy solutions for families and service providers.
-                </p>
-                <div class="flex gap-4">
-                    <span class="px-4 py-2 border border-zinc-800 text-zinc-600 text-[9px] font-bold uppercase tracking-widest">Visibility</span>
-                    <span class="px-4 py-2 border border-zinc-800 text-zinc-600 text-[9px] font-bold uppercase tracking-widest">Privacy</span>
-                    <span class="px-4 py-2 border border-zinc-800 text-zinc-600 text-[9px] font-bold uppercase tracking-widest">Safety</span>
-                </div>
-            </div>
-        </section>
-    </main>
+        <h1 class="font-heading text-5xl md:text-7xl font-bold text-brand-pale leading-[1.1] tracking-tight">
+          Free Online Tools for<br>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-gold via-brand-pale to-brand-gold">Families & Business Owners</span>
+        </h1>
 
-    <footer class="bg-zinc-950 border-t border-zinc-800 py-12 px-8 flex justify-between items-center text-[9px] text-zinc-700 uppercase tracking-[0.3em]">
-        <span>Search Playbook Collective // 2026</span>
-        <span>Johannesburg // ZA</span>
-    </footer>
+        <p class="text-lg md:text-xl text-brand-pale/80 max-w-2xl mx-auto font-light leading-relaxed">
+          Simple, private guides to protect your reputation, find work faster, and keep your data safe. Built for people who want results, not complicated tech.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center pt-4">
+          <a href="#toolkits" class="px-8 py-3.5 bg-brand-gold hover:bg-brand-pale text-brand-deeper font-bold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(184,166,120,0.2)] hover:shadow-[0_0_30px_rgba(184,166,120,0.4)] focus:ring-2 focus:ring-offset-2 focus:ring-brand-gold focus:ring-offset-brand-deeper">
+            Open Free Toolkits
+          </a>
+          <a href="#faq" class="px-8 py-3.5 bg-brand-deeper/40 border border-brand-pale/30 hover:border-brand-gold hover:text-brand-gold text-brand-pale font-medium rounded-lg transition-all duration-300 backdrop-blur-sm">
+            See How It Works
+          </a>
+        </div>
+      </div>
+      
+      <!-- Scroll Indicator -->
+      <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce opacity-60">
+        <svg class="w-6 h-6 text-brand-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 14l-7 7-7-7"/></svg>
+      </div>
+    </section>
+
+    <!-- Toolkits Grid -->
+    <section id="toolkits" class="relative z-10 py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+      <div class="text-center mb-12 opacity-0 animate-fade-in delay-100" style="animation-fill-mode: forwards;">
+        <h2 class="font-heading text-3xl md:text-4xl font-bold text-brand-pale">Ready-to-Use Toolkits</h2>
+        <div class="w-16 h-1 bg-brand-gold mx-auto mt-4 rounded-full"></div>
+        <p class="text-brand-pale/70 mt-4 max-w-xl mx-auto">Everything runs on your device. No accounts. No fees. Just practical steps you can use today.</p>
+      </div>
+      
+      <div class="grid md:grid-cols-2 gap-8">
+        
+        <!-- Privacy Toolkit -->
+        <article class="glass-panel glass-card rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden group opacity-0 animate-fade-in delay-200" style="animation-fill-mode: forwards;">
+          <div class="absolute top-0 right-0 w-48 h-48 bg-brand-gold/10 blur-3xl rounded-full -mr-20 -mt-20 pointer-events-none group-hover:bg-brand-gold/20 transition-all duration-700"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono uppercase tracking-widest text-brand-gold bg-brand-gold/10 px-2.5 py-1 rounded border border-brand-gold/20">Ready Now</span>
+              <svg class="w-6 h-6 text-brand-pale/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-brand-pale">Online Reputation & Safety</h3>
+            <p class="text-brand-pale/70 leading-relaxed">Free guides and templates to remove unwanted photos, protect your privacy, and manage what shows up when people search your name. Works entirely on your device.</p>
+          </div>
+          <div class="mt-8 relative z-10">
+            <a href="./ncii-support.html" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-brand-deeper/60 hover:bg-brand-gold hover:text-brand-deeper text-brand-gold border border-brand-gold/30 text-sm font-bold rounded-lg transition-all duration-300 group-hover:border-brand-gold focus:ring-2 focus:ring-brand-gold focus:ring-offset-2 focus:ring-offset-brand-deeper">
+              Open Safety Toolkit
+              <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+
+        <!-- Job & Business Toolkit -->
+        <article class="glass-panel glass-card rounded-2xl p-8 flex flex-col justify-between relative overflow-hidden group opacity-0 animate-fade-in delay-300" style="animation-fill-mode: forwards;">
+          <div class="absolute top-0 right-0 w-48 h-48 bg-brand-pale/5 blur-3xl rounded-full -mr-20 -mt-20 pointer-events-none group-hover:bg-brand-pale/10 transition-all duration-700"></div>
+          <div class="space-y-4 relative z-10">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono uppercase tracking-widest text-brand-pale bg-brand-pale/10 px-2.5 py-1 rounded border border-brand-pale/20">Updated Weekly</span>
+              <svg class="w-6 h-6 text-brand-pale/40" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            </div>
+            <h3 class="text-2xl font-heading font-bold text-brand-pale">Job Search & Local Business</h3>
+            <p class="text-brand-pale/70 leading-relaxed">Step-by-step resources to get your CV seen, attract local clients, and stand out in South Africa's job market. Built for busy people who need clear, direct steps.</p>
+          </div>
+          <div class="mt-8 relative z-10">
+            <a href="./job-market-toolkit.html" class="inline-flex items-center justify-center w-full sm:w-auto px-6 py-3 bg-transparent border border-brand-pale/20 hover:border-brand-pale hover:bg-white/5 text-brand-pale text-sm font-bold rounded-lg transition-all duration-300 focus:ring-2 focus:ring-brand-pale focus:ring-offset-2 focus:ring-offset-brand-deeper">
+              Open Career Toolkit
+              <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M9 5l7 7-7 7"/></svg>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- System Status -->
+    <section class="relative z-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto pb-24 opacity-0 animate-fade-in delay-300" style="animation-fill-mode: forwards;">
+      <div class="glass-panel rounded-2xl p-6 md:p-8 border-l-4 border-l-brand-gold flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <div class="flex items-start gap-4">
+          <div class="mt-2 w-3 h-3 bg-brand-gold rounded-full animate-pulse-glow shadow-[0_0_10px_rgba(184,166,120,0.6)]"></div>
+          <div>
+            <h3 class="text-xl font-heading font-bold text-brand-pale">System Status</h3>
+            <p class="text-sm text-brand-pale/60 mt-1">All toolkits run locally on your browser. Fast, private, and always available without internet tracking.</p>
+          </div>
+        </div>
+        <div class="flex gap-3 pl-7 md:pl-0 flex-wrap">
+          <div class="bg-brand-deeper/60 px-4 py-2 rounded-lg text-xs font-mono text-brand-pale/80 border border-white/10 backdrop-blur-sm">STATUS: <span class="text-brand-gold font-bold">Online</span></div>
+          <div class="bg-brand-deeper/60 px-4 py-2 rounded-lg text-xs font-mono text-brand-pale/80 border border-white/10 backdrop-blur-sm">PRIVACY: <span class="text-brand-gold font-bold">Protected</span></div>
+          <div class="bg-brand-deeper/60 px-4 py-2 rounded-lg text-xs font-mono text-brand-pale/80 border border-white/10 backdrop-blur-sm">COST: <span class="text-brand-gold font-bold">Free</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Intelligence FAQ -->
+    <section id="faq" class="relative z-10 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto pb-24 space-y-6 opacity-0 animate-fade-in delay-300" style="animation-fill-mode: forwards;" aria-labelledby="faq-title">
+      <div class="glass-panel rounded-2xl p-6 md:p-8 border border-white/10">
+        <h2 id="faq-title" class="text-2xl font-heading font-bold text-brand-pale mb-6 flex items-center gap-3">
+          <span class="w-10 h-[1px] bg-brand-gold"></span>
+          Frequently Asked Questions
+        </h2>
+        
+        <div class="space-y-4">
+          <details class="group glass-card rounded-xl bg-white/[0.03] border border-white/5 overflow-hidden hover:bg-white/[0.06] transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-brand-pale hover:text-brand-gold transition-colors select-none">
+              What is this hub?
+              <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </summary>
+            <div class="px-4 pb-4 text-brand-pale/70 text-sm leading-relaxed border-t border-white/5 pt-3">
+              A free resource library built by a Johannesburg team to help families and business owners protect their online presence and grow without expensive agencies or complicated tech.
+            </div>
+          </details>
+
+          <details class="group glass-card rounded-xl bg-white/[0.03] border border-white/5 overflow-hidden hover:bg-white/[0.06] transition-colors">
+            <summary class="flex items-center justify-between cursor-pointer p-4 font-medium text-brand-pale hover:text-brand-gold transition-colors select-none">
+              Is my data safe here?
+              <span class="transition-transform duration-300 group-open:rotate-180 text-brand-gold">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 9l-7 7-7-7"/></svg>
+              </span>
+            </summary>
+            <div class="px-4 pb-4 text-brand-pale/70 text-sm leading-relaxed border-t border-white/5 pt-3">
+              Yes. These tools run completely on your device. We don't track you, store your information, or use cookies. Your privacy stays yours.
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-white/10 bg-brand-deeper/90 backdrop-blur-lg py-10 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="flex items-center gap-3">
+        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="Shield" class="h-5 w-auto opacity-60">
+        <p class="text-sm text-brand-pale/40">© <span id="sys-year"></span> Search Playbook Collective. Built for South Africa.</p>
+      </div>
+      <nav class="flex gap-6 text-sm text-brand-pale/50">
+        <a href="./index.html" class="hover:text-brand-gold transition-colors">Main Site</a>
+        <a href="./ncii-support.html" class="hover:text-brand-gold transition-colors">Safety Toolkit</a>
+        <a href="./job-market-toolkit.html" class="hover:text-brand-gold transition-colors">Career Toolkit</a>
+      </nav>
+    </div>
+  </footer>
+
+  <!-- Client-Side Logic (Zero External Dependencies) -->
+  <script>
+    (() => {
+      'use strict';
+      
+      // 1. System Year Injection
+      const yearEl = document.getElementById('sys-year');
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+      // 2. Fixed Parallax Logic
+      const videoContainer = document.getElementById('parallax-video-container');
+      if (videoContainer && 'requestAnimationFrame' in window) {
+        let ticking = false;
+        
+        // Initialize transform to avoid layout shift
+        videoContainer.style.transform = 'translate3d(0, 0, 0) scale(1.15)';
+        
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            window.requestAnimationFrame(() => {
+              const scrollY = window.scrollY;
+              // Move video UP as user scrolls DOWN (negative Y) for true parallax depth
+              // scale(1.15) prevents edges from showing during movement
+              videoContainer.style.transform = `translate3d(0, -${scrollY * 0.35}px, 0) scale(1.15)`;
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      // 3. Keyboard Accessibility for FAQ
+      document.querySelectorAll('details > summary').forEach(summary => {
+        summary.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            summary.parentElement.open = !summary.parentElement.open;
+          }
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
+
