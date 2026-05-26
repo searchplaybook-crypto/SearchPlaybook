@@ -1,1 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SearchPlaybook | Tactical Audit Qualification</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
 
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #0A0A0A;
+      color: #F1F5F9;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: clamp(18px, 1.2vw, 22px);
+      line-height: 1.7;
+      padding: 2rem 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    .quiz-card {
+      width: 100%;
+      max-width: 650px;
+      background-color: rgba(17, 17, 17, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 2.5rem;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .progress-container {
+      width: 100%;
+      height: 4px;
+      background-color: #111111;
+      margin-bottom: 2rem;
+      border-radius: 2px;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 25%;
+      background-color: #2563EB;
+      transition: width 0.3s ease;
+    }
+    h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      margin-bottom: 1.5rem;
+      color: #F1F5F9;
+    }
+    .options-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .option-btn {
+      background-color: #0D0D0D;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #CBD5E1;
+      padding: 1.2rem;
+      border-radius: 6px;
+      text-align: left;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .option-btn:hover {
+      border-color: #E2B15C;
+      color: #F1F5F9;
+      background-color: #111111;
+    }
+    .lead-form { display: none; }
+    .form-group { margin-bottom: 1.2rem; }
+    label { display: block; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem; color: #CBD5E1; }
+    input {
+      width: 100%;
+      background-color: #0D0D0D;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #F1F5F9;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+    }
+    input:focus { border-color: #2563EB; outline: none; }
+    .submit-btn {
+      width: 100%;
+      background-color: #2563EB;
+      color: #F1F5F9;
+      border: none;
+      padding: 1.2rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .submit-btn:hover { background-color: #1D4ED8; }
+  </style>
+</head>
+<body>
+
+<div class="quiz-card">
+  <div class="progress-container"><div class="progress-bar" id="progress"></div></div>
+  
+  <!-- Interactive Questionnaire Stage -->
+  <div id="quiz-stage">
+    <h2 id="question-text">Loading diagnostic parameters...</h2>
+    <div class="options-stack" id="options-box"></div>
+  </div>
+
+  <!-- Final Lead Capture Routing Stage -->
+  <div id="form-stage" class="lead-form">
+    <h2>Sovereignty Gaps Identified.</h2>
+    <p style="margin-bottom: 1.5rem; color: #CBD5E1; font-size: 0.95rem;">Your answers signal high dependency on leased software. Enter your details below to lock in your R750 Free Tactical Audit allocation.</p>
+    <form id="kyc-submit-form" action="https://formspree.io/f/YOUR_ID_HERE" method="POST">
+      <div class="form-group">
+        <label>Full Name / Business Owner</label>
+        <input type="text" name="name" required placeholder="Johannes ...">
+      </div>
+      <div class="form-group">
+        <label>Contact Email</label>
+        <input type="email" name="email" required placeholder="name@domain.co.za">
+      </div>
+      <div class="form-group">
+        <label>Current Website / Asset URL</label>
+        <input type="url" name="url" placeholder="https://mybusiness.co.za (Optional)">
+      </div>
+      <!-- Hidden breakdown payloads for clean webhook extraction -->
+      <input type="hidden" name="fatigue_score" id="payload-fatigue">
+      <input type="hidden" name="smog_score" id="payload-smog">
+      <button type="submit" class="submit-btn">Claim Free R750 Audit Allocation</button>
+    </form>
+  </div>
+</div>
+
+<script>
+  const questions = [
+    {
+      text: "How much did your business pay in software/SEO subscriptions last month?",
+      category: "fatigue",
+      options: [
+        { text: "R0 — We own all our digital assets outright.", weight: 0 },
+        { text: "Under R1,500 — Basic cloud tooling updates.", weight: 1 },
+        { text: "Over R1,500 — Heavy monthly subscription overheads.", weight: 3 }
+      ]
+    },
+    {
+      text: "When an update is required on your profile or site, what happens?",
+      category: "smog",
+      options: [
+        { text: "It updates automatically across all networks.", weight: 0 },
+        { text: "I handle it manually when I find spare time.", weight: 2 },
+        { text: "It remains broken because tech structures are too messy.", weight: 3 }
+      ]
+    },
+    {
+      text: "Who has administrative control over your domain registration and data infrastructure?",
+      category: "sovereignty",
+      options: [
+        { text: "I have direct administrative access to everything.", weight: 0 },
+        { text: "An outside agency holds the login parameters.", weight: 3 },
+        { text: "I am completely unsure who owns the baseline access.", weight: 4 }
+      ]
+    }
+  ];
+
+  let currentIdx = 0;
+  let scores = { fatigue: 0, smog: 0, sovereignty: 0 };
+
+  function renderStep() {
+    if (currentIdx >= questions.length) {
+      document.getElementById('quiz-stage').style.display = 'none';
+      document.getElementById('payload-fatigue').value = scores.fatigue;
+      document.getElementById('payload-smog').value = scores.smog + scores.sovereignty;
+      document.getElementById('form-stage').style.display = 'block';
+      document.getElementById('progress').style.width = '100%';
+      return;
+    }
+    
+    const q = questions[currentIdx];
+    document.getElementById('progress').style.width = `${((currentIdx) / questions.length) * 100}%`;
+    document.getElementById('question-text').innerText = q.text;
+    
+    const container = document.getElementById('options-box');
+    container.innerHTML = '';
+    
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'option-btn';
+      btn.innerText = opt.text;
+      btn.onclick = () => {
+        scores[q.category] += opt.weight;
+        currentIdx++;
+        renderStep();
+      };
+      container.appendChild(btn);
+    });
+  }
+
+  // Initializing step on system resolution
+  renderStep();
+</script>
+
+</body>
+  </html>
+  
