@@ -285,4 +285,129 @@
     <section id="collective" class="py-12 md:py-20 px-4 md:px-6 bg-void-black/40">
         <div class="max-w-[1400px] mx-auto">
             <div class="grid lg:grid-cols-2 gap-10 items-center">
-                <div class="scroll-reveal or
+                <div class="scroll-reveal order-2 lg:order-1">
+                    <div class="relative rounded-2xl overflow-hidden border border-gold/30 shadow-2xl">
+                        <img src="https://ik.imagekit.io/wemustcreate/About%20max%20.webp?updatedAt=1777882596972" alt="Founder" class="w-full object-cover aspect-[4/5]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-void-black via-transparent to-transparent"></div>
+                    </div>
+                </div>
+                <div class="scroll-reveal order-1 lg:order-2 space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-gold/10 px-3 py-1 rounded-full"><span class="text-gold text-xs font-accent">Decentralised collective</span></div>
+                    <h2 class="font-display text-3xl md:text-4xl text-near-white">We are a network of specialists, not a big agency</h2>
+                    <p class="font-body text-platinum/70 leading-relaxed">Search Playbook is a small, trusted group of experts who actually do the work. No account managers, no middlemen. You talk directly to the people who execute your strategy.</p>
+                    <button id="bioToggle" class="text-gold font-semibold flex items-center gap-2 hover:gap-3 transition-all">Read founder's story <svg id="bioIcon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="bioContent" class="hidden mt-3 p-4 bg-black/30 rounded-xl border-l-2 border-gold">
+                        <p class="text-sm text-platinum/70 italic">“Every day, thousands of people go online for the first time to search for people, products, and places.” – This mantra drives everything we do. Founded in 2023, using AI to bridge the gap between technical complexity and real human needs. We believe in low-maintenance, high‑impact solutions. No subscriptions, just honest work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-16 md:py-28 px-4 md:px-6">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="padding-block-3d text-center scroll-reveal">
+                <h2 class="font-display text-3xl md:text-5xl text-near-white mb-4">Ready to take back your time?</h2>
+                <p class="font-body text-platinum/70 max-w-2xl mx-auto mb-8">One simple conversation. No technical knowledge required. We do the heavy lifting.</p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button class="btn-primary px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-gold-light">Start free chat →</button>
+                    <button class="bg-white/5 backdrop-blur-sm px-8 py-3 rounded-full border border-white/10 hover:bg-white/10">See real case studies</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer with sitemap link -->
+    <footer class="py-10 px-4 md:px-6 border-t border-white/10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between gap-6 text-sm">
+            <div class="flex flex-wrap gap-6">
+                <a href="intelhub.html" class="text-zinc-400 hover:text-gold">Intel</a>
+                <a href="solutions.html" class="text-zinc-400 hover:text-gold">Solutions</a>
+                <a href="collective.html" class="text-zinc-400 hover:text-gold">Collective</a>
+                <a href="connect.html" class="text-zinc-400 hover:text-gold">Connect</a>
+                <a href="ncii-support.html" class="text-zinc-400 hover:text-gold">NCII Support</a>
+                <a href="job_market_toolkit.html" class="text-zinc-400 hover:text-gold">Job Toolkit</a>
+                <a href="hash_explainer.html" class="text-zinc-400 hover:text-gold">Hash Explainer</a>
+                <a href="scamdetector.html" class="text-zinc-400 hover:text-gold">Scam Detector</a>
+            </div>
+            <div class="text-zinc-500 text-xs flex gap-4">
+                <span>© Search Playbook — WeMustCreate 2026</span>
+                <a href="sitemap.xml" class="underline hover:text-gold">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cursor follower for dynamic background
+        const bg = document.getElementById('dynamicBg');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            bg.style.setProperty('--x', `${x}%`);
+            bg.style.setProperty('--y', `${y}%`);
+        });
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+
+        // Counter with suffix
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+        const startCounters = () => {
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                let count = 0;
+                const update = () => {
+                    if(count < target) {
+                        count += Math.ceil(target / 50);
+                        if(count > target) count = target;
+                        counter.innerText = count + suffix;
+                        setTimeout(update, 25);
+                    } else {
+                        counter.innerText = target + suffix;
+                    }
+                };
+                update();
+            });
+        };
+        const heroObs = new IntersectionObserver((e) => { if(e[0].isIntersecting) { startCounters(); heroObs.disconnect(); } }, { threshold: 0.5 });
+        heroObs.observe(document.getElementById('dashboard'));
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('translate-x-full');
+            document.body.style.overflow = menu.classList.contains('translate-x-full') ? '' : 'hidden';
+        }
+        window.toggleMobileMenu = toggleMobileMenu;
+
+        // Smooth scroll
+        function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
+        window.scrollToSection = scrollToSection;
+
+        // Bio expand
+        const bioToggle = document.getElementById('bioToggle');
+        const bioContent = document.getElementById('bioContent');
+        const bioIcon = document.getElementById('bioIcon');
+        if(bioToggle) {
+            bioToggle.addEventListener('click', () => {
+                const isHidden = bioContent.classList.contains('hidden');
+                bioContent.classList.toggle('hidden', !isHidden);
+                bioIcon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        }
+
+        // Nav scroll effect
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 20) nav.classList.add('bg-void-black/90');
+            else nav.classList.remove('bg-void-black/90');
+        });
+    </script>
+</body>
+</html>
