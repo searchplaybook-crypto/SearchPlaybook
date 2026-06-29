@@ -2,677 +2,1026 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Search Playbook — WeMustCreate | Set‑and‑Forget Digital Peace</title>
-    <meta name="description" content="Simple, set-and-forget digital privacy, reputation, and visibility. No subscriptions. Real results for South Africans.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Playbook — WeMustCreate | Set-and-Forget Digital Peace</title>
+    <meta name="description" content="AI-augmented collaboration. We clear the digital noise so you can focus on your hustle. Set-and-forget visibility, privacy & safety for South Africans.">
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Montserrat:wght@700;800;900&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
     <script>
         tailwind.config = {
-            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
-                        'gold': '#D4AF37', 'gold-light': '#F0D676', 'gold-dark': '#A08326',
-                        'near-white': '#F9F9F9', 'platinum': '#E4E4E7', 'zinc-500': '#71717A',
-                        'void-black': '#09090B', 'onyx': '#18181B',
-                        'icy-azure': '#43CFFD', 'forged-copper': '#B66E41', 'warm-yellow': '#FDBF2D'
+                        'gold-100': '#FCEEB5',
+                        'gold-300': '#F0D676',
+                        'mafia-gold': '#D4AF37',
+                        'gold-700': '#A08326',
+                        'near-white': '#F9F9F9',
+                        'platinum': '#E4E4E7',
+                        'zinc-500': '#71717A',
+                        'onyx': '#18181B',
+                        'void-black': '#09090B',
+                        'icy-azure': '#43CFFD',
+                        'forged-copper': '#B66E41',
+                        'warm-yellow': '#FDBF2D'
                     },
-                    fontFamily: { 'display': ['Montserrat', 'sans-serif'], 'body': ['Inter', 'sans-serif'], 'accent': ['Raleway', 'sans-serif'] },
-                    animation: { 'float': 'float 6s ease-in-out infinite', 'float-slow': 'float 10s ease-in-out infinite' },
-                    keyframes: { float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } } }
+                    fontFamily: {
+                        'display': ['Montserrat', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Raleway', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'reveal': 'reveal 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        reveal: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
                 }
             }
         }
     </script>
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            background: #09090B;
-            overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
-            color: #E4E4E7;
-        }
-
-        /* ─── LAYER STACK (critical fix) ───
-           z-0:  Three.js canvas (globe)
-           z-1:  vignette overlay
-           z-2:  cursor-reactive bg
-           z-10: main content wrapper
-           z-50: nav
-        */
-
-        /* ─── Three.js Globe Canvas ─── */
-        #globe-canvas-container {
+        :root { --glass-border: rgba(249, 249, 249, 0.08); }
+        body { background: radial-gradient(ellipse at top, #1a1a1f 0%, #09090B 50%, #050507 100%); overflow-x: hidden; }
+        
+        /* Three.js Canvas Layer */
+        #earth-canvas {
             position: fixed;
             top: 0;
             left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(ellipse at bottom, #0a0e27 0%, #000000 100%);
+        }
+        
+        /* Dark overlay for evening mood - INCREASED TRANSPARENCY */
+        #earth-canvas::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
             pointer-events: none;
         }
-        #globe-canvas-container canvas {
-            width: 100% !important;
-            height: 100% !important;
-            display: block;
+        
+        /* Parallax Hero Overlay - INCREASED TRANSPARENCY */
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(9,9,11,0.08) 0%, rgba(9,9,11,0.70) 100%);
+            position: absolute; inset: 0; z-index: -1;
+        }
+        
+        /* Glassmorphism Utilities */
+        .glass { background: rgba(24, 24, 27, 0.45); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); }
+        .glass-gold { background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.03) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.15); }
+        .glass-azure { background: linear-gradient(135deg, rgba(67, 207, 253, 0.1) 0%, rgba(6, 74, 115, 0.15) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(67, 207, 253, 0.2); }
+        .glass-copper { background: linear-gradient(135deg, rgba(182, 110, 65, 0.15) 0%, rgba(124, 74, 46, 0.1) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(182, 110, 65, 0.25); }
+        .glass-yellow { background: linear-gradient(135deg, rgba(253, 191, 45, 0.1) 0%, rgba(253, 191, 45, 0.03) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(253, 191, 45, 0.2); }
+        
+        .text-glow { text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2); }
+        .text-glow-azure { text-shadow: 0 0 30px rgba(67, 207, 253, 0.5), 0 0 60px rgba(67, 207, 253, 0.2); }
+        
+        .bg-gradient-mesh {
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(67, 207, 253, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(182, 110, 65, 0.1) 0%, transparent 50%);
+            position: fixed; inset: 0; pointer-events: none; z-index: -1;
+        }
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        
+        /* 3D Interactive Hover Effects */
+        .glass-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        @media (hover: hover) {
+            .glass-hover:hover { 
+                background: rgba(24, 24, 27, 0.65); 
+                border-color: rgba(249, 249, 249, 0.15); 
+                transform: translateY(-8px) scale(1.01); 
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1); 
+            }
+        }
+        
+        .btn-glass { background: rgba(212, 175, 55, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.3); transition: all 0.3s ease; }
+        .btn-glass:hover { background: rgba(212, 175, 55, 0.25); border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+        
+        .gradient-text-gold { background: linear-gradient(135deg, #FCEEB5 0%, #D4AF37 50%, #A08326 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text-azure { background: linear-gradient(135deg, #FFFFFF 0%, #43CFFD 50%, #064A73 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .floating-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: 0.4; }
+        
+        /* Mobile Optimized Nav */
+        .nav-transparent { 
+            background: rgba(9, 9, 11, 0.1); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px); 
+            border-bottom: 1px solid rgba(249, 249, 249, 0.05);
+            transition: all 0.3s ease;
+        }
+        .nav-scrolled {
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(249, 249, 249, 0.1);
         }
 
-        /* ─── Vignette to fade globe edges ─── */
-        .globe-vignette {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            pointer-events: none;
-            z-index: 1;
-            background: radial-gradient(ellipse at 30% 50%, #09090B 0%, transparent 50%, #09090B 90%);
-        }
-
-        /* ─── Cursor-reactive bg (above globe) ─── */
-        .dynamic-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 2; pointer-events: none;
-            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
-                        rgba(212, 175, 55, 0.12) 0%,
-                        rgba(67, 207, 253, 0.05) 40%,
-                        transparent 70%);
-            transition: background 0.08s linear;
-            mix-blend-mode: screen;
-        }
-        .noise {
-            position: fixed; inset: 0; pointer-events: none; z-index: 2; opacity: 0.025;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            pointer-events: none;
-        }
-
-        /* ─── MAIN CONTENT WRAPPER ───
-           Must be above globe (z-10) so glass cards work */
-        #content-wrapper {
-            position: relative;
-            z-index: 10;
-        }
-
-        /* ─── Glass cards ─── */
-        .card-3d {
-            background: rgba(24, 24, 27, 0.6);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            border-radius: 1.5rem;
-            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(212, 175, 55, 0.1) inset, 0 0 15px rgba(212, 175, 55, 0.1);
-        }
-        .card-3d:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: 0 30px 45px -15px black, 0 0 0 2px rgba(212, 175, 55, 0.35) inset, 0 0 35px rgba(212, 175, 55, 0.3);
-            border-color: rgba(212, 175, 55, 0.6);
-        }
-        .padding-block-3d {
-            padding: 2rem;
-            background: rgba(24, 24, 27, 0.5);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 2rem;
-            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(255,255,255,0.02);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            transition: all 0.3s;
-        }
-        .padding-block-3d:hover {
-            box-shadow: 0 0 70px rgba(212, 175, 55, 0.25), inset 0 0 30px rgba(255,255,255,0.05);
-            border-color: rgba(212, 175, 55, 0.4);
-        }
-        .nav-glass {
-            background: rgba(9, 9, 11, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
-        }
-        .btn-primary {
-            background: rgba(212, 175, 55, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            transition: all 0.2s;
-        }
-        .btn-primary:hover {
-            background: rgba(212, 175, 55, 0.3);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-            transform: translateY(-2px);
-        }
-        .scroll-reveal {
-            opacity: 0; transform: translateY(30px);
-            transition: all 0.7s ease;
-        }
-        .scroll-reveal.active {
-            opacity: 1; transform: translateY(0);
-        }
-        ::-webkit-scrollbar { width: 6px; }
+        .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+        
+        ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: #09090B; }
-        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #D4AF37, #A08326); border-radius: 4px; }
+        
+        @media (max-width: 768px) { 
+            .floating-orb { display: none; }
+        }
 
-        /* ─── Hero section ─── */
-        .hero {
-            position: relative;
-            min-height: 100vh;
+        /* Collapsible Content Animation */
+        .collapsible-content {
+            max-height: 0;
             overflow: hidden;
-            background: transparent;
+            transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+            opacity: 0;
         }
-        .hero-inner {
-            position: relative;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 8rem 1.5rem 4rem;
+        .collapsible-content.open {
+            max-height: 1500px;
+            opacity: 1;
         }
-        .hero-content {
-            position: relative;
-        }
+        .rotate-icon { transition: transform 0.3s ease; }
+        .rotate-icon.rotated { transform: rotate(180deg); }
 
-        /* ─── Mobile: hide globe ─── */
-        @media (max-width: 1024px) {
-            #globe-canvas-container, .globe-vignette { display: none !important; }
-            .hero { background: radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.08) 0%, transparent 60%); }
+        /* Mobile Menu Slide Animation */
+        .mobile-menu-panel {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
         }
-
-        /* ─── Widget ─── */
-        #local-guides-widget {
-            position: fixed; bottom: 24px; right: 24px; z-index: 100;
-            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
-            transform: translateY(150%) scale(0.5); opacity: 0;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-        }
-        #local-guides-widget.visible {
-            transform: translateY(0) scale(1); opacity: 1;
+        
+        /* CTA Pill Animation */
+        .cta-pill {
+            animation: pulse-glow 3s ease-in-out infinite;
         }
     </style>
+    
+    <!-- Structured Data -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
-      "name": "Search Playbook",
-      "alternateName": "WeMustCreate",
+      "name": "Search Playbook Collective",
+      "description": "AI-augmented digital sovereignty. Clear the noise, focus on your hustle. Set-and-forget visibility, privacy & safety for South Africans.",
       "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
-      "logo": "https://ik.imagekit.io/wemustcreate/Shield.png",
-      "description": "Set-and-forget digital optimization, privacy, and reputation management. No subscriptions. Built for South Africa.",
-      "address": { "@type": "PostalAddress", "addressLocality": "Johannesburg", "addressCountry": "ZA" }
+      "address": { "@type": "PostalAddress", "addressLocality": "Johannesburg", "addressRegion": "GP", "addressCountry": "ZA" },
+      "priceRange": "ZAR 750 - ZAR 15000",
+      "knowsAbout": ["SEO", "Digital Privacy", "NCII Protection", "Cybercrimes Act"],
+      "sameAs": ["https://www.linkedin.com/in/llewellynoshea/"]
     }
     </script>
 </head>
-<body>
+<body class="font-body text-platinum antialiased">
+    <div class="noise-overlay"></div>
+    <div class="bg-gradient-mesh"></div>
+    <div class="floating-orb w-[600px] h-[600px] bg-mafia-gold/20 top-[-200px] left-[-100px] animate-float"></div>
+    <div class="floating-orb w-[500px] h-[500px] bg-icy-azure/15 bottom-[-150px] right-[-100px] animate-float-slow"></div>
 
-    <!-- ═══════════════════════════════════════════════
-         LAYER 0: Three.js Globe (behind everything)
-         ═══════════════════════════════════════════════ -->
-    <div id="globe-canvas-container"></div>
+    <!-- Three.js Canvas Background -->
+    <div id="earth-canvas"></div>
 
-    <!-- ═══════════════════════════════════════════════
-         LAYER 1: Vignette overlay
-         ═══════════════════════════════════════════════ -->
-    <div class="globe-vignette"></div>
-
-    <!-- ═══════════════════════════════════════════════
-         LAYER 2: Cursor-reactive background
-         ═══════════════════════════════════════════════ -->
-    <div class="dynamic-bg" id="dynamicBg"></div>
-    <div class="noise"></div>
-
-    <!-- ═══════════════════════════════════════════════
-         LAYER 10: All content (above globe)
-         ═══════════════════════════════════════════════ -->
-    <div id="content-wrapper">
-
-        <!-- Nav -->
-        <nav class="nav-glass fixed top-0 left-0 w-full z-50 py-3 px-4 md:px-8">
-            <div class="max-w-[1400px] mx-auto flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center overflow-hidden border border-gold/30">
-                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="Search Playbook Shield" class="w-full h-full object-cover">
+    <!-- Navigation -->
+    <nav id="mainNav" class="nav-transparent fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo Top Left -->
+                <a href="index.html" class="flex items-center gap-2 md:gap-3 cursor-pointer">
+                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" loading="eager">
                     </div>
-                    <div>
-                        <span class="font-display font-bold text-lg tracking-tight text-near-white">SEARCH PLAYBOOK</span>
-                        <div class="text-[10px] text-zinc-400 -mt-1">WeMustCreate</div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-sm md:text-xl tracking-wide text-near-white">SEARCH PLAYBOOK</span>
+                        <span class="text-[8px] md:text-[10px] font-accent font-light text-zinc-500 tracking-widest uppercase hidden sm:block">WeMustCreate</span>
                     </div>
+                </a>
+                
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                    <a href="#solutions" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
+                    <a href="#about" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">About</a>
+                    <a href="05-connect.html" class="font-body font-normal text-sm text-platinum/80 hover:text-mafia-gold transition-colors">Connect</a>
+                    <a href="05-connect.html" class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">Get Started</a>
                 </div>
-                <div class="hidden md:flex gap-6 items-center">
-                    <a href="intelhub.html" class="text-sm text-platinum/80 hover:text-gold transition">Intel</a>
-                    <a href="solutions.html" class="text-sm text-platinum/80 hover:text-gold transition">Solutions</a>
-                    <a href="collective.html" class="text-sm text-platinum/80 hover:text-gold transition">Collective</a>
-                    <a href="connect.html" class="text-sm text-platinum/80 hover:text-gold transition">Connect</a>
-                    <div class="relative group">
-                        <button class="text-sm text-platinum/80 hover:text-gold flex items-center gap-1">Tools ▼</button>
-                        <div class="absolute left-0 mt-2 w-48 bg-void-black/90 backdrop-blur-lg rounded-xl border border-gold/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-20">
-                            <a href="ncii-support.html" class="block px-4 py-2 text-sm hover:text-gold">NCII Support</a>
-                            <a href="job_market_toolkit.html" class="block px-4 py-2 text-sm hover:text-gold">Job Toolkit</a>
-                            <a href="hash_explainer.html" class="block px-4 py-2 text-sm hover:text-gold">Hash Explainer</a>
-                            <a href="scamdetector.html" class="block px-4 py-2 text-sm hover:text-gold">Scam Detector</a>
-                        </div>
-                    </div>
-                    <button class="btn-primary px-5 py-2 rounded-full text-sm font-semibold text-gold-light">Get Started</button>
-                </div>
-                <button class="md:hidden flex flex-col gap-1.5" onclick="toggleMobileMenu()">
-                    <span class="w-6 h-0.5 bg-platinum"></span>
-                    <span class="w-6 h-0.5 bg-platinum"></span>
-                    <span class="w-6 h-0.5 bg-platinum"></span>
+                
+                <!-- Mobile Burger Top Right -->
+                <button class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-50 relative" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line1"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300" id="menu-line2"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line3"></span>
                 </button>
             </div>
-            <div id="mobileMenu" class="fixed inset-0 top-16 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-start pt-10 gap-6 text-xl md:hidden">
-                <a href="intelhub.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Intel</a>
-                <a href="solutions.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Solutions</a>
-                <a href="collective.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Collective</a>
-                <a href="connect.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Connect</a>
-                <a href="ncii-support.html" class="text-platinum/70 text-base">NCII Support</a>
-                <a href="job_market_toolkit.html" class="text-platinum/70 text-base">Job Toolkit</a>
-                <a href="hash_explainer.html" class="text-platinum/70 text-base">Hash Explainer</a>
-                <a href="scamdetector.html" class="text-platinum/70 text-base">Scam Detector</a>
-                <button class="btn-primary px-8 py-3 rounded-full mt-4">Get Started</button>
-            </div>
-        </nav>
-
-        <!-- Hero -->
-        <section class="hero min-h-screen flex items-center relative pt-24 pb-12 px-4 md:px-6">
-            <div class="hero-inner max-w-[1400px] mx-auto w-full">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div class="hero-content text-center lg:text-left space-y-6 scroll-reveal">
-                        <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 py-1.5 rounded-full mx-auto lg:mx-0 border border-gold/20">
-                            <div class="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
-                            <span class="text-xs font-accent tracking-wider text-gold-light">No subscriptions. Real results.</span>
-                        </div>
-                        <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-near-white">
-                            Search Playbook
-                        </h1>
-                        <p class="font-body text-base md:text-lg text-platinum/70 max-w-lg mx-auto lg:mx-0">
-                            Decentralized network of experts protecting your digital presence across South Africa and beyond.
-                        </p>
-                        <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
-                            <button class="btn-primary px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold flex items-center gap-2 group" onclick="scrollToSection('dashboard')">
-                                See Real Impact <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                            </button>
-                            <button class="bg-white/5 backdrop-blur-sm px-6 py-3 rounded-full border border-white/10 hover:bg-white/10 transition" onclick="scrollToSection('collective')">Our method</button>
-                        </div>
-                    </div>
-
-                    <div class="card-3d p-5 md:p-6 relative scroll-reveal" id="dashboard">
-                        <div class="absolute top-0 right-0 w-24 h-24 bg-gold/10 rounded-full blur-2xl"></div>
-                        <div class="relative z-10">
-                            <div class="flex justify-between items-center mb-5">
-                                <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-gold"></div><span class="font-display text-gold">Live Impact Dashboard</span></div>
-                                <span class="text-xs text-zinc-400">Updated daily</span>
-                            </div>
-                            <div class="grid grid-cols-2 gap-4 mb-5">
-                                <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-near-white counter" data-target="1250" data-suffix="+">0</div><div class="text-xs text-zinc-400">SERP optimizations</div><div class="text-[10px] text-gold/60 mt-1">since Jan 2025</div></div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-icy-azure counter" data-target="892" data-suffix="+">0</div><div class="text-xs text-zinc-400">Harmful takedowns</div><div class="text-[10px] text-gold/60 mt-1">NCII & defamation</div></div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-forged-copper counter" data-target="98" data-suffix="%">0</div><div class="text-xs text-zinc-400">Reputation restored</div><div class="text-[10px] text-gold/60 mt-1">avg. success rate</div></div>
-                                <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-warm-yellow">Active</div><div class="text-xs text-zinc-400">24/7 monitoring</div><div class="text-[10px] text-gold/60 mt-1">for all clients</div></div>
-                            </div>
-                            <div class="bg-black/30 rounded-xl p-3 border-l-2 border-gold">
-                                <div class="text-xs text-zinc-400 uppercase tracking-wider">Latest real activity</div>
-                                <div class="text-sm text-platinum mt-1">Visibility optimized for 3 protected profiles in Gauteng & Western Cape</div>
-                                <div class="flex justify-between items-center mt-2"><span class="text-xs text-zinc-500">Just now</span><span class="text-[10px] text-gold/70">✓ live sync</span></div>
-                            </div>
-                            <p class="text-[11px] text-zinc-500 text-center mt-4 border-t border-white/10 pt-3">*Figures based on actual client work (2025–2026) across South Africa. No fluff, just real data.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Peace of mind -->
-        <section class="py-12 md:py-20 px-4 md:px-6">
-            <div class="max-w-[1400px] mx-auto">
-                <div class="padding-block-3d scroll-reveal">
-                    <div class="flex flex-col lg:flex-row gap-8 items-center">
-                        <div class="flex-1 text-center lg:text-left">
-                            <h2 class="font-display text-2xl md:text-3xl text-near-white mb-3">Digital peace of mind, without the headache</h2>
-                            <p class="font-body text-platinum/70 leading-relaxed">Modern technology was supposed to make life easier, but for many it became a second job. We exist to break that cycle. You focus on your work, family, or business — we handle the invisible complexity.</p>
-                        </div>
-                        <div class="flex-shrink-0 w-24 h-24 rounded-full bg-gold/10 flex items-center justify-center border border-gold/30">
-                            <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Features -->
-        <section class="py-12 md:py-20 px-4 md:px-6">
-            <div class="max-w-[1400px] mx-auto">
-                <div class="text-center mb-12 scroll-reveal">
-                    <h2 class="font-display text-3xl md:text-4xl text-near-white">What we actually do for you</h2>
-                    <p class="font-body text-platinum/60 max-w-2xl mx-auto mt-3">Plain English. No jargon.</p>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="card-3d p-6 scroll-reveal">
-                        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4"><svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
-                        <h3 class="font-display text-xl text-near-white mb-2">Remove harmful search results</h3>
-                        <p class="font-body text-sm text-platinum/60">We find and suppress negative links, fake reviews, or outdated content that hurts your name or business.</p>
-                    </div>
-                    <div class="card-3d p-6 scroll-reveal">
-                        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4"><svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
-                        <h3 class="font-display text-xl text-near-white mb-2">Set‑and‑forget visibility growth</h3>
-                        <p class="font-body text-sm text-platinum/60">Your online presence grows on autopilot. We handle SEO, local listings, and authority building while you sleep.</p>
-                    </div>
-                    <div class="card-3d p-6 scroll-reveal">
-                        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4"><svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg></div>
-                        <h3 class="font-display text-xl text-near-white mb-2">Protect your private images</h3>
-                        <p class="font-body text-sm text-platinum/60">Specialised NCII support (non-consensual intimate images) – we guide you through reporting and removal under South African law.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Collective -->
-        <section id="collective" class="py-12 md:py-20 px-4 md:px-6 bg-void-black/40">
-            <div class="max-w-[1400px] mx-auto">
-                <div class="grid lg:grid-cols-2 gap-10 items-center">
-                    <div class="scroll-reveal order-2 lg:order-1">
-                        <div class="relative rounded-2xl overflow-hidden border border-gold/30 shadow-2xl">
-                            <img src="https://ik.imagekit.io/wemustcreate/About%20max%20.webp?updatedAt=1777882596972" alt="Founder" class="w-full object-cover aspect-[4/5]">
-                            <div class="absolute inset-0 bg-gradient-to-t from-void-black via-transparent to-transparent"></div>
-                        </div>
-                    </div>
-                    <div class="scroll-reveal order-1 lg:order-2 space-y-5">
-                        <div class="inline-flex items-center gap-2 bg-gold/10 px-3 py-1 rounded-full"><span class="text-gold text-xs font-accent">Decentralised collective</span></div>
-                        <h2 class="font-display text-3xl md:text-4xl text-near-white">We are a network of specialists, not a big agency</h2>
-                        <p class="font-body text-platinum/70 leading-relaxed">Search Playbook is a small, trusted group of experts who actually do the work. No account managers, no middlemen. You talk directly to the people who execute your strategy.</p>
-                        <button id="bioToggle" class="text-gold font-semibold flex items-center gap-2 hover:gap-3 transition-all">Read founder's story <svg id="bioIcon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
-                        <div id="bioContent" class="hidden mt-3 p-4 bg-black/30 rounded-xl border-l-2 border-gold">
-                            <p class="text-sm text-platinum/70 italic">"Every day, thousands of people go online for the first time to search for people, products, and places." – This mantra drives everything we do. Founded in 2023, using AI to bridge the gap between technical complexity and real human needs. We believe in low-maintenance, high‑impact solutions. No subscriptions, just honest work.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CTA -->
-        <section class="py-16 md:py-28 px-4 md:px-6">
-            <div class="max-w-[1200px] mx-auto">
-                <div class="padding-block-3d text-center scroll-reveal">
-                    <h2 class="font-display text-3xl md:text-5xl text-near-white mb-4">Ready to take back your time?</h2>
-                    <p class="font-body text-platinum/70 max-w-2xl mx-auto mb-8">One simple conversation. No technical knowledge required. We do the heavy lifting.</p>
-                    <div class="flex flex-wrap gap-4 justify-center">
-                        <button class="btn-primary px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-gold-light">Start free chat →</button>
-                        <button class="bg-white/5 backdrop-blur-sm px-8 py-3 rounded-full border border-white/10 hover:bg-white/10">See real case studies</button>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="py-10 px-4 md:px-6 border-t border-white/10">
-            <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between gap-6 text-sm">
-                <div class="flex flex-wrap gap-6">
-                    <a href="intelhub.html" class="text-zinc-400 hover:text-gold">Intel</a>
-                    <a href="solutions.html" class="text-zinc-400 hover:text-gold">Solutions</a>
-                    <a href="collective.html" class="text-zinc-400 hover:text-gold">Collective</a>
-                    <a href="connect.html" class="text-zinc-400 hover:text-gold">Connect</a>
-                    <a href="ncii-support.html" class="text-zinc-400 hover:text-gold">NCII Support</a>
-                    <a href="job_market_toolkit.html" class="text-zinc-400 hover:text-gold">Job Toolkit</a>
-                    <a href="hash_explainer.html" class="text-zinc-400 hover:text-gold">Hash Explainer</a>
-                    <a href="scamdetector.html" class="text-zinc-400 hover:text-gold">Scam Detector</a>
-                </div>
-                <div class="text-zinc-500 text-xs flex gap-4">
-                    <span>© Search Playbook — WeMustCreate 2026</span>
-                    <a href="sitemap.xml" class="underline hover:text-gold">Sitemap</a>
-                </div>
-            </div>
-        </footer>
-
-        <!-- Widget -->
-        <div id="local-guides-widget">
-            <a href="https://www.localguides-ranking.com/profile/151119/" target="_blank" rel="noopener" title="Google Local Guides Ranking - imLlew">
-                <img src="https://www.localguides-ranking.com/badge/151119/en/default.svg" alt="Google Local Guides Ranking Badge of imLlew">
-            </a>
         </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div class="md:hidden fixed inset-0 top-0 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full mobile-menu-panel flex flex-col" id="mobileMenu">
+            <div class="px-6 pt-20 pb-6 border-b border-white/5">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-lg text-near-white">SEARCH PLAYBOOK</span>
+                        <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
+                    </div>
+                </div>
+                <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital Partner</p>
+            </div>
+            
+            <div class="flex-1 flex flex-col justify-center px-8 space-y-2">
+                <a href="#solutions" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                    <div>
+                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-forged-copper transition-colors">Solutions</span>
+                        <span class="block text-xs text-zinc-500 font-body mt-0.5">What we do for you</span>
+                    </div>
+                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-forged-copper transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#about" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                    <div>
+                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-warm-yellow transition-colors">About</span>
+                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Who we are</span>
+                    </div>
+                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-warm-yellow transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <a href="05-connect.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                    <div>
+                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-mafia-gold transition-colors">Connect</span>
+                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Get in touch</span>
+                    </div>
+                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-mafia-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+            
+            <div class="px-8 pb-8 pt-4">
+                <a href="05-connect.html" class="btn-glass w-full flex items-center justify-center px-8 py-4 rounded-full font-body font-bold text-base text-gold-300" onclick="toggleMobileMenu()">
+                    Get Started
+                </a>
+                <p class="text-center text-[10px] text-zinc-600 font-body mt-4">Focus on the hustle. We'll focus on the noise.</p>
+            </div>
+        </div>
+    </nav>
 
-    </div><!-- /#content-wrapper -->
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-screen flex items-center justify-center relative pt-24 pb-12 md:pt-20 overflow-hidden">
+        <div class="hero-overlay"></div>
+        
+        <div class="max-w-[1400px] mx-auto w-full relative z-10 px-4 md:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                <!-- Hero Text -->
+                <div class="space-y-6 md:space-y-8 animate-slide-up text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 glass px-3 py-1.5 md:px-4 md:py-2 rounded-full mx-auto lg:mx-0">
+                        <div class="w-2 h-2 rounded-full bg-gold-300 animate-pulse"></div>
+                        <span class="font-body text-[10px] md:text-xs text-gold-300 tracking-wider uppercase">AI-Augmented Collaboration</span>
+                    </div>
+                    
+                    <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-near-white">
+                        Clear the noise.<br/>
+                        <span class="gradient-text-gold text-glow">Focus on your hustle.</span>
+                    </h1>
+                    
+                    <p class="font-body font-light text-base md:text-lg lg:text-xl text-platinum/70 max-w-lg leading-relaxed mx-auto lg:mx-0">
+                        We handle the invisible complexity of your digital presence. No subscriptions. No tech headache. Just real results that let you own what AI says about you — forever.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-3 md:gap-4 justify-center lg:justify-start">
+                        <a href="05-connect.html" class="btn-glass px-6 py-3 md:px-8 md:py-4 rounded-full font-body font-semibold text-sm md:text-base text-mafia-gold flex items-center gap-2 group cta-pill">
+                            <span>R750 Free DPA Audit →</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        <a href="#solutions" class="glass px-6 py-3 md:px-8 md:py-4 rounded-full font-body font-normal text-sm md:text-base text-platinum hover:bg-white/5 transition-all">
+                            See How It Works
+                        </a>
+                    </div>
+                    
+                    <!-- Trust Badges -->
+                    <div class="flex items-center gap-4 pt-4 justify-center lg:justify-start">
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span class="text-xs text-platinum/60">No subscriptions</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span class="text-xs text-platinum/60">Built for SA</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <svg class="w-5 h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span class="text-xs text-platinum/60">Set-and-forget</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Dashboard -->
+                <div class="relative animate-float mt-8 lg:mt-0">
+                    <div class="glass-gold rounded-2xl md:rounded-3xl p-6 md:p-8 relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-gold-300/20 to-transparent rounded-full blur-3xl"></div>
+                        
+                        <div class="space-y-4 md:space-y-6 relative z-10">
+                            <div class="flex items-center justify-between mb-4 md:mb-6">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-2.5 h-2.5 rounded-full bg-gold-300"></div>
+                                    <span class="font-display text-sm md:text-lg text-gold-300">Live Status</span>
+                                </div>
+                                <div class="text-[10px] md:text-xs text-zinc-500 font-body">Updated daily</div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3 md:gap-4">
+                                <div class="glass rounded-xl p-3 md:p-4">
+                                    <div class="text-xl md:text-2xl font-display font-bold text-near-white counter" data-target="1200">0</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">Visibility fixes</div>
+                                </div>
+                                <div class="glass rounded-xl p-3 md:p-4">
+                                    <div class="text-xl md:text-2xl font-display font-bold text-icy-azure counter" data-target="850">0</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">Harmful content removed</div>
+                                </div>
+                                <div class="glass rounded-xl p-3 md:p-4">
+                                    <div class="text-xl md:text-2xl font-display font-bold text-forged-copper counter" data-target="98">0</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">% Success rate</div>
+                                </div>
+                                <div class="glass rounded-xl p-3 md:p-4">
+                                    <div class="text-xl md:text-2xl font-display font-bold text-warm-yellow">Active</div>
+                                    <div class="text-[10px] md:text-xs text-zinc-500 mt-1">24/7 monitoring</div>
+                                </div>
+                            </div>
+                            
+                            <div class="glass rounded-xl p-3 md:p-4 border-l-2 border-mafia-gold">
+                                <div class="text-[10px] md:text-xs text-zinc-500 font-body uppercase tracking-wider">Latest activity</div>
+                                <div class="font-body text-xs md:text-sm text-platinum mt-1 md:mt-2">Visibility optimized for 3 protected profiles in Gauteng & Western Cape</div>
+                                <div class="text-[10px] md:text-xs text-zinc-500 mt-1 md:mt-2">Just now ✓</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Floating Badge -->
+                    <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 glass-gold rounded-xl md:rounded-2xl p-3 md:p-4 animate-float-slow max-w-[200px] md:max-w-none">
+                        <div class="flex items-center gap-2 md:gap-3">
+                            <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-mafia-gold/20 flex items-center justify-center flex-shrink-0">
+                                <svg class="w-4 h-4 md:w-5 md:h-5 text-gold-300" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            </div>
+                            <div>
+                                <div class="text-xs md:text-sm font-semibold text-near-white">Verification complete</div>
+                                <div class="text-[10px] md:text-xs text-zinc-500">Profile secured</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- ════════════════════════════════════════════════════════
-         THREE.JS WEBGL GLOBE
-         ════════════════════════════════════════════════════════ -->
-    <script type="importmap">
-    {
-        "imports": {
-            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
-            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
-        }
-    }
-    </script>
-    <script type="module">
-        import * as THREE from 'three';
-        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    <!-- Solutions Grid -->
+    <section id="solutions" class="py-16 md:py-32 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="text-center mb-12 md:mb-20 scroll-reveal">
+                <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-near-white mb-4">
+                    What we <span class="gradient-text-gold">actually do</span> for you
+                </h2>
+                <p class="font-body font-light text-base md:text-lg text-platinum/70 max-w-2xl mx-auto">
+                    Plain English. No jargon. Just results you can measure.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Remove harmful results -->
+                <div class="glass-azure rounded-2xl p-6 md:p-8 glass-hover card-shine scroll-reveal group cursor-pointer">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-icy-azure/10 flex items-center justify-center mb-4 md:mb-6 text-icy-azure">
+                        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl md:text-2xl text-near-white mb-2 md:mb-3 group-hover:text-icy-azure transition-colors">Remove harmful results</h3>
+                    <p class="font-body text-sm md:text-base text-platinum/60 mb-4 md:mb-6 leading-relaxed">
+                        We find and suppress negative links, fake reviews, or outdated content that hurts your name or business. Legal, ethical, effective.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-platinum/50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>Content suppression</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-platinum/50 mt-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>Review dispute resolution</span>
+                    </div>
+                </div>
+                
+                <!-- Set-and-forget visibility -->
+                <div class="glass-azure rounded-2xl p-6 md:p-8 glass-hover card-shine scroll-reveal group cursor-pointer" style="transition-delay: 0.1s;">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-icy-azure/10 flex items-center justify-center mb-4 md:mb-6 text-icy-azure">
+                        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl md:text-2xl text-near-white mb-2 md:mb-3">Set-and-forget visibility</h3>
+                    <p class="font-body text-sm md:text-base text-platinum/60 mb-4 md:mb-6 leading-relaxed">
+                        Your online presence grows on autopilot. We handle SEO, local listings, and authority building while you sleep.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-platinum/50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>Local SEO dominance</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-platinum/50 mt-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>Automated authority building</span>
+                    </div>
+                </div>
+                
+                <!-- Protect private images -->
+                <div class="glass-azure rounded-2xl p-6 md:p-8 glass-hover card-shine scroll-reveal group cursor-pointer" style="transition-delay: 0.2s;">
+                    <div class="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-icy-azure/10 flex items-center justify-center mb-4 md:mb-6 text-icy-azure">
+                        <svg class="w-6 h-6 md:w-7 md:h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                    </div>
+                    <h3 class="font-display text-xl md:text-2xl text-near-white mb-2 md:mb-3">Protect your private images</h3>
+                    <p class="font-body text-sm md:text-base text-platinum/60 mb-4 md:mb-6 leading-relaxed">
+                        Specialised NCII support (non-consensual intimate images). We guide you through reporting and removal under South African law.
+                    </p>
+                    <div class="flex items-center gap-2 text-xs text-platinum/50">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>POPIA-compliant removal</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs text-platinum/50 mt-1">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>Cybercrimes Act support</span>
+                    </div>
+                </div>
+                
+                <!-- Free from tech debt -->
+                <div class="glass-copper rounded-2xl p-6 md:p-8 glass-hover card-shine scroll-reveal group cursor-pointer lg:col-span-3">
+                    <div class="flex flex-col lg:flex-row gap-6 items-center">
+                        <div class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-forged-copper/10 flex items-center justify-center flex-shrink-0 border border-forged-copper/20">
+                            <svg class="w-8 h-8 md:w-10 md:h-10 text-forged-copper" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <h3 class="font-display font-bold text-2xl md:text-3xl text-near-white mb-3 md:mb-4">Free you from tech debt</h3>
+                            <p class="font-body font-light text-base md:text-lg text-platinum/70 leading-relaxed">
+                                Modern technology was supposed to make life easier, but for many it became a second job. We exist to break that cycle. You focus on your work, family, or business — we handle the invisible complexity.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const container = document.getElementById('globe-canvas-container');
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-32 px-4 md:px-6 lg:px-8 relative z-10 bg-void-black/50">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
+                <!-- About Image -->
+                <div class="scroll-reveal relative group order-2 lg:order-1">
+                    <div class="absolute inset-0 bg-mafia-gold/20 rounded-2xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/5]">
+                        <img src="https://ik.imagekit.io/wemustcreate/About%20max%20.webp?updatedAt=1777882596972" alt="Llewellyn O'Shea" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-void-black via-transparent to-transparent"></div>
+                    </div>
+                </div>
+                
+                <div class="space-y-6 md:space-y-8 scroll-reveal order-1 lg:order-2">
+                    <div class="inline-flex items-center gap-2 glass-gold px-3 py-1.5 md:px-4 md:py-2 rounded-full">
+                        <svg class="w-4 h-4 text-mafia-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.287 1.057l-3.456 2.929a1 1 0 01-.648.228h-4.538a1 1 0 01-.648-.228L5.17 13.13a1 1 0 01-.287-1.057l1.738-5.42-1.233-.616a1 1 0 01.894-1.79l1.599.8L12 4.323V3a1 1 0 011-1z" clip-rule="evenodd"/></svg>
+                        <span class="font-body text-xs text-gold-300 tracking-wider uppercase">Who we are</span>
+                    </div>
+                    
+                    <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-near-white leading-tight">
+                        Decentralised collective of <span class="gradient-text-gold">experts</span>
+                    </h2>
+                    
+                    <p class="font-body font-light text-base md:text-lg text-platinum/70 leading-relaxed">
+                        Search Playbook is a small, trusted group of experts who actually do the work. No account managers. No middlemen. You talk directly to the people who execute your strategy.
+                    </p>
+                    
+                    <!-- Collapsible Bio Block -->
+                    <div class="mt-6 md:mt-8">
+                        <button id="bioToggle" class="flex items-center gap-2 text-mafia-gold font-body font-semibold hover:text-gold-300 transition-colors w-full text-left">
+                            <span>Read founder's story</span>
+                            <svg id="bioIcon" class="w-5 h-5 rotate-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </button>
+                        
+                        <div id="bioContent" class="collapsible-content mt-4 space-y-4">
+                            <div class="glass-gold rounded-xl p-5 md:p-6 border-l-2 border-mafia-gold">
+                                <h4 class="font-display font-bold text-lg md:text-xl text-near-white mb-2">The Mission</h4>
+                                <p class="font-body text-sm md:text-base text-platinum/70 italic mb-4">
+                                    "Every day, thousands of people go online for the first time to search for people, products, and places."
+                                </p>
+                                <p class="font-body text-xs md:text-sm text-platinum/60 leading-relaxed mb-4">
+                                    This mantra drives everything we do. Founded in 2023, using AI to bridge the gap between technical complexity and real human needs. We believe in low-maintenance, high-impact solutions. No subscriptions, just honest work.
+                                </p>
+                                <p class="font-body text-xs md:text-sm text-platinum/60 leading-relaxed">
+                                    My work is built on Set-and-Forget solutions. I provide free, low-budget, cross-platform strategies with no monthly subscription traps. My mission is to build the national infrastructure required to make the South African community un-scammable.
+                                </p>
+                                
+                                <div class="mt-4 md:mt-6 flex flex-wrap gap-2 md:gap-3">
+                                    <div class="flex items-center gap-2 glass px-2 py-1 md:px-3 md:py-1.5 rounded-full border border-mafia-gold/20">
+                                        <svg class="w-3 h-3 md:w-4 md:h-4 text-mafia-gold" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                                        <span class="text-[10px] md:text-xs text-gold-300">Gold LPO Certified</span>
+                                    </div>
+                                    <div class="flex items-center gap-2 glass px-2 py-1 md:px-3 md:py-1.5 rounded-full border border-icy-azure/20">
+                                        <svg class="w-3 h-3 md:w-4 md:h-4 text-icy-azure" fill="currentColor" viewBox="0 0 20 20"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"/></svg>
+                                        <span class="text-[10px] md:text-xs text-icy-azure">AI Fluency Framework</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        // Scene with TRANSPARENT background
-        const scene = new THREE.Scene();
-        // NO scene.background set — lets CSS #09090B show through
+                    <div class="grid sm:grid-cols-2 gap-4 md:gap-6 mt-6 md:mt-8">
+                        <div class="glass rounded-xl p-5 md:p-6 hover:border-mafia-gold/30 transition-colors">
+                            <div class="text-xl md:text-2xl text-mafia-gold mb-2">
+                                <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
+                            </div>
+                            <h4 class="font-display font-semibold text-lg md:text-xl text-near-white mb-1 md:mb-2">Expert collective</h4>
+                            <p class="font-body text-xs md:text-sm text-platinum/60">Vetted professionals with decades of experience in search, intelligence, and business growth.</p>
+                        </div>
+                        
+                        <div class="glass rounded-xl p-5 md:p-6 hover:border-mafia-gold/30 transition-colors">
+                            <div class="text-xl md:text-2xl text-mafia-gold mb-2">
+                                <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
+                            </div>
+                            <h4 class="font-display font-semibold text-lg md:text-xl text-near-white mb-1 md:mb-2">No middle men</h4>
+                            <p class="font-body text-xs md:text-sm text-platinum/60">You work directly with the playbook executors, not account managers who hide behind technical jargon.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        const camera = new THREE.PerspectiveCamera(25, window.innerWidth / window.innerHeight, 0.1, 100);
-        camera.position.set(4.5, 2, 3);
+    <!-- Scroll-Triggered Trust Band -->
+    <div id="local-guides-trust" class="trust-band relative bg-gradient-to-r from-mafia-gold/10 to-forged-copper/10 border-y border-white/5 py-4 md:py-6 text-center opacity-0 transform translate-y-4 transition-all duration-700" aria-hidden="true">
+        <div class="max-w-[1400px] mx-auto px-4 flex items-center justify-center gap-3 md:gap-4">
+            <img src="https://www.localguides-ranking.com/badge/151119/en/default.svg" alt="Local Guides Verified" class="h-8 md:h-10" loading="lazy">
+            <strong class="text-sm md:text-base text-near-white">Verified Local Optimiser · Built for South Africans · AI-Augmented Collaboration</strong>
+        </div>
+    </div>
 
-        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        container.appendChild(renderer.domElement);
+    <!-- Final CTA -->
+    <section class="py-16 md:py-32 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="glass-gold rounded-2xl md:rounded-3xl p-8 md:p-12 lg:p-20 relative overflow-hidden scroll-reveal">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gold-300/10 via-transparent to-transparent"></div>
+                <div class="absolute -top-32 -right-32 w-48 h-48 md:w-64 md:h-64 bg-gold-300/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-32 -left-32 w-48 h-48 md:w-64 md:h-64 bg-icy-azure/10 rounded-full blur-3xl"></div>
+                
+                <div class="relative z-10 text-center">
+                    <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-6xl text-near-white mb-4 md:mb-6 scroll-reveal">
+                        Ready to <span class="gradient-text-gold">take control</span> of your digital presence?
+                    </h2>
+                    <p class="font-body font-light text-base md:text-lg lg:text-xl text-platinum/70 max-w-2xl mx-auto mb-8 md:mb-12 scroll-reveal">
+                        One conversation. Zero tech headache. We handle the rest. Start with a free audit — no obligation, no pressure.
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-3 md:gap-4 scroll-reveal">
+                        <a href="05-connect.html" class="btn-glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-bold text-base md:text-lg text-gold-300 flex items-center gap-2 md:gap-3 group cta-pill">
+                            <span>R750 Free DPA Audit →</span>
+                            <svg class="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        <a href="#solutions" class="glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-semibold text-base md:text-lg text-platinum hover:bg-white/5 transition-all">
+                            See case studies
+                        </a>
+                    </div>
+                    
+                    <p class="text-xs text-zinc-500 font-body mt-6 md:mt-8">
+                        <svg class="w-4 h-4 inline text-mafia-gold mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Takes 5 minutes • No tech skills needed • We do the rest
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        // Sun
-        const sun = new THREE.DirectionalLight('#ffffff', 2.5);
-        sun.position.set(0, 0, 3);
-        scene.add(sun);
+    <!-- Footer -->
+    <footer id="connect" class="py-12 md:py-20 px-4 md:px-6 lg:px-8 border-t border-white/5 bg-void-black/80 backdrop-blur-sm relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <!-- FAQ Accordion -->
+            <div class="mb-10 md:mb-16">
+                <h3 class="font-display font-bold text-xl md:text-2xl text-near-white mb-4 md:mb-6 text-center">Frequently asked</h3>
+                <div class="max-w-3xl mx-auto space-y-3">
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>How do I start without tech skills?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            Answer 5 simple questions. We handle audits, setup, and monitoring. Takes 2 minutes.
+                        </div>
+                    </details>
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>Do I pay monthly?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            No. Set-and-forget systems. One-time setup, transparent handover, zero subscriptions.
+                        </div>
+                    </details>
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>What happens to harmful content?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            We suppress it legally, replace it with verified assets, and monitor daily. NCII reports follow SA POPIA & ICASA guidelines.
+                        </div>
+                    </details>
+                </div>
+            </div>
+            
+            <!-- Footer Core -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-16">
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Platform</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="#solutions" class="font-body text-xs md:text-sm text-platinum/50 hover:text-forged-copper transition-colors">Solutions</a></li>
+                        <li><a href="#about" class="font-body text-xs md:text-sm text-platinum/50 hover:text-warm-yellow transition-colors">About</a></li>
+                        <li><a href="05-connect.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-mafia-gold transition-colors">Connect</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Services</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="#solutions" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Remove harmful results</a></li>
+                        <li><a href="#solutions" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Set-and-forget visibility</a></li>
+                        <li><a href="#solutions" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Protect private images</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Legal</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">POPIA Compliance</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Connect</h4>
+                    <div class="flex items-center gap-3 mb-4">
+                        <a href="https://www.linkedin.com/in/llewellynoshea/" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/searchplaybook/" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://wa.me/27695326613" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                    <p class="text-[10px] md:text-xs text-zinc-500 font-body">Johannesburg, GP, South Africa</p>
+                </div>
+            </div>
+            
+            <!-- Footer Bottom -->
+            <div class="pt-6 md:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+                <div class="text-[10px] md:text-xs text-zinc-500 font-body text-center md:text-left">
+                    © 2026 SEARCH PLAYBOOK — WEMUSTCREATE. ALL RIGHTS RESERVED.
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gold-300 animate-pulse"></div>
+                    <span class="text-[10px] md:text-xs text-zinc-500 font-body">Mzansi's Digital Partner</span>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-        // Textures from three.js repo (public, permanent)
-        const textureLoader = new THREE.TextureLoader();
+    <!-- Credentials Carousel (below footer) -->
+    <div class="creds-carousel relative py-6 overflow-hidden bg-void-black border-t border-white/5">
+        <div class="creds-track flex gap-6 md:gap-8 w-max animate-[marquee_45s_linear_infinite] hover:[animation-play-state:paused]">
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://storage.googleapis.com/verified-storage/badge/45019689227036.png" alt="Gold LPO" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">Gold LPO Certification</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://images.credly.com/images/3071378d-191b-410a-861c-760777977413/Fortinet_Badge_Foundational.png" alt="Fortinet" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">Threat Landscape 3.0</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://verify.skilljar.com/favicon.ico" alt="Anthropic" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">AI Fluency Framework</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="Google" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">Google Analytics</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="Google" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">GBP Specialist</span>
+            </div>
+            <!-- Duplicate for seamless loop -->
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://storage.googleapis.com/verified-storage/badge/45019689227036.png" alt="Gold LPO" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">Gold LPO Certification</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://images.credly.com/images/3071378d-191b-410a-861c-760777977413/Fortinet_Badge_Foundational.png" alt="Fortinet" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">Threat Landscape 3.0</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://verify.skilljar.com/favicon.ico" alt="Anthropic" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">AI Fluency Framework</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="Google" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">Google Analytics</span>
+            </div>
+            <div class="cred-item flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-2 rounded-lg whitespace-nowrap">
+                <img src="https://www.gstatic.com/images/branding/product/1x/googleg_48dp.png" alt="Google" class="w-7 h-7 rounded" loading="lazy">
+                <span class="text-sm text-platinum/70">GBP Specialist</span>
+            </div>
+        </div>
+    </div>
 
-        const dayTexture = textureLoader.load(
-            'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'
-        );
-        dayTexture.colorSpace = THREE.SRGBColorSpace;
-        dayTexture.anisotropy = 8;
+    <!-- Floating Trust Badge -->
+    <div class="trust-fab fixed bottom-6 right-6 bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm font-medium text-mafia-gold z-50 opacity-0 translate-y-8 transition-all duration-400 pointer-events-none" aria-hidden="true">
+        ✦ Collective Verified
+    </div>
 
-        const nightTexture = textureLoader.load(
-            'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_lights_2048.png'
-        );
-        nightTexture.colorSpace = THREE.SRGBColorSpace;
-        nightTexture.anisotropy = 8;
-
-        const cloudTexture = textureLoader.load(
-            'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png'
-        );
-        cloudTexture.anisotropy = 8;
-
-        // Globe
-        const sphereGeometry = new THREE.SphereGeometry(1, 64, 64);
-        const globeMaterial = new THREE.MeshStandardMaterial({
-            map: dayTexture,
-            roughnessMap: cloudTexture,
-            bumpMap: cloudTexture,
-            bumpScale: 0.05,
-            metalness: 0.1,
-            roughness: 0.6
-        });
-        globeMaterial.emissiveMap = nightTexture;
-        globeMaterial.emissive = new THREE.Color(0xffaa44);
-        globeMaterial.emissiveIntensity = 1.2;
-
-        const globe = new THREE.Mesh(sphereGeometry, globeMaterial);
-        scene.add(globe);
-
-        // Clouds
-        const cloudGeometry = new THREE.SphereGeometry(1.015, 64, 64);
-        const cloudMaterial = new THREE.MeshStandardMaterial({
-            map: cloudTexture,
-            transparent: true,
-            opacity: 0.35,
-            blending: THREE.AdditiveBlending,
-            side: THREE.DoubleSide,
-            depthWrite: false
-        });
-        const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
-        scene.add(clouds);
-
-        // Atmosphere glow (gold)
-        const atmoGeometry = new THREE.SphereGeometry(1.12, 64, 64);
-        const atmoMaterial = new THREE.ShaderMaterial({
-            transparent: true,
-            side: THREE.BackSide,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
-            uniforms: {
-                glowColor: { value: new THREE.Color('#D4AF37') },
-                viewVector: { value: camera.position }
-            },
-            vertexShader: `
-                uniform vec3 viewVector;
-                varying float intensity;
-                void main() {
-                    vec3 vNormal = normalize(normalMatrix * normal);
-                    vec3 vNormel = normalize(normalMatrix * viewVector);
-                    intensity = pow(0.6 - dot(vNormal, vNormel), 3.0);
-                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                }
-            `,
-            fragmentShader: `
-                uniform vec3 glowColor;
-                varying float intensity;
-                void main() {
-                    vec3 glow = glowColor * intensity;
-                    gl_FragColor = vec4(glow, intensity * 0.4);
-                }
-            `
-        });
-        const atmosphere = new THREE.Mesh(atmoGeometry, atmoMaterial);
-        scene.add(atmosphere);
-
-        // Stars
-        const starGeo = new THREE.BufferGeometry();
-        const starCount = 800;
-        const starPos = new Float32Array(starCount * 3);
-        for (let i = 0; i < starCount * 3; i++) {
-            starPos[i] = (Math.random() - 0.5) * 40;
-        }
-        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
-        const starMat = new THREE.PointsMaterial({ color: 0xD4AF37, size: 0.03, transparent: true, opacity: 0.4 });
-        const stars = new THREE.Points(starGeo, starMat);
-        scene.add(stars);
-
-        // Controls
-        const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableDamping = true;
-        controls.dampingFactor = 0.05;
-        controls.enableZoom = false;
-        controls.enablePan = false;
-        controls.autoRotate = false;
-        controls.minDistance = 2;
-        controls.maxDistance = 8;
-
-        // Parallax
-        let mouseX = 0, mouseY = 0;
-        document.addEventListener('mousemove', (e) => {
-            mouseX = (e.clientX / window.innerWidth - 0.5) * 0.3;
-            mouseY = (e.clientY / window.innerHeight - 0.5) * 0.15;
-        });
-
-        let scrollY = 0;
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY;
-        }, { passive: true });
-
-        // Animate
-        function animate() {
-            requestAnimationFrame(animate);
-            globe.rotation.y += 0.0008;
-            clouds.rotation.y += 0.0012;
-            stars.rotation.y += 0.0002;
-            globe.rotation.x += (mouseY - globe.rotation.x) * 0.02;
-            globe.rotation.z += (-mouseX - globe.rotation.z) * 0.02;
-            container.style.transform = `translateY(${scrollY * 0.12}px)`;
-            atmoMaterial.uniforms.viewVector.value = camera.position;
-            controls.update();
-            renderer.render(scene, camera);
-        }
-        animate();
-
-        // Resize
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-    </script>
-
-    <!-- ════════════════════════════════════════════════════════
-         ORIGINAL INTERACTION SCRIPTS
-         ════════════════════════════════════════════════════════ -->
+    <!-- Three.js Earth Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        const bg = document.getElementById('dynamicBg');
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 100;
-            const y = (e.clientY / window.innerHeight) * 100;
-            bg.style.setProperty('--x', `${x}%`);
-            bg.style.setProperty('--y', `${y}%`);
-        });
+        // ===== THREE.JS EARTH - EVENING → DAY, SOUTHERN AFRICA FOCUS =====
+        (function() {
+            const container = document.getElementById('earth-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 3.5;
 
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
-
-        const counters = document.querySelectorAll('.counter');
-        const startCounters = () => {
-            counters.forEach(counter => {
-                const target = parseInt(counter.getAttribute('data-target'));
-                const suffix = counter.getAttribute('data-suffix') || '';
-                let count = 0;
-                const update = () => {
-                    if(count < target) {
-                        count += Math.ceil(target / 50);
-                        if(count > target) count = target;
-                        counter.innerText = count + suffix;
-                        setTimeout(update, 25);
-                    } else {
-                        counter.innerText = target + suffix;
-                    }
-                };
-                update();
+            const renderer = new THREE.WebGLRenderer({ 
+                alpha: true, 
+                antialias: true,
+                powerPreference: "high-performance"
             });
-        };
-        const heroObs = new IntersectionObserver((e) => { if(e[0].isIntersecting) { startCounters(); heroObs.disconnect(); } }, { threshold: 0.5 });
-        heroObs.observe(document.getElementById('dashboard'));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.innerHTML = '';
+            container.appendChild(renderer.domElement);
 
+            const textureLoader = new THREE.TextureLoader();
+            const earthGroup = new THREE.Group();
+            scene.add(earthGroup);
+
+            // EARTH - darker for evening start
+            const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
+            const earthMaterial = new THREE.MeshPhongMaterial({
+                map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'),
+                specularMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg'),
+                normalMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'),
+                shininess: 8,
+                brightness: 0.5
+            });
+            const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+            earthGroup.add(earth);
+
+            // CLOUDS - subtle
+            const cloudGeometry = new THREE.SphereGeometry(1.02, 64, 64);
+            const cloudMaterial = new THREE.MeshPhongMaterial({
+                map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png'),
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending,
+                side: THREE.DoubleSide
+            });
+            const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+            earthGroup.add(clouds);
+
+            // ATMOSPHERE - very subtle
+            const atmosphereGeometry = new THREE.SphereGeometry(1.15, 64, 64);
+            const atmosphereMaterial = new THREE.MeshPhongMaterial({
+                color: 0x4a90e2,
+                transparent: true,
+                opacity: 0.06,
+                side: THREE.BackSide,
+                blending: THREE.AdditiveBlending
+            });
+            const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+            earthGroup.add(atmosphere);
+
+            // LIGHTING - START FROM EVENING
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.2); // Very dim for evening
+            scene.add(ambientLight);
+
+            const sunLight = new THREE.DirectionalLight(0xffffff, 0.4); // Soft evening sun
+            sunLight.position.set(2, 1, 3);
+            scene.add(sunLight);
+
+            const rimLight = new THREE.DirectionalLight(0x1a3b5c, 0.2);
+            rimLight.position.set(-5, 0, -5);
+            scene.add(rimLight);
+
+            // SOUTHERN AFRICA FOCUS
+            const saLat = -30.5;
+            const saLon = 25.5;
+            const phi = (90 - saLat) * (Math.PI / 180);
+            const theta = (saLon + 180) * (Math.PI / 180);
+            earthGroup.rotation.x = phi - Math.PI/2;
+            earthGroup.rotation.y = theta;
+
+            // VERY SLOW rotation + evening → day transition
+            let time = 0;
+            const rotationSpeed = 0.00008; // Extremely slow (~125s per rotation)
+
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.05;
+
+                // Ultra-slow rotation
+                earthGroup.rotation.y += rotationSpeed;
+                clouds.rotation.y += rotationSpeed * 1.1;
+                
+                // VERY gradual evening to day transition (takes ~3-4 minutes)
+                const dayProgress = Math.min(time * 0.00008, 1);
+                const lightIntensity = 0.2 + (dayProgress * 0.4); // From 0.2 to 0.6
+                ambientLight.intensity = lightIntensity;
+                sunLight.intensity = 0.4 + (dayProgress * 0.6);
+                
+                // Subtle atmosphere pulse
+                atmosphere.material.opacity = 0.04 + Math.sin(time * 0.00015) * 0.02;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        // Mobile Menu Toggle
         function toggleMobileMenu() {
             const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('translate-x-full');
-            document.body.style.overflow = menu.classList.contains('translate-x-full') ? '' : 'hidden';
+            const line1 = document.getElementById('menu-line1');
+            const line2 = document.getElementById('menu-line2');
+            const line3 = document.getElementById('menu-line3');
+            
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                menu.classList.add('translate-x-0');
+                line1.classList.add('rotate-45', 'translate-y-2');
+                line2.classList.add('opacity-0');
+                line3.classList.add('-rotate-45', '-translate-y-2');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.classList.add('translate-x-full');
+                menu.classList.remove('translate-x-0');
+                line1.classList.remove('rotate-45', 'translate-y-2');
+                line2.classList.remove('opacity-0');
+                line3.classList.remove('-rotate-45', '-translate-y-2');
+                document.body.style.overflow = '';
+            }
         }
-        window.toggleMobileMenu = toggleMobileMenu;
 
-        function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
-        window.scrollToSection = scrollToSection;
+        // Navbar scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.remove('nav-transparent');
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.add('nav-transparent');
+                nav.classList.remove('nav-scrolled');
+            }
+        });
 
+        // Collapsible Bio
         const bioToggle = document.getElementById('bioToggle');
         const bioContent = document.getElementById('bioContent');
         const bioIcon = document.getElementById('bioIcon');
-        if(bioToggle) {
-            bioToggle.addEventListener('click', () => {
-                const isHidden = bioContent.classList.contains('hidden');
-                bioContent.classList.toggle('hidden', !isHidden);
-                bioIcon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
-            });
-        }
 
-        const nav = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            if(window.scrollY > 20) nav.classList.add('bg-void-black/90');
-            else nav.classList.remove('bg-void-black/90');
+        bioToggle?.addEventListener('click', () => {
+            bioContent.classList.toggle('open');
+            bioIcon.classList.toggle('rotated');
         });
 
-        const widget = document.getElementById('local-guides-widget');
-        const collectiveSection = document.getElementById('collective');
-        const widgetObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) widget.classList.add('visible'); });
-        }, { threshold: 0.2 });
-        if (collectiveSection) widgetObserver.observe(collectiveSection);
+        // Counter Animation
+        const counters = document.querySelectorAll('.counter');
+        const speed = 200;
+
+        const animateCounters = () => {
+            counters.forEach(counter => {
+                const updateCount = () => {
+                    const target = +counter.getAttribute('data-target');
+                    const count = +counter.innerText;
+                    const inc = target / speed;
+
+                    if (count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        counter.innerText = target;
+                        if(target === 98) counter.innerText += '%';
+                        if(target === 1200) counter.innerText += '+';
+                        if(target === 850) counter.innerText += '+';
+                    }
+                };
+                updateCount();
+            });
+        };
+
+        // Trigger counters when hero is visible
+        const heroObserver = new IntersectionObserver((entries) => {
+            if(entries[0]?.isIntersecting) {
+                animateCounters();
+                heroObserver.disconnect();
+            }
+        });
+        heroObserver.observe(document.getElementById('hero'));
+
+        // Scroll Reveal
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Trust Band scroll trigger
+        const trustBand = document.getElementById('local-guides-trust');
+        const aboutMe = document.getElementById('about');
+        const trustObserver = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                    trustBand.classList.add('opacity-100', 'translate-y-0');
+                    trustBand.classList.remove('opacity-0', 'translate-y-4');
+                }
+            },
+            { threshold: 0.5, rootMargin: '-50px' }
+        );
+        trustObserver.observe(aboutMe);
+
+        // Floating badge on scroll
+        const fab = document.querySelector('.trust-fab');
+        let lastScrollY = 0;
+        let ticking = false;
+
+        function updateFab() {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > 400 && currentScrollY < lastScrollY) {
+                fab.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                fab.classList.remove('opacity-0', 'translate-y-8', 'pointer-events-none');
+            } else {
+                fab.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+                fab.classList.add('opacity-0', 'translate-y-8', 'pointer-events-none');
+            }
+            lastScrollY = currentScrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateFab);
+                ticking = true;
+            }
+        }, { passive: true });
+
+        // CSS marquee animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes marquee {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
 </body>
 </html>
+
