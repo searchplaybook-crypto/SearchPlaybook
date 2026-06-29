@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Search Playbook — WeMustCreate | Set‑and‑Forget Digital Peace</title>
+    <meta name="description" content="Simple, set-and-forget digital privacy, reputation, and visibility. No subscriptions. Real results for South Africans.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Montserrat:wght@700;800;900&family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'gold': '#D4AF37', 'gold-light': '#F0D676', 'gold-dark': '#A08326',
+                        'near-white': '#F9F9F9', 'platinum': '#E4E4E7', 'zinc-500': '#71717A',
+                        'void-black': '#09090B', 'onyx': '#18181B',
+                        'icy-azure': '#43CFFD', 'forged-copper': '#B66E41', 'warm-yellow': '#FDBF2D'
+                    },
+                    fontFamily: { 'display': ['Montserrat', 'sans-serif'], 'body': ['Inter', 'sans-serif'], 'accent': ['Raleway', 'sans-serif'] },
+                    animation: { 'float': 'float 6s ease-in-out infinite', 'float-slow': 'float 10s ease-in-out infinite' },
+                    keyframes: { float: { '0%,100%': { transform: 'translateY(0px)' }, '50%': { transform: 'translateY(-20px)' } } }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #09090B;
+            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            color: #E4E4E7;
+        }
+        .dynamic-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; pointer-events: none;
+            background: radial-gradient(circle at var(--x, 50%) var(--y, 50%),
+                        rgba(212, 175, 55, 0.18) 0%,
+                        rgba(67, 207, 253, 0.08) 35%,
+                        rgba(182, 110, 65, 0.05) 70%,
+                        transparent 100%);
+            transition: background 0.08s linear;
+        }
+        .noise {
+            position: fixed; inset: 0; pointer-events: none; z-index: -1; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+        .card-3d {
+            background: rgba(24, 24, 27, 0.55);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            border-radius: 1.5rem;
+            transition: all 0.35s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.6), 0 0 0 1px rgba(212, 175, 55, 0.1) inset, 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+        .card-3d:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 0 30px 45px -15px black, 0 0 0 2px rgba(212, 175, 55, 0.35) inset, 0 0 35px rgba(212, 175, 55, 0.3);
+            border-color: rgba(212, 175, 55, 0.6);
+        }
+        .padding-block-3d {
+            padding: 2rem;
+            background: radial-gradient(circle at 30% 20%, rgba(212, 175, 55, 0.08), rgba(0,0,0,0.2));
+            border-radius: 2rem;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(255,255,255,0.02);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            transition: all 0.3s;
+        }
+        .padding-block-3d:hover {
+            box-shadow: 0 0 70px rgba(212, 175, 55, 0.25), inset 0 0 30px rgba(255,255,255,0.05);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+        .nav-glass {
+            background: rgba(9, 9, 11, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+        }
+        .btn-primary {
+            background: rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            transition: all 0.2s;
+        }
+        .btn-primary:hover {
+            background: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+        }
+        .scroll-reveal {
+            opacity: 0; transform: translateY(30px);
+            transition: all 0.7s ease;
+        }
+        .scroll-reveal.active {
+            opacity: 1; transform: translateY(0);
+        }
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #09090B; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+
+        /* ─── HERO + GLOBE ─── */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            overflow: hidden;
+            background: transparent;
+        }
+        .hero-inner {
+            position: relative;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 8rem 1.5rem 4rem;
+            z-index: 2;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Three.js canvas container */
+        #globe-canvas-container {
+            position: fixed;
+            top: 0;
+            right: -5vw;
+            width: 70vw;
+            height: 100vh;
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+        }
+        #globe-canvas-container.loaded {
+            opacity: 1;
+        }
+        #globe-canvas-container canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block;
+        }
+
+        /* Vignette to blend globe into background */
+        .globe-vignette {
+            position: fixed;
+            top: 0; right: 0;
+            width: 65vw; height: 100vh;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(ellipse at 75% 50%, transparent 25%, #09090B 80%);
+            opacity: 0;
+            transition: opacity 1.2s ease 0.5s;
+        }
+        .globe-vignette.loaded {
+            opacity: 1;
+        }
+
+        /* Hide on mobile/tablet */
+        @media (max-width: 1024px) {
+            #globe-canvas-container, .globe-vignette { display: none !important; }
+            .hero { background: radial-gradient(ellipse at 80% 20%, rgba(212,175,55,0.08) 0%, transparent 60%); }
+        }
+
+        /* ─── Widget ─── */
+        #local-guides-widget {
+            position: fixed; bottom: 24px; right: 24px; z-index: 100;
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transform: translateY(150%) scale(0.5); opacity: 0;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+        }
+        #local-guides-widget.visible {
+            transform: translateY(0) scale(1); opacity: 1;
+        }
+    </style>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Search Playbook",
+      "alternateName": "WeMustCreate",
+      "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
+      "logo": "https://ik.imagekit.io/wemustcreate/Shield.png",
+      "description": "Set-and-forget digital optimization, privacy, and reputation management. No subscriptions. Built for South Africa.",
+      "address": { "@type": "PostalAddress", "addressLocality": "Johannesburg", "addressCountry": "ZA" }
+    }
+    </script>
+</head>
+<body>
+    <div class="dynamic-bg" id="dynamicBg"></div>
+    <div class="noise"></div>
+
+    <!-- Three.js WebGL Globe Container -->
+    <div id="globe-canvas-container"></div>
+    <div class="globe-vignette" id="globeVignette"></div>
+
+    <!-- Nav -->
+    <nav class="nav-glass fixed top-0 left-0 w-full z-50 py-3 px-4 md:px-8">
+        <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gold/10 flex items-center justify-center overflow-hidden border border-gold/30">
+                    <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="Search Playbook Shield" class="w-full h-full object-cover">
+                </div>
+                <div>
+                    <span class="font-display font-bold text-lg tracking-tight text-near-white">SEARCH PLAYBOOK</span>
+                    <div class="text-[10px] text-zinc-400 -mt-1">WeMustCreate</div>
+                </div>
+            </div>
+            <div class="hidden md:flex gap-6 items-center">
+                <a href="intelhub.html" class="text-sm text-platinum/80 hover:text-gold transition">Intel</a>
+                <a href="solutions.html" class="text-sm text-platinum/80 hover:text-gold transition">Solutions</a>
+                <a href="collective.html" class="text-sm text-platinum/80 hover:text-gold transition">Collective</a>
+                <a href="connect.html" class="text-sm text-platinum/80 hover:text-gold transition">Connect</a>
+                <div class="relative group">
+                    <button class="text-sm text-platinum/80 hover:text-gold flex items-center gap-1">Tools ▼</button>
+                    <div class="absolute left-0 mt-2 w-48 bg-void-black/90 backdrop-blur-lg rounded-xl border border-gold/30 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-20">
+                        <a href="ncii-support.html" class="block px-4 py-2 text-sm hover:text-gold">NCII Support</a>
+                        <a href="job_market_toolkit.html" class="block px-4 py-2 text-sm hover:text-gold">Job Toolkit</a>
+                        <a href="hash_explainer.html" class="block px-4 py-2 text-sm hover:text-gold">Hash Explainer</a>
+                        <a href="scamdetector.html" class="block px-4 py-2 text-sm hover:text-gold">Scam Detector</a>
+                    </div>
+                </div>
+                <button class="btn-primary px-5 py-2 rounded-full text-sm font-semibold text-gold-light">Get Started</button>
+            </div>
+            <button class="md:hidden flex flex-col gap-1.5" onclick="toggleMobileMenu()">
+                <span class="w-6 h-0.5 bg-platinum"></span>
+                <span class="w-6 h-0.5 bg-platinum"></span>
+                <span class="w-6 h-0.5 bg-platinum"></span>
+            </button>
+        </div>
+        <div id="mobileMenu" class="fixed inset-0 top-16 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col items-center justify-start pt-10 gap-6 text-xl md:hidden">
+            <a href="intelhub.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Intel</a>
+            <a href="solutions.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Solutions</a>
+            <a href="collective.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Collective</a>
+            <a href="connect.html" class="text-platinum hover:text-gold" onclick="toggleMobileMenu()">Connect</a>
+            <a href="ncii-support.html" class="text-platinum/70 text-base">NCII Support</a>
+            <a href="job_market_toolkit.html" class="text-platinum/70 text-base">Job Toolkit</a>
+            <a href="hash_explainer.html" class="text-platinum/70 text-base">Hash Explainer</a>
+            <a href="scamdetector.html" class="text-platinum/70 text-base">Scam Detector</a>
+            <button class="btn-primary px-8 py-3 rounded-full mt-4">Get Started</button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero min-h-screen flex items-center relative pt-24 pb-12 px-4 md:px-6">
+        <div class="hero-inner max-w-[1400px] mx-auto w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="hero-content text-center lg:text-left space-y-6 scroll-reveal">
+                    <div class="inline-flex items-center gap-2 bg-white/5 backdrop-blur-sm px-3 py-1.5 rounded-full mx-auto lg:mx-0 border border-gold/20">
+                        <div class="w-2 h-2 rounded-full bg-gold animate-pulse"></div>
+                        <span class="text-xs font-accent tracking-wider text-gold-light">No subscriptions. Real results.</span>
+                    </div>
+                    <h1 class="font-display font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-near-white">
+                        Search Playbook
+                    </h1>
+                    <p class="font-body text-base md:text-lg text-platinum/70 max-w-lg mx-auto lg:mx-0">
+                        Decentralized network of experts protecting your digital presence across South Africa and beyond.
+                    </p>
+                    <div class="flex flex-wrap gap-4 justify-center lg:justify-start">
+                        <button class="btn-primary px-6 py-3 md:px-8 md:py-4 rounded-full font-semibold flex items-center gap-2 group" onclick="scrollToSection('dashboard')">
+                            See Real Impact <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </button>
+                        <button class="bg-white/5 backdrop-blur-sm px-6 py-3 rounded-full border border-white/10 hover:bg-white/10 transition" onclick="scrollToSection('collective')">Our method</button>
+                    </div>
+                </div>
+
+                <div class="card-3d p-5 md:p-6 relative scroll-reveal" id="dashboard">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-gold/10 rounded-full blur-2xl"></div>
+                    <div class="relative z-10">
+                        <div class="flex justify-between items-center mb-5">
+                            <div class="flex items-center gap-2"><div class="w-2 h-2 rounded-full bg-gold"></div><span class="font-display text-gold">Live Impact Dashboard</span></div>
+                            <span class="text-xs text-zinc-400">Updated daily</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 mb-5">
+                            <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-near-white counter" data-target="1250" data-suffix="+">0</div><div class="text-xs text-zinc-400">SERP optimizations</div><div class="text-[10px] text-gold/60 mt-1">since Jan 2025</div></div>
+                            <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-icy-azure counter" data-target="892" data-suffix="+">0</div><div class="text-xs text-zinc-400">Harmful takedowns</div><div class="text-[10px] text-gold/60 mt-1">NCII & defamation</div></div>
+                            <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-forged-copper counter" data-target="98" data-suffix="%">0</div><div class="text-xs text-zinc-400">Reputation restored</div><div class="text-[10px] text-gold/60 mt-1">avg. success rate</div></div>
+                            <div class="bg-black/30 rounded-xl p-3 border border-white/5"><div class="text-2xl font-display font-bold text-warm-yellow">Active</div><div class="text-xs text-zinc-400">24/7 monitoring</div><div class="text-[10px] text-gold/60 mt-1">for all clients</div></div>
+                        </div>
+                        <div class="bg-black/30 rounded-xl p-3 border-l-2 border-gold">
+                            <div class="text-xs text-zinc-400 uppercase tracking-wider">Latest real activity</div>
+                            <div class="text-sm text-platinum mt-1">Visibility optimized for 3 protected profiles in Gauteng & Western Cape</div>
+                            <div class="flex justify-between items-center mt-2"><span class="text-xs text-zinc-500">Just now</span><span class="text-[10px] text-gold/70">✓ live sync</span></div>
+                        </div>
+                        <p class="text-[11px] text-zinc-500 text-center mt-4 border-t border-white/10 pt-3">*Figures based on actual client work (2025–2026) across South Africa. No fluff, just real data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Peace of mind -->
+    <section class="py-12 md:py-20 px-4 md:px-6">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="padding-block-3d scroll-reveal">
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <div class="flex-1 text-center lg:text-left">
+                        <h2 class="font-display text-2xl md:text-3xl text-near-white mb-3">Digital peace of mind, without the headache</h2>
+                        <p class="font-body text-platinum/70 leading-relaxed">Modern technology was supposed to make life easier, but for many it became a second job. We exist to break that cycle. You focus on your work, family, or business — we handle the invisible complexity.</p>
+                    </div>
+                    <div class="flex-shrink-0 w-24 h-24 rounded-full bg-gold/10 flex items-center justify-center border border-gold/30">
+                        <svg class="w-10 h-10 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-12 md:py-20 px-4 md:px-6">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="text-center mb-12 scroll-reveal">
+                <h2 class="font-display text-3xl md:text-4xl text-near-white">What we actually do for you</h2>
+                <p class="font-body text-platinum/60 max-w-2xl mx-auto mt-3">Plain English. No jargon.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card-3d p-6 scroll-reveal">
+                    <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4"><svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
+                    <h3 class="font-display text-xl text-near-white mb-2">Remove harmful search results</h3>
+                    <p class="font-body text-sm text-platinum/60">We find and suppress negative links, fake reviews, or outdated content that hurts your name or business.</p>
+                </div>
+                <div class="card-3d p-6 scroll-reveal">
+                    <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4"><svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg></div>
+                    <h3 class="font-display text-xl text-near-white mb-2">Set‑and‑forget visibility growth</h3>
+                    <p class="font-body text-sm text-platinum/60">Your online presence grows on autopilot. We handle SEO, local listings, and authority building while you sleep.</p>
+                </div>
+                <div class="card-3d p-6 scroll-reveal">
+                    <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-4"><svg class="w-6 h-6 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg></div>
+                    <h3 class="font-display text-xl text-near-white mb-2">Protect your private images</h3>
+                    <p class="font-body text-sm text-platinum/60">Specialised NCII support (non-consensual intimate images) – we guide you through reporting and removal under South African law.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collective -->
+    <section id="collective" class="py-12 md:py-20 px-4 md:px-6 bg-void-black/40">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid lg:grid-cols-2 gap-10 items-center">
+                <div class="scroll-reveal order-2 lg:order-1">
+                    <div class="relative rounded-2xl overflow-hidden border border-gold/30 shadow-2xl">
+                        <img src="https://ik.imagekit.io/wemustcreate/About%20max%20.webp?updatedAt=1777882596972" alt="Founder" class="w-full object-cover aspect-[4/5]">
+                        <div class="absolute inset-0 bg-gradient-to-t from-void-black via-transparent to-transparent"></div>
+                    </div>
+                </div>
+                <div class="scroll-reveal order-1 lg:order-2 space-y-5">
+                    <div class="inline-flex items-center gap-2 bg-gold/10 px-3 py-1 rounded-full"><span class="text-gold text-xs font-accent">Decentralised collective</span></div>
+                    <h2 class="font-display text-3xl md:text-4xl text-near-white">We are a network of specialists, not a big agency</h2>
+                    <p class="font-body text-platinum/70 leading-relaxed">Search Playbook is a small, trusted group of experts who actually do the work. No account managers, no middlemen. You talk directly to the people who execute your strategy.</p>
+                    <button id="bioToggle" class="text-gold font-semibold flex items-center gap-2 hover:gap-3 transition-all">Read founder's story <svg id="bioIcon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg></button>
+                    <div id="bioContent" class="hidden mt-3 p-4 bg-black/30 rounded-xl border-l-2 border-gold">
+                        <p class="text-sm text-platinum/70 italic">"Every day, thousands of people go online for the first time to search for people, products, and places." – This mantra drives everything we do. Founded in 2023, using AI to bridge the gap between technical complexity and real human needs. We believe in low-maintenance, high‑impact solutions. No subscriptions, just honest work.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-28 px-4 md:px-6">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="padding-block-3d text-center scroll-reveal">
+                <h2 class="font-display text-3xl md:text-5xl text-near-white mb-4">Ready to take back your time?</h2>
+                <p class="font-body text-platinum/70 max-w-2xl mx-auto mb-8">One simple conversation. No technical knowledge required. We do the heavy lifting.</p>
+                <div class="flex flex-wrap gap-4 justify-center">
+                    <button class="btn-primary px-8 py-3 md:px-10 md:py-4 rounded-full font-bold text-gold-light">Start free chat →</button>
+                    <button class="bg-white/5 backdrop-blur-sm px-8 py-3 rounded-full border border-white/10 hover:bg-white/10">See real case studies</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-10 px-4 md:px-6 border-t border-white/10">
+        <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between gap-6 text-sm">
+            <div class="flex flex-wrap gap-6">
+                <a href="intelhub.html" class="text-zinc-400 hover:text-gold">Intel</a>
+                <a href="solutions.html" class="text-zinc-400 hover:text-gold">Solutions</a>
+                <a href="collective.html" class="text-zinc-400 hover:text-gold">Collective</a>
+                <a href="connect.html" class="text-zinc-400 hover:text-gold">Connect</a>
+                <a href="ncii-support.html" class="text-zinc-400 hover:text-gold">NCII Support</a>
+                <a href="job_market_toolkit.html" class="text-zinc-400 hover:text-gold">Job Toolkit</a>
+                <a href="hash_explainer.html" class="text-zinc-400 hover:text-gold">Hash Explainer</a>
+                <a href="scamdetector.html" class="text-zinc-400 hover:text-gold">Scam Detector</a>
+            </div>
+            <div class="text-zinc-500 text-xs flex gap-4">
+                <span>© Search Playbook — WeMustCreate 2026</span>
+                <a href="sitemap.xml" class="underline hover:text-gold">Sitemap</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Widget -->
+    <div id="local-guides-widget">
+        <a href="https://www.localguides-ranking.com/profile/151119/" target="_blank" rel="noopener" title="Google Local Guides Ranking - imLlew">
+            <img src="https://www.localguides-ranking.com/badge/151119/en/default.svg" alt="Google Local Guides Ranking Badge of imLlew">
+        </a>
+    </div>
+
+    <!-- ════════════════════════════════════════════════════════
+         THREE.JS WEBGL GLOBE — Based on your snippet
+         Uses public texture URLs from Solar System Scope
+         ════════════════════════════════════════════════════════ -->
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+            "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+        }
+    }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // ─── DOM refs ───
+        const container = document.getElementById('globe-canvas-container');
+        const vignette = document.getElementById('globeVignette');
+
+        // ─── SCENE ───
+        const scene = new THREE.Scene();
+        scene.background = null; // transparent
+
+        const camera = new THREE.PerspectiveCamera(25, container.clientWidth / container.clientHeight, 0.1, 100);
+        camera.position.set(4.5, 2, 3);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+
+        // ─── SUN LIGHT ───
+        const sun = new THREE.DirectionalLight('#ffffff', 2.5);
+        sun.position.set(0, 0, 3);
+        scene.add(sun);
+
+        // ─── TEXTURES (public CDN URLs) ───
+        const textureLoader = new THREE.TextureLoader();
+
+        const dayTexture = textureLoader.load(
+            'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg',
+            () => revealGlobe()
+        );
+        dayTexture.colorSpace = THREE.SRGBColorSpace;
+        dayTexture.anisotropy = 8;
+
+        const nightTexture = textureLoader.load(
+            'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_lights_2048.png',
+            () => revealGlobe()
+        );
+        nightTexture.colorSpace = THREE.SRGBColorSpace;
+        nightTexture.anisotropy = 8;
+
+        const bumpRoughnessCloudsTexture = textureLoader.load(
+            'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png',
+            () => revealGlobe()
+        );
+        bumpRoughnessCloudsTexture.anisotropy = 8;
+
+        // ─── GLOBE MATERIAL (adapted from your snippet) ───
+        const sphereGeometry = new THREE.SphereGeometry(1, 64, 64);
+
+        const globeMaterial = new THREE.MeshStandardMaterial({
+            map: dayTexture,
+            roughnessMap: bumpRoughnessCloudsTexture,
+            bumpMap: bumpRoughnessCloudsTexture,
+            bumpScale: 0.05,
+            metalness: 0.1,
+            roughness: 0.6
+        });
+
+        // Night lights emissive
+        globeMaterial.emissiveMap = nightTexture;
+        globeMaterial.emissive = new THREE.Color(0xffaa44);
+        globeMaterial.emissiveIntensity = 1.2;
+
+        const globe = new THREE.Mesh(sphereGeometry, globeMaterial);
+        scene.add(globe);
+
+        // ─── CLOUDS (separate sphere, slightly larger) ───
+        const cloudGeometry = new THREE.SphereGeometry(1.015, 64, 64);
+        const cloudMaterial = new THREE.MeshStandardMaterial({
+            map: bumpRoughnessCloudsTexture,
+            transparent: true,
+            opacity: 0.35,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide,
+            depthWrite: false
+        });
+        const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+        scene.add(clouds);
+
+        // ─── ATMOSPHERE GLOW (shader) ───
+        const atmoGeometry = new THREE.SphereGeometry(1.12, 64, 64);
+        const atmoMaterial = new THREE.ShaderMaterial({
+            transparent: true,
+            side: THREE.BackSide,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            uniforms: {
+                glowColor: { value: new THREE.Color('#D4AF37') },
+                viewVector: { value: camera.position }
+            },
+            vertexShader: `
+                uniform vec3 viewVector;
+                varying float intensity;
+                void main() {
+                    vec3 vNormal = normalize(normalMatrix * normal);
+                    vec3 vNormel = normalize(normalMatrix * viewVector);
+                    intensity = pow(0.6 - dot(vNormal, vNormel), 3.0);
+                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                }
+            `,
+            fragmentShader: `
+                uniform vec3 glowColor;
+                varying float intensity;
+                void main() {
+                    vec3 glow = glowColor * intensity;
+                    gl_FragColor = vec4(glow, intensity * 0.4);
+                }
+            `
+        });
+        const atmosphere = new THREE.Mesh(atmoGeometry, atmoMaterial);
+        scene.add(atmosphere);
+
+        // ─── STARS (subtle background) ───
+        const starGeo = new THREE.BufferGeometry();
+        const starCount = 800;
+        const starPos = new Float32Array(starCount * 3);
+        for (let i = 0; i < starCount * 3; i++) {
+            starPos[i] = (Math.random() - 0.5) * 40;
+        }
+        starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
+        const starMat = new THREE.PointsMaterial({ color: 0xD4AF37, size: 0.03, transparent: true, opacity: 0.4 });
+        const stars = new THREE.Points(starGeo, starMat);
+        scene.add(stars);
+
+        // ─── CONTROLS ───
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.enableZoom = false;
+        controls.enablePan = false;
+        controls.autoRotate = false;
+        controls.minDistance = 2;
+        controls.maxDistance = 8;
+
+        // ─── PARALLAX ───
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 0.3;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 0.15;
+        });
+
+        let scrollY = 0;
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+        }, { passive: true });
+
+        // ─── REVEAL ───
+        let texturesLoaded = 0;
+        function revealGlobe() {
+            texturesLoaded++;
+            if (texturesLoaded >= 3) {
+                container.classList.add('loaded');
+                vignette.classList.add('loaded');
+            }
+        }
+
+        // ─── ANIMATE ───
+        function animate() {
+            requestAnimationFrame(animate);
+
+            globe.rotation.y += 0.0008;
+            clouds.rotation.y += 0.0012;
+            stars.rotation.y += 0.0002;
+
+            // Mouse parallax tilt
+            globe.rotation.x += (mouseY - globe.rotation.x) * 0.02;
+            globe.rotation.z += (-mouseX - globe.rotation.z) * 0.02;
+
+            // Scroll parallax on container
+            container.style.transform = `translateY(${scrollY * 0.12}px)`;
+
+            atmoMaterial.uniforms.viewVector.value = camera.position;
+            controls.update();
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // ─── RESIZE ───
+        window.addEventListener('resize', () => {
+            const w = container.clientWidth;
+            const h = container.clientHeight;
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+            renderer.setSize(w, h);
+        });
+    </script>
+
+    <!-- ════════════════════════════════════════════════════════
+         ORIGINAL INTERACTION SCRIPTS (unchanged)
+         ════════════════════════════════════════════════════════ -->
+    <script>
+        // Cursor bg
+        const bg = document.getElementById('dynamicBg');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth) * 100;
+            const y = (e.clientY / window.innerHeight) * 100;
+            bg.style.setProperty('--x', `${x}%`);
+            bg.style.setProperty('--y', `${y}%`);
+        });
+
+        // Scroll reveal
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.scroll-reveal').forEach(el => revealObserver.observe(el));
+
+        // Counters
+        const counters = document.querySelectorAll('.counter');
+        const startCounters = () => {
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                const suffix = counter.getAttribute('data-suffix') || '';
+                let count = 0;
+                const update = () => {
+                    if(count < target) {
+                        count += Math.ceil(target / 50);
+                        if(count > target) count = target;
+                        counter.innerText = count + suffix;
+                        setTimeout(update, 25);
+                    } else {
+                        counter.innerText = target + suffix;
+                    }
+                };
+                update();
+            });
+        };
+        const heroObs = new IntersectionObserver((e) => { if(e[0].isIntersecting) { startCounters(); heroObs.disconnect(); } }, { threshold: 0.5 });
+        heroObs.observe(document.getElementById('dashboard'));
+
+        // Mobile menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('translate-x-full');
+            document.body.style.overflow = menu.classList.contains('translate-x-full') ? '' : 'hidden';
+        }
+        window.toggleMobileMenu = toggleMobileMenu;
+
+        // Smooth scroll
+        function scrollToSection(id) { document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }); }
+        window.scrollToSection = scrollToSection;
+
+        // Bio
+        const bioToggle = document.getElementById('bioToggle');
+        const bioContent = document.getElementById('bioContent');
+        const bioIcon = document.getElementById('bioIcon');
+        if(bioToggle) {
+            bioToggle.addEventListener('click', () => {
+                const isHidden = bioContent.classList.contains('hidden');
+                bioContent.classList.toggle('hidden', !isHidden);
+                bioIcon.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+            });
+        }
+
+        // Nav bg
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 20) nav.classList.add('bg-void-black/90');
+            else nav.classList.remove('bg-void-black/90');
+        });
+
+        // Widget
+        const widget = document.getElementById('local-guides-widget');
+        const collectiveSection = document.getElementById('collective');
+        const widgetObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) widget.classList.add('visible'); });
+        }, { threshold: 0.2 });
+        if (collectiveSection) widgetObserver.observe(collectiveSection);
+    </script>
+</body>
+</html>
