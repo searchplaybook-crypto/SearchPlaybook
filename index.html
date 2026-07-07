@@ -1,22 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Add to <head> of ALL pages -->
-<link rel="canonical" href="https://searchplaybook-crypto.github.io/SearchPlaybook/" />
-<link rel="sitemap" type="application/xml" href="/SearchPlaybook/sitemap.xml" />
-
-<!-- Fix broken Intel link in navigation -->
-<nav aria-label="Primary" class="site-nav">
-  <a href="/SearchPlaybook/" aria-current="page">Home</a>
-  <a href="/SearchPlaybook/intel.html">Intel</a> <!-- Note: .html extension required for GitHub Pages -->
-  <a href="/SearchPlaybook/solutions.html">Solutions</a>
-  <a href="/SearchPlaybook/collective.html">Collective</a>
-  <a href="/SearchPlaybook/connect.html">Connect</a>
-</nav>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Playbook — WeMustCreate | Set-and-Forget Digital Peace</title>
     <meta name="description" content="AI-augmented collaboration. We clear the digital noise so you can focus on your hustle. Set-and-forget visibility, privacy & safety for South Africans.">
     
+    <link rel="canonical" href="https://searchplaybook-crypto.github.io/SearchPlaybook/" />
+    <link rel="sitemap" type="application/xml" href="/SearchPlaybook/sitemap.xml" />
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -81,82 +73,75 @@
                 }
             }
         }
+    </script> <!-- FIX 1: Added missing closing tag -->
+
+    <!-- Structured Data (Consolidated @graph) -->
     <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
     {
-      "@type": "Organization",
-      "@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#organization",
-      "name": "Search Playbook",
-      "alternateName": "WMC Digital Optimisation",
-      "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
-      "logo": "https://searchplaybook-crypto.github.io/SearchPlaybook/assets/logo.svg",
-      "description": "Human+AI digital optimisation system for Visibility, Privacy, and Safety in South African digital ecosystems.",
-      "foundingDate": "2023",
-      "areaServed": "ZA",
-      "availableLanguage": ["en-ZA", "af-ZA", "zu-ZA"],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "contactType": "customer service",
-        "telephone": "+27695326613",
-        "url": "https://wa.me/27695326613",
-        "areaServed": "ZA",
-        "availableLanguage": "en-ZA"
-      },
-      "sameAs": [
-        "https://wa.me/27695326613",
-        "https://linkedin.com/in/searchplaybook"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#website",
-      "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
-      "name": "Search Playbook",
-      "inLanguage": "en-ZA",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://searchplaybook-crypto.github.io/SearchPlaybook/?s={search_term_string}",
-        "query-input": "required name=search_term_string"
-      },
-      "isPartOf": {"@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#organization"}
-    },
-    {
-      "@type": "BreadcrumbList",
-      "@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#breadcrumb",
-      "itemListElement": [
+      "@context": "https://schema.org",
+      "@graph": [
         {
-          "@type": "ListItem",
-          "position": 1,
-          "name": "Home",
-          "item": "https://searchplaybook-crypto.github.io/SearchPlaybook/"
+          "@type": "Organization",
+          "@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#organization",
+          "name": "Search Playbook",
+          "alternateName": "WMC Digital Optimisation",
+          "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
+          "logo": "https://searchplaybook-crypto.github.io/SearchPlaybook/assets/logo.svg",
+          "description": "Human+AI digital optimisation system for Visibility, Privacy, and Safety in South African digital ecosystems.",
+          "foundingDate": "2023",
+          "areaServed": "ZA",
+          "availableLanguage": ["en-ZA", "af-ZA", "zu-ZA"],
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "customer service",
+            "telephone": "+27695326613",
+            "url": "https://wa.me/27695326613",
+            "areaServed": "ZA",
+            "availableLanguage": "en-ZA"
+          },
+          "sameAs": [
+            "https://wa.me/27695326613",
+            "https://linkedin.com/in/searchplaybook"
+          ]
         },
         {
-          "@type": "ListItem",
-          "position": 2,
-          "name": "Solutions",
-          "item": "https://searchplaybook-crypto.github.io/SearchPlaybook/solutions.html"
+          "@type": "WebSite",
+          "@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#website",
+          "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
+          "name": "Search Playbook",
+          "inLanguage": "en-ZA",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://searchplaybook-crypto.github.io/SearchPlaybook/?s={search_term_string}",
+            "query-input": "required name=search_term_string"
+          },
+          "isPartOf": {"@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#organization"}
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#breadcrumb",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://searchplaybook-crypto.github.io/SearchPlaybook/" },
+            { "@type": "ListItem", "position": 2, "name": "Solutions", "item": "https://searchplaybook-crypto.github.io/SearchPlaybook/solutions.html" }
+          ]
+        },
+        {
+          "@type": "Service",
+          "serviceType": "Digital Optimisation",
+          "provider": {"@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#organization"},
+          "areaServed": "ZA",
+          "offers": {
+            "@type": "Offer",
+            "price": "7000",
+            "priceCurrency": "ZAR",
+            "availability": "https://schema.org/InStock",
+            "description": "Digital Birth Certificate: Verified digital foundation audit and entity mapping"
+          }
         }
       ]
-    },
-    {
-      "@type": "Service",
-      "serviceType": "Digital Optimisation",
-      "provider": {"@id": "https://searchplaybook-crypto.github.io/SearchPlaybook/#organization"},
-      "areaServed": "ZA",
-      "offers": {
-        "@type": "Offer",
-        "price": "7000",
-        "priceCurrency": "ZAR",
-        "availability": "https://schema.org/InStock",
-        "description": "Digital Birth Certificate: Verified digital foundation audit and entity mapping"
-      }
     }
-  ]
-}
-    
-</script>
+    </script>
+
     <style>
         :root { --glass-border: rgba(249, 249, 249, 0.08); }
         body { background: radial-gradient(ellipse at top, #1a1a1f 0%, #09090B 50%, #050507 100%); overflow-x: hidden; }
@@ -333,23 +318,19 @@
             border-radius: 6px;
         }
     </style>
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ProfessionalService",
-      "name": "Search Playbook Collective",
-      "description": "AI-augmented digital sovereignty. Clear the noise, focus on your hustle. Set-and-forget visibility, privacy & safety for South Africans.",
-      "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
-      "address": { "@type": "PostalAddress", "addressLocality": "Johannesburg", "addressRegion": "GP", "addressCountry": "ZA" },
-      "priceRange": "ZAR 750 - ZAR 15000",
-      "knowsAbout": ["SEO", "Digital Privacy", "NCII Protection", "Cybercrimes Act"],
-      "sameAs": ["https://www.linkedin.com/in/llewellynoshea/"]
-    }
-    </script>
 </head>
 <body class="font-body text-platinum antialiased">
+    
+    <!-- FIX 2: Moved nav out of head and into body -->
+    <!-- Fix broken Intel link in navigation -->
+    <nav aria-label="Primary" class="site-nav">
+      <a href="/SearchPlaybook/" aria-current="page">Home</a>
+      <a href="/SearchPlaybook/intel.html">Intel</a> <!-- Note: .html extension required for GitHub Pages -->
+      <a href="/SearchPlaybook/solutions.html">Solutions</a>
+      <a href="/SearchPlaybook/collective.html">Collective</a>
+      <a href="/SearchPlaybook/connect.html">Connect</a>
+    </nav>
+
     <div class="noise-overlay"></div>
     <div class="bg-gradient-mesh"></div>
     <div class="floating-orb w-[600px] h-[600px] bg-mafia-gold/20 top-[-200px] left-[-100px] animate-float"></div>
@@ -984,32 +965,34 @@
     <!-- Floating Trust Badge -->
     <div class="trust-fab fixed bottom-6 right-6 bg-white/5 border border-white/10 px-4 py-2 rounded-lg text-sm font-medium text-mafia-gold z-50 opacity-0 translate-y-8 transition-all duration-400 pointer-events-none" aria-hidden="true">
         ✦ Collective Verified
-    </div><section class="next-action" aria-label="Recommended Next Step">
-  <div class="container">
-    <div class="action-card">
-      <h3>What would you like to do next?</h3>
-      <div class="action-options">
-        <a href="/SearchPlaybook/connect.html?intent=audit" 
-           class="btn btn-primary"
-           aria-label="Start your free Digital Presence Audit">
-          Start Free Audit
-        </a>
-        <a href="/SearchPlaybook/solutions.html#digital-birth-certificate" 
-           class="btn btn-secondary"
-           aria-label="Learn about Digital Birth Certificate service">
-          Explore Foundations
-        </a>
-        <a href="https://wa.me/27695326613?text=Hello%2C%20I%20have%20a%20question%20about%20Search%20Playbook" 
-           class="btn btn-outline"
-           target="_blank" rel="noopener noreferrer nofollow"
-           aria-label="Chat with our South Africa team on WhatsApp">
-          Chat on WhatsApp
-        </a>
-      </div>
-      <p class="action-note">No subscriptions. No pressure. SA-built, POPIA-aware.</p>
     </div>
-  </div>
-</section>
+    
+    <section class="next-action" aria-label="Recommended Next Step">
+      <div class="container">
+        <div class="action-card">
+          <h3>What would you like to do next?</h3>
+          <div class="action-options">
+            <a href="/SearchPlaybook/connect.html?intent=audit" 
+               class="btn btn-primary"
+               aria-label="Start your free Digital Presence Audit">
+              Start Free Audit
+            </a>
+            <a href="/SearchPlaybook/solutions.html#digital-birth-certificate" 
+               class="btn btn-secondary"
+               aria-label="Learn about Digital Birth Certificate service">
+              Explore Foundations
+            </a>
+            <a href="https://wa.me/27695326613?text=Hello%2C%20I%20have%20a%20question%20about%20Search%20Playbook" 
+               class="btn btn-outline"
+               target="_blank" rel="noopener noreferrer nofollow"
+               aria-label="Chat with our South Africa team on WhatsApp">
+              Chat on WhatsApp
+            </a>
+          </div>
+          <p class="action-note">No subscriptions. No pressure. SA-built, POPIA-aware.</p>
+        </div>
+      </div>
+    </section>
 
     <!-- Three.js Earth Script — faster spin -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
