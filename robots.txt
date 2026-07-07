@@ -1,0 +1,16 @@
+# Search Playbook - robots.txt
+# South Africa GEO-targeted crawl policy
+
+User-agent: *
+Allow: /
+
+# Priority crawl order
+Sitemap: https://searchplaybook-crypto.github.io/SearchPlaybook/sitemap.xml
+
+# Block non-essential bot overhead
+Disallow: /assets/private/
+Disallow: /*?sort=
+Disallow: /*?filter=
+
+# Respect POPIA: no crawling of user-submitted form data
+Disallow: /connect/submit
