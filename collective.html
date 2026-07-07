@@ -167,3 +167,45 @@
 </body>
                   </html>
   
+/* Core layout system for GitHub Pages static deployment */
+:root {
+  --spacing-unit: 1rem;
+  --container-max: 1200px;
+  --focus-outline: 2px solid #2563eb;
+  --focus-offset: 2px;
+}
+
+.container {
+  width: min(92%, var(--container-max));
+  margin-inline: auto;
+  padding-block: clamp(1.5rem, 4vw, 3rem);
+}
+
+/* Above-the-fold clarity */
+.hero {
+  min-height: clamp(60vh, 70vh, 85vh);
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding-block-start: 2rem;
+}
+
+/* WCAG 2.2 AA focus indicators */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+  border-radius: 4px;
+}
+
+/* Reduced motion compliance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
