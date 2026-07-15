@@ -495,527 +495,6 @@
                         <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
                     </div>
                 </div>
-                <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital                        'float': 'float 6s ease-in-out infinite',
-                        'float-slow': 'float 8s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-                        'shimmer': 'shimmer 2s linear infinite',
-                        'reveal': 'reveal 0.8s ease-out forwards',
-                        'slide-up': 'slideUp 0.6s ease-out forwards',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
-                            '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)' },
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-200% 0' },
-                            '100%': { backgroundPosition: '200% 0' },
-                        },
-                        reveal: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(50px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        :root {
-            --glass-border: rgba(249, 249, 249, 0.08);
-        }
-        body {
-            background: radial-gradient(ellipse at top, #1a1a1f 0%, #09090B 50%, #050507 100%);
-            overflow-x: hidden;
-        }
-
-        /* Three.js Canvas Layer */
-        #earth-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -2;
-            pointer-events: none;
-            background: radial-gradient(ellipse at bottom, #0a0e27 0%, #000000 100%);
-        }
-
-        #earth-canvas::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.35);
-            pointer-events: none;
-        }
-
-        .hero-overlay {
-            background: linear-gradient(180deg, rgba(9, 9, 11, 0.08) 0%, rgba(9, 9, 11, 0.70) 100%);
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-        }
-
-        /* Glassmorphism Utilities */
-        .glass {
-            background: rgba(24, 24, 27, 0.45);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-        }
-        .glass-gold {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.03) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-        .glass-red {
-            background: linear-gradient(135deg, rgba(255, 61, 90, 0.1) 0%, rgba(255, 61, 90, 0.03) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 61, 90, 0.2);
-        }
-        .glass-azure {
-            background: linear-gradient(135deg, rgba(67, 207, 253, 0.1) 0%, rgba(6, 74, 115, 0.15) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(67, 207, 253, 0.2);
-        }
-        .glass-green {
-            background: linear-gradient(135deg, rgba(0, 255, 136, 0.08) 0%, rgba(0, 179, 95, 0.05) 100%);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 255, 136, 0.15);
-        }
-
-        .text-glow {
-            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2);
-        }
-        .text-glow-azure {
-            text-shadow: 0 0 30px rgba(67, 207, 253, 0.5), 0 0 60px rgba(67, 207, 253, 0.2);
-        }
-
-        .bg-gradient-mesh {
-            background:
-                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(67, 207, 253, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 70%, rgba(182, 110, 65, 0.1) 0%, transparent 50%);
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: -1;
-        }
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1000;
-            opacity: 0.03;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-        }
-
-        /* Hover Effects */
-        .glass-hover {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        @media (hover: hover) {
-            .glass-hover:hover {
-                background: rgba(24, 24, 27, 0.65);
-                border-color: rgba(249, 249, 249, 0.15);
-                transform: translateY(-8px) scale(1.01);
-                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
-            }
-        }
-
-        .btn-glass {
-            background: rgba(212, 175, 55, 0.15);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-        }
-        .btn-glass:hover {
-            background: rgba(212, 175, 55, 0.25);
-            border-color: rgba(212, 175, 55, 0.6);
-            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
-        }
-
-        .gradient-text-gold {
-            background: linear-gradient(135deg, #FCEEB5 0%, #D4AF37 50%, #A08326 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gradient-text-azure {
-            background: linear-gradient(135deg, #FFFFFF 0%, #43CFFD 50%, #064A73 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .floating-orb {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px);
-            pointer-events: none;
-            opacity: 0.4;
-        }
-
-        /* Navigation */
-        .nav-transparent {
-            background: rgba(9, 9, 11, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(249, 249, 249, 0.05);
-            transition: all 0.3s ease;
-        }
-        .nav-scrolled {
-            background: rgba(9, 9, 11, 0.85);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(249, 249, 249, 0.1);
-        }
-
-        .scroll-reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .scroll-reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #09090B;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(180deg, #D4AF37, #A08326);
-            border-radius: 4px;
-        }
-
-        @media (max-width: 768px) {
-            .floating-orb {
-                display: none;
-            }
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-panel {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-        }
-
-        /* CTA Pill Animation */
-        .cta-pill {
-            animation: pulse-glow 3s ease-in-out infinite;
-        }
-
-        /* Table Styles */
-        .comparison-table {
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-        .comparison-table th {
-            background: rgba(212, 175, 55, 0.15);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-        }
-        .comparison-table td {
-            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
-        }
-        .comparison-table tr:hover td {
-            background: rgba(212, 175, 55, 0.03);
-        }
-        .comparison-table .wmc-col {
-            background: rgba(212, 175, 55, 0.06);
-            border-left: 2px solid rgba(212, 175, 55, 0.3);
-            border-right: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .rates-table {
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-        .rates-table th {
-            background: rgba(67, 207, 253, 0.1);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(67, 207, 253, 0.25);
-        }
-        .rates-table td {
-            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
-        }
-        .rates-table tr:hover td {
-            background: rgba(67, 207, 253, 0.03);
-        }
-
-        /* Limitations list */
-        .limitation-item {
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        .limitation-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 61, 90, 0.6);
-        }
-
-        /* Check/X icons */
-        .icon-check {
-            color: #00ff88;
-        }
-        .icon-cross {
-            color: #ff3d5a;
-        }
-
-        /* Service accordion inner item */
-        .service-item {
-            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
-            padding: 0.75rem 0;
-        }
-        .service-item:last-child {
-            border-bottom: none;
-        }
-        .service-item .service-price {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: #D4AF37;
-            white-space: nowrap;
-        }
-        .service-item .service-desc {
-            font-size: 0.75rem;
-            color: rgba(228, 228, 231, 0.5);
-            line-height: 1.4;
-            margin-top: 0.125rem;
-        }
-        .service-item .service-delivery {
-            font-size: 0.7rem;
-            color: rgba(228, 228, 231, 0.4);
-        }
-        @media (min-width: 768px) {
-            .service-item {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                gap: 1rem;
-                padding: 0.75rem 0;
-            }
-            .service-item .service-info {
-                flex: 1;
-                min-width: 0;
-            }
-            .service-item .service-action {
-                flex-shrink: 0;
-            }
-        }
-        .service-item .btn-wa-sm {
-            background: rgba(212, 175, 55, 0.12);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 9999px;
-            padding: 0.35rem 0.9rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #F0D676;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            white-space: nowrap;
-            font-family: 'Inter', sans-serif;
-        }
-        .service-item .btn-wa-sm:hover {
-            background: rgba(212, 175, 55, 0.25);
-            border-color: rgba(212, 175, 55, 0.5);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
-        }
-        .service-item .btn-wa-sm svg {
-            width: 0.75rem;
-            height: 0.75rem;
-        }
-    </style>
-</head>
-<body class="font-body text-platinum antialiased">
-
-    <div class="noise-overlay"></div>
-    <div class="bg-gradient-mesh"></div>
-    <div class="floating-orb w-[600px] h-[600px] bg-mafia-gold/20 top-[-200px] left-[-100px] animate-float"></div>
-    <div class="floating-orb w-[500px] h-[500px] bg-icy-azure/15 bottom-[-150px] right-[-100px] animate-float-slow"></div>
-
-    <!-- Three.js Canvas Background -->
-    <div id="earth-canvas"></div>
-
-    <!-- Navigation -->
-    <nav id="mainNav" class="nav-transparent fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo Top Left -->
-                <a href="index.html" class="flex items-center gap-2 md:gap-3 cursor-pointer">
-                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
-                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" loading="eager" />
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-display font-bold text-sm md:text-xl tracking-wide text-near-white">SEARCH PLAYBOOK</span>
-                        <span class="text-[8px] md:text-[10px] font-accent font-light text-zinc-500 tracking-widest uppercase hidden sm:block">WeMustCreate</span>
-                    </div>
-                </a>
-
-                <!-- Desktop Nav -->
-                <div class="hidden md:flex items-center gap-6 lg:gap-8">
-                    <a href="solutions.html" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
-                    <a href="collective.html" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">About</a>
-                    <a href="connect.html" class="font-body font-normal text-sm text-platinum/80 hover:text-mafia-gold transition-colors">Connect</a>
-                    <a href="connect.html" class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">Get Started</a>
-                </div>
-
-                <!-- Mobile Burger Top Right -->
-                <button class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-50 relative" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line1"></span>
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300" id="menu-line2"></span>
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line3"></span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div class="md:hidden fixed inset-0 top-0 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full mobile-menu-panel flex flex-col" id="mobileMenu">
-            <div class="px-6 pt-20 pb-6 border-b border-white/5">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
-                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" />
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-display font-bold text-lg text-near-white">SEARCH PLAYBOOK</span>
-                        <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
-                    </div>
-                </div>
-                <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital Partner</p>
-            </div>
-
-            <div class="flex-1 flex flex-col justify-center px-8 space-y-2">
-                <a href="solutions.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
-                    <div>
-                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-forged-copper transition-colors">Solutions</span>
-                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Compare our offerings</span>
-                    </div>
-                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-forged-copper transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-                <a href="collective.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
-                    <div>
-                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-warm-yellow transition-colors">About</span>
-                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Who we are</span>
-                    </div>
-                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-warm-yellow transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-                <a href="connect.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
-        55, 0.06);
-            border-left: 2px solid rgba(212, 175, 55, 0.3);
-            border-right: 2px solid rgba(212, 175, 55, 0.3);
-        }
-
-        .rates-table { border-collapse: separate; border-spacing: 0; }
-        .rates-table th {
-            background: rgba(67, 207, 253, 0.1);
-            backdrop-filter: blur(12px);
-            border-bottom: 2px solid rgba(67, 207, 253, 0.25);
-        }
-        .rates-table td {
-            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
-        }
-        .rates-table tr:hover td {
-            background: rgba(67, 207, 253, 0.03);
-        }
-
-        /* Limitations list */
-        .limitation-item {
-            position: relative;
-            padding-left: 1.5rem;
-        }
-        .limitation-item::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.5rem;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 61, 90, 0.6);
-        }
-
-        /* Check/X icons */
-        .icon-check { color: #00ff88; }
-        .icon-cross { color: #ff3d5a; }
-    </style>
-</head>
-<body class="font-body text-platinum antialiased">
-
-    <div class="noise-overlay"></div>
-    <div class="bg-gradient-mesh"></div>
-    <div class="floating-orb w-[600px] h-[600px] bg-mafia-gold/20 top-[-200px] left-[-100px] animate-float"></div>
-    <div class="floating-orb w-[500px] h-[500px] bg-icy-azure/15 bottom-[-150px] right-[-100px] animate-float-slow"></div>
-
-    <!-- Three.js Canvas Background -->
-    <div id="earth-canvas"></div>
-
-    <!-- Navigation -->
-    <nav id="mainNav" class="nav-transparent fixed top-0 left-0 right-0 z-50">
-        <div class="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4">
-            <div class="flex items-center justify-between">
-                <!-- Logo Top Left -->
-                <a href="index.html" class="flex items-center gap-2 md:gap-3 cursor-pointer">
-                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
-                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" loading="eager">
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-display font-bold text-sm md:text-xl tracking-wide text-near-white">SEARCH PLAYBOOK</span>
-                        <span class="text-[8px] md:text-[10px] font-accent font-light text-zinc-500 tracking-widest uppercase hidden sm:block">WeMustCreate</span>
-                    </div>
-                </a>
-
-                <!-- Desktop Nav -->
-                <div class="hidden md:flex items-center gap-6 lg:gap-8">
-                    <a href="solutions.html" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
-                    <a href="collective.html" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">About</a>
-                    <a href="connect.html" class="font-body font-normal text-sm text-platinum/80 hover:text-mafia-gold transition-colors">Connect</a>
-                    <a href="connect.html" class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">Get Started</a>
-                </div>
-
-                <!-- Mobile Burger Top Right -->
-                <button class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-50 relative" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line1"></span>
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300" id="menu-line2"></span>
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line3"></span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Mobile Menu Overlay -->
-        <div class="md:hidden fixed inset-0 top-0 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full mobile-menu-panel flex flex-col" id="mobileMenu">
-            <div class="px-6 pt-20 pb-6 border-b border-white/5">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
-                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90">
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-display font-bold text-lg text-near-white">SEARCH PLAYBOOK</span>
-                        <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
-                    </div>
-                </div>
                 <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital Partner</p>
             </div>
 
@@ -1064,7 +543,7 @@
                 </div>
 
                 <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-near-white mb-6">
-                    Why WMC's <span class="gradient-text-gold text-glow">12-month</span><br class="hidden md:block"> integrated coverage wins.
+                    Why WMC's <span class="gradient-text-gold text-glow">12-month</span><br class="hidden md:block" /> integrated coverage wins.
                 </h1>
 
                 <p class="font-body font-light text-base md:text-lg lg:text-xl text-platinum/70 max-w-2xl mx-auto leading-relaxed mb-8">
@@ -1080,6 +559,438 @@
                         View Rates
                     </a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== NEW: HERO CARDS (4 cards) ===== -->
+    <!-- ============================================================ -->
+    <section class="py-12 md:py-16 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+
+                <!-- Card A — Free Digital Audit -->
+                <div class="glass-gold rounded-2xl p-6 md:p-8 scroll-reveal border-l-2 border-mafia-gold flex flex-col h-full">
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between gap-2">
+                            <h3 class="font-display font-bold text-xl md:text-2xl text-near-white">Free Digital Audit</h3>
+                            <span class="font-display font-bold text-2xl md:text-3xl text-mafia-gold">R0</span>
+                        </div>
+                        <p class="font-body text-sm md:text-base text-platinum/70 mt-2 leading-relaxed">No-obligation assessment of your digital presence across Visibility, Privacy, and Safety.</p>
+                        <div class="mt-3 flex items-center gap-2">
+                            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="font-body text-xs text-zinc-500">2–3 weeks (estimate)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <a href="https://wa.me/27695326613?text=I'd%20like%20to%20book%20my%20FREE%20Digital%20Audit." target="_blank" class="btn-glass w-full inline-flex items-center justify-center px-4 py-2.5 md:px-6 md:py-3 rounded-full font-body font-semibold text-sm text-mafia-gold gap-2 group transition-all">
+                            <span>Book my Free Audit</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card B — Digital Birth Certificate -->
+                <div class="glass-gold rounded-2xl p-6 md:p-8 scroll-reveal border-l-2 border-mafia-gold flex flex-col h-full" style="transition-delay:0.05s;">
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between gap-2">
+                            <h3 class="font-display font-bold text-xl md:text-2xl text-near-white">Digital Birth Certificate</h3>
+                            <span class="font-display font-bold text-2xl md:text-3xl text-mafia-gold">R7,000</span>
+                        </div>
+                        <p class="font-body text-sm md:text-base text-platinum/70 mt-2 leading-relaxed">Establishes your verified digital foundation before any visibility, reputation, or security work begins.</p>
+                        <div class="mt-3 flex items-center gap-2">
+                            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="font-body text-xs text-zinc-500">3–5 weeks (estimate)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <a href="https://wa.me/27695326613?text=I'd%20like%20to%20build%20my%20Digital%20Birth%20Certificate%20(R7%2C000)." target="_blank" class="btn-glass w-full inline-flex items-center justify-center px-4 py-2.5 md:px-6 md:py-3 rounded-full font-body font-semibold text-sm text-mafia-gold gap-2 group transition-all">
+                            <span>Build my Digital Birth Certificate</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card C — Complete Digital Optimisation -->
+                <div class="glass-gold rounded-2xl p-6 md:p-8 scroll-reveal border-l-2 border-mafia-gold flex flex-col h-full" style="transition-delay:0.1s;">
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between gap-2">
+                            <h3 class="font-display font-bold text-xl md:text-2xl text-near-white">Complete Digital Optimisation</h3>
+                            <span class="font-display font-bold text-2xl md:text-3xl text-mafia-gold">From R30k</span>
+                        </div>
+                        <p class="font-body text-sm md:text-base text-platinum/70 mt-2 leading-relaxed">Digital Birth Certificate plus all three pillar packages — Visibility, Privacy, Safety — with full ownership handover.</p>
+                        <div class="mt-3 flex items-center gap-2">
+                            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="font-body text-xs text-zinc-500">8–12 weeks (estimate)</span>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <a href="https://wa.me/27695326613?text=I'd%20like%20Complete%20Digital%20Optimisation%20(from%20R30%2C000)." target="_blank" class="btn-glass w-full inline-flex items-center justify-center px-4 py-2.5 md:px-6 md:py-3 rounded-full font-body font-semibold text-sm text-mafia-gold gap-2 group transition-all">
+                            <span>Get Complete Optimisation</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Card D — Get Found First (Map Pack) -->
+                <div class="glass-gold rounded-2xl p-6 md:p-8 scroll-reveal border-l-2 border-mafia-gold flex flex-col h-full" style="transition-delay:0.15s;">
+                    <div class="flex-1">
+                        <div class="flex items-start justify-between gap-2">
+                            <h3 class="font-display font-bold text-xl md:text-2xl text-near-white">Get Found First</h3>
+                            <span class="font-display font-bold text-2xl md:text-3xl text-mafia-gold">From R2,500</span>
+                        </div>
+                        <p class="font-body text-sm md:text-base text-platinum/70 mt-2 leading-relaxed">Make your business the one that shows up — Google Business Profile setup so you're visible where people are already searching.</p>
+                        <div class="mt-3 flex items-center gap-2">
+                            <svg class="w-4 h-4 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                            <span class="font-body text-xs text-zinc-500">2–3 weeks (estimate)</span>
+                        </div>
+                        <p class="font-body text-[10px] md:text-xs text-platinum/40 mt-2">Free audit first · No monthly fees · You own everything</p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/5">
+                        <a href="https://wa.me/27695326613?text=I'd%20like%20help%20getting%20found%20on%20Google%20Maps%20(from%20R2%2C500)." target="_blank" class="btn-glass w-full inline-flex items-center justify-center px-4 py-2.5 md:px-6 md:py-3 rounded-full font-body font-semibold text-sm text-mafia-gold gap-2 group transition-all">
+                            <span>Get Found on Maps</span>
+                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== NEW: ORDERING INSTRUCTION BLOCK ===== -->
+    <!-- ============================================================ -->
+    <section class="pb-4 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="max-w-3xl mx-auto text-center scroll-reveal">
+                <p class="font-body text-sm md:text-base text-platinum/70 leading-relaxed">
+                    Every service below shows its price upfront. Tap the WhatsApp button on anything you want, and a message opens already filled in with what you're asking for — that's the whole checkout. No cart, no account, no forms.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- ===== NEW: THREE SERVICE ACCORDIONS ===== -->
+    <!-- ============================================================ -->
+    <section class="py-12 md:py-16 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="max-w-3xl mx-auto space-y-4">
+
+                <!-- ===== VISIBILITY GROUP ===== -->
+                <details class="glass rounded-xl overflow-hidden scroll-reveal">
+                    <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                        <span class="flex items-center gap-3">
+                            <span class="text-mafia-gold font-display font-bold text-lg">Visibility</span>
+                            <span class="text-[10px] md:text-xs text-zinc-500 font-body font-normal">6 services</span>
+                        </span>
+                        <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="px-4 pb-4 md:px-6 md:pb-6 space-y-1">
+
+                        <!-- 1. WhatsApp Business Deployment -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">WhatsApp Business Deployment</span>
+                                    <span class="service-price text-sm">From R2,500</span>
+                                </div>
+                                <p class="service-desc">Turns a personal WhatsApp number into a proper business tool — profile, catalogue, auto-replies, QR code, website link.</p>
+                                <span class="service-delivery">2–3 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20WhatsApp%20Business%20Deployment%20(From%20R2%2C500)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2. Google Business Profile -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Google Business Profile</span>
+                                    <span class="service-price text-sm">From R2,500</span>
+                                </div>
+                                <p class="service-desc">Gets you showing up on Google Maps and local search — profile, categories, listings, review strategy, verification support.</p>
+                                <span class="service-delivery">2–3 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Google%20Business%20Profile%20(From%20R2%2C500)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 3. Website Integration -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Website Integration</span>
+                                    <span class="service-price text-sm">From R7,000</span>
+                                </div>
+                                <p class="service-desc">Connects WhatsApp, Google Business, and socials into one hub. Requires an existing website.</p>
+                                <span class="service-delivery">3–4 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Website%20Integration%20(From%20R7%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 4. Website Development -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Website Development</span>
+                                    <span class="service-price text-sm">From R12,000</span>
+                                </div>
+                                <p class="service-desc">A site built from scratch — fast, mobile-first, SEO and AI-search optimised, full admin access handed over.</p>
+                                <span class="service-delivery">6–10 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Website%20Development%20(From%20R12%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 5. Visibility Package (bundle) -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Visibility Package <span class="text-[10px] text-mafia-gold font-normal">(bundle)</span></span>
+                                    <span class="service-price text-sm">From R15,000</span>
+                                </div>
+                                <p class="service-desc">WhatsApp Business, Google Business Profile, and Website Integration together, at a lower combined price.</p>
+                                <span class="service-delivery">8–10 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20the%20Visibility%20Package%20(From%20R15%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </details>
+
+                <!-- ===== PRIVACY GROUP ===== -->
+                <details class="glass rounded-xl overflow-hidden scroll-reveal" style="transition-delay:0.05s;">
+                    <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                        <span class="flex items-center gap-3">
+                            <span class="text-mafia-gold font-display font-bold text-lg">Privacy</span>
+                            <span class="text-[10px] md:text-xs text-zinc-500 font-body font-normal">5 services</span>
+                        </span>
+                        <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="px-4 pb-4 md:px-6 md:pb-6 space-y-1">
+
+                        <!-- 1. Reputation Audit -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Reputation Audit</span>
+                                    <span class="service-price text-sm">From R1,000</span>
+                                </div>
+                                <p class="service-desc">A proper look at what shows up when someone searches your name — score, risk assessment, recommendations.</p>
+                                <span class="service-delivery">2–3 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20a%20Reputation%20Audit%20(From%20R1%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2. Reputation Management -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Reputation Management</span>
+                                    <span class="service-price text-sm">From R2,500</span>
+                                </div>
+                                <p class="service-desc">Fixes what the audit finds — strategy, content planning, review management, monitoring.</p>
+                                <span class="service-delivery">3–4 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Reputation%20Management%20(From%20R2%2C500)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 3. Executive Reputation -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Executive Reputation</span>
+                                    <span class="service-price text-sm">From R6,500</span>
+                                </div>
+                                <p class="service-desc">For someone whose personal name matters professionally — biography, authority positioning, Knowledge Graph readiness.</p>
+                                <span class="service-delivery">3–4 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Executive%20Reputation%20(From%20R6%2C500)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 4. Data Removal -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Data Removal</span>
+                                    <span class="service-price text-sm">From R2,500</span>
+                                </div>
+                                <p class="service-desc">Reduces exposed personal information sitting publicly online, with follow-up checks.</p>
+                                <span class="service-delivery">timeline varies by case</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Data%20Removal%20(From%20R2%2C500)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 5. Privacy Package (bundle) -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Privacy Package <span class="text-[10px] text-mafia-gold font-normal">(bundle)</span></span>
+                                    <span class="service-price text-sm">From R8,000</span>
+                                </div>
+                                <p class="service-desc">Reputation Audit, Reputation Management, and Data Removal together — the full privacy defence.</p>
+                                <span class="service-delivery">6–8 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20the%20Privacy%20Package%20(From%20R8%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </details>
+
+                <!-- ===== SAFETY GROUP ===== -->
+                <details class="glass rounded-xl overflow-hidden scroll-reveal" style="transition-delay:0.1s;">
+                    <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                        <span class="flex items-center gap-3">
+                            <span class="text-mafia-gold font-display font-bold text-lg">Safety</span>
+                            <span class="text-[10px] md:text-xs text-zinc-500 font-body font-normal">5 services</span>
+                        </span>
+                        <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </summary>
+                    <div class="px-4 pb-4 md:px-6 md:pb-6 space-y-1">
+
+                        <!-- 1. Cyber Health Check -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Cyber Health Check</span>
+                                    <span class="service-price text-sm">From R1,750</span>
+                                </div>
+                                <p class="service-desc">Plain-language check of passwords, email, devices, 2FA, breach exposure.</p>
+                                <span class="service-delivery">2–3 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20a%20Cyber%20Health%20Check%20(From%20R1%2C750)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 2. Digital Security Hardening -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Digital Security Hardening</span>
+                                    <span class="service-price text-sm">From R4,000</span>
+                                </div>
+                                <p class="service-desc">Actually fixes what the health check finds — MFA, account recovery, password manager, device hardening.</p>
+                                <span class="service-delivery">2–3 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Digital%20Security%20Hardening%20(From%20R4%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 3. Impersonation Recovery -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Impersonation Recovery</span>
+                                    <span class="service-price text-sm">From R2,500</span>
+                                </div>
+                                <p class="service-desc">Identifies and helps recover control from fake profiles impersonating you or your business.</p>
+                                <span class="service-delivery">3–4 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Impersonation%20Recovery%20(From%20R2%2C500)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 4. Image-Based Abuse & Extortion Support -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Image-Based Abuse &amp; Extortion Support</span>
+                                    <span class="service-price text-sm">From R2,000</span>
+                                </div>
+                                <p class="service-desc">Confidential support for blackmail/extortion or non-consensual image sharing — immediate response, account security, reporting, recovery plan. Pricing may increase with complexity, quoted before work begins.</p>
+                                <span class="service-delivery">immediate first response, resolution varies</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20Image-Based%20Abuse%20%26%20Extortion%20Support%20(From%20R2%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- 5. Safety Package (bundle) -->
+                        <div class="service-item">
+                            <div class="service-info">
+                                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                                    <span class="font-body font-semibold text-sm text-near-white">Safety Package <span class="text-[10px] text-mafia-gold font-normal">(bundle)</span></span>
+                                    <span class="service-price text-sm">From R8,000</span>
+                                </div>
+                                <p class="service-desc">Cyber Health Check, Digital Security Hardening, and Impersonation Recovery together.</p>
+                                <span class="service-delivery">6–8 weeks</span>
+                            </div>
+                            <div class="service-action mt-2 md:mt-0">
+                                <a href="https://wa.me/27695326613?text=I'd%20like%20the%20Safety%20Package%20(From%20R8%2C000)." target="_blank" class="btn-wa-sm">
+                                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                                    WhatsApp
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </details>
+
             </div>
         </div>
     </section>
@@ -1409,7 +1320,7 @@
 
                     <div class="flex flex-wrap justify-center gap-3 md:gap-4 scroll-reveal">
                         <a href="connect.html" class="btn-glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-bold text-base md:text-lg text-gold-300 flex items-center gap-2 md:gap-3 group cta-pill">
-                            <span>R750 Free DPA Audit</span>
+                            <span>Free Digital Audit</span>
                             <svg class="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
                         <a href="connect.html" class="glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-semibold text-base md:text-lg text-platinum hover:bg-white/5 transition-all">
@@ -1433,6 +1344,8 @@
             <div class="mb-10 md:mb-16">
                 <h3 class="font-display font-bold text-xl md:text-2xl text-near-white mb-4 md:mb-6 text-center">Frequently asked</h3>
                 <div class="max-w-3xl mx-auto space-y-3">
+
+                    <!-- Existing FAQ entries (kept, price corrected) -->
                     <details class="glass rounded-xl overflow-hidden">
                         <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
                             <span>How do I start without tech skills?</span>
@@ -1442,6 +1355,7 @@
                             Answer 5 simple questions. We handle audits, setup, and monitoring. Takes 2 minutes.
                         </div>
                     </details>
+
                     <details class="glass rounded-xl overflow-hidden">
                         <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
                             <span>Do I pay monthly?</span>
@@ -1451,15 +1365,69 @@
                             No. Set-and-forget systems. One-time setup, transparent handover, zero subscriptions.
                         </div>
                     </details>
+
+                    <!-- Updated existing entry: price corrected from R750 to R0, NCII/POPIA language kept -->
                     <details class="glass rounded-xl overflow-hidden">
                         <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
                             <span>What happens to harmful content?</span>
                             <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
                         </summary>
                         <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
-                            We suppress it legally, replace it with verified assets, and monitor daily. NCII reports follow SA POPIA & ICASA guidelines.
+                            We suppress it legally, replace it with verified assets, and monitor daily. NCII reports follow SA POPIA &amp; ICASA guidelines. Start with a <strong class="text-mafia-gold">Free Digital Audit (R0)</strong> to see what needs attention.
                         </div>
                     </details>
+
+                    <!-- ===== NEW FAQ ENTRIES ===== -->
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>Do I own everything afterward?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            Yes, 100%. Full admin access and every asset handed over. Nothing held back.
+                        </div>
+                    </details>
+
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>Can I just get one thing?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            Yes. Most people start with the Free Audit, then add only what they need.
+                        </div>
+                    </details>
+
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>How long does anything take?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            Every timeframe is an estimate, set and adjusted by WeMustCreate based on workload and how quickly you respond — not a fixed date.
+                        </div>
+                    </details>
+
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>Why does pricing say "From"?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            It's a starting point. Final cost depends on the size of the job, quoted properly before anything begins.
+                        </div>
+                    </details>
+
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>What if I need something urgent?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            The Image-Based Abuse &amp; Extortion service gets an immediate first response regardless of current workload.
+                        </div>
+                    </details>
+
                 </div>
             </div>
 
@@ -1523,7 +1491,8 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js">
+    </script>
     <script>
         // Three.js Earth Background
         (function() {
@@ -1548,9 +1517,15 @@
 
             const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
             const earthMaterial = new THREE.MeshPhongMaterial({
-                map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'),
-                specularMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg'),
-                normalMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'),
+                map: textureLoader.load(
+                    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'
+                    ),
+                specularMap: textureLoader.load(
+                    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg'
+                    ),
+                normalMap: textureLoader.load(
+                    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'
+                    ),
                 shininess: 8,
                 brightness: 0.5
             });
@@ -1559,7 +1534,9 @@
 
             const cloudGeometry = new THREE.SphereGeometry(1.02, 64, 64);
             const cloudMaterial = new THREE.MeshPhongMaterial({
-                map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png'),
+                map: textureLoader.load(
+                    'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png'
+                    ),
                 transparent: true,
                 opacity: 0.3,
                 blending: THREE.AdditiveBlending,
@@ -1595,7 +1572,7 @@
             const saLon = 25.5;
             const phi = (90 - saLat) * (Math.PI / 180);
             const theta = (saLon + 180) * (Math.PI / 180);
-            earthGroup.rotation.x = phi - Math.PI/2;
+            earthGroup.rotation.x = phi - Math.PI / 2;
             earthGroup.rotation.y = theta;
 
             let time = 0;
