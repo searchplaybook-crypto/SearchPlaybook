@@ -1,6 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solutions — Search Playbook | WeMustCreate</title>
+    <meta name="description" content="Compare WMC's 12-month integrated digital coverage against website builders, dev teams, and SEO agencies. One subscription-free rate with monthly reporting, WhatsApp Business, GMB optimisation, and more." />
+
+    <link rel="canonical" href="https://searchplaybook-crypto.github.io/SearchPlaybook/solutions.html" />
+    <link rel="sitemap" type="application/xml" href="/SearchPlaybook/sitemap.xml" />
+
+    <!-- Google Search Console verification -->
+    <meta name="google-site-verification" content="google0358e8a493fefd4f" />
+
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FZKPVQY1GB"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FZKPVQY1GB');
+    </script>
+
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9664615320771471" crossorigin="anonymous"></script>
+
+    <!-- JSON‑LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "WeMustCreate",
+      "url": "https://searchplaybook-crypto.github.io/SearchPlaybook/",
+      "logo": "https://ik.imagekit.io/wemustcreate/Shield.png",
+      "description": "WeMustCreate offers subscription-free digital solutions for visibility, privacy, and safety. We provide 12-month integrated coverage with monthly reporting, WhatsApp Business setup, GMB optimisation, and more.",
+      "sameAs": [
+        "https://www.linkedin.com/in/llewellynoshea/",
+        "https://www.facebook.com/searchplaybook/",
+        "https://wa.me/27695326613"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+27695326613",
+        "contactType": "Sales and Support",
+        "availableLanguage": ["English"]
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Johannesburg",
+        "addressRegion": "GP",
+        "addressCountry": "ZA"
+      }
+    }
+    </script>
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -35,6 +87,415 @@
                     },
                     animation: {
                         'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'reveal': 'reveal 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        reveal: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        :root {
+            --glass-border: rgba(249, 249, 249, 0.08);
+        }
+        body {
+            background: radial-gradient(ellipse at top, #1a1a1f 0%, #09090B 50%, #050507 100%);
+            overflow-x: hidden;
+        }
+
+        /* Three.js Canvas Layer */
+        #earth-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(ellipse at bottom, #0a0e27 0%, #000000 100%);
+        }
+
+        #earth-canvas::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            pointer-events: none;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(9, 9, 11, 0.08) 0%, rgba(9, 9, 11, 0.70) 100%);
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass {
+            background: rgba(24, 24, 27, 0.45);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+        }
+        .glass-gold {
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.03) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+        .glass-red {
+            background: linear-gradient(135deg, rgba(255, 61, 90, 0.1) 0%, rgba(255, 61, 90, 0.03) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 61, 90, 0.2);
+        }
+        .glass-azure {
+            background: linear-gradient(135deg, rgba(67, 207, 253, 0.1) 0%, rgba(6, 74, 115, 0.15) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(67, 207, 253, 0.2);
+        }
+        .glass-green {
+            background: linear-gradient(135deg, rgba(0, 255, 136, 0.08) 0%, rgba(0, 179, 95, 0.05) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 255, 136, 0.15);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2);
+        }
+        .text-glow-azure {
+            text-shadow: 0 0 30px rgba(67, 207, 253, 0.5), 0 0 60px rgba(67, 207, 253, 0.2);
+        }
+
+        .bg-gradient-mesh {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(67, 207, 253, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(182, 110, 65, 0.1) 0%, transparent 50%);
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Hover Effects */
+        .glass-hover {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        @media (hover: hover) {
+            .glass-hover:hover {
+                background: rgba(24, 24, 27, 0.65);
+                border-color: rgba(249, 249, 249, 0.15);
+                transform: translateY(-8px) scale(1.01);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
+            }
+        }
+
+        .btn-glass {
+            background: rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-glass:hover {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #FCEEB5 0%, #D4AF37 50%, #A08326 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-text-azure {
+            background: linear-gradient(135deg, #FFFFFF 0%, #43CFFD 50%, #064A73 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .floating-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            pointer-events: none;
+            opacity: 0.4;
+        }
+
+        /* Navigation */
+        .nav-transparent {
+            background: rgba(9, 9, 11, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(249, 249, 249, 0.05);
+            transition: all 0.3s ease;
+        }
+        .nav-scrolled {
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .scroll-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #09090B;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #D4AF37, #A08326);
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .floating-orb {
+                display: none;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-panel {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
+
+        /* CTA Pill Animation */
+        .cta-pill {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* Table Styles */
+        .comparison-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .comparison-table th {
+            background: rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        .comparison-table td {
+            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
+        }
+        .comparison-table tr:hover td {
+            background: rgba(212, 175, 55, 0.03);
+        }
+        .comparison-table .wmc-col {
+            background: rgba(212, 175, 55, 0.06);
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            border-right: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .rates-table {
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        .rates-table th {
+            background: rgba(67, 207, 253, 0.1);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(67, 207, 253, 0.25);
+        }
+        .rates-table td {
+            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
+        }
+        .rates-table tr:hover td {
+            background: rgba(67, 207, 253, 0.03);
+        }
+
+        /* Limitations list */
+        .limitation-item {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .limitation-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 61, 90, 0.6);
+        }
+
+        /* Check/X icons */
+        .icon-check {
+            color: #00ff88;
+        }
+        .icon-cross {
+            color: #ff3d5a;
+        }
+
+        /* Service accordion inner item */
+        .service-item {
+            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
+            padding: 0.75rem 0;
+        }
+        .service-item:last-child {
+            border-bottom: none;
+        }
+        .service-item .service-price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #D4AF37;
+            white-space: nowrap;
+        }
+        .service-item .service-desc {
+            font-size: 0.75rem;
+            color: rgba(228, 228, 231, 0.5);
+            line-height: 1.4;
+            margin-top: 0.125rem;
+        }
+        .service-item .service-delivery {
+            font-size: 0.7rem;
+            color: rgba(228, 228, 231, 0.4);
+        }
+        @media (min-width: 768px) {
+            .service-item {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 1rem;
+                padding: 0.75rem 0;
+            }
+            .service-item .service-info {
+                flex: 1;
+                min-width: 0;
+            }
+            .service-item .service-action {
+                flex-shrink: 0;
+            }
+        }
+        .service-item .btn-wa-sm {
+            background: rgba(212, 175, 55, 0.12);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 9999px;
+            padding: 0.35rem 0.9rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #F0D676;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            white-space: nowrap;
+            font-family: 'Inter', sans-serif;
+        }
+        .service-item .btn-wa-sm:hover {
+            background: rgba(212, 175, 55, 0.25);
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.15);
+        }
+        .service-item .btn-wa-sm svg {
+            width: 0.75rem;
+            height: 0.75rem;
+        }
+    </style>
+</head>
+<body class="font-body text-platinum antialiased">
+
+    <div class="noise-overlay"></div>
+    <div class="bg-gradient-mesh"></div>
+    <div class="floating-orb w-[600px] h-[600px] bg-mafia-gold/20 top-[-200px] left-[-100px] animate-float"></div>
+    <div class="floating-orb w-[500px] h-[500px] bg-icy-azure/15 bottom-[-150px] right-[-100px] animate-float-slow"></div>
+
+    <!-- Three.js Canvas Background -->
+    <div id="earth-canvas"></div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="nav-transparent fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo Top Left -->
+                <a href="index.html" class="flex items-center gap-2 md:gap-3 cursor-pointer">
+                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" loading="eager" />
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-sm md:text-xl tracking-wide text-near-white">SEARCH PLAYBOOK</span>
+                        <span class="text-[8px] md:text-[10px] font-accent font-light text-zinc-500 tracking-widest uppercase hidden sm:block">WeMustCreate</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                    <a href="solutions.html" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
+                    <a href="collective.html" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">About</a>
+                    <a href="connect.html" class="font-body font-normal text-sm text-platinum/80 hover:text-mafia-gold transition-colors">Connect</a>
+                    <a href="connect.html" class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">Get Started</a>
+                </div>
+
+                <!-- Mobile Burger Top Right -->
+                <button class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-50 relative" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line1"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300" id="menu-line2"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line3"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="md:hidden fixed inset-0 top-0 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full mobile-menu-panel flex flex-col" id="mobileMenu">
+            <div class="px-6 pt-20 pb-6 border-b border-white/5">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" />
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-lg text-near-white">SEARCH PLAYBOOK</span>
+                        <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
+                    </div>
+                </div>
+                <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital                        'float': 'float 6s ease-in-out infinite',
                         'float-slow': 'float 8s ease-in-out infinite',
                         'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
                         'shimmer': 'shimmer 2s linear infinite',
