@@ -1,1841 +1,951 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- Add to <head> of ALL pages -->
-<link rel="canonical" href="https://searchplaybook-crypto.github.io/SearchPlaybook/" />
-<link rel="sitemap" type="application/xml" href="/SearchPlaybook/sitemap.xml" />
-
-<!-- Fix broken Intel link in navigation -->
-<nav aria-label="Primary" class="site-nav">
-  <a href="/SearchPlaybook/" aria-current="page">Home</a>
-  <a href="/SearchPlaybook/intel.html">Intel</a> <!-- Note: .html extension required for GitHub Pages -->
-  <a href="/SearchPlaybook/solutions.html">Solutions</a>
-  <a href="/SearchPlaybook/collective.html">Collective</a>
-  <a href="/SearchPlaybook/connect.html">Connect</a>
-</nav>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Core Identity & Graph Grounding -->
-    <meta name="description" content="Search PlayBook: Human + AI digital optimisation for Visibility, Privacy and Safety. One-time fees, no subscriptions." />
-    <meta name="author" content="Max (WeMustCreate)" />
-    <link rel="canonical" href="https://searchplaybook-crypto.github.io/SearchPlaybook/" />
-
-    <!-- Open Graph / LLM Contextual Scrapers -->
-    <meta property="og:title" content="Search PlayBook | Digital Optimisation" />
-    <meta property="og:description" content="Build a digital presence that AI can find, people can trust, and you can control." />
-    <meta property="og:url" content="https://searchplaybook-crypto.github.io/SearchPlaybook/" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" />
-
-    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-
-    <title>Search PlayBook | Digital Optimisation</title>
-
-    <style>
-        @import url('https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@5.0.18/index.min.css');
-        @import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.18/index.min.css');
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #12121a;
-            --bg-card: #1a1a26cc;
-            --bg-card-hover: #22222fcc;
-            --border: #2a2a3a;
-            --border-accent: #3a3a5a;
-            --text-primary: #e8e8f0;
-            --text-secondary: #9898b0;
-            --text-muted: #6868808a;
-            --cyan: #00e5ff;
-            --cyan-dim: #00e5ff22;
-            --gold: #ffd700;
-            --gold-dim: #ffd70022;
-            --red: #ff3d5a;
-            --red-dim: #ff3d5a22;
-            --green: #00ff88;
-            --green-dim: #00ff8822;
-            --purple: #b388ff;
-            --purple-dim: #b388ff22;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--bg-primary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: var(--border-accent);
-            border-radius: 3px;
-        }
-
-        /* ===== FIXED VIDEO BACKGROUND ===== */
-        .video-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0;
-            overflow: hidden;
-        }
-        .video-bg video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg,
-                    rgba(10, 10, 15, 0.75) 0%,
-                    rgba(10, 10, 15, 0.60) 30%,
-                    rgba(10, 10, 15, 0.70) 60%,
-                    rgba(10, 10, 15, 0.92) 100%);
-            z-index: 1;
-        }
-        .video-overlay::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at 50% 30%, transparent 0%, rgba(10, 10, 15, 0.4) 100%);
-        }
-        .grid-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image:
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.08;
-            pointer-events: none;
-            z-index: 1;
-        }
-        .noise {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.025;
-            pointer-events: none;
-            z-index: 1;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ===== NAVIGATION ===== */
-        nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 0.8rem 2rem;
-            background: rgba(10, 10, 15, 0.6);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-bottom: 1px solid rgba(42, 42, 58, 0.5);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        nav.scrolled {
-            padding: 0.5rem 2rem;
-            background: rgba(10, 10, 15, 0.85);
-        }
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            text-decoration: none;
-        }
-        .nav-shield {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-            filter: drop-shadow(0 0 8px var(--cyan-dim));
-            transition: filter 0.3s;
-        }
-        .nav-brand:hover .nav-shield {
-            filter: drop-shadow(0 0 16px var(--cyan-dim));
-        }
-        .nav-logo-text {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            color: var(--cyan);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            font-weight: 600;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s;
-            position: relative;
-        }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--cyan);
-            transition: width 0.3s;
-        }
-        .nav-links a:hover {
-            color: var(--cyan);
-        }
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        .nav-cta {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            padding: 0.5rem 1.2rem;
-            background: transparent;
-            border: 1px solid var(--cyan);
-            color: var(--cyan);
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            text-decoration: none;
-        }
-        .nav-cta:hover {
-            background: var(--cyan);
-            color: var(--bg-primary);
-        }
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 4px;
-            z-index: 200;
-        }
-        .hamburger span {
-            display: block;
-            width: 22px;
-            height: 1.5px;
-            background: var(--text-secondary);
-            transition: all 0.3s;
-        }
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(4px, 4px);
-            background: var(--cyan);
-        }
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-            background: var(--cyan);
-        }
-
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(10, 10, 15, 0.97);
-            backdrop-filter: blur(30px);
-            z-index: 150;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 2rem;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-        }
-        .mobile-menu.open {
-            opacity: 1;
-            pointer-events: all;
-        }
-        .mobile-menu a {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            transform: translateY(20px);
-            opacity: 0;
-        }
-        .mobile-menu.open a {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .mobile-menu a:nth-child(1) {
-            transition-delay: 0.1s;
-        }
-        .mobile-menu a:nth-child(2) {
-            transition-delay: 0.15s;
-        }
-        .mobile-menu a:nth-child(3) {
-            transition-delay: 0.2s;
-        }
-        .mobile-menu a:nth-child(4) {
-            transition-delay: 0.25s;
-        }
-        .mobile-menu a:nth-child(5) {
-            transition-delay: 0.3s;
-        }
-        .mobile-menu a:nth-child(6) {
-            transition-delay: 0.35s;
-        }
-        .mobile-menu a:hover {
-            color: var(--cyan);
-        }
-        .mobile-menu-shield {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 0 20px var(--cyan-dim));
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease 0.05s;
-        }
-        .mobile-menu.open .mobile-menu-shield {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 8rem 2rem 4rem;
-            position: relative;
-        }
-        .hero-badge {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            padding: 0.4rem 1rem;
-            border: 1px solid var(--border-accent);
-            color: var(--text-secondary);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 2rem;
-            animation: fadeInDown 0.8s ease;
-            background: rgba(26, 26, 38, 0.5);
-            backdrop-filter: blur(8px);
-        }
-        .hero-badge .dot {
-            display: inline-block;
-            width: 6px;
-            height: 6px;
-            background: var(--green);
-            border-radius: 50%;
-            margin-right: 0.5rem;
-            animation: pulse 2s infinite;
-        }
-        .hero h1 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.8rem, 5vw, 3.8rem);
-            font-weight: 700;
-            line-height: 1.15;
-            margin-bottom: 1.2rem;
-            animation: fadeInUp 0.8s ease 0.2s both;
-            text-shadow: 0 2px 40px rgba(0, 0, 0, 0.6);
-            max-width: 900px;
-        }
-        .hero h1 .line1 {
-            color: var(--text-primary);
-        }
-        .hero h1 .line2 {
-            background: linear-gradient(90deg, var(--cyan), var(--purple));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .hero-sub {
-            font-size: 1.05rem;
-            color: var(--text-secondary);
-            max-width: 620px;
-            margin-bottom: 3rem;
-            animation: fadeInUp 0.8s ease 0.4s both;
-            text-shadow: 0 1px 20px rgba(0, 0, 0, 0.5);
-            letter-spacing: 0.5px;
-        }
-        .hero-actions {
-            display: flex;
-            gap: 1rem;
-            animation: fadeInUp 0.8s ease 0.8s both;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .btn-primary {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.85rem 2rem;
-            background: var(--cyan);
-            color: var(--bg-primary);
-            border: none;
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 600;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-primary::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, #ffffff33, transparent);
-            transition: left 0.5s;
-        }
-        .btn-primary:hover::before {
-            left: 100%;
-        }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--cyan-dim);
-        }
-
-        .btn-secondary {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.85rem 2rem;
-            background: rgba(26, 26, 38, 0.5);
-            backdrop-filter: blur(8px);
-            color: var(--text-secondary);
-            border: 1px solid var(--border-accent);
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-secondary:hover {
-            border-color: var(--text-secondary);
-            color: var(--text-primary);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            animation: fadeInUp 0.8s ease 1s both;
-        }
-        .scroll-indicator span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.55rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .scroll-line {
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--cyan), transparent);
-            animation: scrollPulse 2s infinite;
-        }
-
-        /* ===== SECTIONS ===== */
-        section {
-            padding: 6rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .section-header {
-            text-align: center;
-            margin-bottom: 3.5rem;
-        }
-        .section-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--cyan);
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            display: block;
-        }
-        .section-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.4rem, 3vw, 2.2rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
-        }
-        .section-desc {
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            font-size: 0.9rem;
-            text-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
-        }
-        .divider {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border-accent), transparent);
-        }
-
-        /* ===== FRAMEWORK PILLARS ===== */
-        .pillars-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.8rem;
-            margin-top: 2rem;
-        }
-        .pillar-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            transition: all 0.4s;
-            position: relative;
-            overflow: hidden;
-        }
-        .pillar-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-3px);
-        }
-        .pillar-card::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 3px;
-            height: 100%;
-        }
-        .pillar-card:nth-child(1)::after {
-            background: var(--cyan);
-        }
-        .pillar-card:nth-child(2)::after {
-            background: var(--purple);
-        }
-        .pillar-card:nth-child(3)::after {
-            background: var(--green);
-        }
-        .pillar-card:nth-child(1):hover {
-            box-shadow: 0 0 40px var(--cyan-dim);
-        }
-        .pillar-card:nth-child(2):hover {
-            box-shadow: 0 0 40px var(--purple-dim);
-        }
-        .pillar-card:nth-child(3):hover {
-            box-shadow: 0 0 40px var(--green-dim);
-        }
-        .pillar-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.55rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 0.6rem;
-        }
-        .pillar-card:nth-child(1) .pillar-label {
-            color: var(--cyan);
-        }
-        .pillar-card:nth-child(2) .pillar-label {
-            color: var(--purple);
-        }
-        .pillar-card:nth-child(3) .pillar-label {
-            color: var(--green);
-        }
-        .pillar-card h3 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.6rem;
-        }
-        .pillar-card p {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* ===== DIGITAL BIRTH CERTIFICATE ===== */
-        .dbc-section {
-            padding: 4rem 2rem 6rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .dbc-card {
-            background: linear-gradient(135deg, rgba(26, 26, 38, 0.92), rgba(10, 10, 15, 0.92));
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--gold);
-            padding: 3rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: start;
-            position: relative;
-            overflow: hidden;
-        }
-        .dbc-card::before {
-            content: '★';
-            position: absolute;
-            top: -60px;
-            right: -40px;
-            font-size: 180px;
-            color: var(--gold-dim);
-            opacity: 0.15;
-            font-family: 'JetBrains Mono', monospace;
-        }
-        .dbc-left h2 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: clamp(1.4rem, 2.5vw, 2rem);
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-            color: var(--gold);
-        }
-        .dbc-left .dbc-price {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin: 0.5rem 0 1rem;
-        }
-        .dbc-left .dbc-price span {
-            font-size: 1rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-        .dbc-left .dbc-desc {
-            font-size: 0.95rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-        .dbc-left .dbc-includes {
-            list-style: none;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.4rem 1.5rem;
-            margin-bottom: 1.8rem;
-        }
-        .dbc-left .dbc-includes li {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .dbc-left .dbc-includes li::before {
-            content: '→';
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--gold);
-            font-size: 0.7rem;
-        }
-        .dbc-right {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: flex-start;
-            gap: 1rem;
-            padding: 1rem 0;
-        }
-        .dbc-right .dbc-why {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            max-width: 400px;
-        }
-        .dbc-right .dbc-why strong {
-            color: var(--gold);
-        }
-        .btn-gold {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.85rem 2.2rem;
-            background: linear-gradient(90deg, var(--gold), #ffaa00);
-            color: var(--bg-primary);
-            border: none;
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 700;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--gold-dim);
-        }
-
-        /* ===== SERVICE GRID ===== */
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .service-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            padding: 1.8rem;
-            transition: all 0.4s;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .service-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        }
-        .service-card .pillar-tag {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            padding: 0.2rem 0.6rem;
-            border: 1px solid var(--border-accent);
-            display: inline-block;
-            margin-bottom: 0.6rem;
-            align-self: flex-start;
-        }
-        .service-card.visibility .pillar-tag {
-            color: var(--cyan);
-            border-color: var(--cyan-dim);
-        }
-        .service-card.privacy .pillar-tag {
-            color: var(--purple);
-            border-color: var(--purple-dim);
-        }
-        .service-card.safety .pillar-tag {
-            color: var(--green);
-            border-color: var(--green-dim);
-        }
-        .service-card.bundle .pillar-tag {
-            color: var(--gold);
-            border-color: var(--gold-dim);
-        }
-        .service-card h3 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-        .service-card .price {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--cyan);
-            margin: 0.3rem 0 0.6rem;
-        }
-        .service-card .price .note {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            font-weight: 400;
-        }
-        .service-card .what-we-do {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
-        }
-        .service-card .what-you-get {
-            font-size: 0.72rem;
-            color: var(--text-muted);
-            margin-bottom: 0.8rem;
-            border-top: 1px solid var(--border);
-            padding-top: 0.6rem;
-        }
-        .service-card .what-you-get strong {
-            color: var(--text-secondary);
-        }
-        .service-card .delivery {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-bottom: 0.6rem;
-        }
-        .service-card .delivery strong {
-            color: var(--text-secondary);
-        }
-        .service-card .support-note {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
-        }
-        .service-card .btn-wa {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            padding: 0.6rem 1rem;
-            background: transparent;
-            border: 1px solid var(--green);
-            color: var(--green);
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-            margin-top: auto;
-        }
-        .service-card .btn-wa:hover {
-            background: var(--green);
-            color: var(--bg-primary);
-        }
-        .service-card .btn-wa.free {
-            border-color: var(--cyan);
-            color: var(--cyan);
-        }
-        .service-card .btn-wa.free:hover {
-            background: var(--cyan);
-            color: var(--bg-primary);
-        }
-
-        /* ===== PACKAGES ===== */
-        .package-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-        .package-card {
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-            padding: 2rem;
-            transition: all 0.4s;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-        .package-card:hover {
-            border-color: var(--border-accent);
-            transform: translateY(-3px);
-        }
-        .package-card.complete {
-            border-color: var(--gold);
-            background: linear-gradient(135deg, rgba(26, 26, 38, 0.9), rgba(26, 26, 10, 0.9));
-        }
-        .package-card.complete::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: linear-gradient(90deg, var(--gold), #ffaa00);
-        }
-        .package-card .pkg-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.5rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin-bottom: 0.3rem;
-        }
-        .package-card h3 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 0.2rem;
-        }
-        .package-card .pkg-price {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin: 0.3rem 0 0.6rem;
-        }
-        .package-card:nth-child(1) .pkg-price {
-            color: var(--cyan);
-        }
-        .package-card:nth-child(2) .pkg-price {
-            color: var(--purple);
-        }
-        .package-card:nth-child(3) .pkg-price {
-            color: var(--green);
-        }
-        .package-card:nth-child(4) .pkg-price {
-            color: var(--gold);
-        }
-        .package-card .pkg-desc {
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            margin-bottom: 1rem;
-            flex-grow: 1;
-        }
-        .package-card .pkg-includes {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            margin-bottom: 1.2rem;
-            border-top: 1px solid var(--border);
-            padding-top: 0.6rem;
-        }
-        .package-card .pkg-includes strong {
-            color: var(--text-secondary);
-        }
-        .package-card .btn-pkg {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            padding: 0.7rem;
-            background: transparent;
-            border: 1px solid var(--text-secondary);
-            color: var(--text-secondary);
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s;
-            text-decoration: none;
-            text-align: center;
-            width: 100%;
-        }
-        .package-card:nth-child(1) .btn-pkg:hover {
-            border-color: var(--cyan);
-            color: var(--cyan);
-        }
-        .package-card:nth-child(2) .btn-pkg:hover {
-            border-color: var(--purple);
-            color: var(--purple);
-        }
-        .package-card:nth-child(3) .btn-pkg:hover {
-            border-color: var(--green);
-            color: var(--green);
-        }
-        .package-card:nth-child(4) .btn-pkg {
-            border-color: var(--gold);
-            color: var(--gold);
-        }
-        .package-card:nth-child(4) .btn-pkg:hover {
-            background: var(--gold);
-            color: var(--bg-primary);
-        }
-
-        /* ===== FAQ ===== */
-        .faq-section {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
-        }
-        .faq-list {
-            margin-top: 2.5rem;
-        }
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-            overflow: hidden;
-        }
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2rem 0;
-            cursor: pointer;
-            transition: all 0.3s;
-            user-select: none;
-        }
-        .faq-question:hover {
-            padding-left: 0.5rem;
-        }
-        .faq-question h4 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: var(--text-primary);
-            flex: 1;
-            padding-right: 1rem;
-        }
-        .faq-toggle {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            transition: all 0.3s;
-            min-width: 20px;
-            text-align: center;
-        }
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-            color: var(--cyan);
-        }
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-        }
-        .faq-answer-inner {
-            padding: 0 0 1.5rem 0;
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 4rem 2rem;
-            text-align: center;
-            border-top: 1px solid rgba(42, 42, 58, 0.5);
-            background: rgba(10, 10, 15, 0.6);
-            backdrop-filter: blur(16px);
-        }
-        .footer-shield {
-            width: 50px;
-            height: 50px;
-            object-fit: contain;
-            margin-bottom: 1rem;
-            filter: drop-shadow(0 0 12px var(--cyan-dim));
-        }
-        .footer-cta-box {
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            padding: 2.5rem;
-            background: var(--bg-card);
-            backdrop-filter: blur(16px);
-            border: 1px solid var(--border);
-        }
-        .footer-cta-box h3 {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-        }
-        .footer-cta-box p {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 1.5rem;
-            line-height: 1.7;
-        }
-        .footer-cta-box .cta-links {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-        }
-        .footer-cta-box .cta-links a {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            padding: 0.7rem 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-        .footer-cta-box .cta-links .wa-link {
-            background: var(--green);
-            color: var(--bg-primary);
-            font-weight: 600;
-        }
-        .footer-cta-box .cta-links .wa-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--green-dim);
-        }
-        .footer-cta-box .cta-links .email-link {
-            background: transparent;
-            color: var(--text-secondary);
-            border: 1px solid var(--border-accent);
-        }
-        .footer-cta-box .cta-links .email-link:hover {
-            border-color: var(--text-secondary);
-            color: var(--text-primary);
-        }
-
-        .footer-contact {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        .footer-contact a {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-        .footer-contact a:hover {
-            color: var(--cyan);
-        }
-        footer p {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: var(--text-muted);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-        }
-        footer .footer-link {
-            color: var(--cyan);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        footer .footer-link:hover {
-            color: var(--text-primary);
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        @keyframes pulse {
-            0%,
-            100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0.3;
-            }
-        }
-        @keyframes scrollPulse {
-            0% {
-                opacity: 1;
-                transform: scaleY(1);
-            }
-            50% {
-                opacity: 0.3;
-                transform: scaleY(0.6);
-            }
-            100% {
-                opacity: 1;
-                transform: scaleY(1);
-            }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== RESPONSIVE ===== */
-        @media (max-width: 900px) {
-            .nav-links {
-                display: none;
-            }
-            .nav-cta {
-                display: none;
-            }
-            .hamburger {
-                display: flex;
-            }
-            .hero-actions {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-            }
-            .dbc-card {
-                grid-template-columns: 1fr;
-                padding: 2rem;
-            }
-            .dbc-left .dbc-includes {
-                grid-template-columns: 1fr;
-            }
-            .dbc-right {
-                align-items: flex-start;
-            }
-            section {
-                padding: 4rem 1.2rem;
-            }
-            .hero {
-                padding: 6rem 1.2rem 3rem;
-            }
-            .footer-cta-box {
-                padding: 1.5rem;
-            }
-            .footer-cta-box .cta-links {
-                flex-direction: column;
-                align-items: center;
-            }
-            .footer-cta-box .cta-links a {
-                width: 100%;
-                max-width: 280px;
-                text-align: center;
-            }
-            .service-grid {
-                grid-template-columns: 1fr;
-            }
-            .package-grid {
-                grid-template-columns: 1fr;
-            }
-            .pillars-grid {
-                grid-template-columns: 1fr;
-            }
-            .footer-contact {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .hero h1 {
-                font-size: 1.6rem;
-            }
-            .hero-sub {
-                font-size: 0.9rem;
-            }
-        }
-
-        .particle {
-            position: fixed;
-            width: 2px;
-            height: 2px;
-            background: var(--cyan);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            opacity: 0;
-        }
-    </style>
-</head>
-<body>
-
-    <!-- ===== FIXED VIDEO BACKGROUND ===== -->
-    <div class="video-bg">
-        <video autoplay muted loop playsinline preload="auto">
-            <source src="https://ik.imagekit.io/wemustcreate/solutions-cinefoot.mp4" type="video/mp4">
-        </video>
-        <div class="video-overlay"></div>
-    </div>
-
-    <div class="grid-bg"></div>
-    <div class="noise"></div>
-
-    <div class="content-wrapper">
-
-        <!-- ===== NAVIGATION ===== -->
-        <nav id="mainNav">
-            <a href="#hero" class="nav-brand">
-                <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="Search PlayBook Shield" class="nav-shield">
-                <div class="nav-logo-text">SOLUTIONS</div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#framework">Framework</a></li>
-                <li><a href="#dbc">Birth Certificate</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#packages">Packages</a></li>
-                <li><a href="#faq">FAQ</a></li>
-            </ul>
-            <a href="#footer-cta" class="nav-cta">Start Free Audit</a>
-            <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
-                <span></span><span></span><span></span>
-            </button>
-        </nav>
-
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="SPC Shield" class="mobile-menu-shield">
-            <a href="#hero" onclick="closeMobileMenu()">Home</a>
-            <a href="#framework" onclick="closeMobileMenu()">Framework</a>
-            <a href="#dbc" onclick="closeMobileMenu()">Birth Certificate</a>
-            <a href="#services" onclick="closeMobileMenu()">Services</a>
-            <a href="#packages" onclick="closeMobileMenu()">Packages</a>
-            <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
-            <a href="#footer-cta" onclick="closeMobileMenu()">Free Audit</a>
-        </div>
-
-        <!-- ===== HERO ===== -->
-        <section class="hero" id="hero">
-            <div class="hero-badge">
-                <span class="dot"></span> HUMAN + AI DIGITAL OPTIMISATION
-            </div>
-            <h1>
-                <span class="line1">Build a Digital Presence</span><br>
-                <span class="line2">That AI Can Find, People Can Trust, and You Can Control.</span>
-            </h1>
-            <p class="hero-sub">
-                Human + AI digital optimisation for Visibility, Privacy and Safety.
-            </p>
-            <div class="hero-actions">
-                <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20to%20book%20my%20FREE%20Digital%20Audit." target="_blank" class="btn-primary">Book My Free Audit</a>
-                <a href="#framework" class="btn-secondary">Explore Framework</a>
-            </div>
-            <div class="scroll-indicator">
-                <span>Scroll</span>
-                <div class="scroll-line"></div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- ===== FRAMEWORK ===== -->
-        <section id="framework">
-            <div class="section-header reveal">
-                <span class="section-tag">// Core Framework</span>
-                <h2 class="section-title">Visibility, Privacy &amp; Safety</h2>
-                <p class="section-desc">Three pillars, one integrated approach. Every service maps to a real outcome.</p>
-            </div>
-
-            <div class="pillars-grid">
-                <div class="pillar-card reveal">
-                    <div class="pillar-label">Pillar 01</div>
-                    <h3>Visibility</h3>
-                    <p>Maximise inclusion in AI search summaries and citation nodes through high-density entity naming, clear plain-language facts, and open-source hosting layout.</p>
-                </div>
-                <div class="pillar-card reveal">
-                    <div class="pillar-label">Pillar 02</div>
-                    <h3>Privacy</h3>
-                    <p>Restrict training data usage while keeping clean public footprints. Clear segregation of personal data narratives from public professional entities.</p>
-                </div>
-                <div class="pillar-card reveal">
-                    <div class="pillar-label">Pillar 03</div>
-                    <h3>Safety</h3>
-                    <p>Protect data integrity and access authorisation profiles. Regular security audits, lean configuration structures, and strict link monitoring.</p>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- ===== DIGITAL BIRTH CERTIFICATE ===== -->
-        <div class="dbc-section" id="dbc">
-            <div class="dbc-card reveal">
-                <div class="dbc-left">
-                    <span class="section-tag" style="color:var(--gold);">★ Premium Foundation</span>
-                    <h2>Digital Birth Certificate</h2>
-                    <div class="dbc-price">R7,000 <span>once‑off</span></div>
-                    <p class="dbc-desc">The first step in every optimisation journey. Before improving your visibility, reputation or security, we establish your verified digital foundation.</p>
-                    <ul class="dbc-includes">
-                        <li>Digital footprint audit</li>
-                        <li>Entity mapping</li>
-                        <li>AI visibility review</li>
-                        <li>Reputation assessment</li>
-                        <li>Security overview</li>
-                        <li>Personal roadmap</li>
-                    </ul>
-                </div>
-                <div class="dbc-right">
-                    <p class="dbc-why">
-                        <strong>Why start here?</strong> Your Digital Birth Certificate creates a verified, trustworthy foundation that every other service builds upon. Without it, your visibility, privacy, and safety efforts are built on unknown ground.
-                    </p>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20to%20build%20my%20Digital%20Birth%20Certificate%20(R7%2C000)." target="_blank" class="btn-gold">Build My Digital Foundation</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== SERVICES ===== -->
-        <section id="services">
-            <div class="section-header reveal">
-                <span class="section-tag">// Individual Services</span>
-                <h2 class="section-title">Choose What You Need</h2>
-                <p class="section-desc">One‑time pricing. No subscriptions. Every service includes a clear deliverable and timeline.</p>
-            </div>
-
-            <div class="service-grid">
-
-                <!-- Free Digital Audit -->
-                <div class="service-card visibility reveal">
-                    <span class="pillar-tag">FREE</span>
-                    <h3>Digital Audit</h3>
-                    <div class="price">FREE</div>
-                    <div class="what-we-do">No‑obligation assessment of your digital presence. Identify opportunities to improve visibility, privacy, and security before we recommend a solution.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Digital footprint review, visibility assessment, privacy assessment, safety assessment, priority recommendations.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 2‑3 business days</div>
-                    <div class="support-note">Optional support: Free consultation call included</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20to%20book%20my%20FREE%20Digital%20Audit." target="_blank" class="btn-wa free">Book My Free Audit</a>
-                </div>
-
-                <!-- Digital Birth Certificate -->
-                <div class="service-card visibility reveal">
-                    <span class="pillar-tag">FOUNDATION</span>
-                    <h3>Digital Birth Certificate</h3>
-                    <div class="price">R7,000</div>
-                    <div class="what-we-do">Establish your verified digital foundation. We audit your footprint, map entities, and create a roadmap for visibility, reputation, and security.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Digital footprint audit, entity mapping, AI visibility review, reputation assessment, security overview, personal roadmap.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 7‑10 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly from R750</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20to%20build%20my%20Digital%20Birth%20Certificate%20(R7%2C000)." target="_blank" class="btn-wa">Build My Digital Foundation</a>
-                </div>
-
-                <!-- WhatsApp Business Deployment -->
-                <div class="service-card visibility reveal">
-                    <span class="pillar-tag">VISIBILITY</span>
-                    <h3>WhatsApp Business Deployment</h3>
-                    <div class="price">From R2,500</div>
-                    <div class="what-we-do">Transform WhatsApp into a professional business channel. Configure profile, automate responses, organise catalogue, and integrate with your digital presence.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Business profile, catalogue, greeting messages, quick replies, labels, Click‑to‑WhatsApp links, QR code, website integration.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 3‑5 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly R750 | Annual R1,500</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20WhatsApp%20Business%20Deployment%20(from%20R2%2C500)." target="_blank" class="btn-wa">Deploy WhatsApp Business</a>
-                </div>
-
-                <!-- Google Business Profile -->
-                <div class="service-card visibility reveal">
-                    <span class="pillar-tag">VISIBILITY</span>
-                    <h3>Google Business Profile</h3>
-                    <div class="price">From R2,500</div>
-                    <div class="what-we-do">Improve how your business appears across Google Search, Maps, and AI‑powered search. Optimise for discoverability, trust, and customer engagement.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Profile setup/optimisation, category optimisation, service listings, product listings, image optimisation, review strategy, Maps optimisation, verification support.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 3‑5 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly R750 | Annual R1,500</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Google%20Business%20Profile%20(from%20R2%2C500)." target="_blank" class="btn-wa">Improve My Google Presence</a>
-                </div>
-
-                <!-- Website Integration -->
-                <div class="service-card visibility reveal">
-                    <span class="pillar-tag">VISIBILITY</span>
-                    <h3>Website Integration</h3>
-                    <div class="price">From R7,000</div>
-                    <div class="what-we-do">Connect every digital asset into one unified ecosystem. Your website becomes the central hub linking business, communication channels, social platforms, and search visibility.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> WhatsApp integration, Google Business integration, social media integration, contact forms, Maps integration, reputation links, AI‑friendly entity structure.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 5‑7 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly R1500 | Annual R3,000</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Website%20Integration%20(from%20R4%2C500)." target="_blank" class="btn-wa">Connect My Digital Presence</a>
-                </div>
-
-                <!-- Website Development -->
-                <div class="service-card visibility reveal">
-                    <span class="pillar-tag">VISIBILITY</span>
-                    <h3>Website Development</h3>
-                    <div class="price">From R12,000</div>
-                    <div class="what-we-do">Professionally developed website designed for speed, usability, search visibility, and long‑term ownership. Optimised for both human visitors and AI search systems.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Custom website, mobile‑first design, contact forms, SEO &amp; GEO optimisation, entity optimisation, analytics integration, admin handover.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 21-60 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly R750 | Annual R5,500</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Website%20Development%20(from%20R12%2C000)." target="_blank" class="btn-wa">Build My Website</a>
-                </div>
-
-                <!-- Reputation Audit -->
-                <div class="service-card privacy reveal">
-                    <span class="pillar-tag">PRIVACY</span>
-                    <h3>Reputation Audit</h3>
-                    <div class="price">From R1,000</div>
-                    <div class="what-we-do">Understand how customers, search engines, and AI platforms perceive your personal or business reputation. Identify risks and get a clear improvement strategy.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Search results review, social media review, reputation score, risk assessment, improvement recommendations.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 7 + business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly from R1,750</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20a%20Reputation%20Audit%20(from%20R1%2C000)." target="_blank" class="btn-wa">Audit My Reputation</a>
-                </div>
-
-                <!-- Reputation Management -->
-                <div class="service-card privacy reveal">
-                    <span class="pillar-tag">PRIVACY</span>
-                    <h3>Reputation Management</h3>
-                    <div class="price">From R2,500</div>
-                    <div class="what-we-do">Build, repair, and maintain a trusted online reputation. We improve search results, strengthen positive content, and minimise harmful information.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Reputation strategy, positive content planning, review management, search result improvement, monitoring recommendations.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 7‑10 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly R1,250 | Annual R5,500</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Reputation%20Management%20(from%20R4%2C000)." target="_blank" class="btn-wa">Strengthen My Reputation</a>
-                </div>
-
-                <!-- Executive Reputation -->
-                <div class="service-card privacy reveal">
-                    <span class="pillar-tag">PRIVACY</span>
-                    <h3>Executive Reputation</h3>
-                    <div class="price">From R6,500</div>
-                    <div class="what-we-do">Build a professional online presence that reflects your expertise, credibility, and leadership. Ideal for executives, consultants, and business owners.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Executive profile review, professional biography, authority optimisation, Knowledge Graph readiness, search visibility improvements.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 7‑10 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly R1,250 | Annual R6,500</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Executive%20Reputation%20(from%20R6%2C500)." target="_blank" class="btn-wa">Build Executive Authority</a>
-                </div>
-
-                <!-- Data Removal -->
-                <div class="service-card privacy reveal">
-                    <span class="pillar-tag">PRIVACY</span>
-                    <h3>Data Removal</h3>
-                    <div class="price">From R2,500</div>
-                    <div class="what-we-do">Reduce unnecessary exposure of your personal information online. We identify public data and assist with removal requests and privacy improvements.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Data exposure review, removal request guidance, privacy recommendations, follow‑up monitoring.</div>
-                    <div class="delivery"><strong>Delivery:</strong> use case varies business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly from R4,250</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Data%20Removal%20(from%20R2%2C500)." target="_blank" class="btn-wa">Reduce My Digital Exposure</a>
-                </div>
-
-                <!-- Cyber Health Check -->
-                <div class="service-card safety reveal">
-                    <span class="pillar-tag">SAFETY</span>
-                    <h3>Cyber Health Check</h3>
-                    <div class="price">From R1,750</div>
-                    <div class="what-we-do">Practical assessment of your digital security. Review accounts, passwords, devices, and habits to identify vulnerabilities before they become problems.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Password assessment, email security review, device security review, 2FA review, breach exposure check, security recommendations.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 2‑4 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly from R1050</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20a%20Cyber%20Health%20Check%20(from%20R1%2C000)." target="_blank" class="btn-wa">Check My Digital Health</a>
-                </div>
-
-                <!-- Digital Security Hardening -->
-                <div class="service-card safety reveal">
-                    <span class="pillar-tag">SAFETY</span>
-                    <h3>Digital Security Hardening</h3>
-                    <div class="price">From R4,000</div>
-                    <div class="what-we-do">Strengthen your digital environment by implementing modern security practices across accounts, devices, and online services.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Multi‑factor authentication, account recovery setup, browser security, password manager setup, backup recommendations, device hardening.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 5‑7 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly R750 | Annual R1,500</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Digital%20Security%20Hardening%20(from%20R4%2C000)." target="_blank" class="btn-wa">Secure My Accounts</a>
-                </div>
-
-                <!-- Impersonation Recovery -->
-                <div class="service-card safety reveal">
-                    <span class="pillar-tag">SAFETY</span>
-                    <h3>Impersonation Recovery</h3>
-                    <div class="price">From R2,500</div>
-                    <div class="what-we-do">If someone is pretending to be you or your business online, we assist with identifying fake profiles, reporting them, and restoring control of your identity.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Fake account assessment, reporting assistance, identity recovery guidance, account security improvements.</div>
-                    <div class="delivery"><strong>Delivery:</strong> 3‑7 business days</div>
-                    <div class="support-note">Optional support: Bi‑monthly from R750</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Impersonation%20Recovery%20(from%20R2%2C500)." target="_blank" class="btn-wa">Recover My Identity</a>
-                </div>
-
-                <!-- Sextortion Response -->
-                <div class="service-card safety reveal">
-                    <span class="pillar-tag">SAFETY</span>
-                    <h3>Sextortion Response</h3>
-                    <div class="price">From R2,000</div>
-                    <div class="what-we-do">Confidential support and practical guidance when dealing with online extortion or blackmail. We focus on protecting accounts, preserving evidence, and reducing risk.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Immediate response guidance, account security, evidence preservation, recovery plan, referral guidance where appropriate.</div>
-                    <div class="delivery"><strong>Delivery:</strong> Immediate response + 3‑5 day plan</div>
-                    <div class="support-note">Optional support: Bi‑monthly from R750</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Sextortion%20Response%20(from%20R2%2C000)." target="_blank" class="btn-wa">Get Immediate Support</a>
-                </div>
-
-                <!-- NCII Support -->
-                <div class="service-card safety reveal">
-                    <span class="pillar-tag">SAFETY</span>
-                    <h3>NCII Support</h3>
-                    <div class="price">From R3,000</div>
-                    <div class="what-we-do">Support for victims of non‑consensual sharing of intimate images. We assist with reporting processes, platform takedown requests, and practical steps to protect privacy.</div>
-                    <div class="what-you-get"><strong>What you receive:</strong> Incident assessment, platform reporting guidance, takedown support, privacy recommendations, recovery strategy.</div>
-                    <div class="delivery"><strong>Delivery:</strong> Immediate response + 5‑7 day plan use case varies</div>
-                    <div class="support-note">Optional support: Bi‑monthly from R1750</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20NCII%20Support%20(from%20R3%2C000)." target="_blank" class="btn-wa">Protect My Privacy</a>
-                </div>
-
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- ===== PACKAGES ===== -->
-        <section id="packages">
-            <div class="section-header reveal">
-                <span class="section-tag">// Bundled Solutions</span>
-                <h2 class="section-title">Packages for Complete Coverage</h2>
-                <p class="section-desc">Save on bundled services. Each package combines complementary services for a holistic outcome.</p>
-            </div>
-
-            <div class="package-grid">
-                <div class="package-card reveal">
-                    <div class="pkg-label">Bundle 01</div>
-                    <h3>Visibility Package</h3>
-                    <div class="pkg-price">From R15,000</div>
-                    <div class="pkg-desc">Complete local optimisation to get found across search, maps, AI, and customer channels.</div>
-                    <div class="pkg-includes"><strong>Includes:</strong> WhatsApp Business Deployment, Google Business Profile, Website Integration, visibility optimisation.</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20the%20Visibility%20Package%20(from%20R15%2C000)." target="_blank" class="btn-pkg">Get Visible</a>
-                </div>
-
-                <div class="package-card reveal">
-                    <div class="pkg-label">Bundle 02</div>
-                    <h3>Privacy Package</h3>
-                    <div class="pkg-price">From R8,000</div>
-                    <div class="pkg-desc">Comprehensive reputation defence and data privacy management for individuals and businesses.</div>
-                    <div class="pkg-includes"><strong>Includes:</strong> Reputation Audit, Reputation Management, Data Removal.</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20the%20Privacy%20Package%20(from%20R8%2C000)." target="_blank" class="btn-pkg">Secure Narrative</a>
-                </div>
-
-                <div class="package-card reveal">
-                    <div class="pkg-label">Bundle 03</div>
-                    <h3>Safety Package</h3>
-                    <div class="pkg-price">From R8,000</div>
-                    <div class="pkg-desc">Full digital security hardening and incident response protection for you and your family.</div>
-                    <div class="pkg-includes"><strong>Includes:</strong> Cyber Health Check, Digital Security Hardening, Impersonation Recovery.</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20the%20Safety%20Package%20(from%20R8%2C000)." target="_blank" class="btn-pkg">Lock Down</a>
-                </div>
-
-                <div class="package-card complete reveal">
-                    <div class="pkg-label">★ Full Protection</div>
-                    <h3>Complete Digital Optimisation</h3>
-                    <div class="pkg-price">From R30,000</div>
-                    <div class="pkg-desc">Our most comprehensive solution combining Visibility, Privacy, and Safety into one integrated service.</div>
-                    <div class="pkg-includes"><strong>Includes:</strong> Digital Birth Certificate, Visibility Package, Privacy Package, Safety Package, Human+AI verification, full ownership handover.</div>
-                    <a href="https://wa.me/27695326613?text=Hi%20Search%20PlayBook%2C%20I'd%20like%20Complete%20Digital%20Optimisation%20(from%20R30%2C000)." target="_blank" class="btn-pkg">Go Sovereign</a>
-                </div>
-            </div>
-        </section>
-
-        <div class="divider"></div>
-
-        <!-- ===== FAQ ===== -->
-        <div class="faq-section" id="faq">
-            <div class="section-header reveal">
-                <span class="section-tag">// Questions?</span>
-                <h2 class="section-title">Frequently Asked Questions</h2>
-                <p class="section-desc">Straight answers about how we work, what you get, and what it costs.</p>
-            </div>
-
-            <div class="faq-list">
-                <div class="faq-item reveal">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>How long does deployment take?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">Timelines vary by service. Free Audit: 2‑3 days. Digital Birth Certificate: 7‑10 days. Website Development: 14‑21 days. Most other services: 3‑7 days. We'll confirm your exact timeline during the scoping call.</div>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>Is there a monthly fee?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">No. All services are one‑time fees. Support plans are optional and can be added at any time. We don't lock you into subscriptions.</div>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>Do I own everything?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">Yes. You receive full admin access and ownership of all assets, code, and configurations. We hand over complete control before final payment.</div>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>Can I start with one service?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">Absolutely. Many clients begin with the Free Audit, then add services as they see results. You're never locked into a bundle unless you choose one.</div>
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        <h4>What happens after the free audit?</h4>
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        <div class="faq-answer-inner">We'll send you a clear, actionable report with findings and recommendations. No pressure to buy. You can take the report and implement it yourself, or we can help you with the services you choose.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- ===== FOOTER CTA ===== -->
-        <footer id="footer-cta">
-            <div class="footer-cta-box reveal">
-                <h3>Ready to Start?</h3>
-                <p>Every project begins with a Free Digital Audit.<br>No obligation. No subscriptions. Just a practical roadmap for improving your digital presence.</p>
-                <div class="cta-links">
-                    <a href="https://wa.me/message/R5LF66E7L6NNK1" target="_blank" class="wa-link">📱 Book Your Free Audit</a>
-                    <a href="mailto:searchplaybook@proton.me" class="email-link">✉ Secure Email</a>
-                </div>
-            </div>
-
-            <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="SPC Shield" class="footer-shield">
-            <div class="footer-contact">
-                <a href="mailto:searchplaybook@proton.me">✉ searchplaybook@proton.me</a>
-                <a href="https://wa.me/27695326613" target="_blank" rel="noopener">📱 WhatsApp: +27 69 532 6613</a>
-                <a href="https://maps.app.goo.gl/WezVn4JTE8Q69oV3A" target="_blank" rel="noopener">📍 Johannesburg, SA</a>
-                <a href="https://www.linkedin.com/company/106900751" target="_blank" rel="noopener">🔗 LinkedIn</a>
-                <a href="https://www.facebook.com/searchplaybook/" target="_blank" rel="noopener">📘 Facebook</a>
-            </div>
-            <p>© 2025–2026 WeMustCreate / Search PlayBook. All rights reserved.</p>
-            <p>Built by <a href="https://www.linkedin.com/in/llewellynoshea/" class="footer-link" target="_blank" rel="noopener">Max (Llewellyn O'Shea)</a></p>
-        </footer>
-
-    </div><section class="next-action" aria-label="Recommended Next Step">
-  <div class="container">
-    <div class="action-card">
-      <h3>What would you like to do next?</h3>
-      <div class="action-options">
-        <a href="/SearchPlaybook/connect.html?intent=audit" 
-           class="btn btn-primary"
-           aria-label="Start your free Digital Presence Audit">
-          Start Free Audit
-        </a>
-        <a href="/SearchPlaybook/solutions.html#digital-birth-certificate" 
-           class="btn btn-secondary"
-           aria-label="Learn about Digital Birth Certificate service">
-          Explore Foundations
-        </a>
-        <a href="https://wa.me/27695326613?text=Hello%2C%20I%20have%20a%20question%20about%20Search%20Playbook" 
-           class="btn btn-outline"
-           target="_blank" rel="noopener noreferrer nofollow"
-           aria-label="Chat with our South Africa team on WhatsApp">
-          Chat on WhatsApp
-        </a>
-      </div>
-      <p class="action-note">No subscriptions. No pressure. SA-built, POPIA-aware.</p>
-    </div>
-  </div>
-</section>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions — Search Playbook | WeMustCreate</title>
+    <meta name="description" content="Compare WMC's 12-month integrated digital coverage against website builders, dev teams, and SEO agencies. One subscription-free rate with monthly reporting, WhatsApp Business, GMB optimisation, and more.">
+
+    <link rel="canonical" href="https://searchplaybook-crypto.github.io/SearchPlaybook/solutions.html" />
+    <link rel="sitemap" type="application/xml" href="/SearchPlaybook/sitemap.xml" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@700;800;900&family=Raleway:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        // === Navigation and mobile menu ===
-        var hamburgerBtn = document.getElementById('hamburgerBtn');
-        var mobileMenu = document.getElementById('mobileMenu');
-
-        hamburgerBtn.addEventListener('click', function() {
-            hamburgerBtn.classList.toggle('active');
-            mobileMenu.classList.toggle('open');
-            document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-        });
-
-        function closeMobileMenu() {
-            hamburgerBtn.classList.remove('active');
-            mobileMenu.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        // === FAQ toggle ===
-        function toggleFaq(el) {
-            var item = el.parentElement;
-            var isActive = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(function(f) { f.classList.remove('active'); });
-            if (!isActive) item.classList.add('active');
-        }
-
-        // === Scroll reveal ===
-        function handleReveal() {
-            document.querySelectorAll('.reveal').forEach(function(el) {
-                if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-                    el.classList.add('visible');
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'gold-100': '#FCEEB5',
+                        'gold-300': '#F0D676',
+                        'mafia-gold': '#D4AF37',
+                        'gold-700': '#A08326',
+                        'near-white': '#F9F9F9',
+                        'platinum': '#E4E4E7',
+                        'zinc-500': '#71717A',
+                        'onyx': '#18181B',
+                        'void-black': '#09090B',
+                        'icy-azure': '#43CFFD',
+                        'forged-copper': '#B66E41',
+                        'warm-yellow': '#FDBF2D'
+                    },
+                    fontFamily: {
+                        'display': ['Montserrat', 'sans-serif'],
+                        'body': ['Inter', 'sans-serif'],
+                        'accent': ['Raleway', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-slow': 'float 8s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'reveal': 'reveal 0.8s ease-out forwards',
+                        'slide-up': 'slideUp 0.6s ease-out forwards',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
+                            '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        reveal: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideUp: {
+                            '0%': { opacity: '0', transform: 'translateY(50px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
                 }
-            });
-        }
-
-        // === Nav scroll effect ===
-        function handleNavScroll() {
-            var nav = document.getElementById('mainNav');
-            if (window.scrollY > 50) nav.classList.add('scrolled');
-            else nav.classList.remove('scrolled');
-        }
-
-        // === Video background play ===
-        function ensureVideoPlays() {
-            var v = document.querySelector('.video-bg video');
-            if (v) {
-                v.muted = true;
-                v.play().catch(function() {});
             }
         }
-
-        // === Particles ===
-        function createParticles() {
-            for (var i = 0; i < 12; i++) {
-                var p = document.createElement('div');
-                p.classList.add('particle');
-                p.style.left = Math.random() * 100 + '%';
-                p.style.top = Math.random() * 100 + '%';
-                var dur = 8 + Math.random() * 12;
-                var delay = Math.random() * 5;
-                var x = (Math.random() - 0.5) * 60;
-                var y = -(30 + Math.random() * 60);
-                p.style.animation = 'fp' + i + ' ' + dur + 's ' + delay + 's infinite ease-in-out';
-                var s = document.createElement('style');
-                s.textContent = '@keyframes fp' + i + '{0%,100%{opacity:0;transform:translate(0,0)}10%{opacity:0.4}50%{opacity:0.15;transform:translate(' + x + 'px,' + y + 'px)}90%{opacity:0}}';
-                document.head.appendChild(s);
-                document.body.appendChild(p);
-            }
-        }
-
-        // === Init ===
-        window.addEventListener('scroll', function() {
-            handleReveal();
-            handleNavScroll();
-        });
-        window.addEventListener('load', function() {
-            handleReveal();
-            createParticles();
-            ensureVideoPlays();
-        });
-        document.addEventListener('click', ensureVideoPlays, { once: true });
-        document.addEventListener('touchstart', ensureVideoPlays, { once: true });
     </script>
 
+    <style>
+        :root { --glass-border: rgba(249, 249, 249, 0.08); }
+        body { background: radial-gradient(ellipse at top, #1a1a1f 0%, #09090B 50%, #050507 100%); overflow-x: hidden; }
+
+        /* Three.js Canvas Layer */
+        #earth-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            pointer-events: none;
+            background: radial-gradient(ellipse at bottom, #0a0e27 0%, #000000 100%);
+        }
+
+        #earth-canvas::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+            pointer-events: none;
+        }
+
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(9,9,11,0.08) 0%, rgba(9,9,11,0.70) 100%);
+            position: absolute; inset: 0; z-index: -1;
+        }
+
+        /* Glassmorphism Utilities */
+        .glass { background: rgba(24, 24, 27, 0.45); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid var(--glass-border); }
+        .glass-gold { background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, rgba(212, 175, 55, 0.03) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(212, 175, 55, 0.15); }
+        .glass-red { background: linear-gradient(135deg, rgba(255, 61, 90, 0.1) 0%, rgba(255, 61, 90, 0.03) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 61, 90, 0.2); }
+        .glass-azure { background: linear-gradient(135deg, rgba(67, 207, 253, 0.1) 0%, rgba(6, 74, 115, 0.15) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(67, 207, 253, 0.2); }
+        .glass-green { background: linear-gradient(135deg, rgba(0, 255, 136, 0.08) 0%, rgba(0, 179, 95, 0.05) 100%); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(0, 255, 136, 0.15); }
+
+        .text-glow { text-shadow: 0 0 30px rgba(212, 175, 55, 0.5), 0 0 60px rgba(212, 175, 55, 0.2); }
+        .text-glow-azure { text-shadow: 0 0 30px rgba(67, 207, 253, 0.5), 0 0 60px rgba(67, 207, 253, 0.2); }
+
+        .bg-gradient-mesh {
+            background:
+                radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(67, 207, 253, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 70%, rgba(182, 110, 65, 0.1) 0%, transparent 50%);
+            position: fixed; inset: 0; pointer-events: none; z-index: -1;
+        }
+        .noise-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1000; opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Hover Effects */
+        .glass-hover { transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        @media (hover: hover) {
+            .glass-hover:hover {
+                background: rgba(24, 24, 27, 0.65);
+                border-color: rgba(249, 249, 249, 0.15);
+                transform: translateY(-8px) scale(1.01);
+                box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 20px rgba(212, 175, 55, 0.1);
+            }
+        }
+
+        .btn-glass { background: rgba(212, 175, 55, 0.15); backdrop-filter: blur(12px); border: 1px solid rgba(212, 175, 55, 0.3); transition: all 0.3s ease; }
+        .btn-glass:hover { background: rgba(212, 175, 55, 0.25); border-color: rgba(212, 175, 55, 0.6); box-shadow: 0 0 30px rgba(212, 175, 55, 0.3); }
+
+        .gradient-text-gold { background: linear-gradient(135deg, #FCEEB5 0%, #D4AF37 50%, #A08326 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .gradient-text-azure { background: linear-gradient(135deg, #FFFFFF 0%, #43CFFD 50%, #064A73 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        .floating-orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; opacity: 0.4; }
+
+        /* Navigation */
+        .nav-transparent {
+            background: rgba(9, 9, 11, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(249, 249, 249, 0.05);
+            transition: all 0.3s ease;
+        }
+        .nav-scrolled {
+            background: rgba(9, 9, 11, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid rgba(249, 249, 249, 0.1);
+        }
+
+        .scroll-reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .scroll-reveal.active { opacity: 1; transform: translateY(0); }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090B; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #D4AF37, #A08326); border-radius: 4px; }
+
+        @media (max-width: 768px) {
+            .floating-orb { display: none; }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-panel {
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+        }
+
+        /* CTA Pill Animation */
+        .cta-pill {
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        /* Table Styles */
+        .comparison-table { border-collapse: separate; border-spacing: 0; }
+        .comparison-table th {
+            background: rgba(212, 175, 55, 0.15);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        .comparison-table td {
+            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
+        }
+        .comparison-table tr:hover td {
+            background: rgba(212, 175, 55, 0.03);
+        }
+        .comparison-table .wmc-col {
+            background: rgba(212, 175, 55, 0.06);
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            border-right: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .rates-table { border-collapse: separate; border-spacing: 0; }
+        .rates-table th {
+            background: rgba(67, 207, 253, 0.1);
+            backdrop-filter: blur(12px);
+            border-bottom: 2px solid rgba(67, 207, 253, 0.25);
+        }
+        .rates-table td {
+            border-bottom: 1px solid rgba(249, 249, 249, 0.06);
+        }
+        .rates-table tr:hover td {
+            background: rgba(67, 207, 253, 0.03);
+        }
+
+        /* Limitations list */
+        .limitation-item {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+        .limitation-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 61, 90, 0.6);
+        }
+
+        /* Check/X icons */
+        .icon-check { color: #00ff88; }
+        .icon-cross { color: #ff3d5a; }
+    </style>
+</head>
+<body class="font-body text-platinum antialiased">
+
+    <div class="noise-overlay"></div>
+    <div class="bg-gradient-mesh"></div>
+    <div class="floating-orb w-[600px] h-[600px] bg-mafia-gold/20 top-[-200px] left-[-100px] animate-float"></div>
+    <div class="floating-orb w-[500px] h-[500px] bg-icy-azure/15 bottom-[-150px] right-[-100px] animate-float-slow"></div>
+
+    <!-- Three.js Canvas Background -->
+    <div id="earth-canvas"></div>
+
+    <!-- Navigation -->
+    <nav id="mainNav" class="nav-transparent fixed top-0 left-0 right-0 z-50">
+        <div class="max-w-[1400px] mx-auto px-4 md:px-6 lg:px-8 py-3 md:py-4">
+            <div class="flex items-center justify-between">
+                <!-- Logo Top Left -->
+                <a href="index.html" class="flex items-center gap-2 md:gap-3 cursor-pointer">
+                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90" loading="eager">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-sm md:text-xl tracking-wide text-near-white">SEARCH PLAYBOOK</span>
+                        <span class="text-[8px] md:text-[10px] font-accent font-light text-zinc-500 tracking-widest uppercase hidden sm:block">WeMustCreate</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                    <a href="solutions.html" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
+                    <a href="collective.html" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">About</a>
+                    <a href="connect.html" class="font-body font-normal text-sm text-platinum/80 hover:text-mafia-gold transition-colors">Connect</a>
+                    <a href="connect.html" class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">Get Started</a>
+                </div>
+
+                <!-- Mobile Burger Top Right -->
+                <button class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-50 relative" onclick="toggleMobileMenu()" aria-label="Toggle menu">
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line1"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300" id="menu-line2"></span>
+                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line3"></span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="md:hidden fixed inset-0 top-0 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full mobile-menu-panel flex flex-col" id="mobileMenu">
+            <div class="px-6 pt-20 pb-6 border-b border-white/5">
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
+                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90">
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-display font-bold text-lg text-near-white">SEARCH PLAYBOOK</span>
+                        <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
+                    </div>
+                </div>
+                <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital Partner</p>
+            </div>
+
+            <div class="flex-1 flex flex-col justify-center px-8 space-y-2">
+                <a href="solutions.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                    <div>
+                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-forged-copper transition-colors">Solutions</span>
+                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Compare our offerings</span>
+                    </div>
+                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-forged-copper transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <a href="collective.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                    <div>
+                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-warm-yellow transition-colors">About</span>
+                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Who we are</span>
+                    </div>
+                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-warm-yellow transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+                <a href="connect.html" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
+                    <div>
+                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-mafia-gold transition-colors">Connect</span>
+                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Get in touch</span>
+                    </div>
+                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-mafia-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+            </div>
+
+            <div class="px-8 pb-8 pt-4">
+                <a href="connect.html" class="btn-glass w-full flex items-center justify-center px-8 py-4 rounded-full font-body font-bold text-base text-gold-300" onclick="toggleMobileMenu()">
+                    Get Started
+                </a>
+                <p class="text-center text-[10px] text-zinc-600 font-body mt-4">Focus on the hustle. We'll focus on the noise.</p>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section id="hero" class="min-h-[70vh] flex items-center justify-center relative pt-24 pb-12 md:pt-20 overflow-hidden">
+        <div class="hero-overlay"></div>
+
+        <div class="max-w-[1400px] mx-auto w-full relative z-10 px-4 md:px-6 lg:px-8">
+            <div class="text-center max-w-4xl mx-auto animate-slide-up">
+                <div class="inline-flex items-center gap-2 glass px-3 py-1.5 md:px-4 md:py-2 rounded-full mb-6">
+                    <div class="w-2 h-2 rounded-full bg-gold-300 animate-pulse"></div>
+                    <span class="font-body text-[10px] md:text-xs text-gold-300 tracking-wider uppercase">Solutions Comparison</span>
+                </div>
+
+                <h1 class="font-display font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.1] text-near-white mb-6">
+                    Why WMC's <span class="gradient-text-gold text-glow">12-month</span><br class="hidden md:block"> integrated coverage wins.
+                </h1>
+
+                <p class="font-body font-light text-base md:text-lg lg:text-xl text-platinum/70 max-w-2xl mx-auto leading-relaxed mb-8">
+                    Let's quantify the rates and highlight why WeMustCreate's subscription-free model outperforms website builders, dev teams, and SEO agencies.
+                </p>
+
+                <div class="flex flex-wrap gap-3 md:gap-4 justify-center">
+                    <a href="#comparison" class="btn-glass px-6 py-3 md:px-8 md:py-4 rounded-full font-body font-semibold text-sm md:text-base text-mafia-gold flex items-center gap-2 group cta-pill">
+                        <span>See the Comparison</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                    </a>
+                    <a href="#rates" class="glass px-6 py-3 md:px-8 md:py-4 rounded-full font-body font-normal text-sm md:text-base text-platinum hover:bg-white/5 transition-all">
+                        View Rates
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== WEBSITE BUILDER LIMITATIONS ===== -->
+    <section class="py-16 md:py-24 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 scroll-reveal">
+                <div class="inline-flex items-center gap-2 glass-red px-3 py-1.5 rounded-full mb-4">
+                    <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/></svg>
+                    <span class="font-body text-[10px] md:text-xs text-red-400 tracking-wider uppercase">The Problem</span>
+                </div>
+                <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-near-white mb-4">
+                    Website Builder <span class="text-red-400">Limitations</span>
+                </h2>
+                <p class="font-body font-light text-base md:text-lg text-platinum/70">
+                    Cheap upfront costs hide long-term restrictions that limit your growth and lock you in.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
+                <div class="glass-red rounded-2xl p-5 md:p-6 scroll-reveal">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-semibold text-lg text-near-white mb-1">Zero to low analytics</h3>
+                            <p class="font-body text-sm text-platinum/60">Basic dashboards, no deep reporting. You can't measure what's actually working.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-red rounded-2xl p-5 md:p-6 scroll-reveal" style="transition-delay: 0.1s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-semibold text-lg text-near-white mb-1">Domain lock</h3>
+                            <p class="font-body text-sm text-platinum/60">You're tied to their registrar; moving domains is costly and complex.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-red rounded-2xl p-5 md:p-6 scroll-reveal" style="transition-delay: 0.2s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-semibold text-lg text-near-white mb-1">Free tier restrictions</h3>
+                            <p class="font-body text-sm text-platinum/60">Only basic templates, limited customization. Your brand looks like everyone else's.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-red rounded-2xl p-5 md:p-6 scroll-reveal" style="transition-delay: 0.3s;">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center flex-shrink-0">
+                            <svg class="w-5 h-5 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-display font-semibold text-lg text-near-white mb-1">Content ownership</h3>
+                            <p class="font-body text-sm text-platinum/60">You don't truly own your content; the platform dictates portability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RATES BENCHMARK ===== -->
+    <section id="rates" class="py-16 md:py-24 px-4 md:px-6 lg:px-8 relative z-10 bg-void-black/50">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 scroll-reveal">
+                <div class="inline-flex items-center gap-2 glass-azure px-3 py-1.5 rounded-full mb-4">
+                    <svg class="w-4 h-4 text-icy-azure" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                    <span class="font-body text-[10px] md:text-xs text-icy-azure tracking-wider uppercase">Rates Benchmark (South Africa, 2026)</span>
+                </div>
+                <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-near-white mb-4">
+                    What the <span class="gradient-text-azure">market charges</span>
+                </h2>
+                <p class="font-body font-light text-base md:text-lg text-platinum/70">
+                    Transparent pricing comparison across provider types. See how costs stack up over 12 months.
+                </p>
+            </div>
+
+            <div class="glass rounded-2xl overflow-hidden max-w-5xl mx-auto scroll-reveal">
+                <div class="overflow-x-auto">
+                    <table class="rates-table w-full text-left">
+                        <thead>
+                            <tr>
+                                <th class="px-4 py-3 md:px-6 md:py-4 font-display font-semibold text-xs md:text-sm text-icy-azure tracking-wider uppercase">Provider Type</th>
+                                <th class="px-4 py-3 md:px-6 md:py-4 font-display font-semibold text-xs md:text-sm text-icy-azure tracking-wider uppercase">Typical Cost</th>
+                                <th class="px-4 py-3 md:px-6 md:py-4 font-display font-semibold text-xs md:text-sm text-icy-azure tracking-wider uppercase">Notes</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-body text-sm">
+                            <tr>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-near-white font-medium">Website Builder</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-warm-yellow font-display font-bold">R200-R800/month</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-platinum/60 text-xs md:text-sm">~R2,400-R9,600/year. Subscription fees, hidden costs for SSL, domains, plugins.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-near-white font-medium">Dev Team Website</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-warm-yellow font-display font-bold">R15,000-R100,000+</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-platinum/60 text-xs md:text-sm">CMS R15k-R45k / E-commerce R25k-R100k+. Plus hosting R150-R600/month.</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-near-white font-medium">SEO Agency</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-warm-yellow font-display font-bold">R5,000-R40,000/month</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-platinum/60 text-xs md:text-sm">~R60,000-R480,000/year. Retainers for campaigns, keyword pushes, dependency overhead.</td>
+                            </tr>
+                            <tr class="border-t-2 border-mafia-gold/30">
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-mafia-gold font-display font-bold">WeMustCreate (WMC)</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-mafia-gold font-display font-bold text-base">Integrated 12-month coverage</td>
+                                <td class="px-4 py-3 md:px-6 md:py-4 text-platinum/80 text-xs md:text-sm"><strong class="text-mafia-gold">Subscription-free.</strong> GitHub Pages, zero API calls, monthly reporting, WhatsApp Business setup, URL shortener, GMB profile.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== COMPARISON TABLE ===== -->
+    <section id="comparison" class="py-16 md:py-24 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 scroll-reveal">
+                <div class="inline-flex items-center gap-2 glass-gold px-3 py-1.5 rounded-full mb-4">
+                    <svg class="w-4 h-4 text-mafia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                    <span class="font-body text-[10px] md:text-xs text-gold-300 tracking-wider uppercase">12-Month Coverage</span>
+                </div>
+                <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-near-white mb-4">
+                    Head-to-head <span class="gradient-text-gold">comparison</span>
+                </h2>
+                <p class="font-body font-light text-base md:text-lg text-platinum/70">
+                    Every feature you need, compared across all provider types.
+                </p>
+            </div>
+
+            <div class="glass rounded-2xl overflow-hidden scroll-reveal">
+                <div class="overflow-x-auto">
+                    <table class="comparison-table w-full text-left">
+                        <thead>
+                            <tr>
+                                <th class="px-3 py-3 md:px-4 md:py-4 font-display font-semibold text-[10px] md:text-xs text-gold-300 tracking-wider uppercase min-w-[140px]">Feature / Approach</th>
+                                <th class="px-3 py-3 md:px-4 md:py-4 font-display font-semibold text-[10px] md:text-xs text-mafia-gold tracking-wider uppercase text-center wmc-col">WeMustCreate (WMC)</th>
+                                <th class="px-3 py-3 md:px-4 md:py-4 font-display font-semibold text-[10px] md:text-xs text-platinum/80 tracking-wider uppercase text-center">Website Builder</th>
+                                <th class="px-3 py-3 md:px-4 md:py-4 font-display font-semibold text-[10px] md:text-xs text-platinum/80 tracking-wider uppercase text-center">Dev Team</th>
+                                <th class="px-3 py-3 md:px-4 md:py-4 font-display font-semibold text-[10px] md:text-xs text-platinum/80 tracking-wider uppercase text-center">SEO Agency</th>
+                            </tr>
+                        </thead>
+                        <tbody class="font-body text-xs md:text-sm">
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Deployment Model</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-mafia-gold wmc-col">Zero-scaling, set-and-forget</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">DIY setup</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Custom build, high overhead</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">API-heavy campaigns</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Subscription Fees</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center wmc-col"><span class="text-green-400 font-display font-bold">None</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">R2,400-R9,600/yr</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">R1,800-R7,200/yr</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">R60,000-R480,000/yr</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Build Cost</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-mafia-gold wmc-col">Integrated coverage</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Low upfront</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">R15,000-R100,000+</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Retainer only</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Digital Birth Certificate</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center wmc-col"><span class="icon-check text-lg">&#10003;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Visibility Pillar</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-mafia-gold wmc-col">Optimized GMB, directories, reporting</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Basic site visibility</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">SEO optional</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Keyword campaigns only</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Privacy Pillar</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-mafia-gold wmc-col">Reputation & data sovereignty</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Limited monitoring</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Safety Pillar</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-mafia-gold wmc-col">Credential hygiene & secure stack</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Partial</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Partial</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Reporting</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-mafia-gold wmc-col">Monthly, transparent</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Minimal</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Ad-hoc</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-platinum/60">Quarterly, often opaque</td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">WhatsApp Business Setup</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center wmc-col"><span class="icon-check text-lg">&#10003;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">URL Shortener</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center wmc-col"><span class="icon-check text-lg">&#10003;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center"><span class="icon-cross">&#10007;</span></td>
+                            </tr>
+                            <tr>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-near-white font-medium">Client Effort</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-green-400 wmc-col font-medium">Low - set-and-forget</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-red-400">High - DIY maintenance</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-warm-yellow">Medium - dev dependency</td>
+                                <td class="px-3 py-3 md:px-4 md:py-4 text-center text-warm-yellow">Medium - agency dependency</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== KEY TAKEAWAYS ===== -->
+    <section class="py-16 md:py-24 px-4 md:px-6 lg:px-8 relative z-10 bg-void-black/50">
+        <div class="max-w-[1400px] mx-auto">
+            <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 scroll-reveal">
+                <div class="inline-flex items-center gap-2 glass-gold px-3 py-1.5 rounded-full mb-4">
+                    <svg class="w-4 h-4 text-mafia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z"/></svg>
+                    <span class="font-body text-[10px] md:text-xs text-gold-300 tracking-wider uppercase">Key Takeaways</span>
+                </div>
+                <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-5xl text-near-white mb-4">
+                    The bottom <span class="gradient-text-gold">line</span>
+                </h2>
+                <p class="font-body font-light text-base md:text-lg text-platinum/70">
+                    Cut through the noise. Here's what each path actually delivers.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-4 md:gap-6 max-w-5xl mx-auto">
+                <!-- Website Builders -->
+                <div class="glass rounded-2xl p-5 md:p-6 scroll-reveal border-l-2 border-red-400/50">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg text-near-white">Website Builders</h3>
+                    </div>
+                    <p class="font-body text-sm text-platinum/60 leading-relaxed">
+                        Cheap upfront but lock you in, limit analytics, and don't give you ownership. You're renting your own presence.
+                    </p>
+                </div>
+
+                <!-- Dev Teams -->
+                <div class="glass rounded-2xl p-5 md:p-6 scroll-reveal border-l-2 border-warm-yellow/50" style="transition-delay: 0.1s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-warm-yellow/10 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-warm-yellow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg text-near-white">Dev Teams</h3>
+                    </div>
+                    <p class="font-body text-sm text-platinum/60 leading-relaxed">
+                        High upfront costs (R15k-R100k+) and often default to login/cart flows, missing the WhatsApp-first conversion logic that drives real engagement.
+                    </p>
+                </div>
+
+                <!-- SEO Agencies -->
+                <div class="glass rounded-2xl p-5 md:p-6 scroll-reveal border-l-2 border-icy-azure/50" style="transition-delay: 0.2s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-icy-azure/10 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-icy-azure" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg text-near-white">SEO Agencies</h3>
+                    </div>
+                    <p class="font-body text-sm text-platinum/60 leading-relaxed">
+                        Expensive retainers (R60k-R480k/year) with dependency on ongoing campaigns. You're paying rent on your own rankings.
+                    </p>
+                </div>
+
+                <!-- WMC -->
+                <div class="glass-gold rounded-2xl p-5 md:p-6 scroll-reveal border-l-2 border-mafia-gold" style="transition-delay: 0.3s;">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-mafia-gold/20 flex items-center justify-center">
+                            <svg class="w-4 h-4 text-mafia-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        </div>
+                        <h3 class="font-display font-semibold text-lg text-mafia-gold">WeMustCreate</h3>
+                    </div>
+                    <p class="font-body text-sm text-platinum/80 leading-relaxed">
+                        One integrated 12-month rate, subscription-free, with monthly reporting, WhatsApp Business setup, URL shortener, and GMB optimisation - designed for visibility, privacy, and safety without scaling overhead.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== FINAL CTA ===== -->
+    <section class="py-16 md:py-32 px-4 md:px-6 lg:px-8 relative z-10">
+        <div class="max-w-[1200px] mx-auto">
+            <div class="glass-gold rounded-2xl md:rounded-3xl p-8 md:p-12 lg:p-20 relative overflow-hidden scroll-reveal">
+                <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gold-300/10 via-transparent to-transparent"></div>
+                <div class="absolute -top-32 -right-32 w-48 h-48 md:w-64 md:h-64 bg-gold-300/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-32 -left-32 w-48 h-48 md:w-64 md:h-64 bg-icy-azure/10 rounded-full blur-3xl"></div>
+
+                <div class="relative z-10 text-center">
+                    <h2 class="font-display font-bold text-3xl md:text-4xl lg:text-6xl text-near-white mb-4 md:mb-6 scroll-reveal">
+                        Ready to <span class="gradient-text-gold">choose better</span>?
+                    </h2>
+                    <p class="font-body font-light text-base md:text-lg lg:text-xl text-platinum/70 max-w-2xl mx-auto mb-8 md:mb-12 scroll-reveal">
+                        One conversation. Zero tech headache. No subscriptions. Start with a free audit and see the difference.
+                    </p>
+
+                    <div class="flex flex-wrap justify-center gap-3 md:gap-4 scroll-reveal">
+                        <a href="connect.html" class="btn-glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-bold text-base md:text-lg text-gold-300 flex items-center gap-2 md:gap-3 group cta-pill">
+                            <span>R750 Free DPA Audit</span>
+                            <svg class="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+                        </a>
+                        <a href="connect.html" class="glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-semibold text-base md:text-lg text-platinum hover:bg-white/5 transition-all">
+                            Chat on WhatsApp
+                        </a>
+                    </div>
+
+                    <p class="text-xs text-zinc-500 font-body mt-6 md:mt-8">
+                        <svg class="w-4 h-4 inline text-mafia-gold mr-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                        Takes 5 minutes - No tech skills needed - We do the rest
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="connect" class="py-12 md:py-20 px-4 md:px-6 lg:px-8 border-t border-white/5 bg-void-black/80 backdrop-blur-sm relative z-10">
+        <div class="max-w-[1400px] mx-auto">
+            <!-- FAQ Accordion -->
+            <div class="mb-10 md:mb-16">
+                <h3 class="font-display font-bold text-xl md:text-2xl text-near-white mb-4 md:mb-6 text-center">Frequently asked</h3>
+                <div class="max-w-3xl mx-auto space-y-3">
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>How do I start without tech skills?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            Answer 5 simple questions. We handle audits, setup, and monitoring. Takes 2 minutes.
+                        </div>
+                    </details>
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>Do I pay monthly?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            No. Set-and-forget systems. One-time setup, transparent handover, zero subscriptions.
+                        </div>
+                    </details>
+                    <details class="glass rounded-xl overflow-hidden">
+                        <summary class="px-4 py-3 md:px-6 md:py-4 cursor-pointer font-body font-semibold text-sm md:text-base text-platinum flex justify-between items-center">
+                            <span>What happens to harmful content?</span>
+                            <svg class="w-5 h-5 text-mafia-gold transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                        </summary>
+                        <div class="px-4 pb-4 md:px-6 md:pb-6 text-sm md:text-base text-platinum/70">
+                            We suppress it legally, replace it with verified assets, and monitor daily. NCII reports follow SA POPIA & ICASA guidelines.
+                        </div>
+                    </details>
+                </div>
+            </div>
+
+            <!-- Footer Core -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-10 md:mb-16">
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Platform</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-forged-copper transition-colors">Solutions</a></li>
+                        <li><a href="collective.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-warm-yellow transition-colors">About</a></li>
+                        <li><a href="connect.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-mafia-gold transition-colors">Connect</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-2 md:col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Services</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Remove harmful results</a></li>
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Set-and-forget visibility</a></li>
+                        <li><a href="solutions.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Protect private images</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Legal</h4>
+                    <ul class="space-y-2 md:space-y-3">
+                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">POPIA Compliance</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-span-1">
+                    <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Connect</h4>
+                    <div class="flex items-center gap-3 mb-4">
+                        <a href="https://www.linkedin.com/in/llewellynoshea/" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                        </a>
+                        <a href="https://www.facebook.com/searchplaybook/" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="https://wa.me/27695326613" target="_blank" class="w-9 h-9 md:w-10 md:h-10 rounded-lg glass flex items-center justify-center hover:bg-white/5 transition-colors cursor-pointer">
+                            <svg class="w-4 h-4 md:w-5 md:h-5 text-platinum/60" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                        </a>
+                    </div>
+                    <p class="text-[10px] md:text-xs text-zinc-500 font-body">Johannesburg, GP, South Africa</p>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-6 md:pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-3 md:gap-4">
+                <div class="text-[10px] md:text-xs text-zinc-500 font-body text-center md:text-left">
+                    (c) 2026 SEARCH PLAYBOOK - WEMUSTCREATE. ALL RIGHTS RESERVED.
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-gold-300 animate-pulse"></div>
+                    <span class="text-[10px] md:text-xs text-zinc-500 font-body">Mzansi's Digital Partner</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Three.js Earth Background
+        (function() {
+            const container = document.getElementById('earth-canvas');
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 3.5;
+
+            const renderer = new THREE.WebGLRenderer({
+                alpha: true,
+                antialias: true,
+                powerPreference: "high-performance"
+            });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            container.innerHTML = '';
+            container.appendChild(renderer.domElement);
+
+            const textureLoader = new THREE.TextureLoader();
+            const earthGroup = new THREE.Group();
+            scene.add(earthGroup);
+
+            const earthGeometry = new THREE.SphereGeometry(1, 64, 64);
+            const earthMaterial = new THREE.MeshPhongMaterial({
+                map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg'),
+                specularMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg'),
+                normalMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'),
+                shininess: 8,
+                brightness: 0.5
+            });
+            const earth = new THREE.Mesh(earthGeometry, earthMaterial);
+            earthGroup.add(earth);
+
+            const cloudGeometry = new THREE.SphereGeometry(1.02, 64, 64);
+            const cloudMaterial = new THREE.MeshPhongMaterial({
+                map: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png'),
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending,
+                side: THREE.DoubleSide
+            });
+            const clouds = new THREE.Mesh(cloudGeometry, cloudMaterial);
+            earthGroup.add(clouds);
+
+            const atmosphereGeometry = new THREE.SphereGeometry(1.15, 64, 64);
+            const atmosphereMaterial = new THREE.MeshPhongMaterial({
+                color: 0x4a90e2,
+                transparent: true,
+                opacity: 0.06,
+                side: THREE.BackSide,
+                blending: THREE.AdditiveBlending
+            });
+            const atmosphere = new THREE.Mesh(atmosphereGeometry, atmosphereMaterial);
+            earthGroup.add(atmosphere);
+
+            const ambientLight = new THREE.AmbientLight(0x404040, 0.2);
+            scene.add(ambientLight);
+
+            const sunLight = new THREE.DirectionalLight(0xffffff, 0.4);
+            sunLight.position.set(2, 1, 3);
+            scene.add(sunLight);
+
+            const rimLight = new THREE.DirectionalLight(0x1a3b5c, 0.2);
+            rimLight.position.set(-5, 0, -5);
+            scene.add(rimLight);
+
+            // Southern Africa focus
+            const saLat = -30.5;
+            const saLon = 25.5;
+            const phi = (90 - saLat) * (Math.PI / 180);
+            const theta = (saLon + 180) * (Math.PI / 180);
+            earthGroup.rotation.x = phi - Math.PI/2;
+            earthGroup.rotation.y = theta;
+
+            let time = 0;
+            const rotationSpeed = 0.0004;
+
+            function animate() {
+                requestAnimationFrame(animate);
+                time += 0.05;
+
+                earthGroup.rotation.y += rotationSpeed;
+                clouds.rotation.y += rotationSpeed * 1.1;
+
+                const dayProgress = Math.min(time * 0.00008, 1);
+                const lightIntensity = 0.2 + (dayProgress * 0.4);
+                ambientLight.intensity = lightIntensity;
+                sunLight.intensity = 0.4 + (dayProgress * 0.6);
+
+                atmosphere.material.opacity = 0.04 + Math.sin(time * 0.00015) * 0.02;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            const line1 = document.getElementById('menu-line1');
+            const line2 = document.getElementById('menu-line2');
+            const line3 = document.getElementById('menu-line3');
+
+            if (menu.classList.contains('translate-x-full')) {
+                menu.classList.remove('translate-x-full');
+                menu.classList.add('translate-x-0');
+                line1.classList.add('rotate-45', 'translate-y-2');
+                line2.classList.add('opacity-0');
+                line3.classList.add('-rotate-45', '-translate-y-2');
+                document.body.style.overflow = 'hidden';
+            } else {
+                menu.classList.add('translate-x-full');
+                menu.classList.remove('translate-x-0');
+                line1.classList.remove('rotate-45', 'translate-y-2');
+                line2.classList.remove('opacity-0');
+                line3.classList.remove('-rotate-45', '-translate-y-2');
+                document.body.style.overflow = '';
+            }
+        }
+
+        // Navbar scroll effect
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.classList.remove('nav-transparent');
+                nav.classList.add('nav-scrolled');
+            } else {
+                nav.classList.add('nav-transparent');
+                nav.classList.remove('nav-scrolled');
+            }
+        });
+
+        // Scroll Reveal
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
-
