@@ -13,7 +13,7 @@
   <!-- Open Graph / Social Preview -->
   <meta property="og:title" content="Search Playbook | Visibility & Privacy Strategy" />
   <meta property="og:description" content="Master digital Visibility, Privacy, and Safety with Search Playbook. Services, tools, and learning resources for businesses and individuals." />
-  <meta property="og:image" content="https://iili.io/CP5nmhu.png" />
+  <meta property="og:image" content="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" />
   <meta property="og:url" content="https://searchplaybook.blogspot.com/" />
   <meta property="og:type" content="website" />
 
@@ -21,7 +21,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Search Playbook | Visibility & Privacy Strategy" />
   <meta name="twitter:description" content="Master digital Visibility, Privacy, and Safety with Search Playbook. Services, tools, and learning resources for businesses and individuals." />
-  <meta name="twitter:image" content="https://iili.io/CP5nmhu.png" />
+  <meta name="twitter:image" content="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" />
 
   <!-- Google Site Verification -->
   <meta name="google-site-verification" content="google0358e8a493fefd4f.html" />
@@ -67,8 +67,8 @@
         "@id": "https://searchplaybook.blogspot.com/#organization",
         "name": "WeMustCreate",
         "url": "https://searchplaybook.blogspot.com/",
-        "logo": "https://iili.io/CP5nmhu.png",
-        "image": "https://iili.io/CP5nmhu.png",
+        "logo": "https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056",
+        "image": "https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056",
         "founder": {
           "@type": "Person",
           "name": "Llewellyn O'Shea"
@@ -113,81 +113,158 @@
           "@id": "https://searchplaybook.blogspot.com/#organization"
         },
         "description": "Master digital Visibility, Privacy, and Safety with Search Playbook. Strategic services, practical tools, and learning resources for businesses and individuals."
-      },
-      {
-        "@type": "OfferCatalog",
-        "name": "WeMustCreate Service Catalogue",
-        "itemListElement": [
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Free Digital Audit",
-              "description": "Complete website, Google Maps, and search diagnostic audit."
-            },
-            "price": "0",
-            "priceCurrency": "ZAR"
-          },
-          {
-            "@type": "Offer",
-            "itemOffered": {
-              "@type": "Service",
-              "name": "Digital Birth Certificate Foundation",
-              "description": "Permanent custom mobile-first website build, zero subscriptions, JSON-LD schema, and custom GitHub hosting setup."
-            },
-            "price": "7000",
-            "priceCurrency": "ZAR"
-          }
-        ]
       }
     ]
   }
   </script>
 
   <style>
+    /* -------------------------------------------------------------
+       COLORIO.CO INSPIRED MOTION & EFFECT STYLING
+    ------------------------------------------------------------- */
     .glass-nav {
       background: rgba(7, 9, 14, 0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(212, 175, 55, 0.2);
     }
+
+    /* Neon Glow Pulse Animation for Pills & Floating Controls */
+    @keyframes neonPulse {
+      0%, 100% {
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3), inset 0 0 10px rgba(212, 175, 55, 0.1);
+        border-color: rgba(212, 175, 55, 0.6);
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(212, 175, 55, 0.6), inset 0 0 15px rgba(212, 175, 55, 0.3);
+        border-color: rgba(255, 230, 150, 0.9);
+      }
+    }
+    .neon-glow-pulse {
+      animation: neonPulse 3s infinite ease-in-out;
+    }
+
+    /* Skeleton / Unfilled Paint Base effect */
+    .skeleton-pill {
+      background: rgba(18, 18, 22, 0.45);
+      backdrop-filter: blur(20px);
+      border: 1px dashed rgba(212, 175, 55, 0.4);
+    }
+
+    /* Float Bob Layered Padding */
+    @keyframes floatBob {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .float-bob-layered {
+      animation: floatBob 4s ease-in-out infinite;
+      padding: 0.5rem 1rem;
+    }
+
+    /* Gradient Shimmer Text for Hero */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+    .gradient-shimmer-text {
+      background: linear-gradient(90deg, #FFFFFF 0%, #D4AF37 25%, #FFF2B2 50%, #D4AF37 75%, #FFFFFF 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      animation: shimmer 5s linear infinite;
+    }
+
+    /* Glitch Text Utility */
+    .glitch-text {
+      position: relative;
+      display: inline-block;
+    }
+    .glitch-text::before, .glitch-text::after {
+      content: attr(data-text);
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      clip: rect(0, 0, 0, 0);
+    }
+    .glitch-text:hover::before {
+      left: 2px; text-shadow: -2px 0 #D4AF37; clip: rect(24px, 550px, 90px, 0);
+      animation: glitch-anim 2s infinite linear alternate-reverse;
+    }
+    .glitch-text:hover::after {
+      left: -2px; text-shadow: -2px 0 #00ffff; clip: rect(85px, 550px, 140px, 0);
+      animation: glitch-anim2 2.5s infinite linear alternate-reverse;
+    }
+
+    /* Gradient Border Morph for WhatsApp Cards */
+    @keyframes borderMorph {
+      0% { border-color: rgba(212, 175, 55, 0.2); }
+      50% { border-color: rgba(16, 185, 129, 0.6); }
+      100% { border-color: rgba(212, 175, 55, 0.2); }
+    }
+    .gradient-border-morph {
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      animation: borderMorph 6s infinite ease-in-out;
+    }
+
+    /* Depth Stack & Variable Weight */
+    .depth-stack {
+      box-shadow: 0 20px 40px -15px rgba(0,0,0,0.9), 0 0 20px rgba(212, 175, 55, 0.08);
+    }
+    .variable-weight {
+      font-variation-settings: "wght" 650;
+      transition: font-variation-settings 0.3s ease;
+    }
+    .variable-weight:hover {
+      font-variation-settings: "wght" 850;
+    }
+
+    /* Text Wave */
+    @keyframes textWave {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-3px); }
+    }
+    .text-wave span {
+      display: inline-block;
+      animation: textWave 1.5s infinite ease-in-out;
+    }
+
+    .liquid-glass-capsule {
+      background: rgba(18, 18, 22, 0.75);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border-radius: 9999px;
+    }
     .solid-content-card {
       background-color: #0d1117;
-      border: 1px solid rgba(212, 175, 55, 0.18);
       box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
     }
     .solid-content-card:hover {
       border-color: rgba(212, 175, 55, 0.4);
-    }
-    .gold-gradient-text {
-      background: linear-gradient(135deg, #FFF 0%, #D4AF37 50%, #F3E5AB 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
   </style>
 </head>
 
 <body class="bg-void text-gray-200 font-sans antialiased min-h-screen flex flex-col selection:bg-gold selection:text-void">
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR WITH NEON PULSE & SKELETON BASE -->
   <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       <a href="#" class="flex items-center gap-3">
         <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WeMustCreate Shield" class="h-10 w-auto object-contain" />
-        <span class="font-bold text-xl tracking-wider text-white">SEARCH <span class="gold-gradient-text">PLAYBOOK</span></span>
+        <span class="font-bold text-xl tracking-wider text-white glitch-text" data-text="SEARCH PLAYBOOK">SEARCH <span class="gradient-shimmer-text">PLAYBOOK</span></span>
       </a>
       
       <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
-        <a href="#hero" class="hover:text-gold transition">Overview</a>
-        <a href="#problem" class="hover:text-gold transition">Limitations</a>
-        <a href="#catalogue" class="hover:text-gold transition">Catalogue</a>
-        <a href="#benchmark" class="hover:text-gold transition">2026 Rates</a>
-        <a href="#matrix" class="hover:text-gold transition">Coverage</a>
-        <a href="#faq" class="hover:text-gold transition">FAQ</a>
+        <a href="#hero" class="hover:text-gold transition variable-weight">Overview</a>
+        <a href="#problem" class="hover:text-gold transition variable-weight">Limitations</a>
+        <a href="#catalogue" class="hover:text-gold transition variable-weight">Catalogue</a>
+        <a href="#benchmark" class="hover:text-gold transition variable-weight">2026 Rates</a>
+        <a href="#matrix" class="hover:text-gold transition variable-weight">Coverage</a>
+        <a href="#faq" class="hover:text-gold transition variable-weight">FAQ</a>
       </nav>
 
       <div class="flex items-center gap-4">
-        <a href="https://wa.me/27695326613" target="_blank" rel="noopener" class="bg-gold hover:bg-gold-light text-void font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition shadow-lg flex items-center gap-2">
+        <!-- Neon Glow Pulse & Skeleton Nav Pill -->
+        <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20would%20like%20to%20enquire%20about%20Search%20Playbook%20Solutions." target="_blank" rel="noopener" class="skeleton-pill neon-glow-pulse text-gold font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition shadow-lg flex items-center gap-2">
           <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 0c-6.627 0-12 5.373-12 12 0 2.159.572 4.187 1.557 5.951l-1.588 5.809 5.96-1.562c1.703.921 3.655 1.442 5.72 1.442 6.627 0 12-5.373 12-12s-5.373-12-12-12zm6.27 16.022c-.259.729-1.298 1.336-2.115 1.512-.56.12-1.289.215-3.754-.808-3.153-1.309-5.183-4.516-5.341-4.728-.157-.212-1.282-1.708-1.282-3.258 0-1.55 0.808-2.312 1.096-2.628.288-.316.628-.395.837-.395.209 0 .418.002.599.011.192.01.448-.073.702.537.259.624.887 2.164.965 2.322.078.158.13.342.026.55-.104.208-.157.341-.314.522-.157.181-.33.404-.471.542-.157.155-.321.325-.138.638.183.313.813 1.322 1.748 2.155 1.202 1.07 2.215 1.402 2.528 1.558.313.157.497.131.68-.078.183-.209.785-.915.994-1.229.209-.314.418-.261.706-.157.288.104 1.83.863 2.144 1.02.314.157.523.235.599.366.077.13.077.755-.182 1.484z"/></svg>
           Direct Query
         </a>
@@ -195,22 +272,45 @@
     </div>
   </header>
 
+  <!-- FLOATING STICKY SOCIAL BLAST CAPSULE WITH FLOAT BOB & NEON PULSE -->
+  <aside class="fixed bottom-6 right-6 z-40 float-bob-layered" aria-label="Social Blast Widget">
+    <div class="liquid-glass-capsule skeleton-pill neon-glow-pulse p-2 pl-4 pr-2 shadow-2xl flex items-center gap-3">
+      <div class="flex flex-col">
+        <span class="font-mono text-[9px] uppercase tracking-wider text-gold font-bold">⚡ Social Blast</span>
+        <span id="pillItemName" class="text-xs font-bold text-white max-w-[130px] sm:max-w-[150px] truncate">Featured Solution</span>
+      </div>
+      <button onclick="triggerStickyPillBlast()" class="bg-gold hover:bg-white text-void font-bold text-xs uppercase tracking-wider px-4 py-2 rounded-full transition-all flex items-center gap-1.5 shrink-0 shadow-md">
+        <span>📲 Share Status</span>
+      </button>
+      <button onclick="shuffleBlastItem()" class="bg-white/10 hover:bg-white/20 text-gray-200 w-8 h-8 rounded-full flex items-center justify-center text-xs transition-colors" title="Shuffle Solution Asset">
+        🎲
+      </button>
+    </div>
+  </aside>
+
   <main class="flex-grow pt-28">
 
-    <!-- HERO SECTION (4 CARDS) -->
-    <section id="hero" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4">
-          Own Your Digital Identity. <br/><span class="gold-gradient-text">Zero Subscription Trap.</span>
+    <!-- HERO SECTION WITH CINEMATIC PARALLAX VIDEO BACKGROUND & SHIMMER TEXT -->
+    <section id="hero" class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 overflow-hidden rounded-3xl my-6 depth-stack">
+      <!-- Cinematic Parallax Video Background -->
+      <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-25 filter saturate-125 transform scale-105">
+          <source src="https://ik.imagekit.io/wemustcreate/motion%20(3).mp4?updatedAt=1779799917307" type="video/mp4" />
+        </video>
+        <div class="absolute inset-0 bg-gradient-to-b from-void/90 via-void/70 to-void"></div>
+      </div>
+
+      <div class="relative z-10 text-center max-w-3xl mx-auto mb-12">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-white tracking-tight mb-4 variable-weight">
+          Own Your Digital Identity. <br/><span class="gradient-shimmer-text">Zero Subscription Trap.</span>
         </h1>
-        <p class="text-gray-400 text-lg">
-          Custom high-performance web infrastructure, local search optimization, and privacy compliance built for long-term growth.
+        <p class="text-gray-300 text-lg text-wave">
+          <span>Custom</span> <span>high-performance</span> <span>web</span> <span>infrastructure,</span> <span>local</span> <span>search</span> <span>optimization,</span> <span>and</span> <span>privacy</span> <span>compliance.</span>
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <!-- Hero Card 1 -->
-        <div class="solid-content-card rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
+      <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
           <div>
             <div class="h-44 w-full rounded-xl overflow-hidden mb-5 bg-black/50">
               <img src="https://iili.io/CPvOQta.webp" alt="Web Infrastructure" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
@@ -222,8 +322,7 @@
           <a href="#catalogue" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Infrastructure &rarr;</a>
         </div>
 
-        <!-- Hero Card 2 -->
-        <div class="solid-content-card rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
+        <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
           <div>
             <div class="h-44 w-full rounded-xl overflow-hidden mb-5 bg-black/50">
               <img src="https://iili.io/CPv36x9.jpg" alt="Free Audit" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
@@ -235,8 +334,7 @@
           <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20would%20like%20to%20request%20a%20Free%20Digital%20Audit." target="_blank" rel="noopener" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">Request Free Audit &rarr;</a>
         </div>
 
-        <!-- Hero Card 3 -->
-        <div class="solid-content-card rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
+        <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
           <div>
             <div class="h-44 w-full rounded-xl overflow-hidden mb-5 bg-black/50">
               <img src="https://iili.io/CPv3rD7.jpg" alt="Local Search" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
@@ -248,8 +346,7 @@
           <a href="#catalogue" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">View Visibility Packages &rarr;</a>
         </div>
 
-        <!-- Hero Card 4 -->
-        <div class="solid-content-card rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
+        <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
           <div>
             <div class="h-44 w-full rounded-xl overflow-hidden mb-5 bg-black/50">
               <img src="https://iili.io/CPTIlTu.jpg" alt="Privacy & Compliance" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
@@ -263,7 +360,7 @@
       </div>
     </section>
 
-    <!-- PROBLEM GRID: WEBSITE BUILDER LIMITATIONS -->
+    <!-- PROBLEM GRID -->
     <section id="problem" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-glass-border">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-3xl font-bold text-white">The Rental Trap: <span class="text-gold">Website Builder Limitations</span></h2>
@@ -271,25 +368,25 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="solid-content-card p-6 rounded-2xl">
+        <div class="solid-content-card gradient-border-morph p-6 rounded-2xl">
           <div class="w-12 h-12 rounded-xl bg-red-950/40 text-red-400 border border-red-800/40 flex items-center justify-center font-bold text-xl mb-4">01</div>
           <h3 class="text-lg font-bold text-white mb-2">Zero / Low Analytics</h3>
           <p class="text-gray-400 text-sm">Proprietary dashboards lock away raw traffic data, rendering true SEO attribution impossible.</p>
         </div>
 
-        <div class="solid-content-card p-6 rounded-2xl">
+        <div class="solid-content-card gradient-border-morph p-6 rounded-2xl">
           <div class="w-12 h-12 rounded-xl bg-red-950/40 text-red-400 border border-red-800/40 flex items-center justify-center font-bold text-xl mb-4">02</div>
           <h3 class="text-lg font-bold text-white mb-2">Domain Lock-In</h3>
           <p class="text-gray-400 text-sm">Transferring your domain or exportable source code is restricted, holding your brand hostage.</p>
         </div>
 
-        <div class="solid-content-card p-6 rounded-2xl">
+        <div class="solid-content-card gradient-border-morph p-6 rounded-2xl">
           <div class="w-12 h-12 rounded-xl bg-red-950/40 text-red-400 border border-red-800/40 flex items-center justify-center font-bold text-xl mb-4">03</div>
           <h3 class="text-lg font-bold text-white mb-2">Free Tier Penalties</h3>
           <p class="text-gray-400 text-sm">Forced platform ads, slow loading speeds, and subdomains destroy professional credibility.</p>
         </div>
 
-        <div class="solid-content-card p-6 rounded-2xl">
+        <div class="solid-content-card gradient-border-morph p-6 rounded-2xl">
           <div class="w-12 h-12 rounded-xl bg-red-950/40 text-red-400 border border-red-800/40 flex items-center justify-center font-bold text-xl mb-4">04</div>
           <h3 class="text-lg font-bold text-white mb-2">Zero Content Ownership</h3>
           <p class="text-gray-400 text-sm">If you stop paying monthly rent, your website, rankings, and assets vanish overnight.</p>
@@ -297,15 +394,14 @@
       </div>
     </section>
 
-    <!-- SERVICE CATALOGUE GRID -->
+    <!-- SERVICE CATALOGUE GRID WITH GRADIENT BORDER MORPH -->
     <section id="catalogue" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-glass-border">
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
         <div>
           <span class="text-gold text-xs font-bold uppercase tracking-widest">WeMustCreate Solutions</span>
-          <h2 class="text-3xl font-bold text-white mt-1">Service Catalogue</h2>
+          <h2 class="text-3xl font-bold text-white mt-1 variable-weight">Service Catalogue</h2>
         </div>
         
-        <!-- Filter Pills -->
         <div class="flex flex-wrap gap-2 mt-4 md:mt-0" id="category-filters">
           <button onclick="filterCategory('All')" class="px-4 py-2 rounded-full text-xs font-bold border border-gold bg-gold text-void transition active-filter">All</button>
           <button onclick="filterCategory('Audit')" class="px-4 py-2 rounded-full text-xs font-bold border border-glass-border bg-glass text-gray-300 hover:border-gold transition">Audit</button>
@@ -315,20 +411,19 @@
         </div>
       </div>
 
-      <!-- Grid Container -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="catalogue-grid">
         <!-- JS rendered cards appear here -->
       </div>
     </section>
 
-    <!-- RATES BENCHMARK TABLE (SOUTH AFRICA 2026) -->
+    <!-- RATES BENCHMARK TABLE -->
     <section id="benchmark" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-glass-border">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-3xl font-bold text-white">South African Market <span class="text-gold">Rates Benchmark (2026)</span></h2>
         <p class="text-gray-400 mt-2">See how our once-off foundation model compares against traditional web services.</p>
       </div>
 
-      <div class="solid-content-card rounded-2xl overflow-hidden">
+      <div class="solid-content-card gradient-border-morph rounded-2xl overflow-hidden depth-stack">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-sm">
             <thead>
@@ -370,14 +465,14 @@
       </div>
     </section>
 
-    <!-- 12-MONTH HEAD-TO-HEAD COVERAGE MATRIX -->
+    <!-- MATRIX SECTION -->
     <section id="matrix" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-glass-border">
       <div class="text-center max-w-3xl mx-auto mb-12">
         <h2 class="text-3xl font-bold text-white">12-Month Coverage <span class="text-gold">Matrix</span></h2>
         <p class="text-gray-400 mt-2">Evaluating total feature delivery and cost efficiency across 11 core criteria.</p>
       </div>
 
-      <div class="solid-content-card rounded-2xl overflow-hidden">
+      <div class="solid-content-card gradient-border-morph rounded-2xl overflow-hidden depth-stack">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-xs sm:text-sm">
             <thead>
@@ -461,36 +556,7 @@
       </div>
     </section>
 
-    <!-- KEY TAKEAWAYS ("THE BOTTOM LINE") -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-glass-border">
-      <div class="text-center max-w-3xl mx-auto mb-12">
-        <h2 class="text-3xl font-bold text-white">The Bottom Line: <span class="text-gold">Rent vs. Own</span></h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="solid-content-card p-6 rounded-2xl border-l-4 border-gold">
-          <h3 class="text-lg font-bold text-white mb-2">1. Eliminates Monthly Rent</h3>
-          <p class="text-gray-400 text-sm">Stop paying recurring fees for website hosting and builder sub-licenses. Keep your operating margin intact.</p>
-        </div>
-
-        <div class="solid-content-card p-6 rounded-2xl border-l-4 border-gold">
-          <h3 class="text-lg font-bold text-white mb-2">2. Permanent Assets</h3>
-          <p class="text-gray-400 text-sm">Your website code is stored in your private GitHub repository, completely portable and owned by you forever.</p>
-        </div>
-
-        <div class="solid-content-card p-6 rounded-2xl border-l-4 border-gold">
-          <h3 class="text-lg font-bold text-white mb-2">3. Structured Compliance</h3>
-          <p class="text-gray-400 text-sm">Protects your brand identity with POPIA data handling practices and privacy safeguards embedded at build time.</p>
-        </div>
-
-        <div class="solid-content-card p-6 rounded-2xl border-l-4 border-gold">
-          <h3 class="text-lg font-bold text-white mb-2">4. Direct Conversions</h3>
-          <p class="text-gray-400 text-sm">Directs customer traffic straight to your WhatsApp line without leaky conversion forms or broken popups.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- INTERACTIVE FAQ ACCORDION -->
+    <!-- FAQ SECTION -->
     <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-t border-glass-border">
       <div class="text-center mb-12">
         <h2 class="text-3xl font-bold text-white">Frequently Asked <span class="text-gold">Questions</span></h2>
@@ -498,8 +564,7 @@
       </div>
 
       <div class="space-y-4">
-        <!-- FAQ Item 1 -->
-        <div class="solid-content-card rounded-xl overflow-hidden">
+        <div class="solid-content-card gradient-border-morph rounded-xl overflow-hidden">
           <button onclick="toggleAccordion('faq-1')" class="w-full text-left p-6 font-bold text-white flex justify-between items-center focus:outline-none">
             <span>How can a website have R0 monthly hosting fees?</span>
             <span id="icon-faq-1" class="text-gold text-xl">+</span>
@@ -509,8 +574,7 @@
           </div>
         </div>
 
-        <!-- FAQ Item 2 -->
-        <div class="solid-content-card rounded-xl overflow-hidden">
+        <div class="solid-content-card gradient-border-morph rounded-xl overflow-hidden">
           <button onclick="toggleAccordion('faq-2')" class="w-full text-left p-6 font-bold text-white flex justify-between items-center focus:outline-none">
             <span>What is Privacy as a Service (PaaS)?</span>
             <span id="icon-faq-2" class="text-gold text-xl">+</span>
@@ -520,8 +584,7 @@
           </div>
         </div>
 
-        <!-- FAQ Item 3 -->
-        <div class="solid-content-card rounded-xl overflow-hidden">
+        <div class="solid-content-card gradient-border-morph rounded-xl overflow-hidden">
           <button onclick="toggleAccordion('faq-3')" class="w-full text-left p-6 font-bold text-white flex justify-between items-center focus:outline-none">
             <span>How does the Free Digital Audit work?</span>
             <span id="icon-faq-3" class="text-gold text-xl">+</span>
@@ -531,8 +594,7 @@
           </div>
         </div>
 
-        <!-- FAQ Item 4 -->
-        <div class="solid-content-card rounded-xl overflow-hidden">
+        <div class="solid-content-card gradient-border-morph rounded-xl overflow-hidden">
           <button onclick="toggleAccordion('faq-4')" class="w-full text-left p-6 font-bold text-white flex justify-between items-center focus:outline-none">
             <span>What happens after I pay the R7,000 once-off foundation fee?</span>
             <span id="icon-faq-4" class="text-gold text-xl">+</span>
@@ -544,17 +606,17 @@
       </div>
     </section>
 
-    <!-- FINAL CONVERSION CTA BANNER -->
+    <!-- CTA BANNER -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 border-t border-glass-border">
-      <div class="solid-content-card rounded-3xl p-10 md:p-16 text-center relative overflow-hidden bg-gradient-to-b from-void to-[#0d1117] border-2 border-gold/30">
-        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-6">
-          Ready to Escape <span class="gold-gradient-text">Website Rent?</span>
+      <div class="solid-content-card gradient-border-morph rounded-3xl p-10 md:p-16 text-center relative overflow-hidden bg-gradient-to-b from-void to-[#0d1117] border-2 border-gold/35 depth-stack">
+        <h2 class="text-3xl sm:text-5xl font-extrabold text-white mb-6 variable-weight">
+          Ready to Escape <span class="gradient-shimmer-text">Website Rent?</span>
         </h2>
         <p class="text-gray-300 max-w-2xl mx-auto mb-10 text-base sm:text-lg">
           Claim your permanent digital infrastructure today or request a zero-obligation Free Digital Audit to analyze your search footprint.
         </p>
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20want%20to%20claim%20my%20Free%20Digital%20Audit." target="_blank" rel="noopener" class="w-full sm:w-auto bg-gold hover:bg-gold-light text-void font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full transition shadow-xl">
+          <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20want%20to%20claim%20my%20Free%20Digital%20Audit." target="_blank" rel="noopener" class="w-full sm:w-auto skeleton-pill neon-glow-pulse bg-gold hover:bg-gold-light text-void font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full transition shadow-xl">
             Claim Free Audit
           </a>
           <a href="https://wa.me/27695326613" target="_blank" rel="noopener" class="w-full sm:w-auto border border-gold text-gold hover:bg-gold/10 font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full transition">
@@ -568,7 +630,7 @@
 
   <!-- MODAL CONTAINER -->
   <div id="catalogue-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-    <div class="solid-content-card max-w-2xl w-full rounded-2xl p-6 sm:p-8 relative border border-gold/40">
+    <div class="solid-content-card gradient-border-morph max-w-2xl w-full rounded-2xl p-6 sm:p-8 relative border border-gold/40 depth-stack">
       <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl font-bold">&times;</button>
       <div id="modal-content">
         <!-- Populated via JS -->
@@ -580,7 +642,7 @@
   <footer class="border-t border-glass-border bg-black/80 py-10">
     <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:items-center">
       <div class="flex items-center justify-center sm:justify-start gap-3 mb-4 sm:mb-0">
-        <img src="https://iili.io/CP5nmhu.png" alt="WeMustCreate Shield" class="h-8 w-auto" />
+        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WeMustCreate Shield" class="h-8 w-auto" />
         <span class="text-white font-bold text-sm">WeMustCreate &copy; 2026. All rights reserved.</span>
       </div>
       <p class="text-gray-500 text-xs">
@@ -591,7 +653,6 @@
 
   <!-- INTERACTIVE JAVASCRIPT ENGINE -->
   <script>
-    // Catalogue Data Source with Mapped Asset URLs
     const catalogueData = [
       {
         id: "audit",
@@ -649,11 +710,29 @@
       }
     ];
 
-    // Render Catalogue Cards
+    let currentBlastIndex = 0;
+    function shuffleBlastItem() {
+      currentBlastIndex = Math.floor(Math.random() * catalogueData.length);
+      const item = catalogueData[currentBlastIndex];
+      document.getElementById('pillItemName').innerText = item.title;
+    }
+
+    function triggerStickyPillBlast() {
+      const item = catalogueData[currentBlastIndex];
+      const message = encodeURIComponent(
+        `⚡ *Search Playbook Solution*\n\n` +
+        `*${item.title}* (${item.price})\n` +
+        `${item.shortDesc}\n\n` +
+        `🖼️ *Attached Graphic Asset:* ${item.image}\n\n` +
+        `Explore permanent solutions: https://searchplaybook.blogspot.com/`
+      );
+      window.open(`https://api.whatsapp.com/send?text=${message}`, '_blank');
+    }
+
     function renderCatalogue(items) {
       const grid = document.getElementById('catalogue-grid');
       grid.innerHTML = items.map(item => `
-        <div class="solid-content-card rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
+        <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300 depth-stack">
           <div>
             <div class="h-48 w-full rounded-xl overflow-hidden mb-5 bg-black/50">
               <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
@@ -662,18 +741,17 @@
               <span class="text-gold text-xs font-bold uppercase tracking-widest">${item.category}</span>
               <span class="text-white text-sm font-bold bg-gold/10 border border-gold/30 px-3 py-1 rounded-full">${item.price}</span>
             </div>
-            <h3 class="text-xl font-bold text-white mb-2">${item.title}</h3>
+            <h3 class="text-xl font-bold text-white mb-2 variable-weight">${item.title}</h3>
             <p class="text-gray-400 text-sm">${item.shortDesc}</p>
           </div>
           <div class="mt-6 flex items-center justify-between">
             <button onclick="openModal('${item.id}')" class="text-gold text-sm font-semibold hover:underline">View Specs &rarr;</button>
-            <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20am%20interested%20in%20${encodeURIComponent(item.title)}" target="_blank" rel="noopener" class="bg-gold text-void text-xs font-bold px-4 py-2 rounded-full hover:bg-gold-light transition">Inquire</a>
+            <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20am%20interested%20in%20${encodeURIComponent(item.title)}" target="_blank" rel="noopener" class="bg-gold text-void text-xs font-bold px-4 py-2 rounded-full hover:bg-gold-light transition shadow-md">Inquire</a>
           </div>
         </div>
       `).join('');
     }
 
-    // Category Filter Handler
     function filterCategory(cat) {
       const buttons = document.querySelectorAll('#category-filters button');
       buttons.forEach(btn => {
@@ -691,7 +769,6 @@
       }
     }
 
-    // Modal Handlers
     function openModal(id) {
       const item = catalogueData.find(i => i.id === id);
       if(!item) return;
@@ -705,11 +782,11 @@
           <span class="text-gold text-xs font-bold uppercase tracking-widest">${item.category}</span>
           <span class="text-white text-lg font-bold text-gold">${item.price}</span>
         </div>
-        <h3 class="text-2xl font-bold text-white mb-4">${item.title}</h3>
+        <h3 class="text-2xl font-bold text-white mb-4 variable-weight">${item.title}</h3>
         <p class="text-gray-300 text-sm leading-relaxed mb-6">${item.fullDesc}</p>
         <div class="flex items-center justify-end gap-4 border-t border-glass-border pt-4">
           <button onclick="closeModal()" class="text-gray-400 text-sm font-semibold hover:text-white">Close</button>
-          <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20want%20to%20book%20${encodeURIComponent(item.title)}" target="_blank" rel="noopener" class="bg-gold text-void font-bold text-xs uppercase px-6 py-3 rounded-full hover:bg-gold-light transition">Book via WhatsApp</a>
+          <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I%20want%20to%20book%20${encodeURIComponent(item.title)}" target="_blank" rel="noopener" class="bg-gold text-void font-bold text-xs uppercase px-6 py-3 rounded-full hover:bg-gold-light transition shadow-lg">Book via WhatsApp</a>
         </div>
       `;
 
@@ -720,7 +797,6 @@
       document.getElementById('catalogue-modal').classList.add('hidden');
     }
 
-    // Accordion Toggle
     function toggleAccordion(id) {
       const content = document.getElementById(id);
       const icon = document.getElementById('icon-' + id);
@@ -733,10 +809,11 @@
       }
     }
 
-    // Initial Load
     document.addEventListener('DOMContentLoaded', () => {
       renderCatalogue(catalogueData);
+      shuffleBlastItem();
     });
   </script>
 </body>
 </html>
+
