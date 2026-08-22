@@ -1,1 +1,866 @@
-1
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DNA Window — 7 Tokens x 4 Variants</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --c-gold: #D4AF37; --c-gold-100: #FCEEB5; --c-void: #09090B;
+    --c-azure: #43CFFD; --c-copper: #B66E41; --c-white: #F9F9F9; --c-onyx: #18181B;
+    --f-body: 'Inter', system-ui, sans-serif;
+    --f-display: 'Space Grotesk', sans-serif;
+    --f-mono: 'JetBrains Mono', monospace;
+    --g-blur: 20px; --g-border: rgba(212,175,55,0.12); --g-bg: rgba(24,24,27,0.45);
+    --d-w: 411px; --d-h: 777px; --d-radius: 40px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--c-void);
+    display: flex; justify-content: center; align-items: center;
+    min-height: 100vh; padding: 20px;
+    font-family: var(--f-body);
+    overflow: hidden;
+  }
+
+  /* ===== DEVICE ===== */
+  .device {
+    width: var(--d-w); height: var(--d-h);
+    border-radius: var(--d-radius);
+    border: 3px solid #2a2a3a;
+    position: relative; overflow: hidden;
+    box-shadow: 0 25px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05);
+    transition: all 0.5s cubic-bezier(.16,1,.3,1);
+  }
+  .notch {
+    position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+    width: 150px; height: 28px; border-radius: 0 0 20px 20px;
+    z-index: 100; transition: all 0.5s ease;
+  }
+  .status-bar {
+    position: absolute; top: 8px; left: 0; right: 0;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 28px; z-index: 99; font-size: 13px; font-weight: 600;
+    transition: all 0.5s ease;
+  }
+  .home-bar {
+    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+    width: 120px; height: 4px; border-radius: 2px; z-index: 99;
+    transition: all 0.5s ease;
+  }
+
+  /* ===== SCREEN ===== */
+  .screen {
+    width: 100%; height: 100%; overflow-y: auto;
+    padding: 50px 16px 30px; scrollbar-width: none; position: relative;
+  }
+  .screen::-webkit-scrollbar { display: none; }
+
+  /* ===== DRAWER ===== */
+  .drawer-overlay {
+    position: absolute; inset: 0; background: rgba(0,0,0,0.5);
+    opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+    z-index: 200; border-radius: var(--d-radius);
+  }
+  .drawer-overlay.open { opacity: 1; pointer-events: auto; }
+  .drawer {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    border-radius: 24px 24px 0 0; padding: 20px 16px 30px;
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(.16,1,.3,1);
+    z-index: 201; max-height: 70%; overflow-y: auto;
+  }
+  .drawer.open { transform: translateY(0); }
+  .drawer-handle { width: 40px; height: 4px; border-radius: 2px; margin: 0 auto 16px; opacity: 0.3; }
+  .drawer-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; opacity: 0.5; }
+  .drawer-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 14px; margin-bottom: 6px; cursor: pointer; transition: all 0.2s ease; font-size: 14px; font-weight: 600; }
+  .drawer-item:hover { transform: translateX(4px); }
+  .drawer-item .di-icon { width: 32px; height: 32px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .drawer-item .di-label { flex: 1; }
+  .drawer-item .di-arrow { font-size: 12px; opacity: 0.4; transition: opacity 0.2s ease; }
+  .drawer-item:hover .di-arrow { opacity: 1; }
+
+  /* ===== VARIANT TABS ===== */
+  .variant-bar { display: flex; gap: 6px; margin-bottom: 16px; overflow-x: auto; scrollbar-width: none; }
+  .variant-bar::-webkit-scrollbar { display: none; }
+  .v-tab { padding: 6px 14px; border-radius: 16px; font-size: 11px; font-weight: 600; cursor: pointer; white-space: nowrap; transition: all 0.3s ease; border: 1px solid transparent; }
+
+  /* ===== CARDS ===== */
+  .token-card { border-radius: 20px; padding: 18px 14px; margin-bottom: 12px; transition: all 0.4s ease; position: relative; overflow: hidden; }
+  .token-label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 12px; opacity: 0.5; }
+
+  /* ===== SWATCHES ===== */
+  .swatches { display: flex; height: 70px; gap: 4px; }
+  .swatch { flex: 1; border-radius: 12px; display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; padding: 8px; cursor: pointer; transition: flex 0.3s ease; position: relative; overflow: hidden; }
+  .swatch:hover { flex: 1.8; }
+  .swatch-name { font-size: 9px; font-weight: 700; opacity: 0; transition: opacity 0.3s ease; text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+  .swatch:hover .swatch-name { opacity: 1; }
+  .swatch-hex { font-size: 8px; font-family: var(--f-mono); opacity: 0; transition: opacity 0.3s ease; margin-top: 2px; }
+  .swatch:hover .swatch-hex { opacity: 0.7; }
+
+  /* ===== FONTS ===== */
+  .font-sample-xl { font-size: 32px; font-weight: 700; line-height: 1.1; margin-bottom: 6px; }
+  .font-sample-lg { font-size: 18px; font-weight: 600; line-height: 1.3; margin-bottom: 4px; }
+  .font-sample-md { font-size: 14px; font-weight: 400; line-height: 1.5; }
+  .font-sample-sm { font-size: 11px; opacity: 0.6; margin-top: 4px; }
+  .font-meta { margin-top: 10px; padding-top: 10px; display: flex; gap: 12px; }
+  .font-meta span { font-size: 10px; opacity: 0.5; }
+
+  /* ===== GLASS DEMOS ===== */
+  .glass-demo { padding: 16px; border-radius: 14px; display: flex; align-items: center; justify-content: center; min-height: 60px; font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+  .glass-specs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .glass-specs span { padding: 3px 8px; border-radius: 6px; font-size: 9px; font-weight: 600; font-family: var(--f-mono); }
+
+  /* ===== ANIMATIONS ===== */
+  .anim-stage { height: 80px; border-radius: 14px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 10px; }
+  .anim-actor { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 16px; }
+  .anim-specs { display: flex; flex-wrap: wrap; gap: 5px; }
+  .anim-specs span { padding: 3px 8px; border-radius: 6px; font-size: 9px; font-weight: 600; font-family: var(--f-mono); }
+
+  /* ===== BACKGROUNDS ===== */
+  .bg-preview { height: 100px; border-radius: 14px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; margin-bottom: 10px; }
+  .bg-preview span { font-size: 13px; font-weight: 600; z-index: 2; position: relative; }
+
+  /* ===== CHROME ===== */
+  .chrome-demo { border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+  .traffic-lights { display: flex; gap: 6px; }
+  .light { width: 12px; height: 12px; border-radius: 50%; }
+  .title-bar-demo { padding: 6px 10px; border-radius: 6px; font-size: 11px; font-weight: 600; text-align: center; }
+
+  /* ===== GRID 7 ===== */
+  .grid-7 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .win { border-radius: 16px; padding: 14px 12px; position: relative; overflow: hidden; cursor: pointer; transition: all 0.3s ease; min-height: 110px; display: flex; flex-direction: column; justify-content: space-between; }
+  .win:hover { transform: scale(1.03); }
+  .win.w01 { grid-column: span 2; min-height: 100px; }
+  .win.w07 { grid-column: span 2; min-height: 90px; }
+  .win-label { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.5; margin-bottom: 6px; }
+  .win-title { font-size: 15px; font-weight: 700; line-height: 1.2; margin-bottom: 4px; }
+  .win-value { font-size: 28px; font-weight: 800; line-height: 1; }
+  .win-sub { font-size: 10px; opacity: 0.6; line-height: 1.3; }
+  .win-icon { position: absolute; top: 12px; right: 12px; width: 28px; height: 28px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+  .win-badge { position: absolute; bottom: 12px; right: 12px; padding: 2px 7px; border-radius: 6px; font-size: 9px; font-weight: 700; }
+
+  /* ===== BOTTOM NAV ===== */
+  .bottom-nav { display: flex; justify-content: space-around; align-items: center; padding: 10px 0 6px; margin-top: 10px; border-radius: 16px; }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 9px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+  .nav-dot { width: 5px; height: 5px; border-radius: 50%; opacity: 0; transition: all 0.3s ease; }
+  .nav-item.active .nav-dot { opacity: 1; }
+
+  /* ===== HAMBURGER ===== */
+  .hamburger { position: absolute; top: 52px; left: 16px; z-index: 90; width: 28px; height: 28px; display: flex; flex-direction: column; justify-content: center; gap: 4px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; height: 2px; border-radius: 1px; transition: all 0.3s ease; }
+  .page-indicator { position: absolute; top: 56px; left: 52px; z-index: 90; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; opacity: 0.4; pointer-events: none; transition: all 0.3s ease; }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header { margin-bottom: 16px; }
+  .page-title { font-size: 26px; font-weight: 800; line-height: 1.1; letter-spacing: -0.5px; }
+  .page-sub { font-size: 12px; opacity: 0.5; margin-top: 3px; }
+
+  /* ===== KEYFRAMES ===== */
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  @keyframes pulse-glow { 0%,100%{box-shadow:0 0 20px rgba(212,175,55,0.15)} 50%{box-shadow:0 0 40px rgba(212,175,55,0.35)} }
+  @keyframes reveal { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes auroraDrift { 0%,100%{transform:translate(0,0)} 50%{transform:translate(3%,3%)} }
+
+  /* ============================================ */
+  /* GLASSMORPHIC */
+  /* ============================================ */
+  .var-glassmorphic .device { background: #111118; }
+  .var-glassmorphic .notch { background: #111118; }
+  .var-glassmorphic .status-bar { color: #fff; }
+  .var-glassmorphic .home-bar { background: rgba(255,255,255,0.3); }
+  .var-glassmorphic .drawer { background: rgba(17,17,24,0.95); backdrop-filter: blur(24px); border-top: 1px solid rgba(255,255,255,0.08); }
+  .var-glassmorphic .drawer-handle { background: rgba(255,255,255,0.3); }
+  .var-glassmorphic .drawer-title { color: rgba(255,255,255,0.4); }
+  .var-glassmorphic .drawer-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
+  .var-glassmorphic .drawer-item:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.15); }
+  .var-glassmorphic .drawer-item .di-icon { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
+  .var-glassmorphic .v-tab { background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.5); border-color: rgba(255,255,255,0.1); }
+  .var-glassmorphic .v-tab.active { background: #fff; color: #0a0a12; border-color: #fff; }
+  .var-glassmorphic .token-card { background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+  .var-glassmorphic .token-card:hover { border-color: rgba(255,255,255,0.2); }
+  .var-glassmorphic .token-label { color: rgba(255,255,255,0.4); }
+  .var-glassmorphic .swatch-name { color: rgba(255,255,255,0.8); text-shadow: 0 1px 4px rgba(0,0,0,0.5); }
+  .var-glassmorphic .swatch-hex { color: rgba(255,255,255,0.6); }
+  .var-glassmorphic .font-sample-xl, .var-glassmorphic .font-sample-lg, .var-glassmorphic .font-sample-md { color: #fff; }
+  .var-glassmorphic .font-sample-xl { text-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+  .var-glassmorphic .font-sample-sm { color: rgba(255,255,255,0.5); }
+  .var-glassmorphic .font-meta span { color: rgba(255,255,255,0.4); }
+  .var-glassmorphic .glass-specs span { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); }
+  .var-glassmorphic .anim-specs span { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.1); }
+  .var-glassmorphic .hamburger span { background: rgba(255,255,255,0.7); }
+  .var-glassmorphic .page-title { color: #fff; }
+  .var-glassmorphic .page-indicator { color: rgba(255,255,255,0.4); }
+  .var-glassmorphic .page-sub { color: rgba(255,255,255,0.4); }
+  .var-glassmorphic .bottom-nav { background: rgba(255,255,255,0.04); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.08); }
+  .var-glassmorphic .nav-item { color: rgba(255,255,255,0.4); }
+  .var-glassmorphic .nav-item.active { color: #fff; }
+  .var-glassmorphic .nav-dot { background: #fff; }
+  .var-glassmorphic .g1 .glass-demo { background: rgba(255,255,255,0.1); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.2); color: #fff; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+  .var-glassmorphic .g2 .glass-demo { background: rgba(255,255,255,0.05); backdrop-filter: blur(24px) saturate(1.2); border: 1px solid rgba(255,255,255,0.15); color: #fff; }
+  .var-glassmorphic .g3 .glass-demo { background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02)); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.18); color: #fff; }
+  .var-glassmorphic .g4 .glass-demo { background: rgba(0,0,0,0.2); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.8); }
+  .var-glassmorphic .a1 .anim-actor { animation: gFade 2s ease-in-out infinite; }
+  @keyframes gFade { 0%,100%{opacity:0.4} 50%{opacity:1} }
+  .var-glassmorphic .a2 .anim-actor { animation: gSlide 1.5s ease-in-out infinite; }
+  @keyframes gSlide { 0%,100%{transform:translateX(-30px)} 50%{transform:translateX(30px)} }
+  .var-glassmorphic .a3 .anim-actor { animation: gScale 2s ease-in-out infinite; }
+  @keyframes gScale { 0%,100%{transform:scale(0.8)} 50%{transform:scale(1.2)} }
+  .var-glassmorphic .a4 .anim-actor { animation: gRotate 3s linear infinite; }
+  @keyframes gRotate { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+  .var-glassmorphic .a5 .anim-actor { animation: gPulse 2s ease-in-out infinite; }
+  @keyframes gPulse { 0%,100%{box-shadow:0 0 10px rgba(102,126,234,0.3)} 50%{box-shadow:0 0 30px rgba(118,75,162,0.5)} }
+  .var-glassmorphic .a6 .anim-actor { animation: gBounce 1s ease-in-out infinite; }
+  @keyframes gBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+  .var-glassmorphic .b1 .bg-preview { background: linear-gradient(135deg, rgba(102,126,234,0.2), rgba(118,75,162,0.2)); color: #fff; }
+  .var-glassmorphic .b2 .bg-preview { background: radial-gradient(ellipse at top, rgba(102,126,234,0.15), transparent 60%), radial-gradient(ellipse at bottom, rgba(118,75,162,0.15), transparent 60%); color: #fff; }
+  .var-glassmorphic .b3 .bg-preview { background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01)); border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.7); }
+  .var-glassmorphic .b4 .bg-preview { background: conic-gradient(from 180deg, rgba(102,126,234,0.1), rgba(118,75,162,0.1), rgba(0,223,216,0.1), rgba(102,126,234,0.1)); color: #fff; }
+  .var-glassmorphic .c1 .light-1 { background: rgba(255,95,86,0.8); border: 1px solid rgba(255,95,86,0.4); }
+  .var-glassmorphic .c1 .light-2 { background: rgba(255,189,46,0.8); border: 1px solid rgba(255,189,46,0.4); }
+  .var-glassmorphic .c1 .light-3 { background: rgba(39,201,63,0.8); border: 1px solid rgba(39,201,63,0.4); }
+  .var-glassmorphic .title-bar-demo { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); backdrop-filter: blur(8px); }
+  .var-glassmorphic .win { background: rgba(255,255,255,0.04); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.08); }
+  .var-glassmorphic .win:hover { border-color: rgba(255,255,255,0.2); }
+  .var-glassmorphic .win-label { color: rgba(255,255,255,0.4); }
+  .var-glassmorphic .win-title { color: #fff; }
+  .var-glassmorphic .win-value { color: #fff; }
+  .var-glassmorphic .win-sub { color: rgba(255,255,255,0.5); }
+  .var-glassmorphic .win-icon { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
+  .var-glassmorphic .win-badge { background: rgba(102,126,234,0.3); color: #fff; border: 1px solid rgba(102,126,234,0.4); }
+
+  /* ============================================ */
+  /* NEUMORPHIC */
+  /* ============================================ */
+  .var-neumorphic .device { background: #e0e5ec; border-color: #d1d9e6; }
+  .var-neumorphic .notch { background: #e0e5ec; }
+  .var-neumorphic .status-bar { color: #4a5568; }
+  .var-neumorphic .home-bar { background: rgba(74,85,104,0.3); }
+  .var-neumorphic .drawer { background: #e0e5ec; box-shadow: 0 -8px 32px #a3b1c6; }
+  .var-neumorphic .drawer-handle { background: #a3b1c6; }
+  .var-neumorphic .drawer-title { color: #718096; }
+  .var-neumorphic .drawer-item { background: #e0e5ec; box-shadow: 4px 4px 8px #a3b1c6, -4px -4px 8px #ffffff; color: #4a5568; border: none; }
+  .var-neumorphic .drawer-item:hover { box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff; }
+  .var-neumorphic .drawer-item .di-icon { background: #e0e5ec; box-shadow: 3px 3px 6px #a3b1c6, -3px -3px 6px #ffffff; color: #4a5568; }
+  .var-neumorphic .v-tab { background: #e0e5ec; color: #718096; border: none; box-shadow: 3px 3px 6px #a3b1c6, -3px -3px 6px #ffffff; }
+  .var-neumorphic .v-tab.active { background: #e0e5ec; color: #667eea; box-shadow: inset 3px 3px 6px #a3b1c6, inset -3px -3px 6px #ffffff; }
+  .var-neumorphic .token-card { background: #e0e5ec; box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff; border: none; }
+  .var-neumorphic .token-card:hover { box-shadow: 8px 8px 16px #a3b1c6, -8px -8px 16px #ffffff; }
+  .var-neumorphic .token-label { color: #718096; }
+  .var-neumorphic .swatch-name { color: #4a5568; text-shadow: none; }
+  .var-neumorphic .swatch-hex { color: #718096; }
+  .var-neumorphic .font-sample-xl, .var-neumorphic .font-sample-lg, .var-neumorphic .font-sample-md, .var-neumorphic .font-sample-sm { color: #2d3748; }
+  .var-neumorphic .font-meta span { color: #718096; }
+  .var-neumorphic .glass-specs span { background: #e0e5ec; color: #718096; box-shadow: inset 2px 2px 4px #a3b1c6, inset -2px -2px 4px #ffffff; }
+  .var-neumorphic .anim-specs span { background: #e0e5ec; color: #718096; box-shadow: inset 2px 2px 4px #a3b1c6, inset -2px -2px 4px #ffffff; }
+  .var-neumorphic .hamburger span { background: #4a5568; }
+  .var-neumorphic .page-title { color: #2d3748; }
+  .var-neumorphic .page-indicator { color: #718096; }
+  .var-neumorphic .page-sub { color: #718096; }
+  .var-neumorphic .bottom-nav { background: #e0e5ec; box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff; }
+  .var-neumorphic .nav-item { color: #718096; }
+  .var-neumorphic .nav-item.active { color: #667eea; }
+  .var-neumorphic .nav-dot { background: #667eea; }
+  .var-neumorphic .g1 .glass-demo { background: #e0e5ec; box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff; color: #4a5568; border-radius: 14px; }
+  .var-neumorphic .g2 .glass-demo { background: #e0e5ec; box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff; color: #4a5568; border-radius: 14px; }
+  .var-neumorphic .g3 .glass-demo { background: linear-gradient(145deg, #f0f0f0, #cacaca); box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff; color: #4a5568; border-radius: 18px; }
+  .var-neumorphic .g4 .glass-demo { background: #e0e5ec; border-radius: 50%; width: 60px; height: 60px; margin: 0 auto; box-shadow: 6px 6px 12px #a3b1c6, -6px -6px 12px #ffffff; color: #4a5568; }
+  .var-neumorphic .a1 .anim-actor { animation: nFade 2s ease-in-out infinite; }
+  @keyframes nFade { 0%,100%{opacity:0.5;box-shadow:4px 4px 8px #a3b1c6,-4px -4px 8px #fff} 50%{opacity:1;box-shadow:8px 8px 16px #a3b1c6,-8px -8px 16px #fff} }
+  .var-neumorphic .a2 .anim-actor { animation: nSlide 1.5s ease-in-out infinite; }
+  @keyframes nSlide { 0%,100%{transform:translateX(-30px)} 50%{transform:translateX(30px)} }
+  .var-neumorphic .a3 .anim-actor { animation: nScale 2s ease-in-out infinite; }
+  @keyframes nScale { 0%,100%{transform:scale(0.85)} 50%{transform:scale(1.15)} }
+  .var-neumorphic .a4 .anim-actor { animation: nRotate 3s linear infinite; }
+  @keyframes nRotate { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+  .var-neumorphic .a5 .anim-actor { animation: nBreathe 3s ease-in-out infinite; }
+  @keyframes nBreathe { 0%,100%{box-shadow:5px 5px 10px #a3b1c6,-5px -5px 10px #fff} 50%{box-shadow:8px 8px 16px #a3b1c6,-8px -8px 16px #fff} }
+  .var-neumorphic .a6 .anim-actor { animation: nBounce 1s ease-in-out infinite; }
+  @keyframes nBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+  .var-neumorphic .b1 .bg-preview { background: linear-gradient(145deg, #f0f0f0, #cacaca); color: #4a5568; }
+  .var-neumorphic .b2 .bg-preview { background: #e0e5ec; box-shadow: inset 5px 5px 10px #a3b1c6, inset -5px -5px 10px #ffffff; color: #4a5568; }
+  .var-neumorphic .b3 .bg-preview { background: linear-gradient(180deg, #e8ecf3, #d8dde6); color: #4a5568; }
+  .var-neumorphic .b4 .bg-preview { background: radial-gradient(circle at 30% 30%, #f0f0f0, #cacaca); color: #4a5568; }
+  .var-neumorphic .c1 .light-1 { background: #ff5f56; box-shadow: 2px 2px 4px #a3b1c6, -2px -2px 4px #ffffff; }
+  .var-neumorphic .c1 .light-2 { background: #ffbd2e; box-shadow: 2px 2px 4px #a3b1c6, -2px -2px 4px #ffffff; }
+  .var-neumorphic .c1 .light-3 { background: #27c93f; box-shadow: 2px 2px 4px #a3b1c6, -2px -2px 4px #ffffff; }
+  .var-neumorphic .title-bar-demo { background: #e0e5ec; box-shadow: 3px 3px 6px #a3b1c6, -3px -3px 6px #ffffff; color: #4a5568; }
+  .var-neumorphic .win { background: #e0e5ec; box-shadow: 5px 5px 10px #a3b1c6, -5px -5px 10px #ffffff; }
+  .var-neumorphic .win:hover { box-shadow: 7px 7px 14px #a3b1c6, -7px -7px 14px #ffffff; }
+  .var-neumorphic .win-label { color: #718096; }
+  .var-neumorphic .win-title { color: #2d3748; }
+  .var-neumorphic .win-value { color: #2d3748; }
+  .var-neumorphic .win-sub { color: #718096; }
+  .var-neumorphic .win-icon { background: #e0e5ec; box-shadow: 3px 3px 6px #a3b1c6, -3px -3px 6px #ffffff; color: #4a5568; }
+  .var-neumorphic .win-badge { background: #e0e5ec; color: #667eea; box-shadow: inset 2px 2px 4px #a3b1c6, inset -2px -2px 4px #ffffff; }
+
+  /* ============================================ */
+  /* AURORA */
+  /* ============================================ */
+  .var-aurora .device { background: #0a0a1a; border-color: rgba(255,0,128,0.15); }
+  .var-aurora .notch { background: #0a0a1a; }
+  .var-aurora .status-bar { color: rgba(255,255,255,0.8); }
+  .var-aurora .home-bar { background: rgba(0,223,216,0.3); }
+  .var-aurora .drawer { background: rgba(10,10,26,0.95); backdrop-filter: blur(24px); border-top: 1px solid rgba(255,0,128,0.15); }
+  .var-aurora .drawer-handle { background: rgba(255,0,128,0.3); }
+  .var-aurora .drawer-title { color: rgba(0,223,216,0.6); }
+  .var-aurora .drawer-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); color: rgba(255,255,255,0.8); }
+  .var-aurora .drawer-item:hover { background: rgba(255,0,128,0.08); border-color: rgba(255,0,128,0.2); }
+  .var-aurora .drawer-item .di-icon { background: rgba(255,0,128,0.1); border: 1px solid rgba(255,0,128,0.2); color: #fff; }
+  .var-aurora .v-tab { background: rgba(255,255,255,0.03); color: rgba(255,255,255,0.4); border-color: rgba(255,255,255,0.08); }
+  .var-aurora .v-tab.active { background: linear-gradient(90deg, #ff0080, #00dfd8); color: #fff; border-color: transparent; }
+  .var-aurora .token-card { background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden; }
+  .var-aurora .token-card::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 30%, rgba(255,0,128,0.06), transparent 50%), radial-gradient(circle at 70% 70%, rgba(0,223,216,0.06), transparent 50%); animation: auroraDrift 10s ease-in-out infinite; pointer-events: none; z-index: 0; }
+  .var-aurora .token-card > * { position: relative; z-index: 1; }
+  .var-aurora .token-card:hover { border-color: rgba(255,0,128,0.3); box-shadow: 0 0 30px rgba(255,0,128,0.1); }
+  .var-aurora .token-label { color: rgba(0,223,216,0.6); }
+  .var-aurora .swatch-name { color: rgba(255,255,255,0.8); }
+  .var-aurora .swatch-hex { color: rgba(255,255,255,0.5); }
+  .var-aurora .font-sample-xl { background: linear-gradient(90deg, #ff0080, #00dfd8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .var-aurora .font-sample-lg { color: rgba(255,255,255,0.9); }
+  .var-aurora .font-sample-md { color: rgba(255,255,255,0.7); }
+  .var-aurora .font-sample-sm { color: rgba(255,255,255,0.5); }
+  .var-aurora .font-meta span { color: rgba(255,255,255,0.4); }
+  .var-aurora .glass-specs span { background: rgba(255,0,128,0.1); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,0,128,0.2); }
+  .var-aurora .anim-specs span { background: rgba(255,0,128,0.1); color: rgba(255,255,255,0.6); border: 1px solid rgba(255,0,128,0.2); }
+  .var-aurora .hamburger span { background: rgba(255,255,255,0.6); }
+  .var-aurora .page-title { background: linear-gradient(90deg, #ff0080, #00dfd8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .var-aurora .page-indicator { color: rgba(0,223,216,0.5); }
+  .var-aurora .page-sub { color: rgba(255,255,255,0.4); }
+  .var-aurora .bottom-nav { background: rgba(15,23,42,0.6); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.06); }
+  .var-aurora .nav-item { color: rgba(255,255,255,0.4); }
+  .var-aurora .nav-item.active { color: #00dfd8; }
+  .var-aurora .nav-dot { background: linear-gradient(90deg, #ff0080, #00dfd8); }
+  .var-aurora .g1 .glass-demo { background: rgba(255,255,255,0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255,0,128,0.2); color: #fff; box-shadow: 0 0 30px rgba(255,0,128,0.1); }
+  .var-aurora .g2 .glass-demo { background: linear-gradient(135deg, rgba(255,0,128,0.1), rgba(0,223,216,0.1)); backdrop-filter: blur(16px); border: 1px solid rgba(0,223,216,0.2); color: #fff; box-shadow: 0 0 30px rgba(0,223,216,0.1); }
+  .var-aurora .g3 .glass-demo { background: rgba(121,40,202,0.15); backdrop-filter: blur(24px); border: 1px solid rgba(121,40,202,0.3); color: #fff; box-shadow: 0 0 40px rgba(121,40,202,0.15); }
+  .var-aurora .g4 .glass-demo { background: radial-gradient(circle, rgba(255,0,128,0.1), rgba(0,223,216,0.05)); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.1); color: #fff; }
+  .var-aurora .a1 .anim-actor { animation: aFade 2s ease-in-out infinite; }
+  @keyframes aFade { 0%,100%{opacity:0.4;filter:hue-rotate(0)} 50%{opacity:1;filter:hue-rotate(30deg)} }
+  .var-aurora .a2 .anim-actor { animation: aSlide 1.5s ease-in-out infinite; }
+  @keyframes aSlide { 0%,100%{transform:translateX(-30px)} 50%{transform:translateX(30px)} }
+  .var-aurora .a3 .anim-actor { animation: aScale 2s ease-in-out infinite; }
+  @keyframes aScale { 0%,100%{transform:scale(0.8)} 50%{transform:scale(1.2)} }
+  .var-aurora .a4 .anim-actor { animation: aRotate 3s linear infinite; }
+  @keyframes aRotate { 0%{transform:rotate(0);filter:hue-rotate(0)} 100%{transform:rotate(360deg);filter:hue-rotate(360deg)} }
+  .var-aurora .a5 .anim-actor { animation: aPulse 2s ease-in-out infinite; }
+  @keyframes aPulse { 0%,100%{box-shadow:0 0 20px rgba(255,0,128,0.3)} 50%{box-shadow:0 0 40px rgba(0,223,216,0.5)} }
+  .var-aurora .a6 .anim-actor { animation: aBounce 1s ease-in-out infinite; }
+  @keyframes aBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+  .var-aurora .b1 .bg-preview { background: linear-gradient(135deg, #ff0080, #7928ca, #00dfd8); color: #fff; animation: aShift 8s ease infinite; }
+  @keyframes aShift { 0%,100%{filter:hue-rotate(0)} 50%{filter:hue-rotate(20deg)} }
+  .var-aurora .b2 .bg-preview { background: radial-gradient(ellipse at 20% 20%, rgba(255,0,128,0.4), transparent 50%), radial-gradient(ellipse at 80% 80%, rgba(0,223,216,0.4), transparent 50%), radial-gradient(ellipse at 50% 50%, rgba(121,40,202,0.3), transparent 60%); color: #fff; }
+  .var-aurora .b3 .bg-preview { background: linear-gradient(180deg, rgba(255,0,128,0.15), rgba(121,40,202,0.1), rgba(0,223,216,0.15)); color: #fff; }
+  .var-aurora .b4 .bg-preview { background: conic-gradient(from 0deg, #ff0080, #7928ca, #00dfd8, #ff4d4d, #ff0080); color: #fff; }
+  .var-aurora .c1 .light-1 { background: linear-gradient(135deg, #ff5f56, #ff0080); box-shadow: 0 0 10px rgba(255,0,128,0.3); }
+  .var-aurora .c1 .light-2 { background: linear-gradient(135deg, #ffbd2e, #ff4d4d); box-shadow: 0 0 10px rgba(255,189,46,0.3); }
+  .var-aurora .c1 .light-3 { background: linear-gradient(135deg, #27c93f, #00dfd8); box-shadow: 0 0 10px rgba(0,223,216,0.3); }
+  .var-aurora .title-bar-demo { background: linear-gradient(90deg, rgba(255,0,128,0.1), rgba(0,223,216,0.1)); border: 1px solid rgba(255,255,255,0.1); color: #fff; backdrop-filter: blur(8px); }
+  .var-aurora .win { background: rgba(15,23,42,0.5); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.06); }
+  .var-aurora .win:hover { border-color: rgba(255,0,128,0.3); box-shadow: 0 0 25px rgba(255,0,128,0.1); }
+  .var-aurora .win-label { color: rgba(0,223,216,0.6); }
+  .var-aurora .win-title { background: linear-gradient(90deg, #ff0080, #00dfd8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .var-aurora .win-value { background: linear-gradient(90deg, #ff0080, #00dfd8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .var-aurora .win-sub { color: rgba(255,255,255,0.5); }
+  .var-aurora .win-icon { background: rgba(255,0,128,0.1); border: 1px solid rgba(255,0,128,0.2); color: #fff; }
+  .var-aurora .win-badge { background: rgba(0,223,216,0.15); color: #fff; border: 1px solid rgba(0,223,216,0.3); }
+
+  /* ============================================ */
+  /* CYBER-GLOW */
+  /* ============================================ */
+  .var-cyber-glow .device { background: #050510; border-color: rgba(0,240,255,0.15); }
+  .var-cyber-glow .notch { background: #050510; }
+  .var-cyber-glow .status-bar { color: #00f0ff; text-shadow: 0 0 8px rgba(0,240,255,0.3); }
+  .var-cyber-glow .home-bar { background: rgba(0,240,255,0.3); box-shadow: 0 0 8px rgba(0,240,255,0.2); }
+  .var-cyber-glow .drawer { background: rgba(5,5,16,0.98); border-top: 1px solid rgba(0,240,255,0.15); box-shadow: 0 -10px 40px rgba(0,240,255,0.05); }
+  .var-cyber-glow .drawer-handle { background: rgba(0,240,255,0.3); box-shadow: 0 0 8px rgba(0,240,255,0.2); }
+  .var-cyber-glow .drawer-title { color: #ff00a0; text-shadow: 0 0 6px rgba(255,0,160,0.4); }
+  .var-cyber-glow .drawer-item { background: rgba(0,240,255,0.03); border: 1px solid rgba(0,240,255,0.1); color: rgba(0,240,255,0.7); font-family: var(--f-mono); }
+  .var-cyber-glow .drawer-item:hover { background: rgba(0,240,255,0.06); border-color: rgba(0,240,255,0.25); box-shadow: 0 0 15px rgba(0,240,255,0.1); }
+  .var-cyber-glow .drawer-item .di-icon { background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.2); color: #00f0ff; box-shadow: 0 0 8px rgba(0,240,255,0.1); }
+  .var-cyber-glow .v-tab { background: transparent; color: rgba(0,240,255,0.5); border: 1px solid rgba(0,240,255,0.2); text-shadow: 0 0 5px rgba(0,240,255,0.2); font-family: var(--f-mono); }
+  .var-cyber-glow .v-tab.active { background: rgba(0,240,255,0.1); color: #00f0ff; border-color: #00f0ff; box-shadow: 0 0 15px rgba(0,240,255,0.2), inset 0 0 10px rgba(0,240,255,0.05); text-shadow: 0 0 8px rgba(0,240,255,0.5); }
+  .var-cyber-glow .token-card { background: rgba(10,10,18,0.9); border: 1px solid rgba(0,240,255,0.12); box-shadow: 0 0 10px rgba(0,240,255,0.03); }
+  .var-cyber-glow .token-card:hover { border-color: rgba(0,240,255,0.3); box-shadow: 0 0 25px rgba(0,240,255,0.08); }
+  .var-cyber-glow .token-label { color: #ff00a0; text-shadow: 0 0 6px rgba(255,0,160,0.4); }
+  .var-cyber-glow .swatch-name { color: #00f0ff; text-shadow: 0 0 5px rgba(0,240,255,0.3); }
+  .var-cyber-glow .swatch-hex { color: rgba(0,240,255,0.5); }
+  .var-cyber-glow .font-sample-xl { color: #00f0ff; text-shadow: 0 0 15px rgba(0,240,255,0.4); font-family: var(--f-mono); letter-spacing: 1px; }
+  .var-cyber-glow .font-sample-lg { color: rgba(0,240,255,0.8); font-family: var(--f-mono); }
+  .var-cyber-glow .font-sample-md { color: rgba(0,240,255,0.6); font-family: var(--f-mono); }
+  .var-cyber-glow .font-sample-sm { color: rgba(0,240,255,0.4); font-family: var(--f-mono); }
+  .var-cyber-glow .font-meta span { color: rgba(0,240,255,0.3); }
+  .var-cyber-glow .glass-specs span { background: rgba(0,240,255,0.05); color: #00f0ff; border: 1px solid rgba(0,240,255,0.2); text-shadow: 0 0 4px rgba(0,240,255,0.3); }
+  .var-cyber-glow .anim-specs span { background: rgba(0,240,255,0.05); color: #00f0ff; border: 1px solid rgba(0,240,255,0.2); text-shadow: 0 0 4px rgba(0,240,255,0.3); }
+  .var-cyber-glow .hamburger span { background: #00f0ff; box-shadow: 0 0 6px rgba(0,240,255,0.4); }
+  .var-cyber-glow .page-title { color: #00f0ff; text-shadow: 0 0 15px rgba(0,240,255,0.4); font-family: var(--f-mono); letter-spacing: 1px; }
+  .var-cyber-glow .page-indicator { color: rgba(0,240,255,0.4); font-family: var(--f-mono); }
+  .var-cyber-glow .page-sub { color: rgba(0,240,255,0.4); font-family: var(--f-mono); }
+  .var-cyber-glow .bottom-nav { background: rgba(10,10,18,0.9); border: 1px solid rgba(0,240,255,0.12); }
+  .var-cyber-glow .nav-item { color: rgba(0,240,255,0.3); font-family: var(--f-mono); }
+  .var-cyber-glow .nav-item.active { color: #00f0ff; }
+  .var-cyber-glow .nav-dot { background: #00f0ff; box-shadow: 0 0 6px rgba(0,240,255,0.5); }
+  .var-cyber-glow .g1 .glass-demo { background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.3); color: #00f0ff; box-shadow: 0 0 15px rgba(0,240,255,0.1), inset 0 0 8px rgba(0,240,255,0.03); text-shadow: 0 0 6px rgba(0,240,255,0.5); font-family: var(--f-mono); }
+  .var-cyber-glow .g2 .glass-demo { background: rgba(255,0,160,0.05); border: 1px solid rgba(255,0,160,0.3); color: #ff00a0; box-shadow: 0 0 15px rgba(255,0,160,0.1), inset 0 0 8px rgba(255,0,160,0.03); text-shadow: 0 0 6px rgba(255,0,160,0.5); font-family: var(--f-mono); }
+  .var-cyber-glow .g3 .glass-demo { background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(255,0,160,0.08)); border: 1px solid rgba(0,240,255,0.2); color: #fff; box-shadow: 0 0 20px rgba(0,240,255,0.1); font-family: var(--f-mono); }
+  .var-cyber-glow .g4 .glass-demo { background: rgba(0,0,0,0.5); border: 1px solid rgba(0,240,255,0.15); color: rgba(0,240,255,0.7); box-shadow: inset 0 0 15px rgba(0,240,255,0.05); font-family: var(--f-mono); }
+  .var-cyber-glow .a1 .anim-actor { animation: cFade 2s ease-in-out infinite; }
+  @keyframes cFade { 0%,100%{opacity:0.3} 50%{opacity:1} }
+  .var-cyber-glow .a2 .anim-actor { animation: cSlide 1.5s ease-in-out infinite; }
+  @keyframes cSlide { 0%,100%{transform:translateX(-30px)} 50%{transform:translateX(30px)} }
+  .var-cyber-glow .a3 .anim-actor { animation: cScale 2s ease-in-out infinite; }
+  @keyframes cScale { 0%,100%{transform:scale(0.8)} 50%{transform:scale(1.2)} }
+  .var-cyber-glow .a4 .anim-actor { animation: cRotate 3s linear infinite; }
+  @keyframes cRotate { 0%{transform:rotate(0)} 100%{transform:rotate(360deg)} }
+  .var-cyber-glow .a5 .anim-actor { animation: cPulse 1.5s ease-in-out infinite; }
+  @keyframes cPulse { 0%,100%{box-shadow:0 0 8px rgba(0,240,255,0.2)} 50%{box-shadow:0 0 25px rgba(0,240,255,0.5),0 0 50px rgba(255,0,160,0.15)} }
+  .var-cyber-glow .a6 .anim-actor { animation: cBounce 0.8s ease-in-out infinite; }
+  @keyframes cBounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+  .var-cyber-glow .b1 .bg-preview { background: linear-gradient(135deg, #0a0a12, #1a1a2e); border: 1px solid rgba(0,240,255,0.15); color: #00f0ff; box-shadow: inset 0 0 25px rgba(0,240,255,0.05); font-family: var(--f-mono); }
+  .var-cyber-glow .b2 .bg-preview { background: linear-gradient(90deg, transparent 49%, rgba(0,240,255,0.05) 50%, transparent 51%), linear-gradient(0deg, transparent 49%, rgba(0,240,255,0.05) 50%, transparent 51%), #0a0a12; background-size: 25px 25px; color: #00f0ff; text-shadow: 0 0 8px rgba(0,240,255,0.5); font-family: var(--f-mono); }
+  .var-cyber-glow .b3 .bg-preview { background: radial-gradient(circle at 50% 50%, rgba(0,240,255,0.1), transparent 70%), #0a0a12; color: #00f0ff; font-family: var(--f-mono); }
+  .var-cyber-glow .b4 .bg-preview { background: repeating-linear-gradient(0deg, transparent, transparent 15px, rgba(0,240,255,0.03) 16px), repeating-linear-gradient(90deg, transparent, transparent 15px, rgba(255,0,160,0.03) 16px), #0a0a12; color: #ff00a0; text-shadow: 0 0 8px rgba(255,0,160,0.5); font-family: var(--f-mono); }
+  .var-cyber-glow .c1 .light-1 { background: #ff5f56; box-shadow: 0 0 10px rgba(255,95,86,0.5); }
+  .var-cyber-glow .c1 .light-2 { background: #ffbd2e; box-shadow: 0 0 10px rgba(255,189,46,0.5); }
+  .var-cyber-glow .c1 .light-3 { background: #27c93f; box-shadow: 0 0 10px rgba(39,201,63,0.5); }
+  .var-cyber-glow .title-bar-demo { background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.2); color: #00f0ff; box-shadow: 0 0 10px rgba(0,240,255,0.1); text-shadow: 0 0 5px rgba(0,240,255,0.3); font-family: var(--f-mono); }
+  .var-cyber-glow .win { background: rgba(10,10,18,0.9); border: 1px solid rgba(0,240,255,0.1); box-shadow: 0 0 8px rgba(0,240,255,0.03); }
+  .var-cyber-glow .win:hover { border-color: rgba(0,240,255,0.25); box-shadow: 0 0 20px rgba(0,240,255,0.08); }
+  .var-cyber-glow .win-label { color: #ff00a0; text-shadow: 0 0 5px rgba(255,0,160,0.3); font-family: var(--f-mono); }
+  .var-cyber-glow .win-title { color: #00f0ff; text-shadow: 0 0 10px rgba(0,240,255,0.4); font-family: var(--f-mono); letter-spacing: 0.5px; }
+  .var-cyber-glow .win-value { color: #00f0ff; text-shadow: 0 0 15px rgba(0,240,255,0.5); font-family: var(--f-mono); }
+  .var-cyber-glow .win-sub { color: rgba(0,240,255,0.4); font-family: var(--f-mono); font-size: 9px; }
+  .var-cyber-glow .win-icon { background: rgba(0,240,255,0.05); border: 1px solid rgba(0,240,255,0.2); color: #00f0ff; box-shadow: 0 0 8px rgba(0,240,255,0.1); }
+  .var-cyber-glow .win-badge { background: rgba(255,0,160,0.1); color: #ff00a0; border: 1px solid rgba(255,0,160,0.2); text-shadow: 0 0 4px rgba(255,0,160,0.3); font-family: var(--f-mono); }
+
+  /* ===== HIDE/SHOW PAGES ===== */
+  .page { display: none; opacity: 0; transform: translateY(8px); transition: opacity 0.3s ease, transform 0.3s ease; }
+  .page.active { display: block; opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="device var-glassmorphic" id="device">
+  <div class="notch"></div>
+  <div class="status-bar">
+    <span>9:41</span>
+    <span>&#9679;&#9679;&#9679;&#9679;&#9679;</span>
+  </div>
+  <div class="home-bar"></div>
+
+  <!-- Hamburger -->
+  <div class="hamburger" onclick="toggleDrawer()">
+    <span></span><span></span><span></span>
+  </div>
+  <div class="page-indicator" id="pageIndicator">Colors</div>
+
+  <!-- Drawer Overlay -->
+  <div class="drawer-overlay" id="drawerOverlay" onclick="toggleDrawer()"></div>
+
+  <!-- Drawer -->
+  <div class="drawer" id="drawer">
+    <div class="drawer-handle"></div>
+    <div class="drawer-title">DNA Categories</div>
+    <div class="drawer-item" onclick="goPage('colors')">
+      <div class="di-icon" style="background:linear-gradient(135deg,#D4AF37,#B66E41)">C</div>
+      <div class="di-label">Colors</div>
+      <div class="di-arrow">&#8250;</div>
+    </div>
+    <div class="drawer-item" onclick="goPage('fonts')">
+      <div class="di-icon" style="background:linear-gradient(135deg,#43CFFD,#667eea)">F</div>
+      <div class="di-label">Fonts</div>
+      <div class="di-arrow">&#8250;</div>
+    </div>
+    <div class="drawer-item" onclick="goPage('glass')">
+      <div class="di-icon" style="background:linear-gradient(135deg,rgba(255,255,255,0.2),rgba(255,255,255,0.05))">G</div>
+      <div class="di-label">Glass</div>
+      <div class="di-arrow">&#8250;</div>
+    </div>
+    <div class="drawer-item" onclick="goPage('animations')">
+      <div class="di-icon" style="background:linear-gradient(135deg,#ff0080,#00dfd8)">A</div>
+      <div class="di-label">Animations</div>
+      <div class="di-arrow">&#8250;</div>
+    </div>
+    <div class="drawer-item" onclick="goPage('backgrounds')">
+      <div class="di-icon" style="background:linear-gradient(135deg,#7928ca,#00dfd8)">B</div>
+      <div class="di-label">Backgrounds</div>
+      <div class="di-arrow">&#8250;</div>
+    </div>
+    <div class="drawer-item" onclick="goPage('chrome')">
+      <div class="di-icon" style="background:linear-gradient(135deg,#ff5f56,#27c93f)">X</div>
+      <div class="di-label">Chrome</div>
+      <div class="di-arrow">&#8250;</div>
+    </div>
+    <div class="drawer-item" onclick="goPage('grid')">
+      <div class="di-icon" style="background:linear-gradient(135deg,#667eea,#764ba2)">7</div>
+      <div class="di-label">7-Window Grid</div>
+      <div class="di-arrow">&#8250;</div>
+    </div>
+  </div>
+
+  <div class="screen">
+
+    <!-- ===== PAGE: COLORS ===== -->
+    <div class="page active" id="page-colors">
+      <div class="page-header">
+        <div class="page-title">Colors</div>
+        <div class="page-sub">7 tokens x 4 variants</div>
+      </div>
+      <div class="variant-bar">
+        <button class="v-tab active" onclick="setVariant('glassmorphic')">Glassmorphic</button>
+        <button class="v-tab" onclick="setVariant('neumorphic')">Neumorphic</button>
+        <button class="v-tab" onclick="setVariant('aurora')">Aurora</button>
+        <button class="v-tab" onclick="setVariant('cyber-glow')">Cyber-glow</button>
+      </div>
+      <div class="token-card">
+        <div class="token-label">Primary / Surface</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#D4AF37"><span class="swatch-name">Gold</span><span class="swatch-hex">#D4AF37</span></div>
+          <div class="swatch" style="background:#FCEEB5"><span class="swatch-name">Gold-100</span><span class="swatch-hex">#FCEEB5</span></div>
+          <div class="swatch" style="background:#09090B"><span class="swatch-name">Void</span><span class="swatch-hex">#09090B</span></div>
+          <div class="swatch" style="background:#43CFFD"><span class="swatch-name">Azure</span><span class="swatch-hex">#43CFFD</span></div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-label">Accent / Warmth</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#B66E41"><span class="swatch-name">Copper</span><span class="swatch-hex">#B66E41</span></div>
+          <div class="swatch" style="background:#F9F9F9"><span class="swatch-name">White</span><span class="swatch-hex">#F9F9F9</span></div>
+          <div class="swatch" style="background:#18181B"><span class="swatch-name">Onyx</span><span class="swatch-hex">#18181B</span></div>
+        </div>
+      </div>
+      <div class="token-card">
+        <div class="token-label">Semantic / State</div>
+        <div class="swatches">
+          <div class="swatch" style="background:#ff5f56"><span class="swatch-name">Red</span><span class="swatch-hex">#FF5F56</span></div>
+          <div class="swatch" style="background:#ffbd2e"><span class="swatch-name">Amber</span><span class="swatch-hex">#FFBD2E</span></div>
+          <div class="swatch" style="background:#27c93f"><span class="swatch-name">Green</span><span class="swatch-hex">#27C93F</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE: FONTS ===== -->
+    <div class="page" id="page-fonts">
+      <div class="page-header">
+        <div class="page-title">Fonts</div>
+        <div class="page-sub">3 families x 4 variants</div>
+      </div>
+      <div class="variant-bar">
+        <button class="v-tab active" onclick="setVariant('glassmorphic')">Glassmorphic</button>
+        <button class="v-tab" onclick="setVariant('neumorphic')">Neumorphic</button>
+        <button class="v-tab" onclick="setVariant('aurora')">Aurora</button>
+        <button class="v-tab" onclick="setVariant('cyber-glow')">Cyber-glow</button>
+      </div>
+      <div class="token-card">
+        <div class="token-label">Inter — Body</div>
+        <div class="font-sample-xl" style="font-family:var(--f-body)">Aa</div>
+        <div class="font-sample-lg" style="font-family:var(--f-body)">The quick brown fox</div>
+        <div class="font-sample-md" style="font-family:var(--f-body)">Inter is a variable font family for screens.</div>
+        <div class="font-meta"><span>Sans-serif</span><span>Variable</span><span>8 weights</span></div>
+      </div>
+      <div class="token-card">
+        <div class="token-label">Space Grotesk — Display</div>
+        <div class="font-sample-xl" style="font-family:var(--f-display)">Aa</div>
+        <div class="font-sample-lg" style="font-family:var(--f-display)">The quick brown fox</div>
+        <div class="font-sample-md" style="font-family:var(--f-display)">Geometric sans-serif with quirky character.</div>
+        <div class="font-meta"><span>Geometric</span><span>Display</span><span>5 weights</span></div>
+      </div>
+      <div class="token-card">
+        <div class="token-label">JetBrains Mono — Code</div>
+        <div class="font-sample-xl" style="font-family:var(--f-mono)">Aa</div>
+        <div class="font-sample-lg" style="font-family:var(--f-mono)">The quick brown fox</div>
+        <div class="font-sample-md" style="font-family:var(--f-mono)">A typeface for developers with ligatures.</div>
+        <div class="font-meta"><span>Monospace</span><span>Code</span><span>Ligatures</span></div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE: GLASS ===== -->
+    <div class="page" id="page-glass">
+      <div class="page-header">
+        <div class="page-title">Glass</div>
+        <div class="page-sub">4 types x 4 variants</div>
+      </div>
+      <div class="variant-bar">
+        <button class="v-tab active" onclick="setVariant('glassmorphic')">Glassmorphic</button>
+        <button class="v-tab" onclick="setVariant('neumorphic')">Neumorphic</button>
+        <button class="v-tab" onclick="setVariant('aurora')">Aurora</button>
+        <button class="v-tab" onclick="setVariant('cyber-glow')">Cyber-glow</button>
+      </div>
+      <div class="token-card g1">
+        <div class="token-label">Type 01 — Frost</div>
+        <div class="glass-demo">Frost Glass</div>
+        <div class="glass-specs"><span>blur: 16px</span><span>bg: 10%</span><span>border: 20%</span></div>
+      </div>
+      <div class="token-card g2">
+        <div class="token-label">Type 02 — Crystal</div>
+        <div class="glass-demo">Crystal Glass</div>
+        <div class="glass-specs"><span>blur: 24px</span><span>saturate: 1.2</span><span>border: 15%</span></div>
+      </div>
+      <div class="token-card g3">
+        <div class="token-label">Type 03 — Gradient</div>
+        <div class="glass-demo">Gradient Glass</div>
+        <div class="glass-specs"><span>blur: 20px</span><span>linear-gradient</span><span>border: 18%</span></div>
+      </div>
+      <div class="token-card g4">
+        <div class="token-label">Type 04 — Dark</div>
+        <div class="glass-demo">Dark Glass</div>
+        <div class="glass-specs"><span>blur: 12px</span><span>bg: 20% dark</span><span>border: 10%</span></div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE: ANIMATIONS ===== -->
+    <div class="page" id="page-animations">
+      <div class="page-header">
+        <div class="page-title">Animations</div>
+        <div class="page-sub">6 motions x 4 variants</div>
+      </div>
+      <div class="variant-bar">
+        <button class="v-tab active" onclick="setVariant('glassmorphic')">Glassmorphic</button>
+        <button class="v-tab" onclick="setVariant('neumorphic')">Neumorphic</button>
+        <button class="v-tab" onclick="setVariant('aurora')">Aurora</button>
+        <button class="v-tab" onclick="setVariant('cyber-glow')">Cyber-glow</button>
+      </div>
+      <div class="token-card a1">
+        <div class="token-label">Motion 01 — Fade</div>
+        <div class="anim-stage"><div class="anim-actor">&#9679;</div></div>
+        <div class="anim-specs"><span>duration: 2s</span><span>easing: ease-in-out</span><span>loop</span></div>
+      </div>
+      <div class="token-card a2">
+        <div class="token-label">Motion 02 — Slide</div>
+        <div class="anim-stage"><div class="anim-actor">&#9654;</div></div>
+        <div class="anim-specs"><span>duration: 1.5s</span><span>translateX: +-30px</span></div>
+      </div>
+      <div class="token-card a3">
+        <div class="token-label">Motion 03 — Scale</div>
+        <div class="anim-stage"><div class="anim-actor">&#9632;</div></div>
+        <div class="anim-specs"><span>duration: 2s</span><span>scale: 0.8-1.2</span></div>
+      </div>
+      <div class="token-card a4">
+        <div class="token-label">Motion 04 — Rotate</div>
+        <div class="anim-stage"><div class="anim-actor">&#8635;</div></div>
+        <div class="anim-specs"><span>duration: 3s</span><span>rotate: 360deg</span></div>
+      </div>
+      <div class="token-card a5">
+        <div class="token-label">Motion 05 — Pulse</div>
+        <div class="anim-stage"><div class="anim-actor">&#9670;</div></div>
+        <div class="anim-specs"><span>duration: 2s</span><span>box-shadow glow</span></div>
+      </div>
+      <div class="token-card a6">
+        <div class="token-label">Motion 06 — Bounce</div>
+        <div class="anim-stage"><div class="anim-actor">&#9679;</div></div>
+        <div class="anim-specs"><span>duration: 1s</span><span>translateY: -15px</span></div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE: BACKGROUNDS ===== -->
+    <div class="page" id="page-backgrounds">
+      <div class="page-header">
+        <div class="page-title">Backgrounds</div>
+        <div class="page-sub">4 layers x 4 variants</div>
+      </div>
+      <div class="variant-bar">
+        <button class="v-tab active" onclick="setVariant('glassmorphic')">Glassmorphic</button>
+        <button class="v-tab" onclick="setVariant('neumorphic')">Neumorphic</button>
+        <button class="v-tab" onclick="setVariant('aurora')">Aurora</button>
+        <button class="v-tab" onclick="setVariant('cyber-glow')">Cyber-glow</button>
+      </div>
+      <div class="token-card b1">
+        <div class="token-label">Layer 01 — Gradient</div>
+        <div class="bg-preview"><span>Linear Gradient</span></div>
+        <div class="glass-specs"><span>linear-gradient</span><span>135deg</span><span>2+ stops</span></div>
+      </div>
+      <div class="token-card b2">
+        <div class="token-label">Layer 02 — Radial</div>
+        <div class="bg-preview"><span>Radial Gradient</span></div>
+        <div class="glass-specs"><span>radial-gradient</span><span>ellipse</span><span>multi-source</span></div>
+      </div>
+      <div class="token-card b3">
+        <div class="token-label">Layer 03 — Subtle</div>
+        <div class="bg-preview"><span>Subtle Tint</span></div>
+        <div class="glass-specs"><span>low opacity</span><span>directional</span><span>ambient</span></div>
+      </div>
+      <div class="token-card b4">
+        <div class="token-label">Layer 04 — Conic</div>
+        <div class="bg-preview"><span>Conic / Mesh</span></div>
+        <div class="glass-specs"><span>conic-gradient</span><span>mesh</span><span>pattern</span></div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE: CHROME ===== -->
+    <div class="page" id="page-chrome">
+      <div class="page-header">
+        <div class="page-title">Chrome</div>
+        <div class="page-sub">Traffic lights, frame, title bar x 4 variants</div>
+      </div>
+      <div class="variant-bar">
+        <button class="v-tab active" onclick="setVariant('glassmorphic')">Glassmorphic</button>
+        <button class="v-tab" onclick="setVariant('neumorphic')">Neumorphic</button>
+        <button class="v-tab" onclick="setVariant('aurora')">Aurora</button>
+        <button class="v-tab" onclick="setVariant('cyber-glow')">Cyber-glow</button>
+      </div>
+      <div class="token-card c1">
+        <div class="token-label">Traffic Lights</div>
+        <div class="chrome-demo">
+          <div class="traffic-lights">
+            <div class="light light-1"></div>
+            <div class="light light-2"></div>
+            <div class="light light-3"></div>
+          </div>
+          <div class="title-bar-demo">Window Title Bar</div>
+        </div>
+        <div class="glass-specs"><span>red: #FF5F56</span><span>yellow: #FFBD2E</span><span>green: #27C93F</span></div>
+      </div>
+      <div class="token-card c2">
+        <div class="token-label">Title Bar</div>
+        <div class="chrome-demo">
+          <div class="title-bar-demo">Active Window Title</div>
+          <div class="title-bar-demo">Inactive Window</div>
+        </div>
+        <div class="glass-specs"><span>height: 40px</span><span>radius: 8px</span><span>blur: 8px</span></div>
+      </div>
+      <div class="token-card c3">
+        <div class="token-label">Frame / Border</div>
+        <div class="chrome-demo">
+          <div class="title-bar-demo">Outer Frame — 3px border</div>
+          <div class="title-bar-demo">Inner Shadow — depth layer</div>
+        </div>
+        <div class="glass-specs"><span>border: 3px</span><span>radius: 40px</span><span>shadow: multi-layer</span></div>
+      </div>
+      <div class="token-card c4">
+        <div class="token-label">Status Elements</div>
+        <div class="chrome-demo">
+          <div class="title-bar-demo">Notch — 150x28px</div>
+          <div class="title-bar-demo">Home Bar — 120x4px</div>
+        </div>
+        <div class="glass-specs"><span>notch: 150x28</span><span>home-bar: 120x4</span><span>status: 13px</span></div>
+      </div>
+    </div>
+
+    <!-- ===== PAGE: 7-WINDOW GRID ===== -->
+    <div class="page" id="page-grid">
+      <div class="page-header">
+        <div class="page-title">7-Window Grid</div>
+        <div class="page-sub">W01-W07 live interface</div>
+      </div>
+      <div class="variant-bar">
+        <button class="v-tab active" onclick="setVariant('glassmorphic')">Glassmorphic</button>
+        <button class="v-tab" onclick="setVariant('neumorphic')">Neumorphic</button>
+        <button class="v-tab" onclick="setVariant('aurora')">Aurora</button>
+        <button class="v-tab" onclick="setVariant('cyber-glow')">Cyber-glow</button>
+      </div>
+      <div class="grid-7">
+        <div class="win w01">
+          <div class="win-label">W01 — Overview</div>
+          <div class="win-title">Dashboard</div>
+          <div class="win-value">87</div>
+          <div class="win-sub">Overall health score</div>
+          <div class="win-icon">&#9733;</div>
+          <div class="win-badge">+12%</div>
+        </div>
+        <div class="win w02">
+          <div class="win-label">W02 — Identity</div>
+          <div class="win-title">Digital ID</div>
+          <div class="win-value">92</div>
+          <div class="win-sub">Identity strength</div>
+          <div class="win-icon">&#9670;</div>
+          <div class="win-badge">A+</div>
+        </div>
+        <div class="win w03">
+          <div class="win-label">W03 — Ownership</div>
+          <div class="win-title">Control</div>
+          <div class="win-value">78</div>
+          <div class="win-sub">Asset ownership</div>
+          <div class="win-icon">&#9632;</div>
+          <div class="win-badge">B+</div>
+        </div>
+        <div class="win w04">
+          <div class="win-label">W04 — Semantic</div>
+          <div class="win-title">Framework</div>
+          <div class="win-value">65</div>
+          <div class="win-sub">Structured data</div>
+          <div class="win-icon">&#9671;</div>
+          <div class="win-badge">C+</div>
+        </div>
+        <div class="win w05">
+          <div class="win-label">W05 — Visibility</div>
+          <div class="win-title">Signals</div>
+          <div class="win-value">84</div>
+          <div class="win-sub">Search presence</div>
+          <div class="win-icon">&#9673;</div>
+          <div class="win-badge">A</div>
+        </div>
+        <div class="win w06">
+          <div class="win-label">W06 — Trust</div>
+          <div class="win-title">Reputation</div>
+          <div class="win-value">71</div>
+          <div class="win-sub">Review health</div>
+          <div class="win-icon">&#9829;</div>
+          <div class="win-badge">B</div>
+        </div>
+        <div class="win w07">
+          <div class="win-label">W07 — Technical</div>
+          <div class="win-title">Health</div>
+          <div class="win-value">95</div>
+          <div class="win-sub">Site performance</div>
+          <div class="win-icon">&#9881;</div>
+          <div class="win-badge">A+</div>
+        </div>
+      </div>
+      <div class="bottom-nav">
+        <div class="nav-item active"><span>Grid</span><div class="nav-dot"></div></div>
+        <div class="nav-item"><span>Audit</span><div class="nav-dot"></div></div>
+        <div class="nav-item"><span>Build</span><div class="nav-dot"></div></div>
+        <div class="nav-item"><span>Deploy</span><div class="nav-dot"></div></div>
+      </div>
+    </div>
+
+  </div><!-- /screen -->
+</div><!-- /device -->
+
+<script>
+  let currentVariant = 'glassmorphic';
+  let currentPage = 'colors';
+
+  function setVariant(v) {
+    currentVariant = v;
+    document.getElementById('device').className = 'device var-' + v;
+    // Update ALL variant tabs across ALL pages to match
+    document.querySelectorAll('.page').forEach(page => {
+      page.querySelectorAll('.v-tab').forEach(t => {
+        t.classList.remove('active');
+        const txt = t.textContent.toLowerCase().replace(/\s/g,'');
+        if ((v === 'glassmorphic' && txt.includes('glassmorphic')) ||
+            (v === 'neumorphic' && txt.includes('neumorphic')) ||
+            (v === 'aurora' && txt.includes('aurora')) ||
+            (v === 'cyber-glow' && txt.includes('cyber'))) {
+          t.classList.add('active');
+        }
+      });
+    });
+  }
+
+  function goPage(p) {
+    currentPage = p;
+    document.querySelectorAll('.page').forEach(pg => pg.classList.remove('active'));
+    document.getElementById('page-' + p).classList.add('active');
+    document.querySelector('.screen').scrollTop = 0;
+    // Update page indicator
+    const labels = {colors:'Colors',fonts:'Fonts',glass:'Glass',animations:'Animations',backgrounds:'Backgrounds',chrome:'Chrome',grid:'7-Window'};
+    document.getElementById('pageIndicator').textContent = labels[p] || p;
+    toggleDrawer();
+    setTimeout(() => setVariant(currentVariant), 30);
+  }
+
+  function toggleDrawer() {
+    document.getElementById('drawer').classList.toggle('open');
+    document.getElementById('drawerOverlay').classList.toggle('open');
+  }
+
+  // Init
+  setVariant('glassmorphic');
+</script>
+
+</body>
+</html>
