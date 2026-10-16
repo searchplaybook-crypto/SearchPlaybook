@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page not found | WeMustCreate</title>
+  <meta name="description" content="This page is off the map. Head back to WeMustCreate's homepage, book your free DPA, or message us on WhatsApp.">
+  <!-- GitHub Pages serves this file for any missing address, at any folder depth,
+       so every link and asset below uses a root-relative path ("/..."). -->
+  <meta name="robots" content="noindex, follow">
+  <meta name="theme-color" content="#09090B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/intel-dashboard.css">
+
+  <!-- 404 · Off the Map — a location pin drops onto a map and pings a spot that
+       isn't there. Pure CSS, self-contained, no dependencies. Retheme via the
+       custom properties on .mp-404. MIT licensed — 404.colorion.co -->
+  <style>
+    .mp-404 {
+      /* Rethemed to the WeMustCreate palette */
+      --mp-ink: #18181B;     /* onyx: the map */
+      --mp-accent: #D4AF37;  /* gold: pin, road and ping */
+      --mp-shell: #E4E4E7;   /* cream: street grid tint */
+      display: grid;
+      justify-items: center;
+      gap: 8px;
+      font-family: ui-monospace, "JetBrains Mono", "SF Mono", monospace;
+    }
+
+    /* Faint street grid with one accent road. */
+    .mp-map {
+      position: relative;
+      width: 150px;
+      height: 104px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--mp-ink); /* fallback for browsers without color-mix() */
+      background:
+        linear-gradient(90deg, transparent 71px, color-mix(in srgb, var(--mp-accent) 55%, transparent) 71px 79px, transparent 79px),
+        repeating-linear-gradient(0deg,  transparent 0 25px, color-mix(in srgb, var(--mp-shell) 22%, var(--mp-ink)) 25px 27px),
+        repeating-linear-gradient(90deg, transparent 0 30px, color-mix(in srgb, var(--mp-shell) 22%, var(--mp-ink)) 30px 32px),
+        var(--mp-ink);
+    }
+
+    /* Expanding ping ring under the pin. */
+    .mp-ping {
+      position: absolute;
+      top: 62px;
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      margin: -7px 0 0 -7px;
+      border-radius: 50%;
+      border: 2px solid var(--mp-accent);
+      opacity: 0;
+      animation: mp-ping 4s ease-out infinite;
+    }
+
+    /* Teardrop pin: a rounded square with one sharp corner, rotated 45°. */
+    .mp-pin {
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      margin-left: -15px;
+      background: var(--mp-accent);
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(45deg);
+      transform-origin: 50% 100%;
+      animation: mp-drop 4s ease-in-out infinite;
+    }
+    .mp-pin-dot {
+      position: absolute;
+      inset: 5px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--mp-ink);
+      color: var(--mp-accent);
+      font-size: 8px;
+      font-weight: 800;
+      transform: rotate(-45deg);
+    }
+
+    .mp-cap {
+      font-size: 7px;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-indent: 0.28em;
+      color: #A1A1AA; /* the original used --mp-ink, which disappears on a dark page */
+    }
+
+    /* Pin falls in, settles with a little bob. */
+    @keyframes mp-drop {
+      0%       { transform: rotate(45deg) translateY(-46px); }
+      18%      { transform: rotate(45deg) translateY(0); }
+      26%      { transform: rotate(45deg) translateY(-7px); }
+      34%, 88% { transform: rotate(45deg) translateY(0); }
+      100%     { transform: rotate(45deg) translateY(-46px); }
+    }
+    @keyframes mp-ping {
+      0%, 30%   { transform: scale(0.4); opacity: 0; }
+      40%       { opacity: 0.9; }
+      70%, 100% { transform: scale(3.4); opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mp-404 .mp-pin,
+      .mp-404 .mp-ping { animation: none; }
+      .mp-404 .mp-pin { transform: rotate(45deg) translateY(0); }
+    }
+
+    /* Page layout around the animation: scale the 150px scene up without
+       changing its internal pixel geometry. */
+    .nf-stage { width: 150px; height: 126px; margin: var(--s-2) auto calc(126px * 0.7); transform: scale(1.7); transform-origin: top center; }
+    .nf { display: grid; gap: var(--s-3); justify-items: center; text-align: center; }
+    .nf .page-head { margin: 0 auto; }
+    .nf .btn-row { justify-content: center; }
+    .nf-links { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.25rem 1.25rem; }
+    .nf-links a { display: inline-flex; align-items: center; min-height: 44px; color: var(--gold); text-underline-offset: 3px; }
+    .nf-links a:hover { color: var(--cream); }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="/" class="logo" aria-label="WeMustCreate home">
+        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="" width="32" height="32">
+        <span class="logo-text">SEARCH <span>PLAYBOOK</span></span>
+      </a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/solutions.html">Solutions</a></li>
+          <li><a href="/collective.html">Collective</a></li>
+          <li><a href="/intel.html">Intel Hub</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="nf">
+    <div class="nf-stage">
+      <div class="mp-404" role="img" aria-label="A map pin dropping onto a spot that can't be found">
+        <div class="mp-map">
+          <span class="mp-ping"></span>
+          <span class="mp-pin"><span class="mp-pin-dot">404</span></span>
+        </div>
+        <span class="mp-cap">OFF THE MAP</span>
+      </div>
+    </div>
+
+    <section class="page-head" aria-labelledby="page-title">
+      <p class="eyebrow">Error 404</p>
+      <h1 id="page-title">This page is off the map</h1>
+      <p class="lede">The link may be old, or the page has moved. Here's where to go instead.</p>
+    </section>
+
+    <div class="btn-row">
+      <a class="btn btn-primary" href="/">Go to the homepage</a>
+      <a class="btn btn-outline" href="/solutions.html#service-dpa">Book your free DPA</a>
+      <a class="btn btn-outline" id="wa-report" href="https://wa.me/27695326613?text=Hi%20WeMustCreate%2C%20I%20followed%20a%20link%20on%20your%20site%20that%20didn%27t%20work." target="_blank" rel="noopener">Tell us on WhatsApp</a>
+    </div>
+
+    <nav aria-label="Popular pages">
+      <ul class="nf-links">
+        <li><a href="/solutions.html">Solutions and pricing</a></li>
+        <li><a href="/intel.html">Intel Hub</a></li>
+        <li><a href="/intel/case-studies.html">Case studies</a></li>
+        <li><a href="/intel/ncii.html">NCII protection guide</a></li>
+      </ul>
+    </nav>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <nav class="footer-links" aria-label="Footer">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/solutions.html">Solutions</a></li>
+          <li><a href="/intel.html">Intel Hub</a></li>
+          <li><a href="/collective.html">Collective</a></li>
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Service</a></li>
+        </ul>
+      </nav>
+      <p class="footer-copy">&copy; <span data-year>2026</span> WeMustCreate. All rights reserved. Joburg-built, for South African businesses.</p>
+    </div>
+  </footer>
+  <script>
+    document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });
+    // Add the broken address to the WhatsApp message, so we know which link to fix
+    const wa = document.getElementById('wa-report');
+    if (wa) {
+      const text = "Hi WeMustCreate, I followed a link on your site that didn't work: " + location.href;
+      wa.href = 'https://wa.me/27695326613?text=' + encodeURIComponent(text);
+    }
+  </script>
+</body>
+</html>
