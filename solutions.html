@@ -732,7 +732,7 @@
     function renderCatalogue(items) {
       const grid = document.getElementById('catalogue-grid');
       grid.innerHTML = items.map(item => `
-        <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300 depth-stack">
+        <div id="service-${item.id}" style="scroll-margin-top: 7rem" class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300 depth-stack">
           <div>
             <div class="h-48 w-full rounded-xl overflow-hidden mb-5 bg-black/50">
               <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
@@ -812,6 +812,9 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderCatalogue(catalogueData);
       shuffleBlastItem();
+      // Links like solutions.html#service-dpa point at a card that only exists after rendering
+      const target = location.hash && document.getElementById(location.hash.slice(1));
+      if (target) target.scrollIntoView({ block: 'start' });
     });
   </script>
 </body>
