@@ -262,3 +262,34 @@ main { position: relative; z-index: 1; flex: 1; width: 100%; max-width: var(--ma
   .video-bg { display: none; }
   .win--live:hover, .win--live:focus-within { transform: none; }
 }
+
+/* ---------- Legal pages (privacy, terms) ---------- */
+.legal { max-width: 75ch; }
+.legal .win-body > h2 { font-size: var(--text-h2); font-weight: 700; margin-top: var(--s-3); }
+.legal .win-body > h2:first-child { margin-top: 0; }
+.legal .win-body p, .legal .win-body li { color: var(--muted); }
+.legal .win-body ul { padding-left: 1.2rem; display: grid; gap: 0.35rem; }
+.legal .win-body li::marker { color: var(--gold); }
+.legal strong { color: var(--cream); }
+.legal a { color: var(--gold); text-underline-offset: 3px; }
+.legal a:hover { color: var(--cream); }
+.summary { border-left: 3px solid var(--gold); padding: var(--s-2); background: var(--gold-soft); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.summary h2 { font-size: 1.1rem; margin: 0 0 var(--s-1); color: var(--cream); }
+
+/* Tables stack into cards on phones, then become normal tables from 640px */
+.stack-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; }
+.stack-table caption { text-align: left; color: var(--muted); font-size: var(--text-sm); margin-bottom: var(--s-1); }
+.stack-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.stack-table tr { display: block; margin-bottom: var(--s-2); padding: var(--s-2); border: 1px solid var(--border); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.02); }
+.stack-table td { display: block; padding: 0.3rem 0; color: var(--muted); vertical-align: top; }
+.stack-table td::before {
+  content: attr(data-label); display: block;
+  font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+}
+@media (min-width: 640px) {
+  .stack-table thead { position: static; width: auto; height: auto; overflow: visible; clip: auto; white-space: normal; }
+  .stack-table tr { display: table-row; margin: 0; padding: 0; border: 0; border-radius: 0; background: none; }
+  .stack-table th, .stack-table td { display: table-cell; padding: 0.75rem; text-align: left; border-bottom: 1px solid var(--border); }
+  .stack-table th { color: var(--cream); font-weight: 700; }
+  .stack-table td::before { content: none; }
+}
