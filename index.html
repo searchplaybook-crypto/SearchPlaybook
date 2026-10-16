@@ -255,10 +255,6 @@
         .rotate-icon { transition: transform 0.3s ease; }
         .rotate-icon.rotated { transform: rotate(180deg); }
 
-        /* Mobile Menu Slide Animation */
-        .mobile-menu-panel {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-        }
         
         /* CTA Pill Animation */
         .cta-pill {
@@ -319,17 +315,13 @@
             border-radius: 6px;
         }
     </style>
+<!-- site-menu:assets -->
+<link rel="stylesheet" href="assets/css/site-menu.css">
+<script src="assets/js/site-menu.js" defer></script>
+<!-- /site-menu:assets -->
 </head>
 <body class="font-body text-platinum antialiased">
     
-    <!-- FIX 2: Moved nav out of head and into body -->
-    <!-- Fix broken Intel link in navigation -->
-    <nav aria-label="Primary" class="site-nav">
-      <a href="./" aria-current="page">Home</a>
-      <a href="intel.html">Intel</a> <!-- Note: .html extension required for GitHub Pages -->
-      <a href="solutions.html">Solutions</a>
-      <a href="collective.html">Collective</a>
-    </nav>
 
     <div class="noise-overlay"></div>
     <div class="bg-gradient-mesh"></div>
@@ -361,58 +353,15 @@
                 </a>
                 
                 <!-- Desktop Nav -->
-                <div class="hidden md:flex items-center gap-6 lg:gap-8">
+                <div class="hidden md:flex items-center gap-6 lg:gap-8 md:ml-auto md:mr-4">
                     <a href="#solutions" class="font-body font-normal text-sm text-platinum/80 hover:text-forged-copper transition-colors">Solutions</a>
                     <a href="#about" class="font-body font-normal text-sm text-platinum/80 hover:text-warm-yellow transition-colors">About</a>
                     <a href="solutions.html#service-dpa" class="btn-glass px-5 py-2 rounded-full font-body font-semibold text-xs text-gold-300">Get Started</a>
                 </div>
                 
-                <!-- Mobile Burger Top Right -->
-                <button class="md:hidden flex flex-col gap-1.5 cursor-pointer p-2 z-50 relative" onclick="toggleMobileMenu()" aria-label="Toggle menu">
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line1"></span>
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300" id="menu-line2"></span>
-                    <span class="w-6 h-0.5 bg-platinum transition-all duration-300 origin-center" id="menu-line3"></span>
-                </button>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu Overlay -->
-        <div class="md:hidden fixed inset-0 top-0 bg-void-black/95 backdrop-blur-xl z-40 transform translate-x-full mobile-menu-panel flex flex-col" id="mobileMenu">
-            <div class="px-6 pt-20 pb-6 border-b border-white/5">
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="w-8 h-8 rounded-lg glass-gold flex items-center justify-center overflow-hidden">
-                        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WMC Shield" class="w-full h-full object-cover opacity-90">
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-display font-bold text-lg text-near-white">SEARCH PLAYBOOK</span>
-                        <span class="text-[9px] font-accent font-light text-zinc-500 tracking-widest uppercase">WeMustCreate</span>
-                    </div>
-                </div>
-                <p class="text-xs text-zinc-500 font-body mt-3">Mzansi's Digital Partner</p>
-            </div>
-            
-            <div class="flex-1 flex flex-col justify-center px-8 space-y-2">
-                <a href="#solutions" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
-                    <div>
-                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-forged-copper transition-colors">Solutions</span>
-                        <span class="block text-xs text-zinc-500 font-body mt-0.5">What we do for you</span>
-                    </div>
-                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-forged-copper transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-                <a href="#about" class="flex items-center justify-between py-4 border-b border-white/5 group" onclick="toggleMobileMenu()">
-                    <div>
-                        <span class="block text-xl font-display font-bold text-platinum group-hover:text-warm-yellow transition-colors">About</span>
-                        <span class="block text-xs text-zinc-500 font-body mt-0.5">Who we are</span>
-                    </div>
-                    <svg class="w-5 h-5 text-zinc-600 group-hover:text-warm-yellow transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                </a>
-            </div>
-            
-            <div class="px-8 pb-8 pt-4">
-                <a href="solutions.html#service-dpa" class="btn-glass w-full flex items-center justify-center px-8 py-4 rounded-full font-body font-bold text-base text-gold-300" onclick="toggleMobileMenu()">
-                    Get Started
-                </a>
-                <p class="text-center text-[10px] text-zinc-600 font-body mt-4">Focus on the hustle. We'll focus on the noise.</p>
+                <!-- site-menu:button -->
+<button type="button" class="sm-btn" popovertarget="site-menu" aria-controls="site-menu" data-site-menu-open><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="sm-btn-label">Menu</span></button>
+<!-- /site-menu:button -->
             </div>
         </div>
     </nav>
@@ -444,7 +393,7 @@
                             <span>Free DPA (R750 value) →</span>
                             <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
-                        <a href="#solutions" class="glass px-6 py-3 md:px-8 md:py-4 rounded-full font-body font-normal text-sm md:text-base text-platinum hover:bg-white/5 transition-all">
+                        <a href="solutions.html#how-it-works" class="glass px-6 py-3 md:px-8 md:py-4 rounded-full font-body font-normal text-sm md:text-base text-platinum hover:bg-white/5 transition-all">
                             See How It Works
                         </a>
                     </div>
@@ -778,7 +727,7 @@
                             <span>Free DPA (R750 value) →</span>
                             <svg class="w-4 h-4 md:w-5 md:h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
                         </a>
-                        <a href="#solutions" class="glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-semibold text-base md:text-lg text-platinum hover:bg-white/5 transition-all">
+                        <a href="intel/case-studies.html" class="glass px-8 py-3 md:px-10 md:py-5 rounded-full font-body font-semibold text-base md:text-lg text-platinum hover:bg-white/5 transition-all">
                             See case studies
                         </a>
                     </div>
@@ -842,9 +791,9 @@
                 <div class="col-span-2 md:col-span-1">
                     <h4 class="font-display font-semibold text-sm md:text-base text-near-white mb-3 md:mb-4">Services</h4>
                     <ul class="space-y-2 md:space-y-3">
-                        <li><a href="#solutions" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Remove harmful results</a></li>
-                        <li><a href="#solutions" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Set-and-forget visibility</a></li>
-                        <li><a href="#solutions" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Protect private images</a></li>
+                        <li><a href="solutions.html#service-privacy" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Remove harmful results</a></li>
+                        <li><a href="solutions.html#service-visibility" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Set-and-forget visibility</a></li>
+                        <li><a href="intel/ncii.html" class="font-body text-xs md:text-sm text-platinum/50 hover:text-platinum transition-colors">Protect private images</a></li>
                     </ul>
                 </div>
                 
@@ -1034,29 +983,6 @@
             });
         })();
 
-        // Mobile Menu Toggle
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            const line1 = document.getElementById('menu-line1');
-            const line2 = document.getElementById('menu-line2');
-            const line3 = document.getElementById('menu-line3');
-            
-            if (menu.classList.contains('translate-x-full')) {
-                menu.classList.remove('translate-x-full');
-                menu.classList.add('translate-x-0');
-                line1.classList.add('rotate-45', 'translate-y-2');
-                line2.classList.add('opacity-0');
-                line3.classList.add('-rotate-45', '-translate-y-2');
-                document.body.style.overflow = 'hidden';
-            } else {
-                menu.classList.add('translate-x-full');
-                menu.classList.remove('translate-x-0');
-                line1.classList.remove('rotate-45', 'translate-y-2');
-                line2.classList.remove('opacity-0');
-                line3.classList.remove('-rotate-45', '-translate-y-2');
-                document.body.style.overflow = '';
-            }
-        }
 
         // Navbar scroll effect
         const nav = document.getElementById('mainNav');
@@ -1146,5 +1072,31 @@
         `
         document.head.appendChild(style);
     </script>
+<!-- site-menu:panel -->
+<div id="site-menu" class="sm-panel" popover>
+  <div class="sm-head">
+    <div class="sm-brand">
+      <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="" width="32" height="32" loading="lazy">
+      <span class="sm-brand-text"><span class="sm-brand-name">SEARCH <span>PLAYBOOK</span></span><span class="sm-brand-sub">WeMustCreate</span></span>
+    </div>
+    <button type="button" class="sm-close" popovertarget="site-menu" popovertargetaction="hide" aria-label="Close menu" data-site-menu-close><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sm-body">
+    <nav aria-label="Site pages">
+      <p class="sm-label">Pages</p>
+      <ul class="sm-list"><li><a class="sm-link" href="./" aria-current="page"><span>Home</span><span class="sm-here" aria-hidden="true">You're here</span></a></li><li><a class="sm-link" href="solutions.html"><span>Solutions and pricing</span></a></li><li><a class="sm-link" href="intel.html"><span>Intel Hub</span></a><ul class="sm-sub"><li><a class="sm-link" href="intel/ncii.html"><span>NCII protection guide</span></a></li><li><a class="sm-link" href="intel/case-studies.html"><span>Case studies</span></a></li><li><a class="sm-link" href="intel/job-market-toolkit.html"><span>Job market toolkit</span></a></li></ul></li><li><a class="sm-link" href="collective.html"><span>Collective</span></a></li></ul>
+      <ul class="sm-list sm-list--legal"><li><a class="sm-link" href="privacy.html"><span>Privacy policy</span></a></li><li><a class="sm-link" href="terms.html"><span>Terms of service</span></a></li></ul>
+    </nav>
+    <nav aria-label="On this page">
+      <p class="sm-label">On this page</p>
+      <ul class="sm-list sm-list--sections"><li><a class="sm-link" href="#solutions"><span>Solutions</span></a></li><li><a class="sm-link" href="#about"><span>About</span></a></li></ul>
+    </nav>
+  </div>
+  <div class="sm-foot">
+    <a class="sm-cta" href="solutions.html#service-dpa">Book your free DPA (R750 value) →</a>
+    <a class="sm-wa" href="https://wa.me/27695326613" target="_blank" rel="noopener">WhatsApp +27 69 532 6613</a>
+  </div>
+</div>
+<!-- /site-menu:panel -->
 </body>
 </html>

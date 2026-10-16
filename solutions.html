@@ -241,6 +241,10 @@
       border-color: rgba(212, 175, 55, 0.4);
     }
   </style>
+<!-- site-menu:assets -->
+<link rel="stylesheet" href="assets/css/site-menu.css">
+<script src="assets/js/site-menu.js" defer></script>
+<!-- /site-menu:assets -->
 </head>
 
 <body class="bg-void text-gray-200 font-sans antialiased min-h-screen flex flex-col selection:bg-gold selection:text-void">
@@ -262,12 +266,15 @@
         <a href="#faq" class="hover:text-gold transition variable-weight">FAQ</a>
       </nav>
 
-      <div class="flex items-center gap-4">
-        <!-- Neon Glow Pulse & Skeleton Nav Pill -->
-        <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I'd%20like%20to%20ask%20about%20your%20solutions.%20Found%20you%20on%20wemustcreate.online%2Fsolutions" target="_blank" rel="noopener" class="skeleton-pill neon-glow-pulse text-gold font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition shadow-lg flex items-center gap-2">
-          <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 0c-6.627 0-12 5.373-12 12 0 2.159.572 4.187 1.557 5.951l-1.588 5.809 5.96-1.562c1.703.921 3.655 1.442 5.72 1.442 6.627 0 12-5.373 12-12s-5.373-12-12-12zm6.27 16.022c-.259.729-1.298 1.336-2.115 1.512-.56.12-1.289.215-3.754-.808-3.153-1.309-5.183-4.516-5.341-4.728-.157-.212-1.282-1.708-1.282-3.258 0-1.55 0.808-2.312 1.096-2.628.288-.316.628-.395.837-.395.209 0 .418.002.599.011.192.01.448-.073.702.537.259.624.887 2.164.965 2.322.078.158.13.342.026.55-.104.208-.157.341-.314.522-.157.181-.33.404-.471.542-.157.155-.321.325-.138.638.183.313.813 1.322 1.748 2.155 1.202 1.07 2.215 1.402 2.528 1.558.313.157.497.131.68-.078.183-.209.785-.915.994-1.229.209-.314.418-.261.706-.157.288.104 1.83.863 2.144 1.02.314.157.523.235.599.366.077.13.077.755-.182 1.484z"/></svg>
-          Direct Query
+      <div class="flex items-center gap-2 sm:gap-4">
+        <!-- Neon Glow Pulse & Skeleton Nav Pill (icon only on phones, so the menu button fits at 320px) -->
+        <a href="https://wa.me/27695326613?text=Hi%20WeMustCreate,%20I'd%20like%20to%20ask%20about%20your%20solutions.%20Found%20you%20on%20wemustcreate.online%2Fsolutions" target="_blank" rel="noopener" aria-label="Direct Query on WhatsApp" class="skeleton-pill neon-glow-pulse text-gold font-bold text-xs uppercase tracking-wider min-h-[44px] min-w-[44px] px-3 sm:px-5 py-2.5 rounded-full transition shadow-lg flex items-center justify-center gap-2">
+          <svg class="w-4 h-4 fill-current" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M12.031 0c-6.627 0-12 5.373-12 12 0 2.159.572 4.187 1.557 5.951l-1.588 5.809 5.96-1.562c1.703.921 3.655 1.442 5.72 1.442 6.627 0 12-5.373 12-12s-5.373-12-12-12zm6.27 16.022c-.259.729-1.298 1.336-2.115 1.512-.56.12-1.289.215-3.754-.808-3.153-1.309-5.183-4.516-5.341-4.728-.157-.212-1.282-1.708-1.282-3.258 0-1.55 0.808-2.312 1.096-2.628.288-.316.628-.395.837-.395.209 0 .418.002.599.011.192.01.448-.073.702.537.259.624.887 2.164.965 2.322.078.158.13.342.026.55-.104.208-.157.341-.314.522-.157.181-.33.404-.471.542-.157.155-.321.325-.138.638.183.313.813 1.322 1.748 2.155 1.202 1.07 2.215 1.402 2.528 1.558.313.157.497.131.68-.078.183-.209.785-.915.994-1.229.209-.314.418-.261.706-.157.288.104 1.83.863 2.144 1.02.314.157.523.235.599.366.077.13.077.755-.182 1.484z"/></svg>
+          <span class="hidden sm:inline">Direct Query</span>
         </a>
+        <!-- site-menu:button -->
+<button type="button" class="sm-btn" popovertarget="site-menu" aria-controls="site-menu" data-site-menu-open><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="sm-btn-label">Menu</span></button>
+<!-- /site-menu:button -->
       </div>
     </div>
   </header>
@@ -319,7 +326,7 @@
             <h3 class="text-xl font-bold text-white mt-1 mb-2">Permanent Web Builds</h3>
             <p class="text-gray-400 text-sm">Your own website, paid once. No monthly platform fees.</p>
           </div>
-          <a href="#catalogue" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Infrastructure &rarr;</a>
+          <a href="#service-dbc" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">Explore Infrastructure &rarr;</a>
         </div>
 
         <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
@@ -343,7 +350,7 @@
             <h3 class="text-xl font-bold text-white mt-1 mb-2">Google Map Pack</h3>
             <p class="text-gray-400 text-sm">Get on Google Maps: claim, verify and fill in your listing.</p>
           </div>
-          <a href="#catalogue" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">View Visibility Packages &rarr;</a>
+          <a href="#service-visibility" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">View Visibility Packages &rarr;</a>
         </div>
 
         <div class="solid-content-card gradient-border-morph rounded-2xl p-6 flex flex-col justify-between group hover:-translate-y-1 transition duration-300">
@@ -355,7 +362,7 @@
             <h3 class="text-xl font-bold text-white mt-1 mb-2">Privacy as a Service</h3>
             <p class="text-gray-400 text-sm">Privacy and reputation: harmful-result removal routes, opt-outs and NCII support.</p>
           </div>
-          <a href="#catalogue" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">View Privacy Specs &rarr;</a>
+          <a href="#service-privacy" class="mt-6 text-gold text-sm font-semibold inline-flex items-center gap-1 group-hover:gap-2 transition-all">View Privacy Specs &rarr;</a>
         </div>
       </div>
     </section>
@@ -616,6 +623,10 @@
       <p class="text-gray-500 text-xs">
         Lead Strategist: Llewellyn O'Shea | WhatsApp: <a href="https://wa.me/27695326613" class="text-gold hover:underline">+27 69 532 6613</a>
       </p>
+      <nav aria-label="Legal" class="flex justify-center gap-6 mt-2 sm:mt-0">
+        <a href="privacy.html" class="inline-flex items-center min-h-[44px] text-sm text-gray-400 underline underline-offset-4 hover:text-gold">Privacy policy</a>
+        <a href="terms.html" class="inline-flex items-center min-h-[44px] text-sm text-gray-400 underline underline-offset-4 hover:text-gold">Terms of service</a>
+      </nav>
     </div>
   </footer>
 
@@ -817,6 +828,32 @@
       if (target) target.scrollIntoView({ block: 'start' });
     });
   </script>
+<!-- site-menu:panel -->
+<div id="site-menu" class="sm-panel" popover>
+  <div class="sm-head">
+    <div class="sm-brand">
+      <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="" width="32" height="32" loading="lazy">
+      <span class="sm-brand-text"><span class="sm-brand-name">SEARCH <span>PLAYBOOK</span></span><span class="sm-brand-sub">WeMustCreate</span></span>
+    </div>
+    <button type="button" class="sm-close" popovertarget="site-menu" popovertargetaction="hide" aria-label="Close menu" data-site-menu-close><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sm-body">
+    <nav aria-label="Site pages">
+      <p class="sm-label">Pages</p>
+      <ul class="sm-list"><li><a class="sm-link" href="./"><span>Home</span></a></li><li><a class="sm-link" href="solutions.html" aria-current="page"><span>Solutions and pricing</span><span class="sm-here" aria-hidden="true">You're here</span></a></li><li><a class="sm-link" href="intel.html"><span>Intel Hub</span></a><ul class="sm-sub"><li><a class="sm-link" href="intel/ncii.html"><span>NCII protection guide</span></a></li><li><a class="sm-link" href="intel/case-studies.html"><span>Case studies</span></a></li><li><a class="sm-link" href="intel/job-market-toolkit.html"><span>Job market toolkit</span></a></li></ul></li><li><a class="sm-link" href="collective.html"><span>Collective</span></a></li></ul>
+      <ul class="sm-list sm-list--legal"><li><a class="sm-link" href="privacy.html"><span>Privacy policy</span></a></li><li><a class="sm-link" href="terms.html"><span>Terms of service</span></a></li></ul>
+    </nav>
+    <nav aria-label="On this page">
+      <p class="sm-label">On this page</p>
+      <ul class="sm-list sm-list--sections"><li><a class="sm-link" href="#hero"><span>Overview</span></a></li><li><a class="sm-link" href="#problem"><span>Limitations</span></a></li><li><a class="sm-link" href="#catalogue"><span>Catalogue</span></a></li><li><a class="sm-link" href="#how-it-works"><span>How it works</span></a></li><li><a class="sm-link" href="#matrix"><span>Coverage</span></a></li><li><a class="sm-link" href="#faq"><span>FAQ</span></a></li></ul>
+    </nav>
+  </div>
+  <div class="sm-foot">
+    <a class="sm-cta" href="solutions.html#service-dpa">Book your free DPA (R750 value) →</a>
+    <a class="sm-wa" href="https://wa.me/27695326613" target="_blank" rel="noopener">WhatsApp +27 69 532 6613</a>
+  </div>
+</div>
+<!-- /site-menu:panel -->
 </body>
 </html>
 
