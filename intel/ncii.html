@@ -400,11 +400,14 @@ heroVideo.addEventListener('pause',()=>videoOverlay.classList.remove('hidden'));
 
 const mainVideo=document.getElementById('mainVideo'),playPauseBtn=document.getElementById('playPauseBtn'),playIcon=document.getElementById('playIcon'),pauseIcon=document.getElementById('pauseIcon'),progressBar=document.getElementById('progressBar'),progressFill=document.getElementById('progressFill'),timeDisplay=document.getElementById('timeDisplay'),fullscreenBtn=document.getElementById('fullscreenBtn');
 function fmt(s){const m=Math.floor(s/60),sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec}
+// Second video player: only wire it up if its controls are on the page
+if(mainVideo&&playPauseBtn&&playIcon&&pauseIcon&&progressBar&&progressFill&&timeDisplay&&fullscreenBtn){
 playPauseBtn.addEventListener('click',()=>{if(mainVideo.paused){mainVideo.play();playIcon.style.display='none';pauseIcon.style.display='block'}else{mainVideo.pause();playIcon.style.display='block';pauseIcon.style.display='none'}});
 mainVideo.addEventListener('timeupdate',()=>{const p=(mainVideo.currentTime/mainVideo.duration)*100;progressFill.style.width=p+'%';timeDisplay.textContent=fmt(mainVideo.currentTime)+' / '+fmt(mainVideo.duration||0)});
 progressBar.addEventListener('click',e=>{const r=progressBar.getBoundingClientRect();mainVideo.currentTime=((e.clientX-r.left)/r.width)*mainVideo.duration});
 mainVideo.addEventListener('ended',()=>{playIcon.style.display='block';pauseIcon.style.display='none'});
 fullscreenBtn.addEventListener('click',()=>{if(mainVideo.requestFullscreen)mainVideo.requestFullscreen();else if(mainVideo.webkitRequestFullscreen)mainVideo.webkitRequestFullscreen()});
+}
 </script>
 <!-- site-menu:panel -->
 <div id="site-menu" class="sm-panel" popover>
