@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Priority crawl order
-Sitemap: https://searchplaybook-crypto.github.io/SearchPlaybook/sitemap.xml
+Sitemap: https://wemustcreate.online/sitemap.xml
 
 # Block non-essential bot overhead
 Disallow: /assets/private/
