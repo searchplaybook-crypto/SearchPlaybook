@@ -66,6 +66,10 @@
   }
 }
   </script>
+<!-- site-menu:assets -->
+<link rel="stylesheet" href="../assets/css/site-menu.css">
+<script src="../assets/js/site-menu.js" defer></script>
+<!-- /site-menu:assets -->
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -75,6 +79,9 @@
         <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="" width="32" height="32">
         <span class="logo-text">SEARCH <span>PLAYBOOK</span></span>
       </a>
+      <!-- site-menu:button -->
+<button type="button" class="sm-btn" popovertarget="site-menu" aria-controls="site-menu" data-site-menu-open><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="sm-btn-label">Menu</span></button>
+<!-- /site-menu:button -->
       <nav class="site-nav" aria-label="Primary">
         <ul>
           <li><a href="../">Home</a></li>
@@ -178,5 +185,27 @@
     </div>
   </footer>
   <script>document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });</script>
+<!-- site-menu:panel -->
+<div id="site-menu" class="sm-panel" popover>
+  <div class="sm-head">
+    <div class="sm-brand">
+      <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="" width="32" height="32" loading="lazy">
+      <span class="sm-brand-text"><span class="sm-brand-name">SEARCH <span>PLAYBOOK</span></span><span class="sm-brand-sub">WeMustCreate</span></span>
+    </div>
+    <button type="button" class="sm-close" popovertarget="site-menu" popovertargetaction="hide" aria-label="Close menu" data-site-menu-close><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sm-body">
+    <nav aria-label="Site pages">
+      <p class="sm-label">Pages</p>
+      <ul class="sm-list"><li><a class="sm-link" href="../"><span>Home</span></a></li><li><a class="sm-link" href="../solutions.html"><span>Solutions and pricing</span></a></li><li><a class="sm-link" href="../intel.html"><span>Intel Hub</span></a><ul class="sm-sub"><li><a class="sm-link" href="../intel/ncii.html"><span>NCII protection guide</span></a></li><li><a class="sm-link" href="../intel/case-studies.html" aria-current="page"><span>Case studies</span><span class="sm-here" aria-hidden="true">You're here</span></a></li><li><a class="sm-link" href="../intel/job-market-toolkit.html"><span>Job market toolkit</span></a></li></ul></li><li><a class="sm-link" href="../collective.html"><span>Collective</span></a></li></ul>
+      <ul class="sm-list sm-list--legal"><li><a class="sm-link" href="../privacy.html"><span>Privacy policy</span></a></li><li><a class="sm-link" href="../terms.html"><span>Terms of service</span></a></li></ul>
+    </nav>
+  </div>
+  <div class="sm-foot">
+    <a class="sm-cta" href="../solutions.html#service-dpa">Book your free DPA (R750 value) →</a>
+    <a class="sm-wa" href="https://wa.me/27695326613" target="_blank" rel="noopener">WhatsApp +27 69 532 6613</a>
+  </div>
+</div>
+<!-- /site-menu:panel -->
 </body>
 </html>

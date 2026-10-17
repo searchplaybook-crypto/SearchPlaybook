@@ -68,15 +68,8 @@ h3{font-size:clamp(1.2rem,2.5vw,1.5rem)}
 .nav-links a:hover{color:var(--cream)}
 .nav-links a:hover::after{width:100%}
 .nav-cta{display:none}
-.nav-mobile-toggle{display:flex;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.5rem}
-.nav-mobile-toggle span{display:block;width:22px;height:1.5px;background:var(--cream);transition:all .3s ease;border-radius:1px}
-.nav-mobile-toggle.active span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
-.nav-mobile-toggle.active span:nth-child(2){opacity:0}
-.nav-mobile-toggle.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-.nav-mobile-menu{position:fixed;top:64px;left:0;right:0;bottom:0;background:rgba(15,17,19,0.98);backdrop-filter:blur(20px);padding:2rem;display:flex;flex-direction:column;gap:1.5rem;transform:translateY(-100%);opacity:0;pointer-events:none;transition:all .4s cubic-bezier(.4,0,.2,1)}
-.nav-mobile-menu.active{transform:translateY(0);opacity:1;pointer-events:all}
-.nav-mobile-menu a{color:var(--cream);text-decoration:none;font-size:1.1rem;font-family:var(--font-display);padding:.75rem 0;border-bottom:1px solid var(--border)}
-@media(min-width:768px){.nav-links{display:flex}.nav-cta{display:inline-flex}.nav-mobile-toggle{display:none}}
+.nav-inner{gap:1rem}.nav-links,.nav-cta{margin-left:auto}
+@media(min-width:768px){.nav-links{display:flex}.nav-cta{display:inline-flex}}
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:80px;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:0;opacity:.04;background-image:radial-gradient(circle at 1px 1px,var(--cream-muted) 1px,transparent 0);background-size:40px 40px}
 .hero-glow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(46,139,154,0.08),transparent 70%);top:-10%;right:-10%;pointer-events:none}
@@ -166,6 +159,10 @@ h3{font-size:clamp(1.2rem,2.5vw,1.5rem)}
 .shimmer-text{background:linear-gradient(90deg,var(--gold),var(--teal-light),var(--gold));background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:shimmer 4s linear infinite}
 @media(min-width:768px){.container{padding:0 2rem}.section{padding:6rem 0}.py-20{padding-top:6rem;padding-bottom:6rem}}
 </style>
+<!-- site-menu:assets -->
+<link rel="stylesheet" href="../assets/css/site-menu.css">
+<script src="../assets/js/site-menu.js" defer></script>
+<!-- /site-menu:assets -->
 </head>
 <body>
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -174,11 +171,9 @@ h3{font-size:clamp(1.2rem,2.5vw,1.5rem)}
 <a href="../intel.html" class="nav-logo"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>Stop</span>GBV</a>
 <div class="nav-links"><a href="#understand">Understand</a><a href="#act">Take Action</a><a href="#resources">Resources</a></div>
 <a href="#emergency" class="btn btn-primary btn-sm nav-cta">Get Help Now</a>
-<button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-</div>
-<div class="nav-mobile-menu" id="mobileMenu">
-<a href="#understand" class="mobile-link">Understand</a><a href="#act" class="mobile-link">Take Action</a><a href="#resources" class="mobile-link">Resources</a>
-<a href="#emergency" class="btn btn-primary" style="margin-top:1rem;text-align:center">Get Help Now</a>
+<!-- site-menu:button -->
+<button type="button" class="sm-btn" popovertarget="site-menu" aria-controls="site-menu" data-site-menu-open><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg><span class="sm-btn-label">Menu</span></button>
+<!-- /site-menu:button -->
 </div>
 </nav>
 
@@ -383,9 +378,6 @@ window.addEventListener('scroll',()=>{const t=window.scrollY,d=document.document
 const navbar=document.getElementById('navbar');
 window.addEventListener('scroll',()=>{if(window.scrollY>50){navbar.style.background='rgba(15,17,19,0.95)';navbar.style.boxShadow='0 4px 30px rgba(0,0,0,0.3)'}else{navbar.style.background='rgba(15,17,19,0.85)';navbar.style.boxShadow='none'}});
 
-const mobileToggle=document.getElementById('mobileToggle'),mobileMenu=document.getElementById('mobileMenu');
-mobileToggle.addEventListener('click',()=>{mobileToggle.classList.toggle('active');mobileMenu.classList.toggle('active')});
-document.querySelectorAll('.mobile-link').forEach(l=>l.addEventListener('click',()=>{mobileToggle.classList.remove('active');mobileMenu.classList.remove('active')}));
 
 const revealEls=document.querySelectorAll('.reveal');
 const revealObs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revealObs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -50px 0px'});
@@ -408,11 +400,40 @@ heroVideo.addEventListener('pause',()=>videoOverlay.classList.remove('hidden'));
 
 const mainVideo=document.getElementById('mainVideo'),playPauseBtn=document.getElementById('playPauseBtn'),playIcon=document.getElementById('playIcon'),pauseIcon=document.getElementById('pauseIcon'),progressBar=document.getElementById('progressBar'),progressFill=document.getElementById('progressFill'),timeDisplay=document.getElementById('timeDisplay'),fullscreenBtn=document.getElementById('fullscreenBtn');
 function fmt(s){const m=Math.floor(s/60),sec=Math.floor(s%60);return m+':'+(sec<10?'0':'')+sec}
+// Second video player: only wire it up if its controls are on the page
+if(mainVideo&&playPauseBtn&&playIcon&&pauseIcon&&progressBar&&progressFill&&timeDisplay&&fullscreenBtn){
 playPauseBtn.addEventListener('click',()=>{if(mainVideo.paused){mainVideo.play();playIcon.style.display='none';pauseIcon.style.display='block'}else{mainVideo.pause();playIcon.style.display='block';pauseIcon.style.display='none'}});
 mainVideo.addEventListener('timeupdate',()=>{const p=(mainVideo.currentTime/mainVideo.duration)*100;progressFill.style.width=p+'%';timeDisplay.textContent=fmt(mainVideo.currentTime)+' / '+fmt(mainVideo.duration||0)});
 progressBar.addEventListener('click',e=>{const r=progressBar.getBoundingClientRect();mainVideo.currentTime=((e.clientX-r.left)/r.width)*mainVideo.duration});
 mainVideo.addEventListener('ended',()=>{playIcon.style.display='block';pauseIcon.style.display='none'});
 fullscreenBtn.addEventListener('click',()=>{if(mainVideo.requestFullscreen)mainVideo.requestFullscreen();else if(mainVideo.webkitRequestFullscreen)mainVideo.webkitRequestFullscreen()});
+}
 </script>
+<!-- site-menu:panel -->
+<div id="site-menu" class="sm-panel" popover>
+  <div class="sm-head">
+    <div class="sm-brand">
+      <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="" width="32" height="32" loading="lazy">
+      <span class="sm-brand-text"><span class="sm-brand-name">SEARCH <span>PLAYBOOK</span></span><span class="sm-brand-sub">WeMustCreate</span></span>
+    </div>
+    <button type="button" class="sm-close" popovertarget="site-menu" popovertargetaction="hide" aria-label="Close menu" data-site-menu-close><svg aria-hidden="true" focusable="false" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="sm-body">
+    <nav aria-label="Site pages">
+      <p class="sm-label">Pages</p>
+      <ul class="sm-list"><li><a class="sm-link" href="../"><span>Home</span></a></li><li><a class="sm-link" href="../solutions.html"><span>Solutions and pricing</span></a></li><li><a class="sm-link" href="../intel.html"><span>Intel Hub</span></a><ul class="sm-sub"><li><a class="sm-link" href="../intel/ncii.html" aria-current="page"><span>NCII protection guide</span><span class="sm-here" aria-hidden="true">You're here</span></a></li><li><a class="sm-link" href="../intel/case-studies.html"><span>Case studies</span></a></li><li><a class="sm-link" href="../intel/job-market-toolkit.html"><span>Job market toolkit</span></a></li></ul></li><li><a class="sm-link" href="../collective.html"><span>Collective</span></a></li></ul>
+      <ul class="sm-list sm-list--legal"><li><a class="sm-link" href="../privacy.html"><span>Privacy policy</span></a></li><li><a class="sm-link" href="../terms.html"><span>Terms of service</span></a></li></ul>
+    </nav>
+    <nav aria-label="On this page">
+      <p class="sm-label">On this page</p>
+      <ul class="sm-list sm-list--sections"><li><a class="sm-link" href="#understand"><span>Understand</span></a></li><li><a class="sm-link" href="#act"><span>Take Action</span></a></li><li><a class="sm-link" href="#resources"><span>Resources</span></a></li><li><a class="sm-link" href="#emergency"><span>Get Help Now</span></a></li></ul>
+    </nav>
+  </div>
+  <div class="sm-foot">
+    <a class="sm-cta" href="../solutions.html#service-dpa">Book your free DPA (R750 value) →</a>
+    <a class="sm-wa" href="https://wa.me/27695326613" target="_blank" rel="noopener">WhatsApp +27 69 532 6613</a>
+  </div>
+</div>
+<!-- /site-menu:panel -->
 </body>
 </html>
