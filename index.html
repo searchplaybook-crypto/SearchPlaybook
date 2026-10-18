@@ -323,6 +323,9 @@
 <link rel="stylesheet" href="assets/css/site-menu.css">
 <script src="assets/js/site-menu.js" defer></script>
 <!-- /site-menu:assets -->
+<!-- dashboard windows: tables in this page are the data; see assets/css/dashboard.css -->
+<link rel="stylesheet" href="assets/css/dashboard.css">
+<script src="assets/js/dashboard.js" defer></script>
 </head>
 <body class="font-body text-platinum antialiased">
     
@@ -422,6 +425,154 @@
                     <p class="text-xs text-platinum/50 max-w-lg mx-auto lg:mx-0 leading-relaxed">*No monthly lock-ins is our default: you pay once and top up only when you need changes. Monthly care is optional, for business owners who'd rather we keep everything updated for them.</p>
                 </div>
                 
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard: "Check where you stand" (Windows 01-03).
+         Styles: assets/css/dashboard.css · behaviour: assets/js/dashboard.js
+         The payment schedule table is the data for the cost chart: change the
+         amounts or data-day values there and the chart follows. -->
+    <section id="check" class="db-section" aria-labelledby="db-heading">
+        <div class="db-wrap">
+            <div class="db-intro">
+                <p class="db-eyebrow">Check where you stand</p>
+                <h2 id="db-heading" class="db-h2">See your numbers before you spend a cent</h2>
+                <p class="db-lead">Two quick tools. No sign-up, and nothing leaves this page unless you choose to send it to us on WhatsApp.</p>
+            </div>
+
+            <div class="db-grid">
+                <!-- Window 01: once-off vs monthly -->
+                <article class="db-window" aria-labelledby="w01-title" data-db="cost">
+                    <header class="db-window__bar">
+                        <span class="db-window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                        <span class="db-window__num">Window 01</span>
+                        <h3 class="db-window__title" id="w01-title">Once-off vs monthly</h3>
+                    </header>
+                    <div class="db-window__body">
+                        <p class="db-text">See what a monthly website fee adds up to, next to the once-off Digital Birth Certificate.</p>
+
+                        <div class="db-tool" data-cost-tool hidden>
+                            <div class="db-controls">
+                                <div class="db-field">
+                                    <label for="cost-monthly" class="db-label">What do you pay for your website each month?</label>
+                                    <div class="db-input-wrap">
+                                        <span class="db-input-prefix" aria-hidden="true">R</span>
+                                        <input id="cost-monthly" class="db-input" data-cost-input type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" value="500" data-max="100000" aria-describedby="cost-monthly-hint cost-monthly-error" aria-invalid="false">
+                                    </div>
+                                    <p id="cost-monthly-hint" class="db-hint">Builder plan, hosting, maintenance or retainer, in Rand.</p>
+                                    <p id="cost-monthly-error" class="db-error" data-cost-error hidden></p>
+                                </div>
+                                <div class="db-presets" role="group" aria-label="Example monthly amounts">
+                                    <button type="button" class="db-chip" data-amount-preset="250" aria-pressed="false">R250</button>
+                                    <button type="button" class="db-chip" data-amount-preset="500" aria-pressed="true">R500</button>
+                                    <button type="button" class="db-chip" data-amount-preset="1000" aria-pressed="false">R1,000</button>
+                                    <button type="button" class="db-chip" data-amount-preset="2000" aria-pressed="false">R2,000</button>
+                                </div>
+                                <fieldset class="db-segment">
+                                    <legend class="db-label">Show</legend>
+                                    <div class="db-segment__options">
+                                        <input type="radio" id="cost-h12" name="cost-horizon" value="12">
+                                        <label for="cost-h12">12 months</label>
+                                        <input type="radio" id="cost-h24" name="cost-horizon" value="24" checked>
+                                        <label for="cost-h24">24 months</label>
+                                    </div>
+                                </fieldset>
+                            </div>
+
+                            <figure class="db-chart">
+                                <ul class="db-legend">
+                                    <li class="db-key db-key--s2">Monthly fee</li>
+                                    <li class="db-key db-key--s1">Digital Birth Certificate</li>
+                                </ul>
+                                <div class="db-plot" data-cost-plot tabindex="0" role="group" aria-label="Cost chart. Use the left and right arrow keys to read each month." aria-describedby="cost-summary"></div>
+                                <p class="db-sr" data-cost-readout aria-live="polite"></p>
+                                <figcaption id="cost-summary" class="db-summary" data-cost-summary aria-live="polite"></figcaption>
+                            </figure>
+                            <details class="db-numbers">
+                                <summary>Show the numbers</summary>
+                                <div class="db-table-scroll">
+                                    <table class="db-table" data-cost-table>
+                                        <caption class="db-sr">Running totals by month</caption>
+                                        <thead><tr><th scope="col">Month</th><th scope="col" class="db-num">Monthly fee total</th><th scope="col" class="db-num">Once-off total</th></tr></thead>
+                                        <tbody></tbody>
+                                    </table>
+                                </div>
+                            </details>
+                        </div>
+
+                        <div class="db-table-scroll">
+                            <table class="db-table" data-cost-schedule>
+                                <caption>How the R4,500 is paid</caption>
+                                <thead><tr><th scope="col">Stage</th><th scope="col" class="db-num">You pay</th><th scope="col" class="db-num">Total so far</th></tr></thead>
+                                <tbody>
+                                    <tr data-day="0"><th scope="row">Deposit<span class="db-when">When you confirm after your DPA</span></th><td class="db-num" data-amount>R1,500</td><td class="db-num">R1,500</td></tr>
+                                    <tr data-day="60"><th scope="row">60-day report<span class="db-when">About day 60</span></th><td class="db-num" data-amount>R1,500</td><td class="db-num">R3,000</td></tr>
+                                    <tr data-day="105"><th scope="row">Final report<span class="db-when">About day 105</span></th><td class="db-num" data-amount>R1,500</td><td class="db-num">R4,500</td></tr>
+                                    <tr><th scope="row">After that<span class="db-when">No monthly fee</span></th><td class="db-num">R0</td><td class="db-num">R4,500</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="db-note">Prices from R4,500. You still renew your domain name once a year, and later changes are optional prepaid Top-Ups from R750. This compares fees only, not what each option includes.</p>
+                        <div class="db-actions">
+                            <a class="db-cta" href="https://wa.me/27695326613?text=Hi%20WeMustCreate%2C%20I%20compared%20once-off%20and%20monthly%20website%20costs%20on%20wemustcreate.online.%20I%27d%20like%20to%20book%20a%20free%20DPA%20%28R750%20value%29." target="_blank" rel="noopener">Book your free DPA (R750 value) on WhatsApp →</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Window 02: 7-sign check. Answers stay in this browser (localStorage). -->
+                <article class="db-window" aria-labelledby="w02-title">
+                    <header class="db-window__bar">
+                        <span class="db-window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                        <span class="db-window__num">Window 02</span>
+                        <h3 class="db-window__title" id="w02-title">7-sign readiness check</h3>
+                    </header>
+                    <div class="db-window__body">
+                        <div class="db-check" data-readiness role="group" aria-labelledby="w02-title" aria-describedby="rd-intro">
+                            <p id="rd-intro" class="db-text">Tick what is already true for your business. Your answers stay on this device.</p>
+
+                            <div class="db-score" data-score hidden>
+                                <div class="db-ring" data-score-ring>
+                                    <p class="db-ring__value" aria-hidden="true"><span class="db-ring__inner"><b data-score-num>0</b><span class="db-ring__of">/7</span></span></p>
+                                </div>
+                                <div>
+                                    <p class="db-score__text" data-score-text role="status"></p>
+                                    <p class="db-score__next" data-score-next></p>
+                                </div>
+                            </div>
+
+                            <fieldset class="db-checklist">
+                                <legend class="db-label">The 7 signs</legend>
+                                <div class="db-check-item"><input type="checkbox" id="rd-profile" name="sign-profile" value="yes" data-short="your Google Business Profile"><label for="rd-profile">My Google Business Profile is claimed and up to date</label></div>
+                                <div class="db-check-item"><input type="checkbox" id="rd-details" name="sign-details" value="yes" data-short="matching details on every platform"><label for="rd-details">My business name, address and phone number match on every platform</label></div>
+                                <div class="db-check-item"><input type="checkbox" id="rd-heading" name="sign-heading" value="yes" data-short="a main heading that says what you do and where"><label for="rd-heading">My website's main heading says what I do and where</label></div>
+                                <div class="db-check-item"><input type="checkbox" id="rd-answers" name="sign-answers" value="yes" data-short="answers to your customers' questions"><label for="rd-answers">My website answers the questions customers ask me</label></div>
+                                <div class="db-check-item"><input type="checkbox" id="rd-name" name="sign-name" value="yes" data-short="what shows when people search your name"><label for="rd-name">Searching my business name shows the right business first</label></div>
+                                <div class="db-check-item"><input type="checkbox" id="rd-security" name="sign-security" value="yes" data-short="a security check and two-step sign-in"><label for="rd-security">A person checked my website before it went live, and my accounts use two-step sign-in</label></div>
+                                <div class="db-check-item"><input type="checkbox" id="rd-contact" name="sign-contact" value="yes" data-short="one-tap call and WhatsApp buttons"><label for="rd-contact">Customers can call or WhatsApp me in one tap from every page</label></div>
+                            </fieldset>
+
+                            <p class="db-note">Supplying government? Your Central Supplier Database (CSD) registration and tender documents are what qualify you. This check covers what a buyer finds when they search for your company.</p>
+                            <div class="db-actions">
+                                <a class="db-cta" data-readiness-cta href="https://wa.me/27695326613?text=Hi%20WeMustCreate%2C%20I%20did%20the%207-sign%20check%20on%20wemustcreate.online.%20I%27d%20like%20to%20book%20a%20free%20DPA%20%28R750%20value%29." target="_blank" rel="noopener">Book your free DPA (R750 value) on WhatsApp →</a>
+                                <button type="button" class="db-btn-ghost" data-readiness-reset hidden>Clear my answers</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Window 03: reviews (real reviews live on the Google Business Profile) -->
+                <article class="db-window db-window--strip" aria-labelledby="w03-title">
+                    <header class="db-window__bar">
+                        <span class="db-window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                        <span class="db-window__num">Window 03</span>
+                        <h3 class="db-window__title" id="w03-title">Reviews</h3>
+                    </header>
+                    <div class="db-window__body">
+                        <p class="db-text">Read what clients say about WeMustCreate, in their own words, on Google Maps.</p>
+                        <a class="db-link" href="https://maps.app.goo.gl/WezVn4JTE8Q69oV3A" target="_blank" rel="noopener">Read WeMustCreate's Google reviews →</a>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
@@ -625,15 +776,6 @@
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12 md:gap-16 items-start">
-                <!-- About Image -->
-                <div class="scroll-reveal relative group order-2 lg:order-1">
-                    <div class="absolute inset-0 bg-mafia-gold/20 rounded-2xl transform rotate-3 transition-transform group-hover:rotate-6"></div>
-                    <div class="relative rounded-2xl overflow-hidden border border-white/10 aspect-[4/5]">
-                        <img src="https://ik.imagekit.io/wemustcreate/About%20max%20.webp?updatedAt=1777882596972" alt="Llewellyn O'Shea" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
-                        <div class="absolute inset-0 bg-gradient-to-t from-void-black via-transparent to-transparent"></div>
-                    </div>
-                </div>
-                
                 <div class="space-y-6 md:space-y-8 scroll-reveal order-1 lg:order-2">
                     <div class="inline-flex items-center gap-2 glass-gold px-3 py-1.5 md:px-4 md:py-2 rounded-full">
                         <svg class="w-4 h-4 text-mafia-gold" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1.323l3.954 1.582 1.599-.8a1 1 0 01.894 1.79l-1.233.616 1.738 5.42a1 1 0 01-.287 1.057l-3.456 2.929a1 1 0 01-.648.228h-4.538a1 1 0 01-.648-.228L5.17 13.13a1 1 0 01-.287-1.057l1.738-5.42-1.233-.616a1 1 0 01.894-1.79l1.599.8L12 4.323V3a1 1 0 011-1z" clip-rule="evenodd"/></svg>
@@ -699,6 +841,123 @@
                             <p class="font-body text-xs md:text-sm text-platinum/60">You work directly with the playbook executors, not account managers who hide behind technical jargon.</p>
                         </div>
                     </div>
+                </div>
+
+                <!-- About visual: portrait (resized) + Local Guides windows 04-06.
+                     The tables inside each window are the data. To refresh the figures,
+                     copy them from https://www.localguides-ranking.com/profile/151119/,
+                     edit the table text and the "Figures as at" date below.
+                     data-partial marks a month that is not complete (hatched in the chart). -->
+                <div class="db-about-visual scroll-reveal order-2 lg:order-1">
+                    <div class="db-portrait-row">
+                        <figure class="db-portrait">
+                            <div class="db-portrait__frame">
+                                <img src="https://ik.imagekit.io/wemustcreate/About%20max%20.webp?updatedAt=1777882596972" alt="Portrait of Llewellyn O'Shea, known as Max" width="400" height="500" loading="lazy" decoding="async">
+                            </div>
+                            <figcaption><strong>Max</strong> Founder, WeMustCreate</figcaption>
+                        </figure>
+
+                        <!-- Window 04: Local Guide level -->
+                        <article class="db-window db-window--compact" aria-labelledby="w04-title" data-db="lg-level">
+                            <header class="db-window__bar">
+                                <span class="db-window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                                <span class="db-window__num">Window 04</span>
+                                <h3 class="db-window__title" id="w04-title">Local Guide level</h3>
+                            </header>
+                            <div class="db-window__body">
+                                <p class="db-stat" data-db-enhanced hidden><span class="db-stat__value" data-lg-points></span><span class="db-stat__label" data-lg-points-label></span></p>
+                                <div class="db-meter" role="meter" aria-labelledby="w04-title" data-lg-meter data-db-enhanced hidden><span class="db-meter__fill"></span></div>
+                                <p class="db-meter-scale" aria-hidden="true" data-db-enhanced hidden><span data-lg-from></span><span data-lg-to></span></p>
+                                <p class="db-help" data-lg-togo data-db-enhanced hidden></p>
+                                <details class="db-numbers" open data-db-numbers>
+                                    <summary>Show the numbers</summary>
+                                    <div class="db-table-scroll">
+                                        <table class="db-table" data-lg-table="level">
+                                            <caption class="db-sr">Local Guide points</caption>
+                                            <tbody>
+                                                <tr data-key="points"><th scope="row">Points now</th><td class="db-num">8,449</td></tr>
+                                                <tr data-key="current"><th scope="row">Level 7 starts at</th><td class="db-num">5,000</td></tr>
+                                                <tr data-key="next"><th scope="row">Level 8 starts at</th><td class="db-num">15,000</td></tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </details>
+                            </div>
+                        </article>
+                    </div>
+
+                    <!-- Window 05: contributions -->
+                    <article class="db-window db-window--compact" aria-labelledby="w05-title" data-db="lg-contributions">
+                        <header class="db-window__bar">
+                            <span class="db-window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                            <span class="db-window__num">Window 05</span>
+                            <h3 class="db-window__title" id="w05-title">Google Maps contributions</h3>
+                        </header>
+                        <div class="db-window__body">
+                            <p class="db-text">What Max has added to Google Maps as a Local Guide.</p>
+                            <figure class="db-chart" data-db-enhanced hidden>
+                                <div class="db-plot" data-lg-plot="contributions"></div>
+                            </figure>
+                            <details class="db-numbers" open data-db-numbers>
+                                <summary>Show the numbers</summary>
+                                <div class="db-table-scroll">
+                                    <table class="db-table" data-lg-table="contributions">
+                                        <caption class="db-sr">Google Maps contributions</caption>
+                                        <thead><tr><th scope="col">Contribution</th><th scope="col" class="db-num">Total</th></tr></thead>
+                                        <tbody>
+                                            <tr><th scope="row">Answers to questions</th><td class="db-num">5,155</td></tr>
+                                            <tr><th scope="row">Reviews</th><td class="db-num">173</td></tr>
+                                            <tr><th scope="row">Photos</th><td class="db-num">55</td></tr>
+                                            <tr><th scope="row">Edits</th><td class="db-num">55</td></tr>
+                                            <tr><th scope="row">Videos</th><td class="db-num">27</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </details>
+                        </div>
+                    </article>
+
+                    <!-- Window 06: photo views -->
+                    <article class="db-window db-window--compact" aria-labelledby="w06-title" data-db="lg-views">
+                        <header class="db-window__bar">
+                            <span class="db-window__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+                            <span class="db-window__num">Window 06</span>
+                            <h3 class="db-window__title" id="w06-title">Photo views</h3>
+                        </header>
+                        <div class="db-window__body">
+                            <dl class="db-stats" data-lg-stats data-db-enhanced hidden></dl>
+                            <figure class="db-chart" data-db-enhanced hidden>
+                                <div class="db-plot" data-lg-plot="views" tabindex="0" role="group" aria-label="New photo views by month. Use the left and right arrow keys to read each month."></div>
+                                <p class="db-sr" data-lg-readout aria-live="polite"></p>
+                                <figcaption class="db-help">New photo views each month. Hatched columns are part-months.</figcaption>
+                            </figure>
+                            <details class="db-numbers" open data-db-numbers>
+                                <summary>Show the numbers</summary>
+                                <div class="db-table-scroll">
+                                    <table class="db-table" data-lg-table="views-totals">
+                                        <caption class="db-sr">Photo view totals</caption>
+                                        <tbody>
+                                            <tr><th scope="row">Total photo views</th><td class="db-num">564,616</td></tr>
+                                            <tr><th scope="row">Average views per photo</th><td class="db-num">10,266</td></tr>
+                                        </tbody>
+                                    </table>
+                                    <table class="db-table" data-lg-table="views">
+                                        <caption class="db-sr">New photo views by month</caption>
+                                        <thead><tr><th scope="col">Month</th><th scope="col" class="db-num">New photo views</th></tr></thead>
+                                        <tbody>
+                                            <tr data-short="Jun" data-partial><th scope="row">June 2026 (from when tracking began)</th><td class="db-num">42,216</td></tr>
+                                            <tr data-short="Jul"><th scope="row">July 2026</th><td class="db-num">91,051</td></tr>
+                                            <tr data-short="Aug"><th scope="row">August 2026</th><td class="db-num">97,343</td></tr>
+                                            <tr data-short="Sep"><th scope="row">September 2026</th><td class="db-num">93,224</td></tr>
+                                            <tr data-short="Oct" data-partial><th scope="row">October 2026 (to 18 October)</th><td class="db-num">75,850</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </details>
+                        </div>
+                    </article>
+
+                    <p class="db-source">Figures as at 18 October 2026 from Local Guides Ranking, which reads this public Google Maps profile daily. <a class="db-link" href="https://www.localguides-ranking.com/profile/151119/" target="_blank" rel="noopener">See Max's full Local Guides profile</a></p>
                 </div>
             </div>
         </div>
