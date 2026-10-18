@@ -166,8 +166,7 @@
 /* ---------- Window ---------- */
 .db-window {
   min-width: 0;
-  display: flex;
-  flex-direction: column;
+  display: block;
   border: 1px solid var(--db-border);
   border-radius: var(--db-r-window);
   background: var(--db-surface);
@@ -187,6 +186,44 @@
   border-bottom: 1px solid var(--db-border);
   background: var(--db-bar);
 }
+/* Each window is a native <details> accordion: the title bar is the <summary>. */
+summary.db-window__bar {
+  list-style: none;
+  cursor: pointer;
+  min-height: calc(var(--db-bar-h) + var(--db-s-1));
+  transition: background-color var(--db-dur-fast) var(--db-ease);
+}
+summary.db-window__bar::-webkit-details-marker { display: none; }
+summary.db-window__bar::marker { content: ""; }
+summary.db-window__bar:hover { background: var(--db-raised-hover); }
+summary.db-window__bar:focus-visible { outline: var(--db-focus); outline-offset: calc(var(--db-focus-offset) * -1 - 2px); }
+.db-window:not([open]) > .db-window__bar { border-bottom-color: transparent; }
+.db-window__chev {
+  flex-shrink: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin-left: auto;
+  fill: none;
+  stroke: var(--db-gold);
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform var(--db-dur) var(--db-ease);
+}
+.db-window[open] > .db-window__bar .db-window__chev { transform: rotate(180deg); }
+
+/* Who it's for / why it's here, at the top of every window */
+.db-brief {
+  display: grid;
+  gap: var(--db-s-1h);
+  margin: 0;
+  padding: var(--db-s-1h) var(--db-s-2);
+  border-left: 3px solid var(--db-gold);
+  border-radius: 0 var(--db-r-control) var(--db-r-control) 0;
+  background: var(--db-gold-soft);
+}
+.db-brief dt { margin: 0 0 var(--db-s-half); font: 600 var(--db-text-sm) / 1.4 var(--db-font-body); color: var(--db-gold); }
+.db-brief dd { margin: 0; font-size: var(--db-text-md); line-height: var(--db-leading); color: var(--db-ink-2); max-width: var(--db-measure); }
 .db-window__dots { display: inline-flex; gap: var(--db-s-half); flex-shrink: 0; }
 .db-window__dots span { width: var(--db-dot); height: var(--db-dot); border-radius: 50%; opacity: 0.85; }
 .db-window__dots span:nth-child(1) { background: var(--db-dot-1); }
@@ -612,6 +649,7 @@
   .db-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: start; }
   .db-grid .db-window--strip { grid-column: 1 / -1; }
   .db-window--strip .db-window__body { flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: space-between; }
+  .db-window--strip .db-brief { flex: 1 1 36rem; }
 }
 
 /* ---------- Reduced motion (system-wide rule) ---------- */
