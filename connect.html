@@ -255,6 +255,10 @@
         if (!checked) return null;
         return checked.closest('label').textContent.trim();
       }
+      function valueFor(name) {
+        var checked = form.querySelector('input[name="' + name + '"]:checked');
+        return checked ? checked.value : null;
+      }
 
       form.addEventListener('submit', function (event) {
         event.preventDefault();
@@ -272,11 +276,11 @@
           return;
         }
 
-        var primary = labelFor('q6');
+        var primary = valueFor('q6');
         var text = outcomes[primary];
-        var q5 = labelFor('q5');
+        var q5 = valueFor('q5');
         var sentence = text;
-        if (q5 === 'Yes, and it is not solved') {
+        if (q5 === 'Yes, not solved') {
           sentence = 'Reputation issues are handled first. ' + text;
         }
         result.hidden = false;
