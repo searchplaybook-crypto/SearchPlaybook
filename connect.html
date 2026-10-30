@@ -3,22 +3,264 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book your free DPA | WeMustCreate</title>
-  <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="https://wemustcreate.online/solutions.html">
-  <meta http-equiv="refresh" content="0; url=solutions.html#service-dpa">
+  <title>Find your starting point | WeMustCreate</title>
+  <meta name="description" content="Answer seven short questions and we will suggest where to begin. Your answers stay in your browser. Nothing is sent unless you choose to send them on WhatsApp.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://wemustcreate.online/connect.html">
   <style>
-    body { background: #09090B; color: #E4E4E7; font-family: system-ui, sans-serif; display: grid; place-items: center; min-height: 100vh; margin: 0; padding: 1rem; text-align: center; }
-    a { color: #D4AF37; }
-    a:focus-visible { outline: 2px solid #43CFFD; outline-offset: 2px; }
+    :root {
+      --onyx: #18181B;
+      --graphite: #27272A;
+      --cream: #E4E4E7;
+      --subtext: #71717A;
+      --gold: #D4AF37;
+      --azure: #43CFFD;
+      --space-2: 8px;
+      --space-3: 16px;
+      --space-4: 24px;
+      --space-6: 40px;
+      --radius: 12px;
+      --target: 44px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--onyx);
+      color: var(--cream);
+      font-family: "Open Sans", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    a { color: var(--gold); }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
+      outline: 2px solid var(--azure);
+      outline-offset: 2px;
+    }
+    .skip-link {
+      position: absolute; left: var(--space-3); top: -48px;
+      background: var(--gold); color: var(--onyx); padding: var(--space-2) var(--space-3);
+      border-radius: var(--radius); z-index: 1400;
+    }
+    .skip-link:focus { top: var(--space-3); }
+    .wrap { max-width: 720px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
+    header nav a { display: inline-flex; align-items: center; min-height: var(--target); }
+    h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin: var(--space-4) 0 var(--space-3); }
+    .intro { color: var(--cream); margin-bottom: var(--space-4); }
+    .notice { color: var(--subtext); font-size: 0.95rem; }
+    fieldset {
+      border: 1px solid var(--graphite);
+      border-radius: var(--radius);
+      padding: var(--space-3);
+      margin: 0 0 var(--space-3);
+      background: var(--graphite);
+    }
+    legend { font-weight: 700; padding: 0 var(--space-2); }
+    .option {
+      display: flex; align-items: center; gap: var(--space-2);
+      min-height: var(--target); padding: var(--space-2) 0;
+    }
+    .option input { width: 20px; height: 20px; flex: 0 0 auto; accent-color: var(--gold); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: var(--target); padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius); border: 1px solid var(--gold);
+      background: var(--gold); color: var(--onyx); font: inherit; font-weight: 700;
+      cursor: pointer; text-decoration: none; margin: var(--space-2) var(--space-2) var(--space-2) 0;
+    }
+    .btn--ghost { background: transparent; color: var(--gold); }
+    .result {
+      border: 1px solid var(--azure);
+      border-radius: var(--radius);
+      padding: var(--space-3);
+      margin-top: var(--space-3);
+    }
+    .faq details { border-bottom: 1px solid var(--graphite); padding: var(--space-2) 0; }
+    .faq summary { cursor: pointer; min-height: var(--target); display: flex; align-items: center; font-weight: 700; }
+    .faq details > div { padding-bottom: var(--space-3); }
+    footer { color: var(--subtext); font-size: 0.9rem; border-top: 1px solid var(--graphite); margin-top: var(--space-6); padding-top: var(--space-3); }
+    footer a { display: inline-flex; align-items: center; min-height: var(--target); }
+    .js-only { display: none; }
+    .js .js-only:not([hidden]) { display: block; }
   </style>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
-  <main>
-    <h1>Bookings have moved</h1>
-    <p>Free DPA bookings now start on our Solutions page.</p>
-    <p><a href="solutions.html#service-dpa">Go to the free DPA on Solutions</a></p>
+  <a class="skip-link" href="#main">Skip to questions</a>
+
+  <header class="wrap">
+    <nav aria-label="Site">
+      <a href="/">Back to the Search Playbook home</a>
+    </nav>
+  </header>
+
+  <main id="main" class="wrap">
+    <h1>Find your starting point</h1>
+    <p class="intro">Answer seven short questions and we will suggest where to begin. Your answers stay in your browser. Nothing is sent to us unless you choose to send them on WhatsApp.</p>
+
+    <noscript>
+      <p class="notice">The questionnaire needs JavaScript. You can still reach us directly on WhatsApp: <a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20help%20finding%20my%20starting%20point.">message Max on WhatsApp</a>.</p>
+    </noscript>
+
+    <form id="starting-point" class="js-only" novalidate>
+      <fieldset>
+        <legend>1. What best describes you?</legend>
+        <label class="option"><input type="radio" name="q1" value="Small business or trade"> I run a small business or trade</label>
+        <label class="option"><input type="radio" name="q1" value="Household or family"> I am a household or family</label>
+        <label class="option"><input type="radio" name="q1" value="Caring for an older relative"> I look after an older relative</label>
+        <label class="option"><input type="radio" name="q1" value="Organisation"> I work for an organisation</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>2. Where do most customers or clients find you today?</legend>
+        <label class="option"><input type="radio" name="q2" value="Word of mouth"> Word of mouth only</label>
+        <label class="option"><input type="radio" name="q2" value="Google or Maps"> Google or Maps</label>
+        <label class="option"><input type="radio" name="q2" value="Facebook or Instagram"> Facebook or Instagram</label>
+        <label class="option"><input type="radio" name="q2" value="Not sure yet"> I am not sure yet</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>3. Do you have a Google Business Profile?</legend>
+        <label class="option"><input type="radio" name="q3" value="Yes, up to date"> Yes, and it is up to date</label>
+        <label class="option"><input type="radio" name="q3" value="Yes, needs work"> Yes, but it needs work</label>
+        <label class="option"><input type="radio" name="q3" value="No"> No</label>
+        <label class="option"><input type="radio" name="q3" value="Do not know"> I do not know what this is</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>4. How do people usually contact you?</legend>
+        <label class="option"><input type="radio" name="q4" value="WhatsApp"> WhatsApp</label>
+        <label class="option"><input type="radio" name="q4" value="Phone calls"> Phone calls</label>
+        <label class="option"><input type="radio" name="q4" value="Email"> Email</label>
+        <label class="option"><input type="radio" name="q4" value="A mix"> A mix of these</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>5. Have you ever had an online problem? (a fake page, a review you could not remove, a hacked account)</legend>
+        <label class="option"><input type="radio" name="q5" value="Yes, not solved"> Yes, and it is not solved</label>
+        <label class="option"><input type="radio" name="q5" value="Yes, solved"> Yes, and it is solved</label>
+        <label class="option"><input type="radio" name="q5" value="No"> No</label>
+        <label class="option"><input type="radio" name="q5" value="Not sure"> Not sure</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>6. What would you most like to fix first?</legend>
+        <label class="option"><input type="radio" name="q6" value="Being found online"> Being found online</label>
+        <label class="option"><input type="radio" name="q6" value="Privacy and reputation"> Protecting privacy and reputation</label>
+        <label class="option"><input type="radio" name="q6" value="Staying safe online"> Staying safe online</label>
+        <label class="option"><input type="radio" name="q6" value="Help choosing"> I would like help choosing</label>
+      </fieldset>
+
+      <fieldset>
+        <legend>7. How much time can you give this?</legend>
+        <label class="option"><input type="radio" name="q7" value="Almost none"> Almost none, set it and forget it</label>
+        <label class="option"><input type="radio" name="q7" value="About an hour"> About an hour</label>
+        <label class="option"><input type="radio" name="q7" value="More, I like to learn"> More, I like to learn</label>
+      </fieldset>
+
+      <button type="submit" class="btn">Show my starting point</button>
+      <button type="button" class="btn btn--ghost" id="reset">Start again</button>
+    </form>
+
+    <section class="result" id="result" aria-live="polite" aria-label="Your starting point" hidden></section>
+
+    <section class="result js-only" id="send" hidden>
+      <p>Send your answers to Max on WhatsApp. The message contains only the answers you selected above. You decide whether to send it.</p>
+      <a class="btn" id="whatsapp" href="https://wa.me/27695326613" rel="noopener">Send my answers on WhatsApp</a>
+    </section>
+
+    <section class="faq" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">Common questions</h2>
+      <details>
+        <summary>Do you store my answers?</summary>
+        <div>No. The questionnaire runs in your browser and does not save or send anything. Your answers are only shared if you tap the WhatsApp button.</div>
+      </details>
+      <details>
+        <summary>What happens after I send my answers on WhatsApp?</summary>
+        <div>Max replies on WhatsApp and talks you through the next step. You can ask questions before committing to anything.</div>
+      </details>
+      <details>
+        <summary>Is the free Digital Presence Assessment really free?</summary>
+        <div>Yes. The assessment is free. Anything beyond it is only discussed after you have seen the findings.</div>
+      </details>
+      <details>
+        <summary>How is my information handled?</summary>
+        <div>Read our <a href="/privacy.html">Privacy Policy</a> to see how information is handled when you contact us.</div>
+      </details>
+    </section>
   </main>
-  <script>location.replace('solutions.html#service-dpa');</script>
+
+  <footer class="wrap">
+    <p>WeMustCreate, Johannesburg. <a href="/privacy.html">Privacy Policy</a> &middot; <a href="/terms.html">Terms</a></p>
+  </footer>
+
+  <script>
+    (function () {
+      var form = document.getElementById('starting-point');
+      var result = document.getElementById('result');
+      var send = document.getElementById('send');
+      var waLink = document.getElementById('whatsapp');
+      var reset = document.getElementById('reset');
+      var WA_NUMBER = '27695326613';
+
+      var outcomes = {
+        'Being found online': 'Start with a free Digital Presence Assessment, then your Google Business Profile and local visibility.',
+        'Privacy and reputation': 'Start with a free Digital Presence Assessment, then a reputation and privacy check.',
+        'Staying safe online': 'Start with a free Digital Presence Assessment, then a digital safety health check.',
+        'Help choosing': 'Start with the free Digital Presence Assessment. We will recommend the next step from there.'
+      };
+
+      function labelFor(name) {
+        var checked = form.querySelector('input[name="' + name + '"]:checked');
+        if (!checked) return null;
+        return checked.closest('label').textContent.trim();
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        var answers = {};
+        var missing = [];
+        for (var i = 1; i <= 7; i++) {
+          var value = labelFor('q' + i);
+          if (value === null) missing.push(i);
+          answers['q' + i] = value;
+        }
+        if (missing.length) {
+          result.hidden = false;
+          result.textContent = 'Please answer question ' + missing.join(', ') + ' to see your starting point.';
+          send.hidden = true;
+          return;
+        }
+
+        var primary = labelFor('q6');
+        var text = outcomes[primary];
+        var q5 = labelFor('q5');
+        var sentence = text;
+        if (q5 === 'Yes, and it is not solved') {
+          sentence = 'Reputation issues are handled first. ' + text;
+        }
+        result.hidden = false;
+        result.textContent = sentence;
+
+        var summary = [];
+        for (var n = 1; n <= 7; n++) summary.push(n + '. ' + answers['q' + n]);
+        var message = 'Hi Max, I completed the Connect questionnaire. My answers: ' + summary.join('; ');
+        waLink.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(message);
+        send.hidden = false;
+        result.setAttribute('tabindex', '-1');
+        result.focus();
+      });
+
+      reset.addEventListener('click', function () {
+        form.reset();
+        result.hidden = true;
+        result.textContent = '';
+        send.hidden = true;
+        form.querySelector('input[name="q1"]').focus();
+      });
+    })();
+  </script>
 </body>
 </html>
