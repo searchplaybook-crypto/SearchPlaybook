@@ -230,6 +230,27 @@
       color: var(--azure);
     }
 
+
+    .steps { margin-top: var(--space-1); }
+    .steps summary {
+      display: flex;
+      align-items: center;
+      min-height: var(--target);
+      color: var(--azure);
+      cursor: pointer;
+    }
+    .steps h4 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.95rem;
+      color: var(--gold);
+      margin: var(--space-2) 0 var(--space-1);
+    }
+    .steps ol { margin: 0; padding-left: var(--space-3); }
+    .steps li { margin-bottom: var(--space-1); }
+    .steps-intro, .steps-alt { margin: var(--space-1) 0 0; }
+    .steps-alt { border-top: 1px solid var(--graphite); padding-top: var(--space-2); margin-top: var(--space-2); }
+    .steps-alt a { display: inline-flex; align-items: center; min-height: var(--target); color: var(--azure); }
+
     .case-section { margin-top: var(--space-5); }
     .case-intro {
       max-width: var(--measure);
@@ -313,8 +334,28 @@
           <li class="item" data-cat="visibility">
             <article class="card">
               <p class="card-tag">Visibility</p>
-              <h3>Google Business Profile: 5-minute setup</h3>
+              <h3>Google Business Profile: get verified, then let Gemini help</h3>
               <p>Claim, verify, and optimise your listing so customers see your hours, photos, and contact info first.</p>
+              <details class="steps">
+                <summary>Show the steps</summary>
+                <p class="steps-intro">Verification now takes planning, and it is where most new profiles get stuck. Work through these in order.</p>
+                <h4>Before you start</h4>
+                <ol>
+                  <li><strong>Make your details match everywhere.</strong> Use your trading name, a +27 phone number and your address exactly as on your door, website and social pages.</li>
+                  <li><strong>Keep the profile's phone number answered.</strong> Google may contact it by call, text or WhatsApp during verification. Tell whoever answers, because replies you give can appear on your profile.</li>
+                </ol>
+                <h4>Verify</h4>
+                <ol start="3">
+                  <li><strong>Claim or add the business on Google Maps and choose &ldquo;Verify&rdquo;.</strong> Google picks the method. Video is now the most common. Phone or email appear for some older profiles. Postcards are rare.</li>
+                  <li><strong>If it is a video, record it at the business.</strong> Aim for 1 to 2 minutes and show the signage, the location, your equipment or stock, and proof that you manage the business. Avoid showing faces or sensitive documents. Watch it before you send it.</li>
+                  <li><strong>Allow up to 5 business days.</strong> If Google asks you to verify again after you change your name, address, category or hours, complete it. If no method works, contact Google support with photos of your signage, a recent utility bill and your website address.</li>
+                </ol>
+                <h4>After you are verified</h4>
+                <ol start="6">
+                  <li><strong>If Gemini is available for your account, connect the profile to it.</strong> It can help update your hours, contacts and photos, draft replies to reviews, and report on impressions, website clicks and direction requests. Read every reply before it goes live.</li>
+                </ol>
+                <p class="steps-alt"><strong>Prefer not to do it yourself?</strong> We claim, verify and fill in your listing for you. <a href="/solutions.html#map-pack">See the Google Map Pack setup <span aria-hidden="true">&rarr;</span></a></p>
+              </details>
             </article>
           </li>
           <li class="item" data-cat="visibility">
