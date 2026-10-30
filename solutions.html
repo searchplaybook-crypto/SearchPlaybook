@@ -231,6 +231,13 @@
     .solid-content-card:hover {
       border-color: rgba(212, 175, 55, 0.4);
     }
+    /* South Africa lights: scroll-linked zoom element (reduced motion: static) */
+    .sa-orbit { max-width: 720px; margin: 0 auto; padding: 40px 16px; text-align: center; }
+    .sa-orbit__stage { position: relative; overflow: hidden; min-height: 240px; display: flex; align-items: center; justify-content: center; }
+    .sa-orbit__stage img { width: 100%; max-width: 512px; height: auto; transform: scale(var(--sa-zoom, 1)); opacity: var(--sa-fade, 1); will-change: transform, opacity; }
+    .sa-orbit__credit { font-size: 0.75rem; color: #71717A; margin-top: 12px; }
+    .sa-orbit__credit a { color: #D4AF37; }
+    @media (prefers-reduced-motion: reduce) { .sa-orbit__stage img { transform: none; opacity: 1; } }
   </style>
 <!-- site-menu:assets -->
 <link rel="stylesheet" href="assets/css/site-menu.css">
@@ -500,6 +507,19 @@
           </table>
         </div>
       </div>
+    </section>
+
+    <!-- South Africa lights: scroll-linked zoom -->
+    <section class="sa-orbit" id="sa-orbit" aria-labelledby="sa-orbit-title">
+      <h2 id="sa-orbit-title">South Africa after dark</h2>
+      <div class="sa-orbit__stage">
+        <picture>
+          <source type="image/avif" srcset="/assets/img/sa-lights-320.avif 320w, /assets/img/sa-lights-512.avif 512w" sizes="(min-width: 720px) 512px, 90vw">
+          <source type="image/webp" srcset="/assets/img/sa-lights-320.webp 320w, /assets/img/sa-lights-512.webp 512w" sizes="(min-width: 720px) 512px, 90vw">
+          <img src="/assets/img/sa-lights-512.png" srcset="/assets/img/sa-lights-320.png 320w, /assets/img/sa-lights-512.png 512w" sizes="(min-width: 720px) 512px, 90vw" width="512" height="332" alt="Night lights across South Africa, with the Highveld and the Cape coast lit up" decoding="async" loading="lazy">
+        </picture>
+      </div>
+      <p class="sa-orbit__credit">Earth textures: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a>, CC BY 4.0</p>
     </section>
 
     <!-- FAQ SECTION -->
@@ -846,6 +866,29 @@
 </div>
 <!-- /site-menu:panel -->
   <script src="/assets/js/consent.js" defer></script>
+  <script>
+    (function () {
+      var section = document.getElementById('sa-orbit');
+      if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+      var ticking = false;
+      function clamp(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
+      function update() {
+        ticking = false;
+        var stage = section.querySelector('.sa-orbit__stage');
+        var r = stage.getBoundingClientRect();
+        var vh = window.innerHeight;
+        var progress = clamp((vh - r.top) / (vh + r.height));
+        var zoom = 1 + progress * 1.2;
+        var fade = progress > 0.85 ? clamp(1 - (progress - 0.85) / 0.15) : 1;
+        section.style.setProperty('--sa-zoom', zoom.toFixed(3));
+        section.style.setProperty('--sa-fade', fade.toFixed(3));
+      }
+      function request() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+      window.addEventListener('scroll', request, { passive: true });
+      window.addEventListener('resize', request);
+      update();
+    })();
+  </script>
 </body>
 </html>
 
