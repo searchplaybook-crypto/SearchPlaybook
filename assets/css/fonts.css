@@ -1,0 +1,31 @@
+/* Self-hosted fonts. Latin subsets, woff2, variable weights.
+   Sources: Fontsource (npm), SIL Open Font License or Apache 2.0. Licence texts in /assets/fonts/. */
+
+@font-face { font-family: "Inter"; src: url("/assets/fonts/inter-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Open Sans"; src: url("/assets/fonts/open-sans-var.woff2") format("woff2"); font-weight: 300 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Space Grotesk"; src: url("/assets/fonts/space-grotesk-var.woff2") format("woff2"); font-weight: 300 700; font-style: normal; font-display: swap; }
+@font-face { font-family: "JetBrains Mono"; src: url("/assets/fonts/jetbrains-mono-var.woff2") format("woff2"); font-weight: 100 800; font-style: normal; font-display: swap; }
+@font-face { font-family: "Raleway"; src: url("/assets/fonts/raleway-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Raleway"; src: url("/assets/fonts/raleway-var-italic.woff2") format("woff2"); font-weight: 100 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("/assets/fonts/playfair-display-var.woff2") format("woff2"); font-weight: 400 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Playfair Display"; src: url("/assets/fonts/playfair-display-var-italic.woff2") format("woff2"); font-weight: 400 900; font-style: italic; font-display: swap; }
+@font-face { font-family: "Work Sans"; src: url("/assets/fonts/work-sans-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("/assets/fonts/montserrat-var.woff2") format("woff2"); font-weight: 100 900; font-style: normal; font-display: swap; }
+@font-face { font-family: "Material Symbols Outlined"; src: url("/assets/fonts/material-symbols-subset.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: block; }
+
+/* Icon class rule, matching the rule Google's stylesheet supplied. */
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-feature-settings: "liga";
+}
