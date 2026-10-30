@@ -12,5 +12,8 @@ Disallow: /assets/private/
 Disallow: /*?sort=
 Disallow: /*?filter=
 
+# Block internal search URLs (including unresolved template placeholders)
+Disallow: /*?s=
+
 # Respect POPIA: no crawling of user-submitted form data
 Disallow: /connect/submit
