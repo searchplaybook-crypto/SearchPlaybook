@@ -231,13 +231,17 @@
     .solid-content-card:hover {
       border-color: rgba(212, 175, 55, 0.4);
     }
-    /* South Africa lights: scroll-linked zoom element (reduced motion: static) */
-    .sa-orbit { max-width: 720px; margin: 0 auto; padding: 40px 16px; text-align: center; }
-    .sa-orbit__stage { position: relative; overflow: hidden; min-height: 240px; display: flex; align-items: center; justify-content: center; }
-    .sa-orbit__stage img { width: 100%; max-width: 512px; height: auto; transform: scale(var(--sa-zoom, 1)); opacity: var(--sa-fade, 1); will-change: transform, opacity; }
-    .sa-orbit__credit { font-size: 0.75rem; color: #71717A; margin-top: 12px; }
+    /* ZA orbital fly-through: live globe with static fallback */
+    .sa-orbit { max-width: 1120px; margin: 0 auto; padding: 40px 16px 0; text-align: center; }
+    .sa-orbit__scroll { position: relative; height: 220vh; }
+    .sa-orbit__sticky { position: sticky; top: 0; height: min(72vh, 620px); display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 12px; opacity: var(--sa-fade, 1); }
+    .sa-orbit__fallback { position: absolute; inset: 0; margin: auto; width: 100%; max-width: 512px; height: auto; object-fit: contain; }
+    .sa-orbit__canvas { position: absolute; inset: 0; display: none; }
+    .sa-orbit.is-live .sa-orbit__canvas { display: block; }
+    .sa-orbit.is-live .sa-orbit__fallback { display: none; }
+    .sa-orbit canvas { display: block; width: 100%; height: 100%; }
+    .sa-orbit__credit { font-size: 0.75rem; color: #71717A; margin: 12px 0 0; }
     .sa-orbit__credit a { color: #D4AF37; }
-    @media (prefers-reduced-motion: reduce) { .sa-orbit__stage img { transform: none; opacity: 1; } }
   </style>
 <!-- site-menu:assets -->
 <link rel="stylesheet" href="assets/css/site-menu.css">
@@ -509,15 +513,18 @@
       </div>
     </section>
 
-    <!-- South Africa lights: scroll-linked zoom -->
+    <!-- ZA orbital fly-through -->
     <section class="sa-orbit" id="sa-orbit" aria-labelledby="sa-orbit-title">
       <h2 id="sa-orbit-title">ZA orbital fly-through</h2>
-      <div class="sa-orbit__stage">
-        <picture>
-          <source type="image/avif" srcset="/assets/img/sa-lights-320.avif 320w, /assets/img/sa-lights-512.avif 512w" sizes="(min-width: 720px) 512px, 90vw">
-          <source type="image/webp" srcset="/assets/img/sa-lights-320.webp 320w, /assets/img/sa-lights-512.webp 512w" sizes="(min-width: 720px) 512px, 90vw">
-          <img src="/assets/img/sa-lights-512.png" srcset="/assets/img/sa-lights-320.png 320w, /assets/img/sa-lights-512.png 512w" sizes="(min-width: 720px) 512px, 90vw" width="512" height="332" alt="Night lights across South Africa, with the Highveld and the Cape coast lit up" decoding="async" loading="lazy">
-        </picture>
+      <div class="sa-orbit__scroll">
+        <div class="sa-orbit__sticky">
+          <picture>
+            <source type="image/avif" srcset="/assets/img/sa-lights-320.avif 320w, /assets/img/sa-lights-512.avif 512w" sizes="(min-width: 720px) 512px, 90vw">
+            <source type="image/webp" srcset="/assets/img/sa-lights-320.webp 320w, /assets/img/sa-lights-512.webp 512w" sizes="(min-width: 720px) 512px, 90vw">
+            <img class="sa-orbit__fallback" src="/assets/img/sa-lights-512.png" srcset="/assets/img/sa-lights-320.png 320w, /assets/img/sa-lights-512.png 512w" sizes="(min-width: 720px) 512px, 90vw" width="512" height="332" alt="Night lights across South Africa" decoding="async" loading="lazy">
+          </picture>
+          <div class="sa-orbit__canvas" aria-hidden="true"></div>
+        </div>
       </div>
       <p class="sa-orbit__credit">Earth textures: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a>, CC BY 4.0</p>
     </section>
@@ -869,24 +876,133 @@
   <script>
     (function () {
       var section = document.getElementById('sa-orbit');
-      if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { return; }
+      if (!section) { return; }
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var hasWebGL = (function () {
+        try { var c = document.createElement('canvas'); return !!(window.WebGLRenderingContext && (c.getContext('webgl') || c.getContext('experimental-webgl'))); }
+        catch (e) { return false; }
+      })();
+      if (reduce || !hasWebGL) { return; }
+
+      var scroll = section.querySelector('.sa-orbit__scroll');
+      var sticky = section.querySelector('.sa-orbit__sticky');
+      var host = section.querySelector('.sa-orbit__canvas');
+      var started = false;
+      var renderer = null, camera = null, scene = null, ready = false;
       var ticking = false;
-      function clamp(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
+
+      var VS = 'varying vec2 vUv; varying vec3 vWorldNormal;' +
+        'void main() { vUv = uv; vWorldNormal = normalize(mat3(modelMatrix) * normal);' +
+        'gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }';
+      var FS = 'uniform sampler2D uDay; uniform sampler2D uNight; uniform vec3 uSunDir; uniform vec3 uGold;' +
+        'varying vec2 vUv; varying vec3 vWorldNormal;' +
+        'void main() {' +
+        '  float ndl = dot(normalize(vWorldNormal), normalize(uSunDir));' +
+        '  float dayMix = smoothstep(-0.12, 0.18, ndl);' +
+        '  vec3 dayColour = texture2D(uDay, vUv).rgb * (0.35 + 0.65 * clamp(ndl, 0.0, 1.0));' +
+        '  vec3 nightColour = texture2D(uNight, vUv).rgb * uGold * 1.8;' +
+        '  gl_FragColor = vec4(mix(nightColour, dayColour, dayMix), 1.0); }';
+      var RVS = 'varying vec3 vNormal; void main() { vNormal = normalize(normalMatrix * normal);' +
+        'gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }';
+      var RFS = 'uniform vec3 uColour; varying vec3 vNormal;' +
+        'void main() { float i = pow(clamp(0.62 - abs(vNormal.z), 0.0, 1.0), 2.0) * 1.0;' +
+        '  gl_FragColor = vec4(uColour, i); }';
+
+      // Direction from the globe centre to South Africa (lon 25E, lat -29)
+      function surfaceDirection(lonDeg, latDeg) {
+        var phi = (lonDeg + 180) * Math.PI / 180;
+        var theta = (90 - latDeg) * Math.PI / 180;
+        return new THREE.Vector3(-Math.cos(phi) * Math.sin(theta), Math.cos(theta), Math.sin(phi) * Math.sin(theta)).normalize();
+      }
+
+      function clamp01(v) { return v < 0 ? 0 : (v > 1 ? 1 : v); }
+      function ease(t) { return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; }
+
+      function resize() {
+        if (!renderer) { return; }
+        var w = host.clientWidth, hgt = host.clientHeight;
+        renderer.setSize(w, hgt, false);
+        camera.aspect = w / hgt;
+        camera.updateProjectionMatrix();
+      }
+
       function update() {
         ticking = false;
-        var stage = section.querySelector('.sa-orbit__stage');
-        var r = stage.getBoundingClientRect();
-        var vh = window.innerHeight;
-        var progress = clamp((vh - r.top) / (vh + r.height));
-        var zoom = 1 + progress * 1.2;
-        var fade = progress > 0.85 ? clamp(1 - (progress - 0.85) / 0.15) : 1;
-        section.style.setProperty('--sa-zoom', zoom.toFixed(3));
-        section.style.setProperty('--sa-fade', fade.toFixed(3));
+        if (!ready) { return; }
+        var rect = scroll.getBoundingClientRect();
+        var range = rect.height - window.innerHeight;
+        var p = clamp01(-rect.top / range);
+        var t = ease(clamp01(p / 0.9));
+        var start = new THREE.Vector3(0.1, 0.45, 1).normalize();
+        var dir = start.clone().lerp(target, t).normalize();
+        var dist = 3.4 + (1.45 - 3.4) * t;
+        camera.position.copy(dir.multiplyScalar(dist));
+        camera.lookAt(0, 0, 0);
+        renderer.render(scene, camera);
+        var fade = p > 0.92 ? clamp01(1 - (p - 0.92) / 0.08) : 1;
+        sticky.style.setProperty('--sa-fade', fade.toFixed(3));
       }
+
       function request() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
-      window.addEventListener('scroll', request, { passive: true });
-      window.addEventListener('resize', request);
-      update();
+
+      var target = null;
+
+      function init() {
+        if (typeof THREE === 'undefined') { return; }
+        try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); }
+        catch (e) { return; }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        host.appendChild(renderer.domElement);
+        scene = new THREE.Scene();
+        camera = new THREE.PerspectiveCamera(35, 1, 0.1, 100);
+        target = surfaceDirection(25, -29);
+
+        var loader = new THREE.TextureLoader();
+        var uniforms = {
+          uDay: { value: loader.load('/assets/earth/day-2048.webp') },
+          uNight: { value: loader.load('/assets/earth/night-lights-2048.webp') },
+          uSunDir: { value: new THREE.Vector3(-target.x + 0.25, -target.y + 0.15, -target.z).normalize() },
+          uGold: { value: new THREE.Color(0.831, 0.686, 0.216) }
+        };
+        var globe = new THREE.Mesh(new THREE.SphereGeometry(1, 96, 96), new THREE.ShaderMaterial({ uniforms: uniforms, vertexShader: VS, fragmentShader: FS }));
+        scene.add(globe);
+
+        var clouds = new THREE.Mesh(new THREE.SphereGeometry(1.01, 64, 64), new THREE.MeshBasicMaterial({ map: loader.load('/assets/earth/clouds-1024.webp'), transparent: true, opacity: 0.3, depthWrite: false }));
+        scene.add(clouds);
+
+        var rim = new THREE.Mesh(new THREE.SphereGeometry(1.12, 64, 64), new THREE.ShaderMaterial({
+          uniforms: { uColour: { value: new THREE.Color(0.263, 0.812, 0.992) } },
+          vertexShader: RVS, fragmentShader: RFS, transparent: true, depthWrite: false,
+          blending: THREE.AdditiveBlending, side: THREE.BackSide
+        }));
+        scene.add(rim);
+
+        ready = true;
+        section.classList.add('is-live');
+        resize();
+        window.addEventListener('resize', function () { resize(); request(); });
+        window.addEventListener('scroll', request, { passive: true });
+        request();
+      }
+
+      function loadThree() {
+        if (started) { return; }
+        started = true;
+        var s = document.createElement('script');
+        s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+        s.async = true;
+        s.onload = init;
+        document.head.appendChild(s);
+      }
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          if (entries[0].isIntersecting) { io.disconnect(); loadThree(); }
+        }, { rootMargin: '400px 0px' });
+        io.observe(scroll);
+      } else {
+        loadThree();
+      }
     })();
   </script>
 </body>
