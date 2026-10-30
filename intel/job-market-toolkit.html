@@ -70,6 +70,7 @@
 <link rel="stylesheet" href="../assets/css/site-menu.css">
 <script src="../assets/js/site-menu.js" defer></script>
 <!-- /site-menu:assets -->
+  <link rel="stylesheet" href="/assets/css/footer.css">
 </head>
 <body>
   <a href="#main" class="skip-link">Skip to main content</a>
@@ -158,21 +159,54 @@
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <nav class="footer-links" aria-label="Footer">
-        <ul>
-          <li><a href="../">Home</a></li>
-          <li><a href="../solutions.html">Solutions</a></li>
-          <li><a href="../intel.html">Intel Hub</a></li>
-          <li><a href="../collective.html">Collective</a></li>
-          <li><a href="../privacy.html">Privacy Policy</a></li>
-          <li><a href="../terms.html">Terms of Service</a></li>
-        </ul>
-      </nav>
-      <p class="footer-copy">&copy; <span data-year>2026</span> WeMustCreate. All rights reserved. Joburg-built, for South African businesses.</p>
-    </div>
-  </footer>
+  <footer class="wmc-footer">
+  <div class="wmc-footer__grid">
+
+    <section class="wmc-footer__col" aria-labelledby="wmc-footer-brand">
+      <h2 id="wmc-footer-brand" class="wmc-footer__heading">WeMustCreate</h2>
+      <p class="wmc-footer__text">Set-and-forget digital presence for Johannesburg small businesses, families and elders. No monthly subscriptions.</p>
+      <ul class="wmc-footer__list">
+        <li><a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20to%20talk%20about%20my%20digital%20presence.">Message us on WhatsApp</a></li>
+        <li><a href="tel:+27695326613">+27 69 532 6613</a></li>
+        <li><a href="mailto:hello@wemustcreate.co.za">hello@wemustcreate.co.za</a></li>
+      </ul>
+    </section>
+
+    <nav class="wmc-footer__col" aria-labelledby="wmc-footer-explore">
+      <h2 id="wmc-footer-explore" class="wmc-footer__heading">Explore</h2>
+      <ul class="wmc-footer__list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/solutions.html">Solutions and pricing</a></li>
+        <li><a href="/collective.html">The Collective</a></li>
+        <li><a href="/connect.html">Find your starting point</a></li>
+      </ul>
+    </nav>
+
+    <nav class="wmc-footer__col" aria-labelledby="wmc-footer-intel">
+      <h2 id="wmc-footer-intel" class="wmc-footer__heading">Intel Hub</h2>
+      <ul class="wmc-footer__list">
+        <li><a href="/intel.html">All guides</a></li>
+        <li><a href="/intel/case-studies.html">Case studies</a></li>
+        <li><a href="/intel/job-market-toolkit.html">Job market toolkit</a></li>
+        <li><a href="/intel/ncii.html">NCII support guide</a></li>
+      </ul>
+    </nav>
+
+    <nav class="wmc-footer__col" aria-labelledby="wmc-footer-legal">
+      <h2 id="wmc-footer-legal" class="wmc-footer__heading">Legal and privacy</h2>
+      <ul class="wmc-footer__list">
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Use</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <div class="wmc-footer__strip">
+    <p class="wmc-footer__brand-line">WE MUST CREATE &mdash; WEMUSTCREATE</p>
+    <p class="wmc-footer__copy">&copy; 2026 WeMustCreate, Johannesburg. Sole proprietor.</p>
+  </div>
+</footer>
   <script>document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });</script>
 <!-- site-menu:panel -->
 <div id="site-menu" class="sm-panel" popover>

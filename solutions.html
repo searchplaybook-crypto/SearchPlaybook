@@ -247,6 +247,7 @@
 <link rel="stylesheet" href="assets/css/site-menu.css">
 <script src="assets/js/site-menu.js" defer></script>
 <!-- /site-menu:assets -->
+  <link rel="stylesheet" href="/assets/css/footer.css">
 </head>
 
 <body class="bg-void text-gray-200 font-sans antialiased min-h-screen flex flex-col selection:bg-gold selection:text-void">
@@ -526,7 +527,7 @@
           <div class="sa-orbit__canvas" aria-hidden="true"></div>
         </div>
       </div>
-      <p class="sa-orbit__credit">Earth textures: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a>, CC BY 4.0</p>
+      <p class="sa-orbit__credit">Earth day and cloud textures: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a>, CC BY 4.0. Night lights: AI-generated.</p>
     </section>
 
     <!-- FAQ SECTION -->
@@ -632,21 +633,55 @@
   </div>
 
   <!-- FOOTER -->
-  <footer class="border-t border-glass-border bg-black/80 py-10">
-    <div class="max-w-7xl mx-auto px-4 text-center sm:flex sm:justify-between sm:items-center">
-      <div class="flex items-center justify-center sm:justify-start gap-3 mb-4 sm:mb-0">
-        <img src="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056" alt="WeMustCreate Shield" class="h-8 w-auto" />
-        <span class="text-white font-bold text-sm">WeMustCreate &copy; 2026. All rights reserved.</span>
-      </div>
-      <p class="text-gray-500 text-xs">
-        Lead Strategist: Llewellyn O'Shea | WhatsApp: <a href="https://wa.me/27695326613" class="text-gold hover:underline">+27 69 532 6613</a>
-      </p>
-      <nav aria-label="Legal" class="flex justify-center gap-6 mt-2 sm:mt-0">
-        <a href="privacy.html" class="inline-flex items-center min-h-[44px] text-sm text-gray-400 underline underline-offset-4 hover:text-gold">Privacy policy</a>
-        <a href="terms.html" class="inline-flex items-center min-h-[44px] text-sm text-gray-400 underline underline-offset-4 hover:text-gold">Terms of service</a>
-      </nav>
-    </div>
-  </footer>
+  <footer class="wmc-footer">
+  <div class="wmc-footer__grid">
+
+    <section class="wmc-footer__col" aria-labelledby="wmc-footer-brand">
+      <h2 id="wmc-footer-brand" class="wmc-footer__heading">WeMustCreate</h2>
+      <p class="wmc-footer__text">Set-and-forget digital presence for Johannesburg small businesses, families and elders. No monthly subscriptions.</p>
+      <ul class="wmc-footer__list">
+        <li><a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20to%20talk%20about%20my%20digital%20presence.">Message us on WhatsApp</a></li>
+        <li><a href="tel:+27695326613">+27 69 532 6613</a></li>
+        <li><a href="mailto:hello@wemustcreate.co.za">hello@wemustcreate.co.za</a></li>
+      </ul>
+    </section>
+
+    <nav class="wmc-footer__col" aria-labelledby="wmc-footer-explore">
+      <h2 id="wmc-footer-explore" class="wmc-footer__heading">Explore</h2>
+      <ul class="wmc-footer__list">
+        <li><a href="/">Home</a></li>
+        <li><a href="/solutions.html">Solutions and pricing</a></li>
+        <li><a href="/collective.html">The Collective</a></li>
+        <li><a href="/connect.html">Find your starting point</a></li>
+      </ul>
+    </nav>
+
+    <nav class="wmc-footer__col" aria-labelledby="wmc-footer-intel">
+      <h2 id="wmc-footer-intel" class="wmc-footer__heading">Intel Hub</h2>
+      <ul class="wmc-footer__list">
+        <li><a href="/intel.html">All guides</a></li>
+        <li><a href="/intel/case-studies.html">Case studies</a></li>
+        <li><a href="/intel/job-market-toolkit.html">Job market toolkit</a></li>
+        <li><a href="/intel/ncii.html">NCII support guide</a></li>
+      </ul>
+    </nav>
+
+    <nav class="wmc-footer__col" aria-labelledby="wmc-footer-legal">
+      <h2 id="wmc-footer-legal" class="wmc-footer__heading">Legal and privacy</h2>
+      <ul class="wmc-footer__list">
+        <li><a href="/privacy.html">Privacy Policy</a></li>
+        <li><a href="/terms.html">Terms of Use</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  <div class="wmc-footer__strip">
+    <p class="wmc-footer__brand-line">WE MUST CREATE &mdash; WEMUSTCREATE</p>
+    <p class="wmc-footer__copy">Earth day and cloud textures: <a href="https://www.solarsystemscope.com/textures/" target="_blank" rel="noopener">Solar System Scope</a>, CC BY 4.0. Night lights: AI-generated.</p>
+    <p class="wmc-footer__copy">&copy; 2026 WeMustCreate, Johannesburg. Sole proprietor.</p>
+  </div>
+</footer>
 
   <!-- INTERACTIVE JAVASCRIPT ENGINE -->
   <script>
