@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insights and ideas | WeMustCreate</title>
+  <meta name="description" content="Practical ideas on visibility, privacy and safety for Johannesburg small businesses, plus case studies from real clients.">
+  <meta name="robots" content="index, follow, max-image-preview:large">
+  <link rel="canonical" href="https://wemustcreate.online/insights.html">
+  <meta name="theme-color" content="#09090B">
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+  <link rel="stylesheet" href="/assets/css/fonts.css">
+  <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/assets/css/footer.css">
+  <style>
+    :root {
+      --gold: #D4AF37;
+      --azure: #43CFFD;
+      --red: #EA110B;
+      --onyx: #18181B;
+      --graphite: #27272A;
+      --cream: #E4E4E7;
+      --subtext: #71717A;
+      --void: #09090B;
+      --space-1: 8px;
+      --space-2: 16px;
+      --space-3: 24px;
+      --space-4: 40px;
+      --space-5: 64px;
+      --radius: 12px;
+      --target: 44px;
+      --dur-hover: 160ms;
+      --measure: 68ch;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      margin: 0;
+      background: var(--void);
+      color: var(--cream);
+      font-family: "Inter", system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+
+    a { color: var(--cream); text-underline-offset: 3px; }
+    a:hover { color: var(--gold); }
+
+    :focus-visible {
+      outline: 2px solid var(--azure);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: var(--space-2);
+      top: -100px;
+      background: var(--gold);
+      color: var(--void);
+      padding: var(--space-1) var(--space-2);
+      border-radius: var(--radius);
+      z-index: 1400;
+    }
+    .skip-link:focus { top: var(--space-1); }
+
+    .wrap {
+      width: 100%;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 var(--space-2);
+    }
+
+    header.site-head {
+      border-bottom: 1px solid var(--graphite);
+      padding: var(--space-2) 0;
+    }
+    .site-head .wrap {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .brand {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .site-nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1) var(--space-2);
+    }
+    .site-nav a {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--target);
+      text-decoration: none;
+    }
+    .site-nav a[aria-current="page"] { color: var(--gold); }
+
+    main { padding: var(--space-4) 0 var(--space-5); }
+
+    .eyebrow {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0 0 var(--space-1);
+    }
+
+    h1 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(2rem, 6vw, 3.25rem);
+      line-height: 1.1;
+      margin: 0 0 var(--space-2);
+      color: var(--cream);
+    }
+
+    .lede {
+      max-width: var(--measure);
+      color: var(--cream);
+      margin: 0 0 var(--space-3);
+    }
+
+    h2 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      margin: var(--space-4) 0 var(--space-2);
+      color: var(--cream);
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-1);
+      margin: 0 0 var(--space-2);
+      padding: 0;
+      border: 0;
+    }
+    .filters legend {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--subtext);
+      margin-bottom: var(--space-1);
+    }
+    .filter-btn {
+      min-height: var(--target);
+      min-width: var(--target);
+      padding: 0 var(--space-2);
+      border: 1px solid var(--graphite);
+      border-radius: 999px;
+      background: var(--onyx);
+      color: var(--cream);
+      font: inherit;
+      cursor: pointer;
+      transition: border-color var(--dur-hover), color var(--dur-hover);
+    }
+    .filter-btn:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-btn[aria-pressed="true"] {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .count {
+      color: var(--subtext);
+      font-size: 0.9rem;
+      margin: 0 0 var(--space-3);
+    }
+
+    .grid {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: var(--space-2);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 640px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card {
+      height: 100%;
+      background: var(--onyx);
+      border: 1px solid var(--graphite);
+      border-radius: var(--radius);
+      padding: var(--space-3) var(--space-2);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-1);
+    }
+    .card-tag {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin: 0;
+    }
+    .card h3 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin: 0;
+      color: var(--cream);
+    }
+    .card p { margin: 0; color: var(--cream); }
+    .card .meta { color: var(--subtext); font-size: 0.9rem; }
+    .card a.more {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--target);
+      color: var(--azure);
+    }
+
+    .case-section { margin-top: var(--space-5); }
+    .case-intro {
+      max-width: var(--measure);
+      color: var(--cream);
+      margin: 0 0 var(--space-3);
+    }
+
+    .cta-panel {
+      margin-top: var(--space-5);
+      border-top: 1px solid var(--graphite);
+      padding-top: var(--space-3);
+    }
+    .btn-row { display: flex; flex-wrap: wrap; gap: var(--space-1); }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      min-height: var(--target);
+      padding: 0 var(--space-2);
+      border-radius: 999px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .btn:hover { background: var(--gold); color: var(--void); }
+    .btn-primary { background: var(--gold); color: var(--void); }
+    .btn-primary:hover { color: var(--void); opacity: 0.92; }
+
+    [hidden] { display: none !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-head">
+    <div class="wrap">
+      <a class="brand" href="/">WE MUST CREATE</a>
+      <nav class="site-nav" aria-label="Primary">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/solutions.html">Solutions</a></li>
+          <li><a href="/collective.html">Collective</a></li>
+          <li><a href="/intel.html">Intel Hub</a></li>
+          <li><a href="/insights.html" aria-current="page">Insights</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <p class="eyebrow">Insights and ideas</p>
+      <h1>Practical ideas for your business online</h1>
+      <p class="lede">Short, plain guidance on visibility, privacy and safety, and what our clients did with it. Filter by topic to find what matters to you.</p>
+
+      <fieldset class="filters" aria-describedby="filter-help">
+        <legend>Filter by topic</legend>
+        <button class="filter-btn" type="button" data-filter="all" aria-pressed="true">All</button>
+        <button class="filter-btn" type="button" data-filter="visibility" aria-pressed="false">Visibility</button>
+        <button class="filter-btn" type="button" data-filter="privacy" aria-pressed="false">Privacy</button>
+        <button class="filter-btn" type="button" data-filter="safety" aria-pressed="false">Safety</button>
+        <button class="filter-btn" type="button" data-filter="case" aria-pressed="false">Case studies</button>
+      </fieldset>
+      <p id="filter-help" class="count" aria-live="polite" data-count></p>
+
+      <section aria-labelledby="ideas-title">
+        <h2 id="ideas-title">Ideas</h2>
+        <ul class="grid">
+          <li class="item" data-cat="safety">
+            <article class="card">
+              <p class="card-tag">Safety</p>
+              <h3>NCII protection guide</h3>
+              <p>Intimate images shared without your consent? What to do first, how to report it under South African law, and where to get help.</p>
+              <a class="more" href="/intel/ncii.html">Open the guide <span aria-hidden="true">&rarr;</span></a>
+            </article>
+          </li>
+          <li class="item" data-cat="visibility">
+            <article class="card">
+              <p class="card-tag">Visibility</p>
+              <h3>Google Business Profile: 5-minute setup</h3>
+              <p>Claim, verify, and optimise your listing so customers see your hours, photos, and contact info first.</p>
+            </article>
+          </li>
+          <li class="item" data-cat="visibility">
+            <article class="card">
+              <p class="card-tag">Visibility</p>
+              <h3>How to rank in “near me” searches</h3>
+              <p>Google uses your address, reviews, and website content to match local buyers. Consistency wins.</p>
+            </article>
+          </li>
+          <li class="item" data-cat="privacy">
+            <article class="card">
+              <p class="card-tag">Privacy</p>
+              <h3>Data collection &amp; consent basics</h3>
+              <p>Tell people why you need their details, how you&rsquo;ll use them, and give them an easy way to opt out.</p>
+            </article>
+          </li>
+          <li class="item" data-cat="privacy">
+            <article class="card">
+              <p class="card-tag">Privacy</p>
+              <h3>Identity consistency checklist</h3>
+              <p>Ensure your business name, phone, and address match exactly everywhere online. Mismatched data hurts rankings.</p>
+            </article>
+          </li>
+          <li class="item" data-cat="safety">
+            <article class="card">
+              <p class="card-tag">Safety</p>
+              <h3>Spotting fake service providers</h3>
+              <p>Red flags: upfront full payments, vague contracts, pressure tactics. Always verify credentials before sharing access.</p>
+            </article>
+          </li>
+          <li class="item" data-cat="safety">
+            <article class="card">
+              <p class="card-tag">Safety</p>
+              <h3>Verify you own your domain</h3>
+              <p>Domains expire. Keep login credentials secure, enable auto-renew, and assign a backup contact to avoid losing your site.</p>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <section class="case-section" aria-labelledby="case-title">
+        <h2 id="case-title">Case studies</h2>
+        <p class="case-intro">What we built and found for four real clients. Each write-up has the full detail and figures.</p>
+        <ul class="grid">
+          <li class="item" data-cat="case">
+            <article class="card">
+              <p class="card-tag">Case study &middot; Website to WhatsApp</p>
+              <h3>VH1 Value Home</h3>
+              <p class="meta">East Rand, Gauteng</p>
+              <p>A full product catalogue with 25+ products, a WhatsApp button on every product, and no monthly platform fee.</p>
+              <a class="more" href="/intel/case-studies.html#vh1-title">Read the case study <span aria-hidden="true">&rarr;</span></a>
+            </article>
+          </li>
+          <li class="item" data-cat="case">
+            <article class="card">
+              <p class="card-tag">Case study &middot; WhatsApp catalogue</p>
+              <h3>Five Hearts Events Décor &amp; Hire</h3>
+              <p class="meta">Athlone, Cape Town</p>
+              <p>A WhatsApp catalogue site and a 30-day audit cycle. The first audit ranked five issues, with a fix checklist for each.</p>
+              <a class="more" href="/intel/case-studies.html#fivehearts-title">Read the case study <span aria-hidden="true">&rarr;</span></a>
+            </article>
+          </li>
+          <li class="item" data-cat="case">
+            <article class="card">
+              <p class="card-tag">Case study &middot; Google Business Profile</p>
+              <h3>X-Seption</h3>
+              <p class="meta">Sandton, Johannesburg</p>
+              <p>3,418 Google Business Profile views led to 3 WhatsApp chats over six months. We audited the profiles and wrote the message sequences.</p>
+              <a class="more" href="/intel/case-studies.html#xseption-title">Read the case study <span aria-hidden="true">&rarr;</span></a>
+            </article>
+          </li>
+          <li class="item" data-cat="case">
+            <article class="card">
+              <p class="card-tag">Case study &middot; Google Business Profile</p>
+              <h3>Family Kitchen</h3>
+              <p class="meta">Newclare, Johannesburg</p>
+              <p>A 60-day profile report found a problem no dashboard shows: orders taking 50+ minutes between the till and the kitchen. The fix was a staff reference card and a wall menu.</p>
+              <a class="more" href="/intel/case-studies.html#familykitchen-title">Read the case study <span aria-hidden="true">&rarr;</span></a>
+            </article>
+          </li>
+        </ul>
+      </section>
+
+      <section class="cta-panel" aria-labelledby="next-title">
+        <h2 id="next-title">What would you like to do next?</h2>
+        <p class="lede">Not sure where to start? Book your free Digital Presence Assessment and we will show you where you stand and what to fix first.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="/solutions.html#service-dpa">Book your free DPA</a>
+          <a class="btn" href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20read%20the%20insights%20and%20have%20a%20question." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      var buttons = document.querySelectorAll('[data-filter]');
+      var items = document.querySelectorAll('[data-cat]');
+      var count = document.querySelector('[data-count]');
+      var labels = { all: 'all topics', visibility: 'Visibility', privacy: 'Privacy', safety: 'Safety', case: 'case studies' };
+
+      function apply(filter) {
+        var shown = 0;
+        items.forEach(function (item) {
+          var match = filter === 'all' || item.getAttribute('data-cat') === filter;
+          item.hidden = !match;
+          if (match) shown++;
+        });
+        buttons.forEach(function (btn) {
+          btn.setAttribute('aria-pressed', btn.getAttribute('data-filter') === filter ? 'true' : 'false');
+        });
+        if (count) count.textContent = 'Showing ' + shown + ' of ' + items.length + ' items: ' + labels[filter] + '.';
+      }
+
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          apply(btn.getAttribute('data-filter'));
+        });
+      });
+    })();
+  </script>
+
+  <!-- Standard WMC footer -->
+  <footer class="wmc-footer">
+    <div class="wmc-footer__grid">
+
+      <section class="wmc-footer__col" aria-labelledby="wmc-footer-brand">
+        <h2 id="wmc-footer-brand" class="wmc-footer__heading">WeMustCreate</h2>
+        <p class="wmc-footer__text">Set-and-forget digital presence for Johannesburg small businesses, families and elders. No monthly subscriptions.</p>
+        <ul class="wmc-footer__list">
+          <li><a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20to%20talk%20about%20my%20digital%20presence.">Message us on WhatsApp</a></li>
+          <li><a href="tel:+27695326613">+27 69 532 6613</a></li>
+          <li><a href="mailto:hello@wemustcreate.co.za">hello@wemustcreate.co.za</a></li>
+        </ul>
+      </section>
+
+      <nav class="wmc-footer__col" aria-labelledby="wmc-footer-explore">
+        <h2 id="wmc-footer-explore" class="wmc-footer__heading">Explore</h2>
+        <ul class="wmc-footer__list">
+          <li><a href="/">Home</a></li>
+          <li><a href="/solutions.html">Solutions and pricing</a></li>
+          <li><a href="/collective.html">The Collective</a></li>
+          <li><a href="/connect.html">Find your starting point</a></li>
+        </ul>
+      </nav>
+
+      <nav class="wmc-footer__col" aria-labelledby="wmc-footer-intel">
+        <h2 id="wmc-footer-intel" class="wmc-footer__heading">Intel Hub</h2>
+        <ul class="wmc-footer__list">
+          <li><a href="/intel.html">All guides</a></li>
+          <li><a href="/intel/case-studies.html">Case studies</a></li>
+          <li><a href="/intel/job-market-toolkit.html">Job market toolkit</a></li>
+          <li><a href="/intel/ncii.html">NCII support guide</a></li>
+        </ul>
+      </nav>
+
+      <nav class="wmc-footer__col" aria-labelledby="wmc-footer-legal">
+        <h2 id="wmc-footer-legal" class="wmc-footer__heading">Legal and privacy</h2>
+        <ul class="wmc-footer__list">
+          <li><a href="/privacy.html">Privacy Policy</a></li>
+          <li><a href="/terms.html">Terms of Use</a></li>
+        </ul>
+      </nav>
+
+    </div>
+
+    <div class="wmc-footer__strip">
+      <p class="wmc-footer__brand-line">WE MUST CREATE &mdash; WEMUSTCREATE</p>
+      <p class="wmc-footer__copy">&copy; 2026 WeMustCreate, Johannesburg. Sole proprietor.</p>
+    </div>
+  </footer>
+</body>
+</html>
