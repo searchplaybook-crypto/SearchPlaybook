@@ -1,0 +1,108 @@
+/* WMC standardised footer. Mobile-first. Tokens only. */
+
+:root {
+  --onyx: #18181B;
+  --graphite: #27272A;
+  --cream: #E4E4E7;
+  --subtext: #71717A;
+  --gold: #D4AF37;
+  --azure: #43CFFD;
+  --red: #EA110B;
+  --space-2: 8px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-6: 40px;
+  --radius: 12px;
+  --target: 44px;
+}
+
+.wmc-footer {
+  background: var(--onyx);
+  color: var(--cream);
+  border-top: 1px solid var(--graphite);
+  padding: var(--space-6) var(--space-3) var(--space-3);
+  font-family: "Open Sans", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.wmc-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-4);
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.wmc-footer__col {
+  min-width: 0;
+}
+
+.wmc-footer__heading {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--gold);
+  margin: 0 0 var(--space-2);
+}
+
+.wmc-footer__text {
+  margin: 0 0 var(--space-2);
+  color: var(--cream);
+}
+
+.wmc-footer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.wmc-footer__list li {
+  margin: 0;
+}
+
+.wmc-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--target);
+  color: var(--cream);
+  text-decoration: underline;
+  text-decoration-color: var(--subtext);
+  text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.wmc-footer a:hover {
+  color: var(--gold);
+  text-decoration-color: var(--gold);
+}
+
+.wmc-footer a:focus-visible {
+  outline: 2px solid var(--azure);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wmc-footer__strip {
+  max-width: 1120px;
+  margin: var(--space-6) auto 0;
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--graphite);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.wmc-footer__brand-line {
+  margin: 0;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+}
+
+.wmc-footer__copy {
+  margin: 0;
+  color: var(--subtext);
+  font-size: 0.9rem;
+}
