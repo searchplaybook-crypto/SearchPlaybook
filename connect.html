@@ -83,6 +83,22 @@
     footer { color: var(--subtext); font-size: 0.9rem; border-top: 1px solid var(--graphite); margin-top: var(--space-6); padding-top: var(--space-3); }
     footer a { display: inline-flex; align-items: center; min-height: var(--target); }
     .js-only { display: none; }
+    .checklist { margin-top: var(--space-6); }
+    .cl-card {
+      border: 1px solid var(--graphite);
+      border-radius: var(--radius);
+      background: var(--graphite);
+      padding: var(--space-4) var(--space-3);
+      animation: cl-in 200ms ease-out;
+    }
+    @keyframes cl-in {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .cl-question { font-weight: 700; font-size: 1.1rem; margin: 0 0 var(--space-3); }
+    .cl-question:focus { outline: none; }
+    .cl-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
+    .cl-progress { color: var(--subtext); font-size: 0.9rem; margin: 0 0 var(--space-2); }
     .js .js-only:not([hidden]) { display: block; }
   </style>
   <script>document.documentElement.classList.add('js');</script>
@@ -169,6 +185,28 @@
     <section class="result js-only" id="send" hidden>
       <p>Send your answers to Max on WhatsApp. The message contains only the answers you selected above. You decide whether to send it.</p>
       <a class="btn" id="whatsapp" href="https://wa.me/27695326613" rel="noopener">Send my answers on WhatsApp</a>
+    </section>
+
+    <section class="checklist" aria-labelledby="checklist-heading">
+      <h2 id="checklist-heading">Presence and safety check</h2>
+      <p class="notice">Seven yes or no questions. Nothing is stored or sent unless you choose to send it on WhatsApp.</p>
+      <noscript>
+        <p class="notice">This check needs JavaScript. <a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20to%20complete%20the%20presence%20and%20safety%20check.">Message Max on WhatsApp</a> and we will take you through it.</p>
+      </noscript>
+      <div class="js-only" id="cl-app">
+        <p class="cl-progress" id="cl-progress" aria-live="polite"></p>
+        <div class="cl-card" id="cl-card">
+          <p class="cl-question" id="cl-question" tabindex="-1"></p>
+          <div class="cl-actions">
+            <button type="button" class="btn" data-answer="yes">Yes</button>
+            <button type="button" class="btn btn--ghost" data-answer="no">No</button>
+            <button type="button" class="btn btn--ghost" id="cl-back">Back</button>
+          </div>
+        </div>
+        <div class="result" id="cl-result" tabindex="-1" aria-live="polite" hidden></div>
+        <a class="btn" id="cl-wa" href="https://wa.me/27695326613" rel="noopener" hidden>Send my checklist on WhatsApp</a>
+        <button type="button" class="btn btn--ghost" id="cl-restart" hidden>Start the check again</button>
+      </div>
     </section>
 
     <section class="faq" aria-labelledby="faq-heading">
@@ -260,6 +298,92 @@
         send.hidden = true;
         form.querySelector('input[name="q1"]').focus();
       });
+    })();
+  </script>
+  <script>
+    (function () {
+      var QUESTIONS = [
+        { id: 'gbp', text: 'Do you have a Google Business Profile that is up to date?' },
+        { id: 'social', text: 'Do you have a Facebook page or an Instagram business account?' },
+        { id: 'web', text: 'Do you have your own website on your own domain?' },
+        { id: 'maps', text: 'Do most customers find you through Google or Maps?' },
+        { id: 'pwm', text: 'Do you use a password manager for your business accounts?' },
+        { id: 'twofa', text: 'Is two-factor authentication (2FA) turned on for your business email and domain accounts?' },
+        { id: 'incident', text: 'Has your business had a security incident, account lockout or takeover attempt?' }
+      ];
+      var WA = 'https://wa.me/27695326613';
+
+      var answers = [];
+      var step = 0;
+
+      var app = document.getElementById('cl-app');
+      if (!app) { return; }
+      var card = document.getElementById('cl-card');
+      var question = document.getElementById('cl-question');
+      var progress = document.getElementById('cl-progress');
+      var back = document.getElementById('cl-back');
+      var result = document.getElementById('cl-result');
+      var waLink = document.getElementById('cl-wa');
+      var restart = document.getElementById('cl-restart');
+
+      function render() {
+        card.hidden = false;
+        result.hidden = true;
+        waLink.hidden = true;
+        restart.hidden = true;
+        question.textContent = QUESTIONS[step].text;
+        progress.textContent = 'Question ' + (step + 1) + ' of ' + QUESTIONS.length;
+        back.disabled = step === 0;
+        card.style.animation = 'none';
+        void card.offsetWidth;
+        card.style.animation = '';
+        question.focus();
+      }
+
+      function finish() {
+        var yesCount = answers.filter(function (a) { return a === 'yes'; }).length;
+        var lines = QUESTIONS.map(function (q, i) { return (i + 1) + '. ' + (answers[i] === 'yes' ? 'Yes' : 'No'); });
+        var summary = 'You answered yes to ' + yesCount + ' of ' + QUESTIONS.length + ' questions.';
+        if (answers[6] === 'yes') {
+          summary += ' Because of the incident, the safety check comes first.';
+        }
+        card.hidden = true;
+        progress.textContent = '';
+        result.textContent = summary;
+        result.hidden = false;
+        var message = 'Hi Max, I completed the Connect presence and safety check. Answers: ' + lines.join('; ');
+        waLink.href = WA + '?text=' + encodeURIComponent(message);
+        waLink.hidden = false;
+        restart.hidden = false;
+        result.focus();
+      }
+
+      document.querySelectorAll('#cl-card [data-answer]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          answers[step] = btn.getAttribute('data-answer');
+          if (step < QUESTIONS.length - 1) {
+            step += 1;
+            render();
+          } else {
+            finish();
+          }
+        });
+      });
+
+      back.addEventListener('click', function () {
+        if (step > 0) {
+          step -= 1;
+          render();
+        }
+      });
+
+      restart.addEventListener('click', function () {
+        answers = [];
+        step = 0;
+        render();
+      });
+
+      render();
     })();
   </script>
 </body>
