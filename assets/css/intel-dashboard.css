@@ -108,14 +108,16 @@ a { color: inherit; }
 }
 .page-head--hero .lede { color: var(--cream); }
 .hero-toggle {
-  position: relative; margin-top: var(--s-3); min-height: 44px; z-index: 1; padding: 0 var(--s-2);
-  font: inherit; font-size: var(--text-sm); color: var(--cream); background: var(--glass-strong);
-  border: 1px solid var(--border-strong); border-radius: var(--radius-md); cursor: pointer;
+  position: absolute; right: var(--s-2); bottom: var(--s-2); z-index: 1;
+  display: inline-grid; place-items: center; width: 44px; height: 44px; padding: 0;
+  color: var(--cream); background: var(--glass-strong); border: 1px solid var(--border-strong);
+  border-radius: 50%; cursor: pointer; opacity: 0.6; transition: opacity 160ms ease, border-color 160ms ease;
 }
+.hero-toggle svg { width: 18px; height: 18px; }
+.hero-toggle .ico-play, .hero-toggle[aria-pressed="true"] .ico-pause { display: none; }
+.hero-toggle[aria-pressed="true"] .ico-play { display: block; }
+.page-head--hero:hover .hero-toggle, .hero-toggle:hover, .hero-toggle:focus-visible { opacity: 1; }
 .hero-toggle:hover { border-color: var(--gold); }
-@media (min-width: 768px) {
-  .hero-toggle { position: absolute; right: var(--s-2); top: var(--s-2); margin-top: 0; }
-}
 .hero-toggle[hidden] { display: none; }
 
 /* ---------- Header ---------- */
