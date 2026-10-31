@@ -57,6 +57,12 @@ PAGES = {
     "intel/ncii.html": {"base": "../", "current": "ncii",
                         "sections": [("Understand", "#understand"), ("Take Action", "#act"),
                                      ("Resources", "#resources"), ("Get Help Now", "#emergency")]},
+    "intel/google-business-profile.html": {"base": "../", "current": None},
+    "intel/near-me-searches.html": {"base": "../", "current": None},
+    "intel/consent-basics.html": {"base": "../", "current": None},
+    "intel/identity-consistency.html": {"base": "../", "current": None},
+    "intel/spotting-fake-providers.html": {"base": "../", "current": None},
+    "intel/domain-ownership.html": {"base": "../", "current": None},
     "intel/case-studies.html": {"base": "../", "current": "case-studies"},
     "intel/job-market-toolkit.html": {"base": "../", "current": "toolkit"},
 }

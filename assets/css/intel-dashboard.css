@@ -227,9 +227,13 @@ main { position: relative; z-index: 1; flex: 1; width: 100%; max-width: var(--ma
 .win-link:focus-visible { outline: none; }
 .win-link:focus-visible::after { outline: 2px solid var(--azure); outline-offset: -3px; } /* inside, so overflow:hidden can't clip it */
 
-/* Briefing windows: visible, not clickable */
-.win--briefing { background: rgba(24, 24, 27, 0.4); }
-.win--briefing .win-title { color: var(--cream); }
+/* Guide pages: numbered steps and sub-headings inside a panel */
+.panel .win-body ol { padding-left: 1.4rem; color: var(--muted); display: grid; gap: 0.6rem; }
+.panel .win-body ol strong { color: var(--cream); }
+.guide-sub { font-size: var(--text-base); font-weight: 700; color: var(--gold); margin: var(--s-3) 0 var(--s-1); }
+.guide-sub:first-of-type { margin-top: 0; }
+.guide-related { list-style: none; padding-left: 0; display: grid; gap: 0.25rem; }
+.guide-related a { display: inline-flex; align-items: center; min-height: 44px; }
 .badge {
   margin-top: auto; align-self: flex-start;
   display: inline-flex; align-items: center; gap: 0.5rem;
