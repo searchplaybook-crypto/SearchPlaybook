@@ -24,6 +24,8 @@ WHATSAPP = "https://wa.me/27695326613"
 NAV = [
     ("home", "Home", "", []),
     ("solutions", "Solutions and pricing", "solutions.html", []),
+    ("connect", "Find your starting point", "connect.html", []),
+    ("insights", "Insights and ideas", "insights.html", []),
     ("intel", "Intel Hub", "intel.html", [
         ("ncii", "NCII protection guide", "intel/ncii.html"),
         ("case-studies", "Case studies", "intel/case-studies.html"),
@@ -45,6 +47,7 @@ PAGES = {
     "solutions.html": {"base": "", "current": "solutions",
                        "sections": [("Overview", "#hero"), ("Limitations", "#problem"), ("Catalogue", "#catalogue"),
                                     ("How it works", "#how-it-works"), ("Coverage", "#matrix"), ("FAQ", "#faq")]},
+    "insights.html": {"base": "", "current": "insights"},
     "intel.html": {"base": "", "current": "intel"},
     "collective.html": {"base": "", "current": "collective"},
     "privacy.html": {"base": "", "current": "privacy"},
