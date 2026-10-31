@@ -30,65 +30,7 @@
     <link rel="preload" href="/assets/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'gold-100': '#FCEEB5',
-                        'gold-300': '#F0D676',
-                        'mafia-gold': '#D4AF37',
-                        'gold-700': '#A08326',
-                        'near-white': '#F9F9F9',
-                        'platinum': '#E4E4E7',
-                        'zinc-500': '#71717A',
-                        'onyx': '#18181B',
-                        'void-black': '#09090B',
-                        'icy-azure': '#43CFFD',
-                        'forged-copper': '#B66E41',
-                        'warm-yellow': '#FDBF2D'
-                    },
-                    fontFamily: {
-                        'display': ['Montserrat', 'sans-serif'],
-                        'body': ['Inter', 'sans-serif'],
-                        'accent': ['Raleway', 'sans-serif'],
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'float-slow': 'float 8s ease-in-out infinite',
-                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
-                        'shimmer': 'shimmer 2s linear infinite',
-                        'reveal': 'reveal 0.8s ease-out forwards',
-                        'slide-up': 'slideUp 0.6s ease-out forwards',
-                    },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-20px)' },
-                        },
-                        pulseGlow: {
-                            '0%, 100%': { boxShadow: '0 0 20px rgba(212, 175, 55, 0.3)' },
-                            '50%': { boxShadow: '0 0 40px rgba(212, 175, 55, 0.6)' },
-                        },
-                        shimmer: {
-                            '0%': { backgroundPosition: '-200% 0' },
-                            '100%': { backgroundPosition: '200% 0' },
-                        },
-                        reveal: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        },
-                        slideUp: {
-                            '0%': { opacity: '0', transform: 'translateY(50px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    }
-                }
-            }
-        }
-    </script> <!-- FIX 1: Added missing closing tag -->
+    <link rel="stylesheet" href="/assets/css/tw-index.css">
 
     <!-- Structured Data (Consolidated @graph) -->
     <script type="application/ld+json">
@@ -879,7 +821,7 @@
                         
                         <div id="bioContent" class="collapsible-content mt-4 space-y-4">
                             <div class="glass-gold rounded-xl p-5 md:p-6 border-l-2 border-mafia-gold">
-                                <h4 class="font-display font-bold text-lg md:text-xl text-near-white mb-2">The Mission</h4>
+                                <h3 class="font-display font-bold text-lg md:text-xl text-near-white mb-2">The Mission</h3>
                                 <p class="font-body text-sm md:text-base text-platinum/70 italic mb-4">
                                     "Every day, thousands of people go online for the first time to search for people, products, and places."
                                 </p>
@@ -909,7 +851,7 @@
                             <div class="text-xl md:text-2xl text-mafia-gold mb-2">
                                 <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/></svg>
                             </div>
-                            <h4 class="font-display font-semibold text-lg md:text-xl text-near-white mb-1 md:mb-2">Expert collective</h4>
+                            <h3 class="font-display font-semibold text-lg md:text-xl text-near-white mb-1 md:mb-2">Expert collective</h3>
                             <p class="font-body text-xs md:text-sm text-platinum/60">Vetted professionals with decades of experience in search, intelligence, and business growth.</p>
                         </div>
                         
@@ -917,7 +859,7 @@
                             <div class="text-xl md:text-2xl text-mafia-gold mb-2">
                                 <svg class="w-7 h-7 md:w-8 md:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/></svg>
                             </div>
-                            <h4 class="font-display font-semibold text-lg md:text-xl text-near-white mb-1 md:mb-2">No middle men</h4>
+                            <h3 class="font-display font-semibold text-lg md:text-xl text-near-white mb-1 md:mb-2">No middle men</h3>
                             <p class="font-body text-xs md:text-sm text-platinum/60">You work directly with the playbook executors, not account managers who hide behind technical jargon.</p>
                         </div>
                     </div>
@@ -1222,15 +1164,41 @@
     </section>
 
     <!-- Three.js Earth: Southern Africa night lights in WMC gold -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
+        /* three.js is loaded only after the page has finished loading and the browser is idle,
+           or on the first touch, key press or scroll. The globe is decorative, so it must never
+           block the first paint or the first tap on a mid-range phone. */
         (function() {
+            var requested = false;
+            function loadThree() {
+                if (requested) return;
+                requested = true;
+                var s = document.createElement('script');
+                s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+                s.async = true;
+                s.onload = startGlobe;
+                document.head.appendChild(s);
+            }
+            function schedule() {
+                setTimeout(function() {
+                    if ('requestIdleCallback' in window) requestIdleCallback(loadThree, { timeout: 2000 });
+                    else loadThree();
+                }, 1500);
+            }
+            ['pointerdown', 'keydown', 'scroll'].forEach(function(evt) {
+                window.addEventListener(evt, loadThree, { once: true, passive: true });
+            });
+            if (document.readyState === 'complete') schedule();
+            else window.addEventListener('load', schedule);
+        })();
+
+        function startGlobe() {
             const container = document.getElementById('earth-canvas');
             if (!container || typeof THREE === 'undefined') return;
 
             let renderer;
             try {
-                renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: 'high-performance' });
+                renderer = new THREE.WebGLRenderer({ alpha: true, antialias: window.innerWidth >= 1024, powerPreference: 'default' });
             } catch (err) {
                 return; // No WebGL: the page still works over the dark background.
             }
@@ -1241,7 +1209,7 @@
             camera.position.z = 3.5;
 
             renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, window.innerWidth >= 1024 ? 2 : 1.25));
             container.innerHTML = '';
             container.appendChild(renderer.domElement);
 
@@ -1334,6 +1302,7 @@
 
             function animate() {
                 requestAnimationFrame(animate);
+                if (document.hidden) return; // Do no work while the tab is in the background.
                 const t = clock.getElapsedTime();
                 uniforms.uTime.value = t;
                 earthGroup.rotation.y = baseY + Math.sin(t * 0.06) * swayAmount;
@@ -1352,7 +1321,7 @@
                 renderer.setSize(window.innerWidth, window.innerHeight);
                 if (reduceMotion) render();
             });
-        })();
+        }
 
 
         // Navbar scroll effect

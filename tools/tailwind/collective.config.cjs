@@ -1,0 +1,1 @@
+module.exports={content:['./collective.html'],theme:{extend:{colors:{zinc:{500:'#a1a1aa',600:'#9494a0',700:'#71717a'}},fontFamily:{'space-grotesk':['"Space Grotesk"','Inter','system-ui','sans-serif']}}},plugins:[require('@tailwindcss/forms'),require('@tailwindcss/container-queries')]};
