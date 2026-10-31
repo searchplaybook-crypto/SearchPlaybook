@@ -101,15 +101,21 @@ a { color: inherit; }
 .hero-video.is-playing { opacity: 1; }
 .hero-shade {
   position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(90deg, rgba(9, 9, 11, 0.92) 0%, rgba(9, 9, 11, 0.78) 55%, rgba(9, 9, 11, 0.45) 100%);
+  background: rgba(9, 9, 11, 0.8); /* phones: text spans the full width, so the shade is even */
+}
+@media (min-width: 768px) {
+  .hero-shade { background: linear-gradient(90deg, rgba(9, 9, 11, 0.92) 0%, rgba(9, 9, 11, 0.78) 55%, rgba(9, 9, 11, 0.45) 100%); }
 }
 .page-head--hero .lede { color: var(--cream); }
 .hero-toggle {
-  position: absolute; right: var(--s-2); top: var(--s-2); min-height: 44px; padding: 0 var(--s-2);
+  position: relative; margin-top: var(--s-3); min-height: 44px; z-index: 1; padding: 0 var(--s-2);
   font: inherit; font-size: var(--text-sm); color: var(--cream); background: var(--glass-strong);
   border: 1px solid var(--border-strong); border-radius: var(--radius-md); cursor: pointer;
 }
 .hero-toggle:hover { border-color: var(--gold); }
+@media (min-width: 768px) {
+  .hero-toggle { position: absolute; right: var(--s-2); top: var(--s-2); margin-top: 0; }
+}
 .hero-toggle[hidden] { display: none; }
 
 /* ---------- Header ---------- */

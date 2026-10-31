@@ -108,10 +108,10 @@
     <section class="page-head page-head--hero" aria-labelledby="page-title">
       <video class="hero-video" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1" data-src="https://ik.imagekit.io/wemustcreate/sandtoncinamtic.webm/ik-video.mp4?updatedAt=1779797713180"></video>
       <div class="hero-shade" aria-hidden="true"></div>
-      <button type="button" class="hero-toggle" hidden aria-pressed="false">Pause background video</button>
       <p class="eyebrow">Intel Hub &middot; Search Playbook</p>
       <h1 id="page-title">Digital optimisation, simplified for busy business owners.</h1>
       <p class="lede">We handle the technical complexity. You focus on running your business. Practical guides on Visibility, Privacy, and Safety.</p>
+      <button type="button" class="hero-toggle" hidden aria-pressed="false">Pause background video</button>
     </section>
 
     <section aria-labelledby="windows-title">
@@ -278,16 +278,16 @@
   <script>document.querySelectorAll('[data-year]').forEach(el => { el.textContent = new Date().getFullYear(); });</script>
   <script>
     // Pause the background video when the tab is hidden, to save data and battery
-    /* Sandton hero video: loaded only on screens 768px and wider, never when the visitor asks
-       for reduced motion or Data Saver. Without JavaScript the hero stays a plain dark panel. */
+    /* Sandton hero video: loaded on every screen size, but never when the visitor asks for reduced
+       motion or Data Saver, or is on a 2G/3G connection. Without JavaScript the hero stays a plain dark panel. */
     (function () {
       const video = document.querySelector('.hero-video');
       const toggle = document.querySelector('.hero-toggle');
       if (!video || !toggle) return;
       const conn = navigator.connection || {};
-      const allowed = window.matchMedia('(min-width: 768px)').matches
-        && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
-        && !conn.saveData;
+      const slow = /(^|-)2g$|3g/.test(conn.effectiveType || '');
+      const allowed = !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        && !conn.saveData && !slow;
       if (!allowed) return;
       let userPaused = false;
       video.src = video.dataset.src;
