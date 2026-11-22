@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://wemustcreate.online/</loc>
     <lastmod>2026-10-31</lastmod>
@@ -10,7 +11,15 @@
   </url>
   <url>
     <loc>https://wemustcreate.online/connect.html</loc>
-    <lastmod>2026-10-31</lastmod>
+    <lastmod>2026-11-22</lastmod>
+    <video:video>
+      <video:thumbnail_loc>https://ik.imagekit.io/wemustcreate/image9339.webp?updatedAt=1792966022072</video:thumbnail_loc>
+      <video:title>Introduction to the Free Digital Presence Assessment</video:title>
+      <video:description>A short introduction from We Must Create to the free Digital Presence Assessment, a plain-English check of where a South African business stands online.</video:description>
+      <video:content_loc>https://ik.imagekit.io/wemustcreate/imllew1.webm</video:content_loc>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:requires_subscription>no</video:requires_subscription>
+    </video:video>
   </url>
   <url>
     <loc>https://wemustcreate.online/insights.html</loc>
