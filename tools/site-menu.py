@@ -24,7 +24,7 @@ WHATSAPP = "https://wa.me/27695326613"
 NAV = [
     ("home", "Home", "", []),
     ("solutions", "Solutions and pricing", "solutions.html", []),
-    ("connect", "Find your starting point", "connect.html", []),
+    ("connect", "Free Digital Presence Assessment", "connect.html", []),
     ("insights", "Insights and ideas", "insights.html", []),
     ("intel", "Intel Hub", "intel.html", [
         ("ncii", "NCII protection guide", "intel/ncii.html"),
