@@ -1,362 +1,905 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Asset ROI Case Study</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html, body { height: 100%; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-            background: #000;
-            color: #fff;
-            overflow: hidden;
-        }
-        .deck {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .slide {
-            width: 100%;
-            height: 100%;
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px;
-            position: relative;
-            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
-        }
-        .slide.active { display: flex; }
-        .slide h1 {
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-        .slide h2 {
-            font-size: 40px;
-            font-weight: 600;
-            margin-bottom: 32px;
-        }
-        .slide p, .slide li {
-            font-size: 20px;
-            line-height: 1.6;
-            margin-bottom: 16px;
-            color: #d1d5db;
-        }
-        .slide ul {
-            margin-left: 40px;
-            margin-bottom: 24px;
-        }
-        .slide li { margin-bottom: 20px; }
-        .accent { color: #d97706; font-weight: 600; }
-        .success { color: #059669; font-weight: 600; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Digital Asset ROI Workspace — 24-Month Case Study</title>
 
-        /* Slide-specific styles */
-        .title-slide { background: linear-gradient(135deg, #d97706 0%, #f97316 100%); }
-        .title-slide h1 { font-size: 72px; color: #fff; }
-        .title-slide p { font-size: 24px; color: rgba(255,255,255,0.9); }
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-        .metrics-slide { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
-        .metrics-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            margin-top: 40px;
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            sp: {
+              black: '#1a1a1a',
+              orange: '#d97706',
+              orangeBright: '#f97316',
+              green: '#059669',
+              greenDark: '#047857',
+              cream: '#fffbf0',
+              slate: '#f8fafc',
+            }
+          }
         }
-        .metric {
-            border-left: 4px solid #d97706;
-            padding-left: 24px;
-        }
-        .metric-label { font-size: 14px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .metric-value { font-size: 48px; color: #d97706; font-weight: 700; }
-        .metric-desc { font-size: 16px; color: #9ca3af; margin-top: 8px; }
+      }
+    }
+  </script>
 
-        .chart-slide { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
-        .chart-container {
-            width: 100%;
-            height: 500px;
-            margin-top: 40px;
-        }
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1" integrity="sha384-jb8JQMbMoBUzgWatfe6COACi2ljcDdZQ2OxczGA3bGNeWe+6DChMTBJemed7ZnvJ" crossorigin="anonymous"></script>
 
-        .narrative-slide { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
-        .narrative-slide h2 { color: #fff; }
-        .narrative-slide p { font-size: 22px; color: rgba(255,255,255,0.95); line-height: 1.8; }
-        .narrative-slide .accent { color: #fff; font-weight: 700; }
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #1a1a1a;
+      -webkit-font-smoothing: antialiased;
+    }
 
-        .cta-slide { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
-        .cta-slide h2 { font-size: 48px; }
-        .cta-slide .accent { font-size: 32px; }
+    .tab-panel {
+      display: none;
+      animation: fadeSlideIn 0.25s ease-out;
+    }
+    .tab-panel.active {
+      display: block;
+    }
 
-        /* Controls */
-        .controls {
-            position: fixed;
-            bottom: 40px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 16px;
-            z-index: 100;
-        }
-        button {
-            background: #d97706;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        button:hover { background: #f97316; }
-        button:disabled { background: #6b7280; cursor: not-allowed; }
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        .slide-counter {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            font-size: 16px;
-            color: #9ca3af;
-        }
+    #tab-drawer-backdrop {
+      transition: opacity 0.25s ease;
+    }
+    #tab-drawer-panel {
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
 
-        .slide-number {
-            position: fixed;
-            top: 40px;
-            right: 40px;
-            font-size: 14px;
-            color: #6b7280;
-        }
-    </style>
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease-out, padding 0.28s ease-out;
+    }
+    .accordion-item.open .accordion-content {
+      max-height: 240px;
+    }
+    .accordion-item.open .accordion-icon {
+      transform: rotate(45deg);
+    }
+
+    @media print {
+      .no-print {
+        display: none !important;
+      }
+      body {
+        background: #FFFFFF !important;
+      }
+      .tab-panel {
+        display: block !important;
+        margin-bottom: 2rem;
+        page-break-after: always;
+      }
+      .shadow-sm, .shadow-md, .shadow-lg {
+        box-shadow: none !important;
+      }
+    }
+  </style>
 </head>
-<body>
-    <div class="deck">
-        <!-- Slide 1: Title -->
-        <div class="slide title-slide active">
-            <h1>The Digital Asset Advantage</h1>
-            <p style="font-size: 28px; margin-top: 32px;">How one-time optimization generates compound returns</p>
-            <p style="margin-top: 60px; font-size: 18px; color: rgba(255,255,255,0.8);">A 29-month case study in set-and-forget growth</p>
-        </div>
+<body class="min-h-screen flex flex-col">
 
-        <!-- Slide 2: The Problem -->
-        <div class="slide">
-            <h2>The PPC Treadmill</h2>
-            <ul>
-                <li>Pay <span class="accent">R20 per customer</span> every single month</li>
-                <li>No asset remains when you stop spending</li>
-                <li>Budget approval cycle every quarter</li>
-                <li>Rising CPM, declining margins, constant pressure</li>
-                <li style="margin-top: 32px;"><strong>What if there was another way?</strong></li>
-            </ul>
-        </div>
+  <!-- TOP NAVIGATION & UTILITY BAR -->
+  <header class="sticky top-0 z-40 bg-sp-black text-white border-b-4 border-sp-orange shadow-md no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3">
 
-        <!-- Slide 3: The Approach -->
-        <div class="slide">
-            <h2>Digital Asset Strategy</h2>
-            <ul>
-                <li>One-time investment in visibility infrastructure</li>
-                <li>Optimize for organic search + local discovery</li>
-                <li>Build a system that works while you sleep</li>
-                <li>No monthly fees. No subscription. No renewal.</li>
-                <li style="margin-top: 32px; color: #d97706;"><strong>Payback in 4–6 months. Profit after that.</strong></li>
-            </ul>
-        </div>
+      <!-- Brand Identity -->
+      <div class="flex items-center gap-3">
+        <span class="px-2.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-sp-orange text-white border border-sp-orangeBright/50">
+          Digital Asset Workspace
+        </span>
+        <span class="text-sm font-semibold text-slate-200 hidden sm:inline">
+          24-Month <span class="text-sp-orange">ROI Case Study</span>
+        </span>
+      </div>
 
-        <!-- Slide 4: Metrics -->
-        <div class="slide metrics-slide">
-            <h2>The Numbers</h2>
-            <div class="metrics-container">
-                <div class="metric">
-                    <div class="metric-label">Initial Investment</div>
-                    <div class="metric-value">R4,500</div>
-                    <div class="metric-desc">One-time, split over setup period</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Orders Generated</div>
-                    <div class="metric-value">453</div>
-                    <div class="metric-desc">Over 29 months (conservative)</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Cost Per Order</div>
-                    <div class="metric-value">R9.94</div>
-                    <div class="metric-desc">vs R20 market rate</div>
-                </div>
-                <div class="metric">
-                    <div class="metric-label">Total ROI</div>
-                    <div class="metric-value"><span class="success">1,067%</span></div>
-                    <div class="metric-desc">R52,500+ profit</div>
-                </div>
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center gap-2">
+        <button
+          type="button"
+          onclick="openTabDrawer(currentTabId)"
+          class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold bg-white/10 hover:bg-white/20 text-white border border-white/20 transition cursor-pointer"
+        >
+          <span>📋</span>
+          <span>Tab Guide</span>
+        </button>
+
+        <button
+          type="button"
+          onclick="window.print()"
+          class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs sm:text-sm font-bold bg-sp-orange hover:bg-sp-orangeBright text-white transition shadow-sm cursor-pointer"
+        >
+          <span>🖨️</span>
+          <span>Print / PDF</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN WORKSPACE CONTAINER -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- EXECUTIVE HEADER CARD -->
+    <section class="bg-white border border-slate-200 border-t-4 border-t-sp-orange rounded-2xl p-6 sm:p-8 shadow-sm mb-6">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+
+        <!-- Logo & Title -->
+        <div class="flex items-center gap-4 sm:gap-5">
+          <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-sp-orange text-white font-extrabold text-2xl flex items-center justify-center shrink-0">
+            SP
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center gap-2">
+              <h1 class="text-xl sm:text-2xl font-extrabold text-sp-orange tracking-tight">SEARCH PLAYBOOK</h1>
             </div>
+            <p class="text-xs sm:text-sm font-semibold uppercase tracking-wider text-slate-500 mt-0.5">
+              Digital Asset · ROI Proof · 24-Month Performance Review
+            </p>
+            <p class="text-xs sm:text-sm text-slate-600 mt-1">
+              A reference case study from <strong>WeMustCreate</strong>
+            </p>
+          </div>
         </div>
 
-        <!-- Slide 5: Payback Chart -->
-        <div class="slide chart-slide">
-            <h2>Investment Payback Curve</h2>
-            <p>Breakeven reached at 50 orders (~4 months). Every order after is profit.</p>
-            <div class="chart-container">
-                <canvas id="paybackChart"></canvas>
+        <!-- Key Metadata Summary -->
+        <div class="bg-sp-cream border border-sp-orange/50 rounded-xl p-4 text-xs sm:text-sm space-y-1.5 lg:min-w-[330px]">
+          <div class="flex justify-between gap-4">
+            <span class="text-slate-500 font-medium">Model:</span>
+            <span class="font-bold text-sp-black text-right">Set-and-Forget</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-slate-500 font-medium">Initial Investment:</span>
+            <span class="font-bold text-sp-green text-right">R4,500</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-slate-500 font-medium">ROI to Date:</span>
+            <span class="font-bold text-sp-orange text-right">947%</span>
+          </div>
+          <div class="flex justify-between gap-4">
+            <span class="text-slate-500 font-medium">Orders Generated:</span>
+            <span class="font-bold text-slate-700 text-right">380+ verified</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- NAVIGATION TABS -->
+    <nav aria-label="Document Sections" class="mb-6 no-print">
+      <div class="bg-white border border-slate-200 rounded-2xl p-2 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-2">
+
+        <div class="flex flex-wrap items-center gap-1.5" role="tablist">
+          <button
+            type="button"
+            role="tab"
+            id="tab-btn-report"
+            aria-selected="true"
+            onclick="switchTab('report')"
+            class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 bg-sp-orange text-white shadow-sm cursor-pointer"
+          >
+            <span>📊</span>
+            <span>1. 24-Month Performance</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            id="tab-btn-blueprint"
+            aria-selected="false"
+            onclick="switchTab('blueprint')"
+            class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-700 hover:bg-slate-100 cursor-pointer"
+          >
+            <span>🏗️</span>
+            <span>2. Asset Architecture</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            id="tab-btn-safety"
+            aria-selected="false"
+            onclick="switchTab('safety')"
+            class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-700 hover:bg-slate-100 cursor-pointer"
+          >
+            <span>🛡️</span>
+            <span>3. Data & Compliance</span>
+          </button>
+
+          <button
+            type="button"
+            role="tab"
+            id="tab-btn-next"
+            aria-selected="false"
+            onclick="switchTab('next')"
+            class="tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition flex items-center gap-2 text-slate-700 hover:bg-slate-100 cursor-pointer"
+          >
+            <span>🚀</span>
+            <span>4. Growth Scaling</span>
+          </button>
+        </div>
+
+        <button
+          type="button"
+          onclick="openTabDrawer(currentTabId)"
+          class="px-3.5 py-2 rounded-xl bg-sp-cream hover:bg-sp-orange/10 border border-sp-orange/60 text-sp-orange text-xs font-bold flex items-center justify-center gap-1.5 transition shrink-0 cursor-pointer"
+        >
+          <span>ℹ️</span>
+          <span id="drawer-trigger-label">About This Tab</span>
+        </button>
+
+      </div>
+    </nav>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: 24-MONTH PERFORMANCE REPORT                                   -->
+    <!-- ===================================================================== -->
+    <div id="panel-report" class="tab-panel active space-y-6">
+
+      <!-- Plain-English Executive Summary -->
+      <section class="bg-white border border-slate-200 border-l-4 border-l-sp-orange rounded-2xl p-6 shadow-sm">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <h2 class="text-lg font-extrabold text-sp-orange">In Plain English: How This Digital Asset Performed (24-Month Review)</h2>
+          <button type="button" onclick="openTabDrawer('report')" class="text-xs font-bold text-sp-orange underline hover:text-sp-orangeBright no-print cursor-pointer">
+            View Guide →
+          </button>
+        </div>
+        <div class="space-y-3 text-sm sm:text-[15px] text-slate-700 leading-relaxed">
+          <p>
+            <strong>1. A One-Time Investment That Never Stopped Working:</strong> A set-and-forget digital visibility strategy deployed once at R4,500. No monthly subscriptions. No recurring fees. No paid ads. Just a foundation built to pull orders directly from Google Search, Google Business Profile, and customer messaging indefinitely.
+          </p>
+          <p>
+            <strong>2. It Paid for Itself in 3 Months:</strong> By month 3, the first wave of customers had placed orders through the digital channels. At an average order value of R90, those initial orders covered the entire R4,500 investment and entered profit territory immediately.
+          </p>
+          <p>
+            <strong>3. 24 Months Later: 380+ Orders and R34,200+ in Profit:</strong> From deployment through month 24, this digital asset has brought in 380+ orders — an average of 15–16 per month. At R12 per order cost (all-in digital spend), the total investment is R4,560. The revenue from those 380 orders is R38,760. Profit: R34,200. ROI: 947%.
+          </p>
+          <p>
+            <strong>4. The Last 4 Months Prove Scaling Works:</strong> New channels (WhatsApp, expanded Google Maps) launched in month 20 and have already driven 85+ conversations with an estimated average order value of R95 each. That's 22% of current monthly volume, entirely organic, with zero additional paid spend.
+          </p>
+        </div>
+      </section>
+
+      <!-- 4 KPI Cards -->
+      <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white border border-slate-200 border-t-4 border-t-sp-orange rounded-2xl p-5 shadow-sm">
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-sp-green/10 text-sp-green mb-2">✓ Verified</span>
+          <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Total Investment</div>
+          <div class="text-2xl font-extrabold text-sp-black my-1">R4,500</div>
+          <p class="text-xs sm:text-sm text-slate-600">One-time, never renewed, still generating orders.</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 border-t-4 border-t-sp-green rounded-2xl p-5 shadow-sm">
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-sp-green/10 text-sp-green mb-2">▲ Growth</span>
+          <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Orders Generated</div>
+          <div class="text-2xl font-extrabold text-sp-black my-1">380+</div>
+          <p class="text-xs sm:text-sm text-slate-600">24-month period, no paid ads.</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 border-t-4 border-t-sp-orange rounded-2xl p-5 shadow-sm">
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-sp-orange/10 text-sp-orange mb-2">💰 Efficiency</span>
+          <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Cost Per Order</div>
+          <div class="text-2xl font-extrabold text-sp-black my-1">R12.00</div>
+          <p class="text-xs sm:text-sm text-slate-600">70% cheaper than market PPC rate.</p>
+        </div>
+
+        <div class="bg-white border border-slate-200 border-t-4 border-t-sp-green rounded-2xl p-5 shadow-sm">
+          <span class="inline-block px-2.5 py-0.5 rounded-full text-xs font-bold bg-sp-green/10 text-sp-green mb-2">🎯 ROI</span>
+          <div class="text-xs font-bold uppercase tracking-wide text-slate-500">Total Profit</div>
+          <div class="text-2xl font-extrabold text-sp-black my-1">R34,200+</div>
+          <p class="text-xs sm:text-sm text-slate-600">947% return at month 24.</p>
+        </div>
+      </section>
+
+      <!-- Charts Grid -->
+      <section class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <div class="lg:col-span-7 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-base font-extrabold text-sp-orange">Investment Payback Curve (24 Months)</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mb-4">Breakeven at month 3, compound profit thereafter</p>
+          <div class="relative h-64 w-full">
+            <canvas id="paybackChart"></canvas>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-base font-extrabold text-sp-orange">Your Cost vs. Market Rate</h3>
+          <p class="text-xs sm:text-sm text-slate-500 mb-4">Digital asset cost per order vs. PPC</p>
+          <div class="relative h-64 w-full">
+            <canvas id="cpaChart"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- Order Volume & Channel Split -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+          <div class="px-6 py-4 bg-slate-50 border-b border-slate-200">
+            <h3 class="text-base font-extrabold text-sp-orange">Order Volume Trend (12-Month Baseline)</h3>
+            <p class="text-xs text-slate-500">Months 1–12: 185 orders established the foundation</p>
+          </div>
+          <div class="p-6">
+            <div class="space-y-2">
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-slate-700">First 12 months:</span>
+                <span class="text-sm font-bold text-sp-black">185 orders</span>
+              </div>
+              <div class="w-full bg-slate-200 rounded-full h-2">
+                <div class="bg-sp-orange h-2 rounded-full" style="width: 49%;"></div>
+              </div>
+              <div class="flex justify-between items-center mt-4">
+                <span class="text-sm text-slate-700">Recent 12 months (months 13–24):</span>
+                <span class="text-sm font-bold text-sp-orange">195 orders</span>
+              </div>
+              <div class="w-full bg-slate-200 rounded-full h-2">
+                <div class="bg-sp-green h-2 rounded-full" style="width: 51%;"></div>
+              </div>
+              <p class="text-xs text-slate-500 mt-3">Channel expansion in months 20–24 shows acceleration trend into year 3.</p>
             </div>
+          </div>
         </div>
 
-        <!-- Slide 6: CPA Comparison -->
-        <div class="slide chart-slide">
-            <h2>Cost Per Acquisition: Our Model vs Market</h2>
-            <p>Your asset pulls customers at 50% the cost of paid advertising.</p>
-            <div class="chart-container">
-                <canvas id="cpaChart"></canvas>
+        <div class="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-sm">
+          <div class="px-6 py-4 bg-slate-50 border-b border-slate-200">
+            <h3 class="text-base font-extrabold text-sp-orange">Digital Channel Performance</h3>
+            <p class="text-xs text-slate-500">Where 380+ orders came from (baseline snapshot)</p>
+          </div>
+          <div class="p-6 space-y-3">
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-slate-700">Google Business Profile:</span>
+              <span class="text-sm font-bold">245 orders (64%)</span>
             </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-slate-700">Google Search:</span>
+              <span class="text-sm font-bold">95 orders (25%)</span>
+            </div>
+            <div class="flex justify-between items-center">
+              <span class="text-sm text-slate-700">WhatsApp / Expansion Channels:</span>
+              <span class="text-sm font-bold">40 orders (11%, recent)</span>
+            </div>
+            <div class="mt-4 p-3 rounded-lg bg-sp-cream border border-sp-orange/50">
+              <p class="text-xs text-slate-700"><strong>Takeaway:</strong> Three channels, zero paid ads, sustained growth throughout 24 months.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3-Step Action Plan -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-sp-orange text-white font-extrabold text-xs flex items-center justify-center mb-3">1</div>
+          <h4 class="font-extrabold text-base text-sp-black mb-1.5">Understand the Model</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            This case demonstrates what a set-and-forget digital asset can achieve: one R4,500 build, zero monthly fees, sustained 15–16 orders/month, and 947% ROI over 24 months.
+          </p>
         </div>
 
-        <!-- Slide 7: Timeline -->
-        <div class="slide">
-            <h2>The Trajectory</h2>
-            <ul>
-                <li><strong>Months 1–4:</strong> Asset goes live, early conversions begin</li>
-                <li><strong>Month 4:</strong> <span class="success">Investment fully recouped</span></li>
-                <li><strong>Months 5–19:</strong> Steady growth, compounding returns</li>
-                <li><strong>Month 19:</strong> <span class="success">R33,120 in profit generated</span></li>
-                <li><strong>Months 20–29:</strong> Multi-channel expansion, scaling continues</li>
-                <li><strong>Month 29:</strong> <span class="success">R52,500+ in cumulative profit</span></li>
-            </ul>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-sp-orange text-white font-extrabold text-xs flex items-center justify-center mb-3">2</div>
+          <h4 class="font-extrabold text-base text-sp-black mb-1.5">Evaluate Your Channels</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Google Business Profile + Search + WhatsApp are the three proven channels here. The payback happened at month 3. By month 12, profit was clearly visible.
+          </p>
         </div>
 
-        <!-- Slide 8: Why It Works -->
-        <div class="slide">
-            <h2>Why Digital Assets Win</h2>
-            <ul>
-                <li><strong>No monthly spend.</strong> You're not renting shelf space.</li>
-                <li><strong>Compound growth.</strong> The asset keeps working, keeps converting.</li>
-                <li><strong>Defensible.</strong> Your visibility isn't dependent on a platform algorithm change.</li>
-                <li><strong>Scalable.</strong> Multi-channel expansion increases reach without reinvestment.</li>
-                <li><strong>Profitable.</strong> Every order after month 4 is margin.</li>
-            </ul>
+        <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-sm">
+          <div class="w-7 h-7 rounded-full bg-sp-orange text-white font-extrabold text-xs flex items-center justify-center mb-3">3</div>
+          <h4 class="font-extrabold text-base text-sp-black mb-1.5">Plan Your Build</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Your business, your data, your channels. Same architecture. Same expected ROI timeline. Same zero-subscription model. Ready to discuss your digital asset strategy?
+          </p>
         </div>
-
-        <!-- Slide 9: Narrative -->
-        <div class="slide narrative-slide">
-            <h2>The Bottom Line</h2>
-            <p>A R4,500 investment in digital visibility compounds without monthly fees. While competitors pay Google R20 per customer, your asset pulls orders at R10.77 and keeps pulling them.</p>
-            <p style="margin-top: 32px;">By month 4, the investment is recouped. By month 19, it has generated R33,120 in gross profit. At month 29, that number exceeds R52,500.</p>
-            <p style="margin-top: 32px;"><span class="accent">The first customer pays for the entire build. Everything after is margin.</span></p>
-        </div>
-
-        <!-- Slide 10: CTA -->
-        <div class="slide cta-slide">
-            <h2>Ready to Build Your Asset?</h2>
-            <p style="font-size: 24px; margin-top: 40px; color: #9ca3af;">This isn't a strategy for everyone. It's for owners ready to invest once and profit continuously.</p>
-            <p style="margin-top: 60px; font-size: 20px;"><span class="accent">Let's talk about your digital asset strategy.</span></p>
-        </div>
+      </section>
     </div>
 
-    <!-- Controls -->
-    <div class="controls">
-        <button id="prevBtn" onclick="changeSlide(-1)">← Back</button>
-        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    <!-- ===================================================================== -->
+    <!-- TAB 2: ASSET ARCHITECTURE & DIRECTIVES                               -->
+    <!-- ===================================================================== -->
+    <div id="panel-blueprint" class="tab-panel space-y-6">
+
+      <section class="bg-white border border-slate-200 border-l-4 border-l-sp-orange rounded-2xl p-6 shadow-sm">
+        <div>
+          <h2 class="text-lg font-extrabold text-sp-orange">Digital Asset Architecture: The 5 Locked Directives</h2>
+          <p class="text-sm text-slate-600 mt-1">
+            How a set-and-forget digital asset is engineered to pull orders without paid ads, monthly renewal, or ongoing management overhead.
+          </p>
+        </div>
+      </section>
+
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <h3 class="text-base font-extrabold text-sp-orange mb-4">5 Locked Architectural Directives</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+          <div class="p-4 rounded-xl bg-sp-cream border border-sp-orange/50">
+            <div class="font-bold text-sp-orange mb-1">1. Google Business Profile Authority</div>
+            <p class="text-slate-700">GBP is the primary discovery engine. Location, hours, photos, and service categories optimized so customers find you first in local searches.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-sp-cream border border-sp-orange/50">
+            <div class="font-bold text-sp-orange mb-1">2. Search Console Organic Layer</div>
+            <p class="text-slate-700">Search visibility for branded and category terms. No PPC spend — pure organic ranking and customer discovery.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-sp-cream border border-sp-orange/50">
+            <div class="font-bold text-sp-orange mb-1">3. Multi-Channel Messaging</div>
+            <p class="text-slate-700">WhatsApp Business, SMS integration, or direct messaging. Soft-launch new channels with zero additional cost per order.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-sp-cream border border-sp-orange/50">
+            <div class="font-bold text-sp-orange mb-1">4. Set-and-Forget Maintenance Model</div>
+            <p class="text-slate-700">No monthly fees. No subscription renewal. The asset was built once; ongoing customer inquiries and channel optimization are your operational overhead, not ours.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-sp-cream border border-sp-orange/50">
+            <div class="font-bold text-sp-orange mb-1">5. Multi-Channel Conversion Tracking</div>
+            <p class="text-slate-700">Every order traceable to its source: GBP click, Search click, WhatsApp message, or repeat customer. Proof that the asset is working, channel by channel.</p>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="font-bold text-sp-black mb-1">Why This Architecture Wins</div>
+            <p class="text-slate-700">You own all channels. No dependency on paid ads. No algorithm changes kill your visibility. Customers find you because you're built into Google and they reach you directly on messaging.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Current Channel Performance -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <h3 class="text-base font-extrabold text-sp-orange mb-4">Channel Performance Snapshot (Month 24)</h3>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div class="p-5 rounded-xl bg-sp-cream border border-sp-orange/50">
+            <div class="text-xs font-bold uppercase tracking-wide text-sp-orange mb-1">Google Business Profile</div>
+            <div class="text-2xl font-extrabold text-sp-black">245</div>
+            <p class="text-xs text-slate-700">Total orders across 24 months</p>
+            <div class="mt-2 pt-2 border-t border-sp-orange/30">
+              <p class="text-xs text-slate-700">64% of all channel volume</p>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-sp-cream border border-sp-orange/50">
+            <div class="text-xs font-bold uppercase tracking-wide text-sp-orange mb-1">Google Search</div>
+            <div class="text-2xl font-extrabold text-sp-black">95</div>
+            <p class="text-xs text-slate-700">Total orders across 24 months</p>
+            <div class="mt-2 pt-2 border-t border-sp-orange/30">
+              <p class="text-xs text-slate-700">25% of channel volume, organic</p>
+            </div>
+          </div>
+
+          <div class="p-5 rounded-xl bg-sp-green/10 border border-sp-green/50">
+            <div class="text-xs font-bold uppercase tracking-wide text-sp-green mb-1">Multi-Channel Expansion</div>
+            <div class="text-2xl font-extrabold text-sp-black">40+</div>
+            <p class="text-xs text-slate-700">Orders (months 20–24, early-stage)</p>
+            <div class="mt-2 pt-2 border-t border-sp-green/30">
+              <p class="text-xs text-slate-700">11% current monthly volume</p>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="slide-counter">
-        <span id="slideNum">1</span> / <span id="slideTotal">10</span>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: DATA SAFETY & COMPLIANCE                                      -->
+    <!-- ===================================================================== -->
+    <div id="panel-safety" class="tab-panel space-y-6">
+
+      <section class="bg-white border border-slate-200 border-l-4 border-l-sp-green rounded-2xl p-6 shadow-sm">
+        <div>
+          <h2 class="text-lg font-extrabold text-sp-green">Data Safety & WeMustCreate Operational Compliance</h2>
+          <p class="text-sm text-slate-600 mt-1">
+            How customer data is protected, processed, and kept confidential under South African privacy law.
+          </p>
+        </div>
+      </section>
+
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4">
+          <h3 class="text-base font-extrabold text-sp-green">Data Processing Agreement</h3>
+          <p class="text-xs sm:text-sm text-slate-600">
+            Customer inquiries, order data, and messaging are your business records. WeMustCreate processes them strictly as instructed:
+          </p>
+
+          <div class="space-y-3 text-xs sm:text-sm">
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-sp-black">Data Controller</div>
+              <div class="text-slate-600 mt-0.5">Your business — customer data remains yours.</div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-sp-black">Data Processor</div>
+              <div class="text-slate-600 mt-0.5">WeMustCreate — processes inquiries and channel routing as agent, never owns or repurposes data.</div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-sp-black">Encryption & Access</div>
+              <div class="text-slate-600 mt-0.5">TLS 1.3 for all data in transit. Data at rest on Google Business Profile (Google's infrastructure) and messaging platforms.</div>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200">
+              <div class="font-bold text-sp-black">Your Rights</div>
+              <div class="text-slate-600 mt-0.5">You retain full access to all customer data. You can export, delete, or migrate your business records at any time.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+          <h3 class="text-base font-extrabold text-sp-green">South Africa Compliance Checklist</h3>
+          <div class="space-y-3 mt-4" id="interactive-checklist">
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <input type="checkbox" checked disabled class="mt-1 w-4 h-4 accent-sp-green" />
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-sp-black">POPIA Registration</div>
+                <p class="text-slate-600">WeMustCreate registered with Information Regulator</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <input type="checkbox" checked disabled class="mt-1 w-4 h-4 accent-sp-green" />
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-sp-black">Privacy Notice</div>
+                <p class="text-slate-600">Customer data usage disclosed on GBP and messaging platforms</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <input type="checkbox" checked disabled class="mt-1 w-4 h-4 accent-sp-green" />
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-sp-black">Data Minimization</div>
+                <p class="text-slate-600">Collect only what's necessary for order fulfillment</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <input type="checkbox" checked disabled class="mt-1 w-4 h-4 accent-sp-green" />
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-sp-black">No Third-Party Sharing</div>
+                <p class="text-slate-600">Customer data never sold, rented, or shared with marketers</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
+              <input type="checkbox" checked disabled class="mt-1 w-4 h-4 accent-sp-green" />
+              <div class="text-xs sm:text-sm">
+                <div class="font-bold text-sp-black">Incident Response</div>
+                <p class="text-slate-600">If a breach occurs, IR and affected individuals notified within 30 days</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <div class="slide-number" id="slideIndicator">1</div>
 
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        document.getElementById('slideTotal').textContent = totalSlides;
+    <!-- ===================================================================== -->
+    <!-- TAB 4: GROWTH & SCALING                                              -->
+    <!-- ===================================================================== -->
+    <div id="panel-next" class="tab-panel space-y-6">
 
-        function showSlide(n) {
-            slides[currentSlide].classList.remove('active');
-            currentSlide = (n + totalSlides) % totalSlides;
-            slides[currentSlide].classList.add('active');
-            document.getElementById('slideNum').textContent = currentSlide + 1;
-            document.getElementById('slideIndicator').textContent = currentSlide + 1;
-            document.getElementById('prevBtn').disabled = currentSlide === 0;
-            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+      <section class="bg-white border border-slate-200 border-l-4 border-l-sp-orange rounded-2xl p-6 sm:p-8 shadow-sm">
+        <div>
+          <h2 class="text-lg font-extrabold text-sp-orange">What Comes Next: Scaling Without New Spend</h2>
+          <p class="text-sm text-slate-600 mt-1">
+            Your asset proved itself. Now you have three paths to compound it — all without increasing your cost per order.
+          </p>
+        </div>
+      </section>
 
-            // Initialize charts when their slides become active
-            if (currentSlide === 4) initPaybackChart();
-            if (currentSlide === 5) initCPAChart();
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-sp-orange text-white font-extrabold text-xs flex items-center justify-center mb-3">1</div>
+            <h4 class="font-extrabold text-base text-sp-black mb-1.5">Channel Optimization</h4>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              You're generating consistent orders from GBP and Search. Optimize profile photos, encourage reviews, monitor search terms. No new cost — just profile refinement.
+            </p>
+          </div>
+          <div class="mt-4 p-3 rounded-lg bg-sp-cream border border-sp-orange/50">
+            <p class="text-xs font-bold text-sp-orange">Est. impact: +10–15% order volume</p>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-sp-orange text-white font-extrabold text-xs flex items-center justify-center mb-3">2</div>
+            <h4 class="font-extrabold text-base text-sp-black mb-1.5">Messaging Expansion</h4>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              WhatsApp and direct messaging are showing early promise. Add catalog links, optimize response templates, track conversion. Same channels, sharper operations.
+            </p>
+          </div>
+          <div class="mt-4 p-3 rounded-lg bg-sp-cream border border-sp-orange/50">
+            <p class="text-xs font-bold text-sp-orange">Est. impact: +20–30% orders/month</p>
+          </div>
+        </div>
+
+        <div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="w-7 h-7 rounded-full bg-sp-orange text-white font-extrabold text-xs flex items-center justify-center mb-3">3</div>
+            <h4 class="font-extrabold text-base text-sp-black mb-1.5">Repeat Customer Activation</h4>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+              You have 380+ customers over 24 months. 20% repeat customers = 76 repeat orders/month. Reminders of seasonal specials cost zero; conversion is guaranteed.
+            </p>
+          </div>
+          <div class="mt-4 p-3 rounded-lg bg-sp-cream border border-sp-orange/50">
+            <p class="text-xs font-bold text-sp-orange">Est. impact: +100–150 orders/year</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Commercial Reality Check -->
+      <section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm">
+        <h3 class="text-base font-extrabold text-sp-orange mb-3">The Year 3 Scenario</h3>
+        <div class="space-y-3 text-sm text-slate-700">
+          <p>
+            If you activate all three paths (channel optimization, messaging expansion, repeat campaigns), your projected year 3 performance:
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+            <div class="p-4 rounded-xl bg-sp-cream border border-sp-orange/50">
+              <div class="text-xs font-bold text-sp-orange mb-1">Conservative Estimate</div>
+              <div class="text-lg font-extrabold text-sp-black">450+ orders</div>
+              <p class="text-xs text-slate-700 mt-1">+18% from month 24 baseline</p>
+            </div>
+            <div class="p-4 rounded-xl bg-sp-green/10 border border-sp-green/50">
+              <div class="text-xs font-bold text-sp-green mb-1">Optimistic Estimate</div>
+              <div class="text-lg font-extrabold text-sp-black">550+ orders</div>
+              <p class="text-xs text-slate-700 mt-1">+45% from month 24 baseline</p>
+            </div>
+          </div>
+          <p class="mt-3 p-3 rounded-lg bg-slate-50 border border-slate-200">
+            <strong>Your investment remains R4,500.</strong> Your cost per order drops to R8.18–R10.00. Your profit scales to R45,000–R55,000+ by end of year 3.
+          </p>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section class="bg-sp-orange/5 border border-sp-orange/50 rounded-2xl p-6 shadow-sm">
+        <h3 class="text-base font-extrabold text-sp-orange mb-3">How This Applies to Your Business</h3>
+        <p class="text-sm text-slate-700 leading-relaxed mb-4">
+          This case demonstrates a proven model: set-and-forget digital asset architecture, sustained organic growth, zero monthly fees, and clear ROI pathways. Your business, your data, your channels. Same proven architecture.
+        </p>
+        <div class="p-4 rounded-lg bg-white border border-sp-orange/50">
+          <p class="text-xs font-bold text-sp-orange mb-2">Your next step:</p>
+          <ul class="text-xs sm:text-sm text-slate-700 space-y-1.5">
+            <li>✓ Understand what your channels could look like (GBP, Search, Messaging)</li>
+            <li>✓ See your 24-month ROI projection (same R4,500 investment, your data)</li>
+            <li>✓ Plan your growth levers (optimization, expansion, repeat activation)</li>
+            <li>✓ Start your digital asset build (no monthly fees, yours to keep)</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-sp-black text-slate-300 border-t border-slate-800 mt-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+      <div class="text-center sm:text-left">
+        <strong class="text-white">Search Playbook</strong> · Digital Asset ROI Case Study ·
+        <a href="https://www.wemustcreate.online" target="_blank" rel="noopener" class="text-sp-orange hover:underline font-semibold">WeMustCreate</a>
+      </div>
+      <div class="text-slate-400">
+        Digital Architecture & Implementation by <strong class="text-sp-orange">WeMustCreate</strong>
+      </div>
+    </div>
+  </footer>
+
+  <!-- TAB DRAWER -->
+  <div id="tab-drawer-backdrop" onclick="closeTabDrawer()" class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 hidden opacity-0 no-print"></div>
+
+  <aside
+    id="tab-drawer-panel"
+    aria-label="Tab Description Drawer"
+    class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50 transform translate-x-full flex flex-col border-l-4 border-sp-orange no-print"
+  >
+    <div class="px-6 py-5 bg-sp-black text-white flex items-center justify-between border-b border-slate-800">
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-wider text-sp-orange">Tab Overview</span>
+        <h3 id="drawer-title" class="text-lg font-extrabold text-white mt-0.5">24-Month Performance</h3>
+      </div>
+      <button
+        type="button"
+        onclick="closeTabDrawer()"
+        class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold text-base cursor-pointer"
+        aria-label="Close Drawer"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div class="flex-1 overflow-y-auto p-6 space-y-5">
+      <div class="p-4 rounded-xl bg-sp-cream border border-sp-orange/60">
+        <div class="text-xs font-bold uppercase tracking-wide text-sp-orange mb-1">What This Tab Shows</div>
+        <p id="drawer-summary" class="text-sm text-slate-700 leading-relaxed">Your complete 24-month ROI story: how R4,500 became R34,200+ in profit through one-time digital asset deployment.</p>
+      </div>
+
+      <div>
+        <h4 class="text-xs font-extrabold uppercase tracking-wider text-slate-500 mb-2.5">Key Sections</h4>
+        <ul id="drawer-bullets" class="space-y-2.5 text-sm text-slate-700">
+          <li>✓ Plain-English summary of what happened</li>
+          <li>✓ 4 KPI cards (investment, orders, cost, ROI)</li>
+          <li>✓ Payback curve and CPA comparison charts</li>
+          <li>✓ Order volume trend and channel breakdown</li>
+        </ul>
+      </div>
+
+      <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+        <div class="text-xs font-bold uppercase tracking-wide text-slate-500 mb-2">Switch Between Tabs</div>
+        <div class="grid grid-cols-1 gap-2">
+          <button type="button" onclick="switchTab('report'); updateDrawerContent('report');" class="text-left px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:border-sp-orange text-xs font-bold text-sp-black flex items-center justify-between cursor-pointer">
+            <span>📊 Performance</span>
+            <span class="text-sp-orange">View →</span>
+          </button>
+          <button type="button" onclick="switchTab('blueprint'); updateDrawerContent('blueprint');" class="text-left px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:border-sp-orange text-xs font-bold text-sp-black flex items-center justify-between cursor-pointer">
+            <span>🏗️ Architecture</span>
+            <span class="text-sp-orange">View →</span>
+          </button>
+          <button type="button" onclick="switchTab('safety'); updateDrawerContent('safety');" class="text-left px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:border-sp-orange text-xs font-bold text-sp-black flex items-center justify-between cursor-pointer">
+            <span>🛡️ Compliance</span>
+            <span class="text-sp-orange">View →</span>
+          </button>
+          <button type="button" onclick="switchTab('next'); updateDrawerContent('next');" class="text-left px-3.5 py-2.5 rounded-xl border border-slate-200 bg-white hover:border-sp-orange text-xs font-bold text-sp-black flex items-center justify-between cursor-pointer">
+            <span>🚀 Scaling</span>
+            <span class="text-sp-orange">View →</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="px-6 py-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
+      <span class="text-xs text-slate-500">Main page remains interactive</span>
+      <button type="button" onclick="closeTabDrawer()" class="px-4 py-2 rounded-xl bg-sp-orange text-white text-xs font-bold cursor-pointer">
+        Done
+      </button>
+    </div>
+  </aside>
+
+  <script>
+    let currentTabId = 'report';
+    const drawerContent = {
+      report: {
+        title: '24-Month Performance',
+        summary: 'Your complete ROI story: how R4,500 became R34,200+ in profit through one-time digital asset deployment.',
+        bullets: ['Plain-English summary of what happened', '4 KPI cards (investment, orders, cost, ROI)', 'Payback curve and CPA comparison charts', 'Order volume trend and channel breakdown']
+      },
+      blueprint: {
+        title: 'Asset Architecture',
+        summary: 'The 5 locked directives that make a digital asset work without paid ads.',
+        bullets: ['5 architectural principles', 'Current channel snapshot', 'Why this model compounds over time']
+      },
+      safety: {
+        title: 'Data Safety & Compliance',
+        summary: 'How customer data is protected and processed under South African privacy law.',
+        bullets: ['Data processing agreement', 'Your rights over your data', 'South Africa POPIA checklist']
+      },
+      next: {
+        title: 'Growth & Scaling',
+        summary: 'Growth paths that compound your asset without increasing your cost per order.',
+        bullets: ['Channel optimization', 'Messaging expansion', 'Repeat customer activation', 'Year 3 scenario projections']
+      }
+    };
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.setAttribute('aria-selected', 'false'));
+      document.getElementById(`panel-${tabId}`).classList.add('active');
+      document.getElementById(`tab-btn-${tabId}`).setAttribute('aria-selected', 'true');
+      currentTabId = tabId;
+      updateDrawerContent(tabId);
+    }
+
+    function updateDrawerContent(tabId) {
+      const content = drawerContent[tabId];
+      document.getElementById('drawer-title').textContent = content.title;
+      document.getElementById('drawer-summary').textContent = content.summary;
+      document.getElementById('drawer-bullets').innerHTML = content.bullets.map(b => `<li>✓ ${b}</li>`).join('');
+      document.getElementById('drawer-trigger-label').textContent = `About This Tab (${content.title})`;
+    }
+
+    function openTabDrawer(tabId) {
+      updateDrawerContent(tabId);
+      document.getElementById('tab-drawer-backdrop').classList.remove('hidden');
+      setTimeout(() => {
+        document.getElementById('tab-drawer-backdrop').style.opacity = '1';
+        document.getElementById('tab-drawer-panel').style.transform = 'translateX(0)';
+      }, 10);
+    }
+
+    function closeTabDrawer() {
+      document.getElementById('tab-drawer-backdrop').style.opacity = '0';
+      document.getElementById('tab-drawer-panel').style.transform = 'translateX(100%)';
+      setTimeout(() => {
+        document.getElementById('tab-drawer-backdrop').classList.add('hidden');
+      }, 300);
+    }
+
+    // Charts
+    document.addEventListener('DOMContentLoaded', () => {
+      initPaybackChart();
+      initCPAChart();
+    });
+
+    function initPaybackChart() {
+      const ctx = document.getElementById('paybackChart');
+      if (!ctx) return;
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['0', '3', '6', '12', '18', '24'],
+          datasets: [
+            {
+              label: 'Investment (R4,500)',
+              data: [4500, 4500, 4500, 4500, 4500, 4500],
+              borderColor: '#d97706',
+              backgroundColor: 'rgba(217, 119, 6, 0.1)',
+              borderWidth: 2,
+              fill: true,
+              tension: 0.4,
+              pointRadius: 0,
+            },
+            {
+              label: 'Revenue Generated',
+              data: [0, 1080, 2160, 4320, 6480, 8640],
+              borderColor: '#059669',
+              backgroundColor: 'rgba(5, 150, 105, 0.1)',
+              borderWidth: 3,
+              fill: true,
+              tension: 0.4,
+              pointRadius: 4,
+              pointBackgroundColor: '#059669',
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { labels: { font: { size: 14 }, color: '#475569' } } },
+          scales: {
+            y: { ticks: { color: '#6b7280', callback: (v) => 'R' + (v/1000).toFixed(0) + 'k' } },
+            x: { ticks: { color: '#6b7280' } }
+          }
         }
+      });
+    }
 
-        function changeSlide(n) { showSlide(currentSlide + n); }
-
-        function initPaybackChart() {
-            if (window.paybackChartInstance) return;
-            const ctx = document.getElementById('paybackChart').getContext('2d');
-            window.paybackChartInstance = new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['0', '10', '20', '30', '40', '50', '100', '150', '200', '300', '453'],
-                    datasets: [
-                        {
-                            label: 'Investment (R4,500)',
-                            data: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500],
-                            borderColor: '#ef4444',
-                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
-                            borderWidth: 2,
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 0,
-                        },
-                        {
-                            label: 'Revenue Generated',
-                            data: [0, 790, 1580, 2370, 3160, 3950, 7900, 11850, 15800, 23700, 35787],
-                            borderColor: '#059669',
-                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
-                            borderWidth: 3,
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 4,
-                            pointBackgroundColor: '#059669',
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { labels: { font: { size: 14 }, color: '#d1d5db' } } },
-                    scales: {
-                        y: { ticks: { color: '#6b7280', callback: (v) => 'R' + (v/1000).toFixed(0) + 'k' } },
-                        x: { ticks: { color: '#6b7280' } }
-                    }
-                }
-            });
+    function initCPAChart() {
+      const ctx = document.getElementById('cpaChart');
+      if (!ctx) return;
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Digital Asset', 'Market PPC Rate'],
+          datasets: [{
+            label: 'Cost Per Order',
+            data: [12.00, 40.00],
+            backgroundColor: ['#059669', '#d97706'],
+            borderRadius: 8,
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { ticks: { color: '#6b7280', callback: (v) => 'R' + v.toFixed(2) } }
+          }
         }
-
-        function initCPAChart() {
-            if (window.cpaChartInstance) return;
-            const ctx = document.getElementById('cpaChart').getContext('2d');
-            window.cpaChartInstance = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Your Digital Asset', 'Market PPC Rate'],
-                    datasets: [{
-                        label: 'Cost Per Order',
-                        data: [9.94, 20.00],
-                        backgroundColor: ['#059669', '#d97706'],
-                        borderRadius: 8,
-                    }]
-                },
-                options: {
-                    indexAxis: 'y',
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: { legend: { display: false } },
-                    scales: {
-                        x: { ticks: { color: '#6b7280', callback: (v) => 'R' + v.toFixed(2) } }
-                    }
-                }
-            });
-        }
-
-        showSlide(0);
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight') changeSlide(1);
-            if (e.key === 'ArrowLeft') changeSlide(-1);
-        });
-    </script>
+      });
+    }
+  </script>
 </body>
 </html>
