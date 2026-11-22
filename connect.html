@@ -1,285 +1,180 @@
 <!DOCTYPE html>
 <html lang="en-ZA">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Find your starting point | WeMustCreate</title>
-  <meta name="description" content="Answer seven short questions and we will suggest where to begin. Your answers stay in your browser. Nothing is sent unless you choose to send them on WhatsApp.">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://wemustcreate.online/connect.html">
-  <meta property="og:type" content="website">
-  <meta property="og:site_name" content="WeMustCreate">
-  <meta property="og:locale" content="en_ZA">
-  <meta property="og:title" content="Find your starting point | WeMustCreate">
-  <meta property="og:description" content="Answer seven short questions and we will suggest where to begin. Your answers stay in your browser. Nothing is sent unless you choose to send them on WhatsApp.">
-  <meta property="og:url" content="https://wemustcreate.online/connect.html">
-  <meta property="og:image" content="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Find your starting point | WeMustCreate">
-  <meta name="twitter:description" content="Answer seven short questions and we will suggest where to begin. Your answers stay in your browser. Nothing is sent unless you choose to send them on WhatsApp.">
-  <meta name="twitter:image" content="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056">
-
-  <style>
-    :root {
-      --onyx: #18181B;
-      --graphite: #27272A;
-      --cream: #E4E4E7;
-      --subtext: #71717A;
-      --gold: #D4AF37;
-      --azure: #43CFFD;
-      --space-2: 8px;
-      --space-3: 16px;
-      --space-4: 24px;
-      --space-6: 40px;
-      --radius: 12px;
-      --target: 44px;
-    }
-    @media (prefers-reduced-motion: reduce) {
-      * { transition: none !important; animation: none !important; }
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      background: var(--onyx);
-      color: var(--cream);
-      font-family: "Open Sans", system-ui, sans-serif;
-      font-size: 16px;
-      line-height: 1.6;
-    }
-    a { color: var(--gold); }
-    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible {
-      outline: 2px solid var(--azure);
-      outline-offset: 2px;
-    }
-    .skip-link {
-      position: absolute; left: var(--space-3); top: -48px;
-      background: var(--gold); color: var(--onyx); padding: var(--space-2) var(--space-3);
-      border-radius: var(--radius); z-index: 1400;
-    }
-    .skip-link:focus { top: var(--space-3); }
-    .wrap { max-width: 720px; margin: 0 auto; padding: var(--space-4) var(--space-3); }
-    header nav a { display: inline-flex; align-items: center; min-height: var(--target); }
-    h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); line-height: 1.2; margin: var(--space-4) 0 var(--space-3); }
-    .intro { color: var(--cream); margin-bottom: var(--space-4); }
-    .notice { color: var(--subtext); font-size: 0.95rem; }
-    fieldset {
-      border: 1px solid var(--graphite);
-      border-radius: var(--radius);
-      padding: var(--space-3);
-      margin: 0 0 var(--space-3);
-      background: var(--graphite);
-    }
-    legend { font-weight: 700; padding: 0 var(--space-2); }
-    .option {
-      display: flex; align-items: center; gap: var(--space-2);
-      min-height: var(--target); padding: var(--space-2) 0;
-    }
-    .option input { width: 20px; height: 20px; flex: 0 0 auto; accent-color: var(--gold); }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: var(--target); padding: var(--space-2) var(--space-4);
-      border-radius: var(--radius); border: 1px solid var(--gold);
-      background: var(--gold); color: var(--onyx); font: inherit; font-weight: 700;
-      cursor: pointer; text-decoration: none; margin: var(--space-2) var(--space-2) var(--space-2) 0;
-    }
-    .btn--ghost { background: transparent; color: var(--gold); }
-    .result {
-      border: 1px solid var(--azure);
-      border-radius: var(--radius);
-      padding: var(--space-3);
-      margin-top: var(--space-3);
-    }
-    .faq details { border-bottom: 1px solid var(--graphite); padding: var(--space-2) 0; }
-    .faq summary { cursor: pointer; min-height: var(--target); display: flex; align-items: center; font-weight: 700; }
-    .faq details > div { padding-bottom: var(--space-3); }
-    footer { color: var(--subtext); font-size: 0.9rem; border-top: 1px solid var(--graphite); margin-top: var(--space-6); padding-top: var(--space-3); }
-    footer a { display: inline-flex; align-items: center; min-height: var(--target); }
-    .js-only { display: none; }
-    .checklist { margin-top: var(--space-6); }
-    .cl-card {
-      border: 1px solid var(--graphite);
-      border-radius: var(--radius);
-      background: var(--graphite);
-      padding: var(--space-4) var(--space-3);
-      animation: cl-in 200ms ease-out;
-    }
-    @keyframes cl-in {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .cl-question { font-weight: 700; font-size: 1.1rem; margin: 0 0 var(--space-3); }
-    .cl-question:focus { outline: none; }
-    .cl-actions { display: flex; flex-wrap: wrap; gap: var(--space-2); }
-    .cl-progress { color: var(--subtext); font-size: 0.9rem; margin: 0 0 var(--space-2); }
-    .js .js-only:not([hidden]) { display: block; }
-  </style>
-  <script>document.documentElement.classList.add('js');</script>
-  <link rel="stylesheet" href="/assets/css/footer.css">
-  <link rel="stylesheet" href="/assets/css/fonts.css">
-  <script type="application/ld+json">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="description" content="A free, plain-English check of where your business stands online, with the reason behind every step. Your answers stay in your browser. Nothing is sent unless you choose to send it on WhatsApp.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://wemustcreate.online/connect.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="WeMustCreate">
+<meta property="og:locale" content="en_ZA">
+<meta property="og:title" content="Free Digital Presence Assessment | WeMustCreate">
+<meta property="og:description" content="A free, plain-English check of where your business stands online, with the reason behind every step. Your answers stay in your browser. Nothing is sent unless you choose to send it on WhatsApp.">
+<meta property="og:url" content="https://wemustcreate.online/connect.html">
+<meta property="og:image" content="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Digital Presence Assessment | WeMustCreate">
+<meta name="twitter:description" content="A free, plain-English check of where your business stands online, with the reason behind every step. Your answers stay in your browser. Nothing is sent unless you choose to send it on WhatsApp.">
+<meta name="twitter:image" content="https://ik.imagekit.io/wemustcreate/Shield.png?updatedAt=1777882057056">
+<title>Free Digital Presence Assessment | WeMustCreate</title>
+<link rel="stylesheet" href="/assets/css/footer.css">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebPage",
-  "name": "Find your starting point | WeMustCreate",
-  "description": "Answer seven short questions and we will suggest where to begin. Your answers stay in your browser. Nothing is sent unless you choose to send them on WhatsApp.",
+  "name": "Free Digital Presence Assessment | WeMustCreate",
+  "description": "A free, plain-English check of where your business stands online, with the reason behind every step. Your answers stay in your browser. Nothing is sent unless you choose to send it on WhatsApp.",
   "url": "https://wemustcreate.online/connect.html",
   "inLanguage": "en-ZA",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "WeMustCreate",
-    "url": "https://wemustcreate.online/"
-  },
-  "publisher": {
-    "@id": "https://wemustcreate.online/#organization"
-  },
+  "isPartOf": { "@type": "WebSite", "name": "WeMustCreate", "url": "https://wemustcreate.online/" },
+  "publisher": { "@id": "https://wemustcreate.online/#organization" },
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://wemustcreate.online/"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Find your starting point",
-        "item": "https://wemustcreate.online/connect.html"
-      }
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://wemustcreate.online/" },
+      { "@type": "ListItem", "position": 2, "name": "Free Digital Presence Assessment", "item": "https://wemustcreate.online/connect.html" }
     ]
   }
 }
-  </script>
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aboreto&family=RocknRoll+One&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--jet:#09090B;--gold:#D4AF37;--gray:#E4E4E7;--sky:#43CFFD;--clay:#B66E41;--bg:#F7F7F5;--card:#FFFFFF;--muted:#55555C;--line:#D9D9DE;--gold-soft:#FBF6E3;--sky-soft:#E8F9FE;--clay-soft:#F8EFE9;--radius:16px}
+*{box-sizing:border-box}
+body{margin:0;font-family:"Open Sans",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;font-size:17px;line-height:1.55;color:var(--jet);background:var(--bg)}
+h1,h2{font-family:"RocknRoll One","Open Sans",sans-serif;font-weight:400;letter-spacing:.01em;line-height:1.15;margin:0 0 10px}
+h1{font-size:2rem}h2{font-size:1.6rem}
+.eyebrow{font-family:Aboreto,Georgia,serif;font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;margin:0 0 6px}
+.sub{font-family:"RocknRoll One",sans-serif;font-size:1.1rem;margin:0 0 12px}
+.wrap{max-width:720px;margin:0 auto;padding:16px 16px 64px}
+.brand{display:flex;align-items:center;gap:14px;margin:4px 0 10px}
+.brand img{width:152px;min-width:152px;height:auto}
+.slogan{font-family:Aboreto,Georgia,serif;font-size:1rem;letter-spacing:.06em;margin:0}
+.topnav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.bar{height:8px;background:var(--gray);border-radius:999px;overflow:hidden;margin:14px 0 6px}
+.bar>span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--sky));transition:width .4s ease}
+.meta{font-size:.9rem;color:var(--muted);margin:0 0 14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:22px 18px;margin-bottom:14px;box-shadow:0 2px 10px rgba(9,9,11,.05);animation:rise .4s ease both}
+.intro{width:100%;border-radius:12px;margin:6px 0 10px;background:var(--jet)}
+.rv{opacity:0;animation:fade .6s ease forwards;animation-delay:var(--d,0s)}
+.rv.skip{opacity:1;animation:none}
+.readbar{height:6px;background:var(--gray);border-radius:999px;overflow:hidden;margin:18px 0 6px}
+.readbar>span{display:block;height:100%;width:0;background:var(--gold);transition:width .25s linear}
+.readmsg{font-size:.95rem;margin:0 0 4px;color:var(--muted)}
+.qwrap{border-top:1px solid var(--line);padding-top:18px;margin-top:18px}
+.qlabel{display:block;font-family:"RocknRoll One",sans-serif;font-size:1.25rem;line-height:1.3;margin:0 0 6px}
+.desc{margin:0 0 12px}
+.block{border-left:5px solid var(--gold);background:var(--gold-soft);padding:12px 14px;border-radius:10px;margin:12px 0}
+.block.people{border-color:var(--sky);background:var(--sky-soft)}
+.block.bots{border-color:var(--clay);background:var(--clay-soft)}
+.block strong{display:block;font-family:"RocknRoll One",sans-serif;font-weight:400;font-size:1.05rem;margin-bottom:4px}
+.block p{margin:0}
+details{margin-top:10px;border:2px solid var(--clay);border-radius:12px;background:#fff}
+summary{cursor:pointer;padding:12px 14px;font-family:"RocknRoll One",sans-serif;font-size:1.02rem;min-height:44px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--clay)}
+details[open] summary::before{content:"- "}
+details .inner{padding:0 14px 12px}
+details .inner p{margin:6px 0 0}
+.opts{display:grid;gap:10px}
+.opt{display:block;width:100%;text-align:left;font:inherit;font-weight:700;padding:14px 16px;min-height:52px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--jet);cursor:pointer;transition:border-color .2s ease,background .2s ease,transform .15s ease,box-shadow .2s ease}
+.opt:hover{border-color:var(--gold);background:#FFFDF6;transform:translateY(-2px);box-shadow:0 6px 14px rgba(212,175,55,.2)}
+.opt[aria-pressed="true"]{border-color:var(--gold);background:var(--gold-soft);box-shadow:inset 6px 0 0 var(--gold)}
+textarea{width:100%;font:inherit;font-size:1rem;padding:12px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--jet);min-height:100px;resize:vertical;transition:border-color .2s ease}
+textarea:hover{border-color:var(--sky)}
+.pending .qlabel::after{content:" (to confirm)";font-family:"Open Sans",sans-serif;font-weight:400;font-size:.9rem}
+.pending .opts,.pending textarea{opacity:.7}
+.tip{font:inherit;font-size:.95rem;font-weight:700;color:var(--jet);background:var(--clay-soft);border:2px solid var(--clay);border-radius:999px;padding:8px 14px;cursor:pointer;margin-top:8px;min-height:44px}
+.tipbox{margin-top:10px;background:#fff;border:2px solid var(--clay);border-radius:12px;padding:12px 14px}
+.tipbox strong{font-family:"RocknRoll One",sans-serif;font-weight:400;display:block;margin-top:6px}
+.tipbox p{margin:2px 0 0;font-size:.97rem}
+.nav{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;margin-top:18px}
+.btn{font:inherit;font-family:"RocknRoll One",sans-serif;font-size:1.05rem;padding:14px 20px;min-height:52px;flex:1 1 150px;border-radius:12px;border:2px solid var(--jet);background:var(--jet);color:#fff;cursor:pointer;transition:transform .15s ease,box-shadow .2s ease,border-color .2s ease}
+.btn:hover:not(:disabled){transform:translateY(-2px);border-color:var(--gold);box-shadow:0 8px 18px rgba(212,175,55,.35)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.ghost{background:#fff;color:var(--jet);border-color:var(--line)}
+.btn.cta{background:var(--gold);border-color:var(--gold);color:var(--jet);width:100%}
+.chip{font:inherit;font-weight:700;font-size:.95rem;color:var(--jet);background:#fff;border:2px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer;min-height:44px}
+.chip:hover{border-color:var(--gold);background:var(--gold-soft)}
+.link{font:inherit;font-weight:700;color:var(--jet);background:none;border:none;text-decoration:underline;cursor:pointer;padding:8px 0;min-height:44px}
+.tick{display:flex;gap:12px;align-items:flex-start;font-weight:700;margin:16px 0 4px;cursor:pointer}
+.tick input,.check input{width:22px;height:22px;margin-top:3px;accent-color:var(--gold);flex:0 0 auto}
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 4px;border-bottom:1px solid var(--line);cursor:pointer}
+.check:last-child{border-bottom:none}
+.pill{font-size:.9rem;padding:4px 10px;border-radius:999px;white-space:nowrap;font-family:"RocknRoll One",sans-serif}
+.pill.ok{background:var(--sky-soft);border:2px solid var(--sky)}
+.pill.todo{background:var(--clay-soft);border:2px solid var(--clay)}
+.pill.conf{background:var(--gold-soft);border:2px solid var(--gold)}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;padding:12px 4px;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:none}
+.svc{display:block;padding:12px 14px;border:2px solid var(--gold);border-radius:12px;margin:8px 0;color:var(--jet);text-decoration:none;font-weight:700;background:#fff}
+.svc:hover{background:var(--gold-soft)}
+details.help{border-color:var(--gold)}
+details.help summary::before{color:var(--gold)}
+.fee{display:block;margin-top:6px;font-size:.85rem;color:var(--muted)}
+.hidden{display:none}
+.lockpill{display:inline-block;font-weight:700;font-size:.9rem;background:#fff;border:2px solid var(--jet);border-radius:999px;padding:4px 12px;margin:0 0 12px}
+.dash h3{font-family:"RocknRoll One",sans-serif;font-weight:400;font-size:1.15rem;margin:20px 0 8px}
+.rings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.ring{text-align:center;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 6px;filter:grayscale(1);opacity:.55}
+.ring svg{width:64px;height:64px;transform:rotate(-90deg)}
+.ring-bg{fill:none;stroke:var(--gray);stroke-width:3.5}
+.ring-fg{fill:none;stroke:var(--gold);stroke-width:3.5;stroke-dasharray:30 100;stroke-linecap:round}
+.ring strong{display:block;font-family:"RocknRoll One",sans-serif;font-weight:400;font-size:.95rem}
+.ring span{display:block;font-size:.8rem;color:var(--muted)}
+.ring em{display:block;font-style:normal;font-weight:700;margin-top:4px}
+.dbar{display:grid;gap:4px;margin:8px 0;opacity:.55}
+.dtrack{height:10px;background:var(--gray);border-radius:999px;overflow:hidden}
+.dtrack i{display:block;height:100%;width:25%;background:#B9B9C0}
+.timeline{list-style:none;margin:0;padding:0 0 0 18px;border-left:3px solid var(--line)}
+.tl{position:relative;padding:4px 0 14px 12px;opacity:.5}
+.tl::before{content:"";position:absolute;left:-27px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--gray);border:3px solid #fff}
+.tl.now{opacity:1}
+.tl.now::before{background:var(--gold)}
+.tl b{display:block;font-size:.85rem;color:var(--muted)}
+.tl strong{font-family:"RocknRoll One",sans-serif;font-weight:400}
+.tl p{margin:2px 0 0;font-size:.95rem}
+.hiw{display:grid;gap:8px;padding:0;list-style:none;margin:0}
+.hiw li{background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;opacity:.55}
+@media (max-width:380px){.rings{grid-template-columns:1fr}}
+dl{margin:0}dt{font-family:"RocknRoll One",sans-serif;font-size:1.05rem;margin-top:14px}dd{margin:2px 0 0}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none !important;transition:none !important}.rv{opacity:1}}
+@media (min-width:720px){body{font-size:18px}.card{padding:30px 28px}h1{font-size:2.6rem}h2{font-size:2rem}}
+.skip-link{position:absolute;left:16px;top:-56px;background:var(--gold);color:var(--jet);padding:8px 16px;border-radius:12px;z-index:1400;font-weight:700}
+.skip-link:focus{top:16px}
+.sitenav{max-width:720px;margin:0 auto;padding:12px 16px 0}
+.sitenav a{display:inline-flex;align-items:center;min-height:44px;color:var(--jet);font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.sitenav a:hover{color:#8a6d12}
+.noscript{max-width:720px;margin:16px auto;padding:0 16px}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to questions</a>
+<a class="skip-link" href="#app">Skip to the assessment</a>
+<nav class="sitenav" aria-label="Site"><a href="/">Back to the Search Playbook home</a></nav>
+<noscript><p class="noscript">This assessment needs JavaScript. You can still reach us directly: <a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20to%20do%20the%20Digital%20Presence%20Assessment.">message Max on WhatsApp</a>.</p></noscript>
+<div class="wrap">
+  <div class="brand">
+    <img src="https://ik.imagekit.io/wemustcreate/image9339.webp?updatedAt=1792966022072" alt="We Must Create logo">
+    <div><p class="slogan">We clear the noise. You focus on your hustle.</p></div>
+  </div>
+  <nav class="topnav" aria-label="Help pages">
+    <button type="button" class="chip" data-jump="faq">FAQ</button>
+    <button type="button" class="chip" data-jump="glossary">Glossary</button>
+  </nav>
+  <div class="bar" aria-hidden="true"><span id="bar"></span></div>
+  <p class="meta" id="meta" aria-live="polite"></p>
+  <main id="app"></main>
+</div>
 
-  <header class="wrap">
-    <nav aria-label="Site">
-      <a href="/">Back to the Search Playbook home</a>
-    </nav>
-  </header>
-
-  <main id="main" class="wrap">
-    <h1>Find your starting point</h1>
-    <p class="intro">Answer seven short questions and we will suggest where to begin. Your answers stay in your browser. Nothing is sent to us unless you choose to send them on WhatsApp.</p>
-
-    <noscript>
-      <p class="notice">The questionnaire needs JavaScript. You can still reach us directly on WhatsApp: <a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20help%20finding%20my%20starting%20point.">message Max on WhatsApp</a>.</p>
-    </noscript>
-
-    <form id="starting-point" class="js-only" novalidate>
-      <fieldset>
-        <legend>1. What best describes you?</legend>
-        <label class="option"><input type="radio" name="q1" value="Small business or trade"> I run a small business or trade</label>
-        <label class="option"><input type="radio" name="q1" value="Household or family"> I am a household or family</label>
-        <label class="option"><input type="radio" name="q1" value="Caring for an older relative"> I look after an older relative</label>
-        <label class="option"><input type="radio" name="q1" value="Organisation"> I work for an organisation</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>2. Where do most customers or clients find you today?</legend>
-        <label class="option"><input type="radio" name="q2" value="Word of mouth"> Word of mouth only</label>
-        <label class="option"><input type="radio" name="q2" value="Google or Maps"> Google or Maps</label>
-        <label class="option"><input type="radio" name="q2" value="Facebook or Instagram"> Facebook or Instagram</label>
-        <label class="option"><input type="radio" name="q2" value="Not sure yet"> I am not sure yet</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>3. Do you have a Google Business Profile?</legend>
-        <label class="option"><input type="radio" name="q3" value="Yes, up to date"> Yes, and it is up to date</label>
-        <label class="option"><input type="radio" name="q3" value="Yes, needs work"> Yes, but it needs work</label>
-        <label class="option"><input type="radio" name="q3" value="No"> No</label>
-        <label class="option"><input type="radio" name="q3" value="Do not know"> I do not know what this is</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>4. How do people usually contact you?</legend>
-        <label class="option"><input type="radio" name="q4" value="WhatsApp"> WhatsApp</label>
-        <label class="option"><input type="radio" name="q4" value="Phone calls"> Phone calls</label>
-        <label class="option"><input type="radio" name="q4" value="Email"> Email</label>
-        <label class="option"><input type="radio" name="q4" value="A mix"> A mix of these</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>5. Have you ever had an online problem? (a fake page, a review you could not remove, a hacked account)</legend>
-        <label class="option"><input type="radio" name="q5" value="Yes, not solved"> Yes, and it is not solved</label>
-        <label class="option"><input type="radio" name="q5" value="Yes, solved"> Yes, and it is solved</label>
-        <label class="option"><input type="radio" name="q5" value="No"> No</label>
-        <label class="option"><input type="radio" name="q5" value="Not sure"> Not sure</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>6. What would you most like to fix first?</legend>
-        <label class="option"><input type="radio" name="q6" value="Being found online"> Being found online</label>
-        <label class="option"><input type="radio" name="q6" value="Privacy and reputation"> Protecting privacy and reputation</label>
-        <label class="option"><input type="radio" name="q6" value="Staying safe online"> Staying safe online</label>
-        <label class="option"><input type="radio" name="q6" value="Help choosing"> I would like help choosing</label>
-      </fieldset>
-
-      <fieldset>
-        <legend>7. How much time can you give this?</legend>
-        <label class="option"><input type="radio" name="q7" value="Almost none"> Almost none, set it and forget it</label>
-        <label class="option"><input type="radio" name="q7" value="About an hour"> About an hour</label>
-        <label class="option"><input type="radio" name="q7" value="More, I like to learn"> More, I like to learn</label>
-      </fieldset>
-
-      <button type="submit" class="btn">Show my starting point</button>
-      <button type="button" class="btn btn--ghost" id="reset">Start again</button>
-    </form>
-
-    <section class="result" id="result" aria-live="polite" aria-label="Your starting point" hidden></section>
-
-    <section class="result js-only" id="send" hidden>
-      <p>Send your answers to Max on WhatsApp. The message contains only the answers you selected above. You decide whether to send it.</p>
-      <a class="btn" id="whatsapp" href="https://wa.me/27695326613" rel="noopener">Send my answers on WhatsApp</a>
-    </section>
-
-    <section class="checklist" aria-labelledby="checklist-heading">
-      <h2 id="checklist-heading">Presence and safety check</h2>
-      <p class="notice">Seven yes or no questions. Nothing is stored or sent unless you choose to send it on WhatsApp. We only ask for your name and contact details on WhatsApp, before your free Digital Presence Assessment.</p>
-      <noscript>
-        <p class="notice">This check needs JavaScript. <a href="https://wa.me/27695326613?text=Hi%20Max%2C%20I%20would%20like%20to%20complete%20the%20presence%20and%20safety%20check.">Message Max on WhatsApp</a> and we will take you through it.</p>
-      </noscript>
-      <div class="js-only" id="cl-app">
-        <p class="cl-progress" id="cl-progress" aria-live="polite"></p>
-        <div class="cl-card" id="cl-card">
-          <p class="cl-question" id="cl-question" tabindex="-1"></p>
-          <div class="cl-actions">
-            <button type="button" class="btn" data-answer="yes">Yes</button>
-            <button type="button" class="btn btn--ghost" data-answer="no">No</button>
-            <button type="button" class="btn btn--ghost" id="cl-back">Back</button>
-          </div>
-        </div>
-        <div class="result" id="cl-result" tabindex="-1" aria-live="polite" hidden></div>
-        <a class="btn" id="cl-wa" href="https://wa.me/27695326613" rel="noopener" hidden>Send my checklist on WhatsApp</a>
-        <button type="button" class="btn btn--ghost" id="cl-restart" hidden>Start the check again</button>
-      </div>
-    </section>
-
-    <section class="faq" aria-labelledby="faq-heading">
-      <h2 id="faq-heading">Common questions</h2>
-      <details>
-        <summary>Do you store my answers?</summary>
-        <div>No. The questionnaire runs in your browser and does not save or send anything. Your answers are only shared if you tap the WhatsApp button.</div>
-      </details>
-      <details>
-        <summary>What happens after I send my answers on WhatsApp?</summary>
-        <div>Max replies on WhatsApp and talks you through the next step. You can ask questions before committing to anything.</div>
-      </details>
-      <details>
-        <summary>Is the free Digital Presence Assessment really free?</summary>
-        <div>Yes. The assessment is free. Anything beyond it is only discussed after you have seen the findings.</div>
-      </details>
-      <details>
-        <summary>How is my information handled?</summary>
-        <div>Read our <a href="/privacy.html">Privacy Policy</a> to see how information is handled when you contact us.</div>
-      </details>
-    </section>
-  </main>
-
-  <footer class="wmc-footer">
+<footer class="wmc-footer">
   <div class="wmc-footer__grid">
 
     <section class="wmc-footer__col" aria-labelledby="wmc-footer-brand">
@@ -329,161 +224,379 @@
   </div>
 </footer>
 
-  <script>
-    (function () {
-      var form = document.getElementById('starting-point');
-      var result = document.getElementById('result');
-      var send = document.getElementById('send');
-      var waLink = document.getElementById('whatsapp');
-      var reset = document.getElementById('reset');
-      var WA_NUMBER = '27695326613';
+<script>
+// ===== Settings =====
+var WA_NUMBER = "27695326613";                       // We Must Create WhatsApp line
+var SOLUTIONS_URL = "https://wemustcreate.online/solutions"; // confirm the exact Solutions page address
+var INTRO_VIDEO = "https://ik.imagekit.io/wemustcreate/imllew1.webm";
+var INTRO_POSTER = "https://ik.imagekit.io/wemustcreate/image9339.webp?updatedAt=1792966022072";
 
-      var outcomes = {
-        'Being found online': 'Start with a free Digital Presence Assessment, then your Google Business Profile and local visibility.',
-        'Privacy and reputation': 'Start with a free Digital Presence Assessment, then a reputation and privacy check.',
-        'Staying safe online': 'Start with a free Digital Presence Assessment, then a digital safety health check.',
-        'Help choosing': 'Start with the free Digital Presence Assessment. We will recommend the next step from there.'
-      };
+var STEPS = 7;
+var KEY = "wmc-dpa-general.v2", CV = 2, MIN_READ = 20;
+var DONE = ["Yes","Yes, and it is sorted","Yes, confirmed","Yes, we have one","No, not yet, and that is fine","No, and that is fine","No"];
+var FACT = " Search and AI tools fetch a page in milliseconds. Indexing and repeating what they found can take hours, days or weeks, so the page must be right before it is read.";
 
-      function labelFor(name) {
-        var checked = form.querySelector('input[name="' + name + '"]:checked');
-        if (!checked) return null;
-        return checked.closest('label').textContent.trim();
-      }
-      function valueFor(name) {
-        var checked = form.querySelector('input[name="' + name + '"]:checked');
-        return checked ? checked.value : null;
-      }
+var FAQ = [
+  {q:"What is a bot?",a:"An automated program that reads web pages. Search engines and AI assistants use bots to find and summarise businesses for people."},
+  {q:"Why do you need my logo?",a:"A logo sent as a clear image file is how people, search tools and AI assistants recognise your business across pages and listings."},
+  {q:"Is this free?",a:"Yes. This check is free. Paid help is a separate step that we discuss with you in person."},
+  {q:"Who sees my details?",a:"Your answers stay on your device. We do not keep your personal information. Details you choose to publish are public."},
+  {q:"What is the Digital Birth Certificate?",a:"A plain record of how your business shows up online today, and the low-budget first paid step if you want help."},
+  {q:"Which regulatory factors apply to my business?",a:"It depends on your industry. Some trades and services need a licence or registration, and the rules are set by the relevant regulator. Your industry checklist names them, and we will confirm the current rules with you before anything is shown on your page."},
+  {q:"Why does the timer run?",a:"Bots read in milliseconds, but people need time to read. The timer gives you a comfortable pace, and you can always read the page again."},
+  {q:"What does greyed out mean?",a:"It means a detail is not yet confirmed. Tap the button on that item to see why it matters to people and to bots."},
+  {q:"Someone once paid for a website address and it was never launched. How is this different?",a:"Nothing is built until this check shows what you actually need, and every account and file is registered in your name. You see the plan before anything is paid or published."},
+  {q:"Why own a page when I already have a social media page?",a:"A social page is rented land: the platform sets the rules and can change them or close the page. A page you own stays yours, and search and AI tools read it as your official source."},
+  {q:"Free to start, but is it free to run?",a:"Many tools are free to start and then add monthly fees. We set things up on free or once-off tools wherever possible, with no monthly subscriptions, so you know the running cost before you start."},
+  {q:"Do I have to do this on my own?",a:"If you qualify, you can go through it with Max on a WhatsApp call or an on-site visit (*starting rates apply; applicable fees are confirmed before booking). If you do not qualify yet, the free check and every insight in it are yours to use."},
+  {q:"Why are there pre-qualification questions?",a:"They keep the guided sessions for businesses that are ready to act now. Everyone gets the free check either way."}
+];
 
-      form.addEventListener('submit', function (event) {
-        event.preventDefault();
-        var answers = {};
-        var missing = [];
-        for (var i = 1; i <= 7; i++) {
-          var value = labelFor('q' + i);
-          if (value === null) missing.push(i);
-          answers['q' + i] = value;
-        }
-        if (missing.length) {
-          result.hidden = false;
-          result.textContent = 'Please answer question ' + missing.join(', ') + ' to see your starting point.';
-          send.hidden = true;
-          return;
-        }
+var Q = {
+  logo_received:{svc:"Visibility: we use your logo file on your Google Business Profile, WhatsApp Business and your page, so you look the same everywhere.",t:"c",q:"Has your logo been sent as an image file?",d:"We need the logo file itself, sent the way a photo is sent.",o:["Yes","Not yet","I don't know"],people:"People recognise the same logo on every page, so the business feels real and familiar.",bots:"Search and AI tools match a logo file to your name only when it is sent as a clear digital image."},
+  logo_digital:{svc:"If you only have a photo of a sign or paper, we help you get a clean digital version as part of your brand kit.",t:"c",q:"Is it a clear digital file, not a photo of paper or a sign?",d:"A clear file that reads well on a screen, not a picture of a sign or paper.",o:["Yes","Not yet","I don't know"],people:"A clear logo looks professional on a phone screen.",bots:"Tools read clean digital files; a photo of a sign is often unreadable to them."},
+  name_one_way:{svc:"Visibility: we set one spelling of your name across Google, Maps, WhatsApp and your page, so search tools see one business.",t:"x",q:"Is your business name written one way everywhere?",d:"The name spelled the same way on every page, listing and message.",people:"Partners and customers find you by one name, not three.",bots:"A name spelled two ways reads as two businesses, and the wrong one can be shown."},
+  colours:{svc:"We apply your colours to your page and profile graphics, so everything we set up looks like you.",t:"x",q:"What are your main brand colours?",d:"Two or three main colours. If you are not sure, type: I don't know, and we pick them from the logo.",people:"Colours make your pages and messages recognisable at a glance.",bots:"Colour is not read by bots, but consistent colours make your pages look like one business to people."},
+  whatsapp:{svc:"We connect one WhatsApp Business number to your listing and your page, so every enquiry lands in one place, with no monthly fees.",t:"c",q:"Is there one WhatsApp number people can use to reach you?",d:"One number, answered during working hours.",o:["Yes","Not yet","I don't know"],people:"One number means no enquiry gets lost.",bots:"A single published number lets directories and AI tools match your contact details to one business."},
+  areas:{svc:"Visibility: we list your service areas in plain text on your Google profile and your page, so you show up in local searches.",t:"x",q:"Which areas do you work in?",d:"The suburbs and towns you work in, in plain words.",people:"Customers search by suburb or town, and so do the people who refer work to you.",bots:"Search tools match your area to local searches only when it is written in plain text on your listing and pages."},
+  lic:{svc:"Safety: we only show licence or registration claims once they are confirmed, so your page never carries a claim that could backfire.",t:"c",q:"Does your work need a licence or registration to operate in South Africa?",d:"Some trades and services require one. If you are not sure, choose I don't know.",o:["Yes","No","I don't know"],people:"Customers and partners check the licence before they trust the business.",bots:"Licence and registration claims are checked against public registers, so they must match exactly."},
+  licconf:{svc:"We check the claim with the relevant regulator before it goes live, and keep it greyed out until then.",t:"c",need:"lic",grey:1,q:"Is your licence or registration confirmed as current?",d:"Confirmed as current with the relevant regulator before it is shown on the page.",o:["Yes, confirmed","Not yet confirmed","I don't know"],people:"A lapsed licence shown as current ends the referral and damages trust in the whole business.",bots:"An unverified licence claim can be treated as false, and that lowers trust across the whole page."},
+  years:{svc:"We put one consistent figure on every page and listing, so it counts as proof instead of being ignored.",t:"x",q:"How many years have you been in business?",d:"A number of years, in plain words, such as 12 years.",people:"Years in business is the first proof of trust people look for.",bots:"Experience claims are compared across pages. A figure that changes between pages is ignored."},
+  reviews:{svc:"Reputation: we help you collect and show reviews with first name and suburb, and set up a simple way to ask happy customers for more.",t:"c",q:"Do you have two or three happy customers who can be quoted?",d:"Two or three customers who will let us quote their first name and suburb.",o:["Yes","Not yet","I don't know"],people:"Other people speaking for you is more believable than your own words.",bots:"Reviews with first names and suburbs are read as independent proof."},
+  google:{svc:"Visibility: claiming and verifying your Google Business Profile is the first step of the Digital Birth Certificate.",t:"c",q:"Does your business show up on Google Maps?",d:"Whether your business appears when someone searches for it on Google Maps.",o:["Yes","Not yet","I don't know"],people:"This is where people search for a business near them, and where partners check you first.",bots:"The Google Business Profile is one of the first sources that search and AI tools read for local businesses."},
+  website:{svc:"We build one simple page that you own, with no monthly subscription, linked to WhatsApp so visitors reach you in one tap.",t:"c",q:"Do you have a website, or one simple page about you?",d:"A website, or one simple page that says who you are and what you do.",o:["Yes, we have one","No, not yet, and that is fine","I don't know"],people:"One page gives partners something to send, and gives customers a place to read about you.",bots:"A public page with your name, area and contact is what search and AI tools read to describe you."},
+  pwm:{t:"c",svc:"Safety: we help you set up a free password manager and move your business logins into it, as part of your Cyber Hygiene check.",q:"Do you use a password manager for your business accounts?",d:"An app that keeps a strong, different password for every account.",o:["Yes","Not yet","I don't know"],people:"One strong, different password per account means one leak does not open everything.",bots:"Bots constantly try leaked passwords on login pages. Reused passwords are the first thing they test."},
+  twofa:{t:"c",svc:"Safety: we switch on two-step login for your email, Google Business Profile and domain, and show you how it works.",q:"Is two-step login (2FA) turned on for your business email and Google account?",d:"A code on your phone, as well as your password, every time someone logs in from a new device.",o:["Yes","Not yet","I don't know"],people:"A code on your phone stops someone who has your password from getting in.",bots:"Automated attacks stop at the second step, because they do not have your phone."},
+  incident:{t:"c",svc:"Safety and Privacy: if something is not sorted, we handle it first, before any visibility work, so we never send more people to a problem.",q:"Has your business had a hacked account, a lockout or a fake page in the past year?",d:"For example a hacked Facebook page, a WhatsApp takeover or a fake profile using your name.",o:["No","Yes, and it is sorted","Yes, and it is not sorted","I don't know"],people:"Knowing what happened before tells us what to protect first.",bots:"Fake pages and hacked accounts keep being read and repeated by search and AI tools until they are reported and removed."},
+  notes:{svc:"We use your own words on your page and profile, so it sounds like you, not a template.",t:"x",q:"Is there anything else you want people to know?",d:"Anything else you want people to know, in one or two sentences.",people:"A short personal note makes the page feel real. One or two sentences is enough.",bots:"Plain sentences are read and quoted directly by search and AI tools."}
+};
 
-        var primary = valueFor('q6');
-        var text = outcomes[primary];
-        var q5 = valueFor('q5');
-        var sentence = text;
-        if (q5 === 'Yes, not solved') {
-          sentence = 'Reputation issues are handled first. ' + text;
-        }
-        result.hidden = false;
-        result.textContent = sentence;
+var INDUSTRIES = {
+  "Real estate":["Agency name confirmed in writing","Licence shown only once confirmed current","Office suburb and areas listed the same everywhere","Listing photos labelled with suburb and address","Two or three client reviews with first name and suburb","Google Business Profile shows the office"],
+  "Trades and services":["Service areas (suburbs) listed in plain text","Photos of finished work, labelled","WhatsApp number answered in working hours","Price ranges shown only if you agree to them","Two or three reviews","Google Business Profile category set to your trade"],
+  "Retail and food":["Opening hours correct on every listing","Menu or product list written as plain text","Photo of the shop front","Delivery area stated","Ask happy customers for a review after a sale","Google Business Profile categories set"],
+  "General small business":["Business name and suburb written the same everywhere","One WhatsApp number used on all pages","One page that says who you are and what you do","Two or three reviews","Google Business Profile claimed"]
+};
 
-        var summary = [];
-        for (var n = 1; n <= 7; n++) summary.push(n + '. ' + answers['q' + n]);
-        var message = 'Hi Max, I completed the Connect questionnaire. My answers: ' + summary.join('; ');
-        waLink.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(message);
-        send.hidden = false;
-        result.setAttribute('tabindex', '-1');
-        result.focus();
-      });
+// ===== Pre-qualification =====
+// Everyone can use the free check. Only qualified leads are offered the guided DPA with Max.
+var PQ = [
+  {id:"trading",svc:"The guided DPA is built for businesses that are open or about to open. Your Google listing, WhatsApp line and page are set up to bring in enquiries now, not someday.",q:"Is your business trading now, or starting within the next three months?",o:["Yes, trading now","Starting within three months","No"]},
+  {id:"decider",svc:"Setting up your listings needs the owner's go-ahead and documents, such as Google verification and admin access. Speaking to the decision-maker means nothing stalls halfway.",q:"Are you the owner, or the person who makes the decisions?",o:["Yes","No"]},
+  {id:"timing",svc:"Our 120-day plan starts with a 60-day foundation. Starting within one to three months means the setup and the Day 60 check-in fit your timing.",q:"Do you want help to put this in place within the next one to three months?",o:["Yes","Not yet","Just looking"]},
+  {id:"budget",svc:"Not sure yet is a fair answer, and it still qualifies. The opportunity starts with let's see: Max goes through your result with you, shows what a once-off setup would cover, and you decide. No monthly subscriptions, and nothing is booked until you agree.",q:"Is there a budget for a once-off setup, with no monthly subscriptions?",o:["Yes","Not sure yet","No"]}
+];
+function pqDone(){ return PQ.every(function(p){ return !!state.pq[p.id]; }); }
+function qualified(){
+  var p=state.pq;
+  return (p.trading==="Yes, trading now"||p.trading==="Starting within three months") && p.decider==="Yes" && p.timing==="Yes" && (p.budget==="Yes"||p.budget==="Not sure yet");
+}
 
-      reset.addEventListener('click', function () {
-        form.reset();
-        result.hidden = true;
-        result.textContent = '';
-        send.hidden = true;
-        form.querySelector('input[name="q1"]').focus();
-      });
-    })();
-  </script>
-  <script>
-    (function () {
-      var QUESTIONS = [
-        { id: 'gbp', text: 'Do you have a Google Business Profile that is up to date?' },
-        { id: 'social', text: 'Do you have a Facebook page or an Instagram business account?' },
-        { id: 'web', text: 'Do you have your own website on your own domain?' },
-        { id: 'maps', text: 'Do most customers find you through Google or Maps?' },
-        { id: 'pwm', text: 'Do you use a password manager for your business accounts?' },
-        { id: 'twofa', text: 'Is two-factor authentication (2FA) turned on for your business email and domain accounts?' },
-        { id: 'incident', text: 'Has your business had a security incident, account lockout or takeover attempt?' }
-      ];
-      var WA = 'https://wa.me/27695326613';
+var SCREENS = [
+  {k:"prequal",t:"prequal"},
+  {k:"welcome",t:"welcome",timed:1},
+  {k:"consent",t:"consent",timed:1},
+  {k:"brand",t:"qs",timed:1,n:1,title:"Your brand kit",why:"A logo and one spelling of your name are the starting point for everything else.",ids:["logo_received","logo_digital","name_one_way","colours"]},
+  {k:"basics",t:"qs",timed:1,n:2,title:"Your business basics",why:"One number and one set of areas make it easy for people and partners to reach you.",ids:["whatsapp","areas","lic","licconf"]},
+  {k:"proof",t:"qs",timed:1,n:3,title:"Experience and proof",why:"Years in business and other people's words are how trust is built.",ids:["years","reviews"]},
+  {k:"find",t:"qs",timed:1,n:4,title:"Where people find you",why:"This is where people search for you, near them.",ids:["google","website"]},
+  {k:"safety",t:"qs",timed:1,n:5,title:"Account safety",why:"Your accounts are the keys to your business online. These three checks show how well they are locked.",ids:["pwm","twofa","incident"]},
+  {k:"industry",t:"industry",timed:1,n:6,title:"Your industry checklist",why:"Each industry has its own checklist. Tick what is already in place. The list grows as we add industries."},
+  {k:"more",t:"qs",timed:1,n:7,title:"Anything else",why:"Your own words help people understand you.",ids:["notes"]},
+  {k:"result",t:"result"},
+  {k:"teaser",t:"teaser"},
+  {k:"faq",t:"faq"},
+  {k:"glossary",t:"glossary"}
+];
+function idx(k){ for(var j=0;j<SCREENS.length;j++){ if(SCREENS[j].k===k) return j; } return 0; }
 
-      var answers = [];
-      var step = 0;
+var state = {i:0, a:{}, c:{}, ind:"", consent:false, own:false, pq:{}, u1:false, u2:false, shown:Date.now(), tip:""};
+var timer = null;
 
-      var app = document.getElementById('cl-app');
-      if (!app) { return; }
-      var card = document.getElementById('cl-card');
-      var question = document.getElementById('cl-question');
-      var progress = document.getElementById('cl-progress');
-      var back = document.getElementById('cl-back');
-      var result = document.getElementById('cl-result');
-      var waLink = document.getElementById('cl-wa');
-      var restart = document.getElementById('cl-restart');
+// Answers are kept on the device, but the app always reopens on the welcome page (never on FAQ, glossary or result).
+function load(){ try{ var r=localStorage.getItem(KEY); if(r){ var s=JSON.parse(r); if(s && s.cv===CV){ state.a=s.a||{}; state.c=s.c||{}; state.ind=s.ind||""; state.consent=!!s.consent; state.own=!!s.own; state.pq=s.pq||{}; state.u1=!!s.u1; state.u2=!!s.u2; } } }catch(e){} state.i=0; }
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify({cv:CV,a:state.a,c:state.c,ind:state.ind,consent:state.consent,own:state.own,pq:state.pq,u1:state.u1,u2:state.u2})); }catch(e){} }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function elapsed(){ return Math.floor((Date.now()-state.shown)/1000); }
 
-      function render() {
-        card.hidden = false;
-        result.hidden = true;
-        waLink.hidden = true;
-        restart.hidden = true;
-        question.textContent = QUESTIONS[step].text;
-        progress.textContent = 'Question ' + (step + 1) + ' of ' + QUESTIONS.length;
-        back.disabled = step === 0;
-        card.style.animation = 'none';
-        void card.offsetWidth;
-        card.style.animation = '';
-        question.focus();
-      }
+function visibleIds(s){ return (s.ids||[]).filter(function(id){ return !Q[id].need || state.a[Q[id].need]==="Yes"; }); }
 
-      function finish() {
-        var yesCount = answers.filter(function (a) { return a === 'yes'; }).length;
-        var lines = QUESTIONS.map(function (q, i) { return (i + 1) + '. ' + (answers[i] === 'yes' ? 'Yes' : 'No'); });
-        var summary = 'You answered yes to ' + yesCount + ' of ' + QUESTIONS.length + ' questions.';
-        if (answers[6] === 'yes') {
-          summary += ' Because of the incident, the safety check comes first.';
-        }
-        card.hidden = true;
-        progress.textContent = '';
-        result.textContent = summary;
-        result.hidden = false;
-        var message = 'Hi Max, I completed the Connect presence and safety check. Answers: ' + lines.join('; ');
-        waLink.href = WA + '?text=' + encodeURIComponent(message);
-        waLink.hidden = false;
-        restart.hidden = false;
-        result.focus();
-      }
+function status(id){
+  var q=Q[id], v=state.a[id];
+  if(!v || !String(v).trim()) return "todo";
+  if(q.t==="x") return v.trim().toLowerCase()==="i don't know" ? "todo" : "ok";
+  if(q.grey) return (v==="Yes, confirmed") ? "ok" : "conf";
+  return DONE.indexOf(v)>-1 ? "ok" : "todo";
+}
+var LABEL = {ok:"In place", todo:"To do", conf:"To confirm"};
 
-      document.querySelectorAll('#cl-card [data-answer]').forEach(function (btn) {
-        btn.addEventListener('click', function () {
-          answers[step] = btn.getAttribute('data-answer');
-          if (step < QUESTIONS.length - 1) {
-            step += 1;
-            render();
-          } else {
-            finish();
-          }
-        });
-      });
+function canNext(s){
+  if(s.t==="prequal") return state.u1 && state.u2 && pqDone();
+  if(s.t==="consent") return state.consent && state.own && elapsed()>=MIN_READ;
+  if(s.t==="welcome") return elapsed()>=MIN_READ;
+  if(s.t==="qs") return visibleIds(s).every(function(id){ return status(id)!=="todo" || (Q[id].t==="c" && state.a[id]); });
+  if(s.t==="industry") return !!state.ind && elapsed()>=MIN_READ;
+  return true;
+}
 
-      back.addEventListener('click', function () {
-        if (step > 0) {
-          step -= 1;
-          render();
-        }
-      });
+function readBar(s){
+  if(!s.timed) return "";
+  var ok=canNext(s), pct=Math.min(100, Math.round(elapsed()/MIN_READ*100));
+  return '<div class="readbar"><span id="rb" style="width:'+pct+'%"></span></div><p class="readmsg" id="rm">'+(ok?"You can continue when you are ready.":"Take your time. About "+MIN_READ+" seconds on this page. You are moving at the right pace.")+'</p>';
+}
 
-      restart.addEventListener('click', function () {
-        answers = [];
-        step = 0;
-        render();
-      });
+function tipHtml(id){
+  var q=Q[id]; if(!q.grey) return "";
+  var open = state.tip===id;
+  return '<button type="button" class="tip" data-tip="'+id+'" aria-expanded="'+open+'" aria-controls="tip-'+id+'">Why this is greyed out</button>'+
+    '<div class="tipbox'+(open?"":" hidden")+'" id="tip-'+id+'" role="note"><strong>For people</strong><p>'+q.people+'</p><strong>For bots and AI tools</strong><p>'+q.bots+'</p><p><em>This item shows in full once it is confirmed.</em></p></div>';
+}
 
-      render();
-    })();
-  </script>
+function helpHtml(t){ return t ? '<details class="help"><summary>Why it matters: how we help</summary><div class="inner"><p>'+t+'</p></div></details>' : ''; }
+
+function qHtml(id,i){
+  var q=Q[id], v=state.a[id]||"", pending = q.grey && status(id)!=="ok";
+  var d=(0.15*i)+"s";
+  var h='<div class="qwrap rv'+(pending?" pending":"")+'" style="--d:'+d+'"><label class="qlabel" '+(q.t==="x"?'for="t-'+id+'"':'')+'>'+q.q+'</label><p class="desc">'+q.d+'</p>';
+  if(q.t==="x"){
+    h+='<textarea id="t-'+id+'" data-txt="'+id+'" placeholder="Type a few words. If you are not sure, type: I don\'t know">'+esc(v)+'</textarea>';
+  } else {
+    h+='<div class="opts">'+q.o.map(function(o){ return '<button type="button" class="opt" data-opt="'+id+'" data-val="'+esc(o)+'" aria-pressed="'+(v===o)+'">'+esc(o)+'</button>'; }).join("")+'</div>';
+  }
+  h+='<div class="block people"><strong>Why this matters to people</strong><p>'+q.people+'</p></div>';
+  h+='<details><summary>What the bots are doing here</summary><div class="inner"><p>'+q.bots+FACT+'</p></div></details>';
+  h+=helpHtml(q.svc);
+  h+=tipHtml(id)+'</div>';
+  return h;
+}
+
+function nav(s){
+  var back = state.i>0 ? '<button type="button" class="btn ghost" data-back="1">Back</button>' : '<span></span>';
+  var label = s.k==="more" ? "See my result" : "Next";
+  var ok = canNext(s);
+  var wait = (s.timed && elapsed()<MIN_READ) ? ' ('+(MIN_READ-elapsed())+'s)' : "";
+  return '<div class="nav">'+back+'<button type="button" class="btn" data-next="1" '+(ok?"":"disabled")+'>'+label+wait+'</button></div>';
+}
+
+function reread(s){ return s.timed ? '<p style="margin:10px 0 0"><button type="button" class="link" data-reread="1">Read this page again</button> <button type="button" class="link" data-skip="1">Show everything now</button></p>' : ""; }
+
+function faqHtml(){
+  return FAQ.map(function(f){ return '<details><summary>'+esc(f.q)+'</summary><div class="inner"><p>'+esc(f.a)+'</p></div></details>'; }).join("");
+}
+
+function glossaryHtml(){
+  return '<dl><dt>Digital Birth Certificate</dt><dd>A plain record of how your business shows up online today, and the first paid step if you want help.</dd>'+
+      '<dt>Google Business Profile</dt><dd>Your free listing on Google Maps and Search. It shows your name, area and contact details.</dd>'+
+      '<dt>Bot</dt><dd>An automated program that reads web pages, including search engines and AI assistants.</dd>'+
+      '<dt>Crawler</dt><dd>A bot that visits public pages and copies what it finds.</dd>'+
+      '<dt>Encryption</dt><dd>Scrambling a message so only the sender and receiver can read it. WhatsApp messages are encrypted in transit.</dd>'+
+      '<dt>POPIA</dt><dd>South Africa\'s Protection of Personal Information Act. It requires personal information to be accurate, used lawfully and kept safe.</dd>'+
+      '<dt>Regulatory factors</dt><dd>The licences, registrations and rules that apply to your industry. They are set by the relevant regulator and can change, so they are checked before they appear on your page.</dd>'+
+      '<dt>Greyed item</dt><dd>A detail that is not yet confirmed. It shows in full once it is confirmed.</dd>'+
+      '<dt>Clean exit</dt><dd>You can stop at any point and keep your answers and your result.</dd></dl>';
+}
+
+function screenHtml(s){
+  if(s.t==="prequal"){
+    var qs=PQ.map(function(p,i){ return '<div class="qwrap rv" style="--d:'+(0.1*i)+'s"><span class="qlabel">'+p.q+'</span><div class="opts">'+p.o.map(function(o){ return '<button type="button" class="opt" data-pq="'+p.id+'" data-val="'+esc(o)+'" aria-pressed="'+(state.pq[p.id]===o)+'">'+esc(o)+'</button>'; }).join("")+'</div>'+helpHtml(p.svc)+'</div>'; }).join("");
+    var out="";
+    if(pqDone()){
+      out = qualified()
+        ? '<div class="block people"><strong>You qualify for a guided DPA with Max</strong><p>You can start a chat with Max, and he will go through your Digital Presence Assessment with you on a WhatsApp call or during an on-site visit*. You can also carry on with the free check on your own first.</p><small class="fee">*On-site visits: starting rates apply. Applicable fees are confirmed before booking.</small></div>'+
+          (WA_NUMBER?'<div class="nav"><button type="button" class="btn cta" data-wa-with="1">Start a chat with Max</button></div>':'')
+        : '<div class="block"><strong>The free insights are yours to use</strong><p>A guided session with Max is not the right fit yet, and that is fine. Carry on with the free check, and you are most welcome to put every insight into practice yourself. If things change later, answer these questions again.</p></div>';
+    }
+    return '<section class="card"><p class="eyebrow">Before we begin</p><h2>Is this the right fit for you?</h2>'+
+      '<video class="intro" src="'+INTRO_VIDEO+'" poster="'+INTRO_POSTER+'" controls playsinline preload="none" aria-label="Short introduction from Max at We Must Create"></video>'+
+      '<p class="desc">This guide is a free check of where your business stands online today. Please confirm that you understand what it is, then answer four short questions.</p>'+
+      '<label class="tick"><input type="checkbox" data-u1="1" '+(state.u1?"checked":"")+'><span>I understand this guide assesses where my business stands online today: my online footprint.</span></label>'+
+      '<label class="tick"><input type="checkbox" data-u2="1" '+(state.u2?"checked":"")+'><span>I understand the insights are free, and I am welcome to put them into practice myself.</span></label>'+
+      '<div class="block people"><strong>Why for people</strong><p>You know from the start what you get for free and what a guided session involves, so there are no surprises.</p></div>'+
+      '<div class="block bots"><strong>Why for bots</strong><p>Nothing here is published. These answers stay on your device and only decide which next steps you see.</p></div>'+
+      qs+out+
+      '<div class="nav"><span></span><button type="button" class="btn" data-next="1" '+(canNext(s)?"":"disabled")+'>Continue to the free check</button></div></section>';
+  }
+  if(s.t==="welcome"){
+    return '<section class="card"><p class="eyebrow rv" style="--d:0s">Welcome</p><h1 class="rv" style="--d:.2s">Your Digital Presence Assessment</h1><p class="sub rv" style="--d:.4s">We clear the noise. You focus on your hustle.</p>'+
+      
+      '<p class="rv" style="--d:.8s">This is a free, plain-English check of how your business shows up online today. It takes about 15 minutes.</p>'+
+      '<div class="block people rv" style="--d:1s"><strong>Why we do this</strong><p>Most people now find businesses through Google, Maps, WhatsApp and AI assistants. This check shows where you stand and what to fix first.</p></div>'+
+      '<details class="rv" style="--d:1.2s"><summary>What the bots are doing here</summary><div class="inner"><p>Search and AI tools read public pages within milliseconds of a request. People take minutes to read a page. Bots take milliseconds. That gap is why the structure has to be right: a bot will repeat what it reads before you have finished reading it.</p></div></details>'+
+      '<div class="block bots rv" style="--d:1.4s"><strong>Why this matters</strong><p>Humans use bots to find businesses. What a bot reads is what most people now hear about you, so every step explains both views.</p></div>'+
+      '<p class="rv" style="--d:1.6s"><strong>Who we are:</strong> We Must Create, a South African digital presence team. Credentials are available on request.</p>'+
+      (qualified()?'<div class="block rv" style="--d:1.8s"><strong>Do it yourself, or go through it with Max</strong><p>You qualify for a guided DPA. Work through this on your own, or go through it with Max on a WhatsApp call or an on-site visit*.</p><small class="fee">*On-site visits: starting rates apply. Applicable fees are confirmed before booking.</small></div>'+
+      (WA_NUMBER?'<div class="nav rv" style="--d:1.9s"><button type="button" class="btn ghost" data-wa-with="1">Go through it with Max</button></div>':''):'')+
+      readBar(s)+reread(s)+nav(s)+'</section>';
+  }
+  if(s.t==="consent"){
+    return '<section class="card"><p class="eyebrow">Before you start</p><h2>Your privacy, in plain words</h2>'+
+      '<p class="rv" style="--d:.1s"><strong>1. This check is free. You can stop at any time.</strong></p>'+
+      '<div class="block people"><strong>Why for people</strong><p>You decide how far to go, with no pressure.</p></div>'+
+      '<div class="block bots"><strong>Why for bots</strong><p>Bots only read what is published, so a check you stop halfway adds nothing public.</p></div>'+
+      '<p><strong>2. Your answers stay on your device. We do not keep your personal information. Nothing reaches us unless you choose to send it on WhatsApp.</strong></p>'+
+      '<div class="block people"><strong>Why for people</strong><p>POPIA requires personal information to be used lawfully and kept safe. If it stays on your device, there is less risk of it being stored, copied or lost.</p></div>'+
+      '<div class="block bots"><strong>Why for bots</strong><p>Bots cannot read what stays on your device, so private answers do not end up on public pages.</p></div>'+
+      '<p><strong>3. Your business name, area and contact number are your NAP (Name, Address, Phone).</strong></p>'+
+      '<div class="block people"><strong>Why for people</strong><p>Customers and partners check these same details before they call you.</p></div>'+
+      '<div class="block bots"><strong>Why for bots</strong><p>Search and AI tools read your NAP on public pages. If it matches everywhere, they trust the business is real. If it differs, they may show the wrong business, or none.</p></div>'+
+      '<p><strong>4. Anything you publish can be copied within minutes. Publish only what you have confirmed.</strong></p>'+
+      '<div class="block people"><strong>Why for people</strong><p>Once something is public, you cannot take back copies others have saved.</p></div>'+
+      '<div class="block bots"><strong>Why for bots</strong><p>Bots copy public pages quickly and repeat them for days or weeks, so a wrong detail spreads before you notice.</p></div>'+
+      '<p><strong>5. Keep control of your accounts. Add us as an admin or manager, never by sharing passwords.</strong></p>'+
+      '<div class="block people"><strong>Why for people</strong><p>You keep ownership and your own login. We work from the back end, and you can remove access at any time. This applies to Facebook, Instagram, TikTok, WhatsApp Business and Google Business Profile.</p></div>'+
+      '<div class="block bots"><strong>Why for bots</strong><p>The public pages for these accounts are read as one business. Admin access lets us keep them matching the same details.</p></div>'+
+      '<div class="block people"><strong>Why this page explains itself</strong><p>This is also education. Each point says why it matters to people and to bots, so you can use the same reasons with others.</p></div>'+
+      '<label class="tick"><input type="checkbox" data-consent="1" '+(state.consent?"checked":"")+'><span>I have read this and I agree to continue.</span></label>'+
+      '<label class="tick"><input type="checkbox" data-own="1" '+(state.own?"checked":"")+'><span>I confirm the business details I give are ours.</span></label>'+
+      '<div class="block bots"><strong>Why the tick boxes are there</strong><p>POPIA requires your consent before personal information is used. The first box records that you understood. The second records that the details are yours, so we use only what you have confirmed.</p></div>'+
+      readBar(s)+reread(s)+nav(s)+'</section>';
+  }
+  if(s.t==="qs"){
+    var ids=visibleIds(s);
+    return '<section class="card"><p class="eyebrow">Step '+s.n+' of '+STEPS+'</p><h2>'+esc(s.title)+'</h2><p class="desc">'+s.why+'</p>'+ids.map(function(id,i){ return qHtml(id,i); }).join("")+readBar(s)+reread(s)+nav(s)+'</section>';
+  }
+  if(s.t==="industry"){
+    var list = state.ind ? INDUSTRIES[state.ind] : null;
+    var inds = Object.keys(INDUSTRIES).map(function(n){ return '<button type="button" class="opt" data-ind="'+esc(n)+'" aria-pressed="'+(state.ind===n)+'">'+esc(n)+'</button>'; }).join("");
+    var checks = list ? list.map(function(item,i){ var on=!!(state.c[state.ind]||[])[i]; return '<label class="check"><input type="checkbox" data-chk="'+i+'" '+(on?"checked":"")+'><span>'+esc(item)+'</span></label>'; }).join("") : "";
+    return '<section class="card"><p class="eyebrow">Step '+s.n+' of '+STEPS+'</p><h2>'+esc(s.title)+'</h2><p class="desc">'+s.why+'</p><div class="opts">'+inds+'</div>'+
+      (list?'<div style="margin-top:16px"><strong class="qlabel">'+esc(state.ind)+' checklist</strong>'+checks+'</div>':'')+
+      '<div class="block people"><strong>Why this matters to people</strong><p>A checklist turns a vague worry into a short list of things you can tick off.</p></div>'+
+      helpHtml("Your ticked and unticked items become the work list for your 60-day foundation, so we fix what is missing first.")+
+      '<details><summary>What the bots are doing here</summary><div class="inner"><p>A checklist gives bots plain facts they can check against your listing and your pages.'+FACT+'</p></div></details>'+
+      readBar(s)+reread(s)+nav(s)+'</section>';
+  }
+  if(s.t==="result"){
+    var rows="", todo=0;
+    Object.keys(Q).forEach(function(id){ var q=Q[id]; if(q.need && state.a[q.need]!=="Yes") return; var st=status(id); if(st!=="ok") todo++; if(!state.a[id]) return; rows+='<div class="row"><div><strong>'+q.q+'</strong><br>'+esc(state.a[id])+'</div><span class="pill '+(st==="ok"?"ok":st==="conf"?"conf":"todo")+'">'+LABEL[st]+'</span></div>'; });
+    var ck = state.ind ? (INDUSTRIES[state.ind]||[]).filter(function(_,i){ return (state.c[state.ind]||[])[i]; }).length : 0;
+    var total = state.ind ? INDUSTRIES[state.ind].length : 0;
+    var web = state.a.website==="No, not yet, and that is fine";
+    var dbc = todo>0 || web;
+    return '<section class="card"><p class="eyebrow">Your result</p><h2>What is in place</h2><p>'+(todo?'Here is what is in place and what needs work, in order.':'Everything in this check is in place. Keep the details up to date.')+'</p>'+
+      (state.ind?'<p><strong>'+esc(state.ind)+' checklist:</strong> '+ck+' of '+total+' ticked.</p>':'')+
+      (rows||'<p>No answers yet.</p>')+
+      (dbc?'<div class="block"><strong>Your next step: the Digital Birth Certificate</strong><p>It is the low-budget starting point for a business that does not yet have a useful online presence. It starts with control of your Google Business Profile. It is a paid service. We discuss it with you in person. No problem, we will assist.</p></div>':'')+
+      '<div class="block people"><strong>How we can help</strong><p>Services that match what is still open:</p>'+
+      '<a class="svc" href="'+SOLUTIONS_URL+'" target="_blank" rel="noopener">Visibility: Google listing and local search</a>'+
+      '<a class="svc" href="'+SOLUTIONS_URL+'" target="_blank" rel="noopener">Privacy: protecting your accounts and your details</a>'+
+      '<a class="svc" href="'+SOLUTIONS_URL+'" target="_blank" rel="noopener">Safety: checks before you act on a message asking for money or codes</a></div>'+
+      (qualified()
+        ? '<div class="block"><strong>Send your answers to Max</strong><p>Tap below. It opens WhatsApp with your answers already typed in, ready for you to send. Max then goes through your DPA with you on a WhatsApp call or an on-site visit*. Nothing is stored on this page.</p><small class="fee">*On-site visits: starting rates apply. Applicable fees are confirmed before booking.</small></div>'+
+          (WA_NUMBER?'<div class="nav"><button type="button" class="btn cta" data-wa-answers="1">Send my answers to Max on WhatsApp</button></div>':'')+
+          '<div class="nav"><button type="button" class="btn" data-goto="teaser">Preview my dashboard</button></div>'
+        : '<div class="block"><strong>Put these insights to work</strong><p>Everything on this page is yours to use. Start with the items marked To do, from the top. If your situation changes, answer the pre-qualification questions again to unlock a guided session with Max.</p></div>'+
+          '<div class="block people"><strong>See what you could be tracking</strong><p>Take a look at the dashboard a guided DPA gives you: your three pillars, your progress and your 120-day timeline, all in one place.</p></div>'+
+          '<div class="nav"><button type="button" class="btn" data-goto="teaser">See the dashboard preview</button></div>'+
+          '<div class="nav"><button type="button" class="btn ghost" data-goto="prequal">Answer the pre-qualification again</button></div>')+
+      '<div class="block"><strong>Ask a question</strong><p>Type it below. It opens WhatsApp to us with your question filled in. Nothing is stored on this page.</p>'+
+      '<label class="qlabel" for="ask">Your question</label><textarea id="ask" placeholder="Type your question here"></textarea>'+
+      (WA_NUMBER?'<div class="nav"><button type="button" class="btn" data-wa="1">Message We Must Create on WhatsApp</button></div>':'')+'</div>'+
+      '<div class="block"><strong>You can stop here</strong><p>Your answers and this result stay with you. There is no obligation to continue.</p></div>'+
+      '<div class="nav"><button type="button" class="btn ghost" data-back="1">Back</button><button type="button" class="btn ghost" data-jump="glossary">Glossary</button><button type="button" class="btn ghost" data-restart="1">Start again</button></div></section>';
+  }
+  if(s.t==="teaser"){
+    var rings=[["Visibility","Google, Maps and search"],["Privacy","Your details and reputation"],["Safety","Your accounts and access"]].map(function(r){ return '<div class="ring"><svg viewBox="0 0 36 36" aria-hidden="true"><circle cx="18" cy="18" r="15.9" class="ring-bg"/><circle cx="18" cy="18" r="15.9" class="ring-fg"/></svg><strong>'+r[0]+'</strong><span>'+r[1]+'</span><em>-- %</em></div>'; }).join("");
+    var bars=["Brand kit","Business basics (NAP)","Reviews and proof","Google Business Profile","Account safety (passwords and 2FA)","Accounts and admin access"].map(function(b){ return '<div class="dbar"><span>'+b+'</span><div class="dtrack"><i></i></div></div>'; }).join("");
+    var steps=[["Day 0","Free assessment","This check. You are here.",1],["Days 1 to 60","Foundation","Your details are verified and set up the same way everywhere: Google, Maps, WhatsApp and your pages.",0],["Day 60","Check-in report","We meet in person. You see what changed and decide on the next step.",0],["Days 61 to 120","Build on what works","We strengthen what the Day 60 report shows is working.",0],["Day 120","Your choice","Carry on, or leave with everything handed over to you. No lock-in.",0]].map(function(t){ return '<li class="tl'+(t[3]?" now":"")+'"><b>'+t[0]+'</b><strong>'+t[1]+'</strong><p>'+t[2]+'</p></li>'; }).join("");
+    var hiw=["1. AI tools speed up the checks.","2. A person, Max, verifies every detail before anything goes live.","3. Only approved changes are set up.","4. You own every account and file. You can remove our access at any time."].map(function(h){ return '<li>'+h+'</li>'; }).join("");
+    var ok=qualified();
+    return '<section class="card"><p class="eyebrow">Your dashboard</p><h2>'+(ok?'Your dashboard preview':'What you could be tracking')+'</h2>'+
+      '<span class="lockpill">'+(ok?'Locked until your call with Max':'Opens with a guided DPA')+'</span>'+
+      '<p class="desc">'+(ok?'This is the dashboard you would work from. The structure is ready. Everything is greyed out until we have talked and your details are confirmed.':'This is the dashboard businesses track with a guided DPA. It is greyed out here, so you can see what you would be tracking if you choose to go further.')+'</p>'+
+      '<div class="dash" aria-label="Dashboard preview, locked">'+
+      '<h3>Your three pillars</h3><div class="rings">'+rings+'</div>'+
+      '<h3>What is in place</h3>'+bars+
+      '<h3>Your 120-day timeline</h3><ul class="timeline">'+steps+'</ul>'+
+      '<h3>How it works behind the scenes</h3><ul class="hiw">'+hiw+'</ul></div>'+
+      '<div class="block people"><strong>Why for people</strong><p>You can see the whole plan before you commit, so you know exactly what happens and when.</p></div>'+
+      '<div class="block bots"><strong>Why the dashboard waits</strong><p>Your dashboard reflects confirmed details. It opens once we have talked, so the numbers match what is really in place.</p></div>'+
+      (ok
+        ? (WA_NUMBER?'<div class="nav"><button type="button" class="btn cta" data-wa-talk="1">Call or WhatsApp Max to open my dashboard</button></div>':'')
+        : '<div class="nav"><button type="button" class="btn cta" data-goto="prequal">Ready to go further? Answer the pre-qualification again</button></div>')+
+      '<div class="nav"><button type="button" class="btn ghost" data-goto="result">Back to my result</button></div></section>';
+  }
+  if(s.t==="faq"){
+    return '<section class="card"><p class="eyebrow">Reference</p><h2>Frequently asked</h2><p class="desc">The basics, in plain words. Tap a question to open it.</p>'+faqHtml()+
+      '<div class="nav"><button type="button" class="btn ghost" data-jump="glossary">Full glossary</button><button type="button" class="btn ghost" data-back="1">Back</button></div></section>';
+  }
+  if(s.t==="glossary"){
+    return '<section class="card"><p class="eyebrow">Reference</p><h2>Glossary</h2>'+glossaryHtml()+
+      '<div class="nav"><button type="button" class="btn ghost" data-jump="faq">Back to FAQ</button><button type="button" class="btn ghost" data-jump="result">Back to result</button></div></section>';
+  }
+  return "";
+}
+
+function render(){
+  var s=SCREENS[state.i];
+  document.getElementById("bar").style.width = Math.round(state.i/(SCREENS.length-1)*100)+"%";
+  document.getElementById("meta").textContent = s.n ? "Step "+s.n+" of "+STEPS : (s.k==="result"?"Your result":s.k==="teaser"?"Dashboard preview":(s.k==="faq"?"Frequently asked":(s.k==="glossary"?"Glossary":"Page "+(state.i+1)+" of "+SCREENS.length)));
+  document.getElementById("app").innerHTML = screenHtml(s);
+  clearInterval(timer);
+  if(s.timed){ timer = setInterval(tick, 250); }
+}
+
+function tick(){
+  var s=SCREENS[state.i];
+  var btn=document.querySelector("[data-next]"), rb=document.getElementById("rb"), rm=document.getElementById("rm");
+  if(!btn){ clearInterval(timer); return; }
+  var ok=canNext(s), pct=Math.min(100, Math.round(elapsed()/MIN_READ*100));
+  if(rb) rb.style.width = pct+"%";
+  if(rm) rm.textContent = ok ? "You can continue when you are ready." : "Take your time. About "+MIN_READ+" seconds on this page. You are moving at the right pace.";
+  btn.disabled=!ok;
+  var label = (s.k==="more"?"See my result":"Next");
+  btn.textContent = ok ? label : label+" ("+Math.max(0,MIN_READ-elapsed())+"s)";
+}
+
+function goTo(i){ state.i=Math.max(0,Math.min(SCREENS.length-1,i)); state.shown=Date.now(); state.tip=""; save(); render(); window.scrollTo(0,0); }
+
+document.getElementById("app").addEventListener("click", function(e){
+  var t=e.target.closest("button,[data-tip]"); if(!t) return;
+  if(t.hasAttribute("data-opt")){ state.a[t.getAttribute("data-opt")]=t.getAttribute("data-val"); save(); render(); return; }
+  if(t.hasAttribute("data-ind")){ state.ind=t.getAttribute("data-ind"); save(); render(); return; }
+  if(t.hasAttribute("data-tip")){ var id=t.getAttribute("data-tip"); state.tip = state.tip===id ? "" : id; render(); return; }
+  if(t.hasAttribute("data-next")){ if(!canNext(SCREENS[state.i])) return; goTo(state.i+1); return; }
+  if(t.hasAttribute("data-back")){ goTo(state.i-1); return; }
+  if(t.hasAttribute("data-reread")){ state.shown=Date.now(); render(); return; }
+  if(t.hasAttribute("data-skip")){ document.querySelectorAll(".rv").forEach(function(el){ el.classList.add("skip"); }); state.shown=state.shown-MIN_READ*1000; render(); return; }
+  if(t.hasAttribute("data-restart")){ state.a={}; state.c={}; state.ind=""; state.consent=false; state.own=false; goTo(0); return; }
+  if(t.hasAttribute("data-goto")){ goTo(idx(t.getAttribute("data-goto"))); return; }
+  if(t.hasAttribute("data-wa-answers")){
+    var lines=["Digital Presence Assessment: my answers","Pre-qualification:"];
+    PQ.forEach(function(p){ lines.push(p.q+" "+(state.pq[p.id]||"-")); });
+    lines.push("Assessment:");
+    Object.keys(Q).forEach(function(id){ var q=Q[id]; if(q.need && state.a[q.need]!=="Yes") return; if(state.a[id]) lines.push(q.q+" "+state.a[id]); });
+    if(state.ind){ lines.push(state.ind+" checklist:"); (INDUSTRIES[state.ind]||[]).forEach(function(item,i){ lines.push(((state.c[state.ind]||[])[i]?"[x] ":"[ ] ")+item); }); }
+    window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent(lines.join("\n")), "_blank", "noopener"); return;
+  }
+  if(t.hasAttribute("data-pq")){ state.pq[t.getAttribute("data-pq")]=t.getAttribute("data-val"); save(); render(); return; }
+  if(t.hasAttribute("data-wa-with")){ window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("Hi Max, I have pre-qualified for a guided Digital Presence Assessment. I would like to go through it with you on a WhatsApp call or an on-site visit."), "_blank", "noopener"); return; }
+  if(t.hasAttribute("data-wa-talk")){ window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("I would like to talk to Max about opening my dashboard."), "_blank", "noopener"); return; }
+  if(t.hasAttribute("data-wa")){ var msg=(document.getElementById("ask")||{}).value||""; if(!msg.trim()||!WA_NUMBER) return; window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("Question from the Digital Presence Assessment: "+msg), "_blank", "noopener"); return; }
+  if(t.hasAttribute("data-wa-call")){ if(!WA_NUMBER) return; window.open("https://wa.me/"+WA_NUMBER+"?text="+encodeURIComponent("I would like a wake-up call about my Digital Presence Assessment result."), "_blank", "noopener"); return; }
+});
+
+document.querySelector(".topnav").addEventListener("click", function(e){
+  var t=e.target.closest("[data-jump]"); if(!t) return;
+  goTo(idx(t.getAttribute("data-jump")));
+});
+
+document.getElementById("app").addEventListener("change", function(e){
+  var t=e.target;
+  if(t.hasAttribute("data-consent")){ state.consent=t.checked; save(); render(); return; }
+  if(t.hasAttribute("data-own")){ state.own=t.checked; save(); render(); return; }
+  if(t.hasAttribute("data-u1")){ state.u1=t.checked; save(); render(); return; }
+  if(t.hasAttribute("data-u2")){ state.u2=t.checked; save(); render(); return; }
+  if(t.hasAttribute("data-chk")){ var ind=state.ind, i=parseInt(t.getAttribute("data-chk"),10); state.c[ind]=state.c[ind]||[]; state.c[ind][i]=t.checked; save(); return; }
+});
+
+document.getElementById("app").addEventListener("input", function(e){
+  var t=e.target;
+  if(t.hasAttribute("data-txt")){ state.a[t.getAttribute("data-txt")]=t.value; save(); var btn=document.querySelector("[data-next]"); if(btn) btn.disabled=!canNext(SCREENS[state.i]); }
+});
+
+load();
+render();
+</script>
 </body>
 </html>
