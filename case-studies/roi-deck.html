@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Asset ROI Case Study</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+            background: #000;
+            color: #fff;
+            overflow: hidden;
+        }
+        .deck {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .slide {
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+        }
+        .slide.active { display: flex; }
+        .slide h1 {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.2;
+        }
+        .slide h2 {
+            font-size: 40px;
+            font-weight: 600;
+            margin-bottom: 32px;
+        }
+        .slide p, .slide li {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 16px;
+            color: #d1d5db;
+        }
+        .slide ul {
+            margin-left: 40px;
+            margin-bottom: 24px;
+        }
+        .slide li { margin-bottom: 20px; }
+        .accent { color: #d97706; font-weight: 600; }
+        .success { color: #059669; font-weight: 600; }
+
+        /* Slide-specific styles */
+        .title-slide { background: linear-gradient(135deg, #d97706 0%, #f97316 100%); }
+        .title-slide h1 { font-size: 72px; color: #fff; }
+        .title-slide p { font-size: 24px; color: rgba(255,255,255,0.9); }
+
+        .metrics-slide { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
+        .metrics-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .metric {
+            border-left: 4px solid #d97706;
+            padding-left: 24px;
+        }
+        .metric-label { font-size: 14px; color: #9ca3af; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .metric-value { font-size: 48px; color: #d97706; font-weight: 700; }
+        .metric-desc { font-size: 16px; color: #9ca3af; margin-top: 8px; }
+
+        .chart-slide { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
+        .chart-container {
+            width: 100%;
+            height: 500px;
+            margin-top: 40px;
+        }
+
+        .narrative-slide { background: linear-gradient(135deg, #059669 0%, #047857 100%); }
+        .narrative-slide h2 { color: #fff; }
+        .narrative-slide p { font-size: 22px; color: rgba(255,255,255,0.95); line-height: 1.8; }
+        .narrative-slide .accent { color: #fff; font-weight: 700; }
+
+        .cta-slide { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
+        .cta-slide h2 { font-size: 48px; }
+        .cta-slide .accent { font-size: 32px; }
+
+        /* Controls */
+        .controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            z-index: 100;
+        }
+        button {
+            background: #d97706;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover { background: #f97316; }
+        button:disabled { background: #6b7280; cursor: not-allowed; }
+
+        .slide-counter {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            font-size: 16px;
+            color: #9ca3af;
+        }
+
+        .slide-number {
+            position: fixed;
+            top: 40px;
+            right: 40px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="deck">
+        <!-- Slide 1: Title -->
+        <div class="slide title-slide active">
+            <h1>The Digital Asset Advantage</h1>
+            <p style="font-size: 28px; margin-top: 32px;">How one-time optimization generates compound returns</p>
+            <p style="margin-top: 60px; font-size: 18px; color: rgba(255,255,255,0.8);">A 29-month case study in set-and-forget growth</p>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide">
+            <h2>The PPC Treadmill</h2>
+            <ul>
+                <li>Pay <span class="accent">R20 per customer</span> every single month</li>
+                <li>No asset remains when you stop spending</li>
+                <li>Budget approval cycle every quarter</li>
+                <li>Rising CPM, declining margins, constant pressure</li>
+                <li style="margin-top: 32px;"><strong>What if there was another way?</strong></li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: The Approach -->
+        <div class="slide">
+            <h2>Digital Asset Strategy</h2>
+            <ul>
+                <li>One-time investment in visibility infrastructure</li>
+                <li>Optimize for organic search + local discovery</li>
+                <li>Build a system that works while you sleep</li>
+                <li>No monthly fees. No subscription. No renewal.</li>
+                <li style="margin-top: 32px; color: #d97706;"><strong>Payback in 4–6 months. Profit after that.</strong></li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: Metrics -->
+        <div class="slide metrics-slide">
+            <h2>The Numbers</h2>
+            <div class="metrics-container">
+                <div class="metric">
+                    <div class="metric-label">Initial Investment</div>
+                    <div class="metric-value">R4,500</div>
+                    <div class="metric-desc">One-time, split over setup period</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Orders Generated</div>
+                    <div class="metric-value">453</div>
+                    <div class="metric-desc">Over 29 months (conservative)</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Cost Per Order</div>
+                    <div class="metric-value">R9.94</div>
+                    <div class="metric-desc">vs R20 market rate</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Total ROI</div>
+                    <div class="metric-value"><span class="success">1,067%</span></div>
+                    <div class="metric-desc">R52,500+ profit</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Payback Chart -->
+        <div class="slide chart-slide">
+            <h2>Investment Payback Curve</h2>
+            <p>Breakeven reached at 50 orders (~4 months). Every order after is profit.</p>
+            <div class="chart-container">
+                <canvas id="paybackChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Slide 6: CPA Comparison -->
+        <div class="slide chart-slide">
+            <h2>Cost Per Acquisition: Our Model vs Market</h2>
+            <p>Your asset pulls customers at 50% the cost of paid advertising.</p>
+            <div class="chart-container">
+                <canvas id="cpaChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Slide 7: Timeline -->
+        <div class="slide">
+            <h2>The Trajectory</h2>
+            <ul>
+                <li><strong>Months 1–4:</strong> Asset goes live, early conversions begin</li>
+                <li><strong>Month 4:</strong> <span class="success">Investment fully recouped</span></li>
+                <li><strong>Months 5–19:</strong> Steady growth, compounding returns</li>
+                <li><strong>Month 19:</strong> <span class="success">R33,120 in profit generated</span></li>
+                <li><strong>Months 20–29:</strong> Multi-channel expansion, scaling continues</li>
+                <li><strong>Month 29:</strong> <span class="success">R52,500+ in cumulative profit</span></li>
+            </ul>
+        </div>
+
+        <!-- Slide 8: Why It Works -->
+        <div class="slide">
+            <h2>Why Digital Assets Win</h2>
+            <ul>
+                <li><strong>No monthly spend.</strong> You're not renting shelf space.</li>
+                <li><strong>Compound growth.</strong> The asset keeps working, keeps converting.</li>
+                <li><strong>Defensible.</strong> Your visibility isn't dependent on a platform algorithm change.</li>
+                <li><strong>Scalable.</strong> Multi-channel expansion increases reach without reinvestment.</li>
+                <li><strong>Profitable.</strong> Every order after month 4 is margin.</li>
+            </ul>
+        </div>
+
+        <!-- Slide 9: Narrative -->
+        <div class="slide narrative-slide">
+            <h2>The Bottom Line</h2>
+            <p>A R4,500 investment in digital visibility compounds without monthly fees. While competitors pay Google R20 per customer, your asset pulls orders at R10.77 and keeps pulling them.</p>
+            <p style="margin-top: 32px;">By month 4, the investment is recouped. By month 19, it has generated R33,120 in gross profit. At month 29, that number exceeds R52,500.</p>
+            <p style="margin-top: 32px;"><span class="accent">The first customer pays for the entire build. Everything after is margin.</span></p>
+        </div>
+
+        <!-- Slide 10: CTA -->
+        <div class="slide cta-slide">
+            <h2>Ready to Build Your Asset?</h2>
+            <p style="font-size: 24px; margin-top: 40px; color: #9ca3af;">This isn't a strategy for everyone. It's for owners ready to invest once and profit continuously.</p>
+            <p style="margin-top: 60px; font-size: 20px;"><span class="accent">Let's talk about your digital asset strategy.</span></p>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button id="prevBtn" onclick="changeSlide(-1)">← Back</button>
+        <button id="nextBtn" onclick="changeSlide(1)">Next →</button>
+    </div>
+    <div class="slide-counter">
+        <span id="slideNum">1</span> / <span id="slideTotal">10</span>
+    </div>
+    <div class="slide-number" id="slideIndicator">1</div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        document.getElementById('slideTotal').textContent = totalSlides;
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('slideNum').textContent = currentSlide + 1;
+            document.getElementById('slideIndicator').textContent = currentSlide + 1;
+            document.getElementById('prevBtn').disabled = currentSlide === 0;
+            document.getElementById('nextBtn').disabled = currentSlide === totalSlides - 1;
+
+            // Initialize charts when their slides become active
+            if (currentSlide === 4) initPaybackChart();
+            if (currentSlide === 5) initCPAChart();
+        }
+
+        function changeSlide(n) { showSlide(currentSlide + n); }
+
+        function initPaybackChart() {
+            if (window.paybackChartInstance) return;
+            const ctx = document.getElementById('paybackChart').getContext('2d');
+            window.paybackChartInstance = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['0', '10', '20', '30', '40', '50', '100', '150', '200', '300', '453'],
+                    datasets: [
+                        {
+                            label: 'Investment (R4,500)',
+                            data: [4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500, 4500],
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            borderWidth: 2,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 0,
+                        },
+                        {
+                            label: 'Revenue Generated',
+                            data: [0, 790, 1580, 2370, 3160, 3950, 7900, 11850, 15800, 23700, 35787],
+                            borderColor: '#059669',
+                            backgroundColor: 'rgba(5, 150, 105, 0.1)',
+                            borderWidth: 3,
+                            fill: true,
+                            tension: 0.4,
+                            pointRadius: 4,
+                            pointBackgroundColor: '#059669',
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { labels: { font: { size: 14 }, color: '#d1d5db' } } },
+                    scales: {
+                        y: { ticks: { color: '#6b7280', callback: (v) => 'R' + (v/1000).toFixed(0) + 'k' } },
+                        x: { ticks: { color: '#6b7280' } }
+                    }
+                }
+            });
+        }
+
+        function initCPAChart() {
+            if (window.cpaChartInstance) return;
+            const ctx = document.getElementById('cpaChart').getContext('2d');
+            window.cpaChartInstance = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Your Digital Asset', 'Market PPC Rate'],
+                    datasets: [{
+                        label: 'Cost Per Order',
+                        data: [9.94, 20.00],
+                        backgroundColor: ['#059669', '#d97706'],
+                        borderRadius: 8,
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#6b7280', callback: (v) => 'R' + v.toFixed(2) } }
+                    }
+                }
+            });
+        }
+
+        showSlide(0);
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+        });
+    </script>
+</body>
+</html>
